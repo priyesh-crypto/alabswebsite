@@ -1,0 +1,310 @@
+// AnalytixLabs Prisma schema
+// Source of record: CLAUDE.md §6 + PLAN.md §9 (new model `Office`,
+// new fields on Course / SiteSettings / Lead / Faq).
+// Stack: Postgres + Prisma 6 (Option C from ASSUMPTIONS.md §1).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================
+// Auth
+// ============================================================
+
+model AdminUser {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(EDITOR)
+  createdAt DateTime @default(now())
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+// ============================================================
+// Site-wide settings (singleton row id=1)
+// ============================================================
+
+model SiteSettings {
+  id              Int      @id @default(1)
+  logoUrl         String
+  faviconUrl      String?
+  primaryColor    String   @default("#09263f")
+  contactEmail    String
+  contactPhone    String
+  businessHours   String   @default("10:00 AM TO 07:00 PM")
+  address         String
+  socialLinks     Json
+  stats           Json
+  gtmId           String?
+  defaultMetaDesc String?
+  ogImageUrl      String?
+  updatedAt       DateTime @updatedAt
+}
+
+// ============================================================
+// Navigation
+// ============================================================
+
+model NavItem {
+  id       String    @id @default(cuid())
+  label    String
+  url      String
+  order    Int
+  parentId String?
+  parent   NavItem?  @relation("NavTree", fields: [parentId], references: [id])
+  children NavItem[] @relation("NavTree")
+  group    NavGroup
+  isActive Boolean   @default(true)
+}
+
+enum NavGroup {
+  TOP_NAV
+  MEGA_MENU
+  FOOTER_LINKS
+  FOOTER_CITIES
+}
+
+// ============================================================
+// Catalog
+// ============================================================
+
+model Category {
+  id      String   @id @default(cuid())
+  name    String
+  slug    String   @unique
+  order   Int
+  courses Course[]
+}
+
+model Course {
+  id                 String          @id @default(cuid())
+  slug               String          @unique
+  title              String
+  shortDesc          String
+  longDesc           String
+  thumbnailUrl       String
+  heroImageUrl       String?
+  durationMonths     Int?
+  classesCount       Int?
+  hoursCount         Int?
+  experienceLabel    String?
+  price              Int?
+  discountedPrice    Int?
+  emiPerMonth        Int?
+  brochureUrl        String?
+  isFeatured         Boolean         @default(false)
+  isPublished        Boolean         @default(true)
+  order              Int             @default(0)
+  jobRoles           String[]        @default([])
+  keySkills          String[]        @default([])
+  careerSupportText  String?
+  metaTitle          String?
+  metaDesc           String?
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+  categoryId         String
+  category           Category        @relation(fields: [categoryId], references: [id])
+  modules            CourseModule[]
+  batches            Batch[]
+  faqs               Faq[]
+  tools              Tool[]          @relation("CourseTools")
+  certifications     Certification[]
+  projects           Project[]
+}
+
+model CourseModule {
+  id       String   @id @default(cuid())
+  courseId String
+  course   Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  title    String
+  summary  String?
+  order    Int
+  lessons  Lesson[]
+}
+
+model Lesson {
+  id       String       @id @default(cuid())
+  moduleId String
+  module   CourseModule @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  title    String
+  duration String?
+  order    Int
+}
+
+model Tool {
+  id      String   @id @default(cuid())
+  name    String
+  iconUrl String?
+  courses Course[] @relation("CourseTools")
+}
+
+model Certification {
+  id       String  @id @default(cuid())
+  courseId String
+  course   Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  title    String
+  issuer   String
+  imageUrl String?
+}
+
+model Project {
+  id       String  @id @default(cuid())
+  courseId String
+  course   Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  title    String
+  desc     String
+  imageUrl String?
+}
+
+model Batch {
+  id        String   @id @default(cuid())
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  location  String
+  startDate DateTime
+  schedule  String
+  seatsLeft Int
+  isActive  Boolean  @default(true)
+}
+
+// ============================================================
+// Marketing surfaces
+// ============================================================
+
+model Testimonial {
+  id       String  @id @default(cuid())
+  name     String
+  role     String?
+  company  String?
+  photoUrl String?
+  quote    String
+  rating   Int     @default(5)
+  courseId String?
+  order    Int     @default(0)
+  isActive Boolean @default(true)
+}
+
+model HiringPartner {
+  id      String @id @default(cuid())
+  name    String
+  logoUrl String
+  order   Int    @default(0)
+}
+
+model TeamMember {
+  id          String  @id @default(cuid())
+  name        String
+  role        String
+  photoUrl    String?
+  bio         String?
+  linkedinUrl String?
+  order       Int     @default(0)
+}
+
+model Faq {
+  id       String  @id @default(cuid())
+  question String
+  answer   String
+  scope    String  // "GLOBAL" | "ABOUT" | "CONTACT" | <courseId>
+  courseId String?
+  course   Course? @relation(fields: [courseId], references: [id])
+  order    Int     @default(0)
+}
+
+model BlogPost {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  title       String
+  excerpt     String?
+  coverUrl    String?
+  body        String
+  authorName  String
+  publishedAt DateTime?
+  isPublished Boolean   @default(false)
+  tags        String[]  @default([])
+  metaTitle   String?
+  metaDesc    String?
+}
+
+// ============================================================
+// Editable copy blocks for non-Figma pages and flexible sections
+// ============================================================
+
+model Page {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  title     String
+  blocks    Json
+  metaTitle String?
+  metaDesc  String?
+  updatedAt DateTime @updatedAt
+}
+
+// ============================================================
+// Offices (NEW — PLAN.md §9.1)
+// ============================================================
+
+model Office {
+  id            String  @id @default(cuid())
+  city          String
+  addressLine1  String
+  addressLine2  String?
+  phone         String
+  hours         String
+  directionsUrl String
+  mapImageUrl   String?
+  order         Int     @default(0)
+  isActive      Boolean @default(true)
+}
+
+// ============================================================
+// Leads (extended — PLAN.md §9.2)
+// ============================================================
+
+model Lead {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  countryCode String?
+  phone       String?
+  message     String?
+  city        String?
+  company     String?
+  teamSize    String?
+  courseId    String?
+  source      String
+  utm         Json?
+  createdAt   DateTime @default(now())
+}
+
+// ============================================================
+// Masterclass + Uploads
+// ============================================================
+
+model Masterclass {
+  id          String    @id @default(cuid())
+  title       String
+  bannerUrl   String
+  registerUrl String
+  startsAt    DateTime?
+  isActive    Boolean   @default(true)
+}
+
+model UploadedAsset {
+  id        String   @id @default(cuid())
+  url       String
+  mimeType  String
+  size      Int
+  alt       String?
+  createdAt DateTime @default(now())
+}
