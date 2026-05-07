@@ -1,0 +1,123 @@
+### AnalytixLabs API — Phase 2 surface
+### Open in VSCode REST Client. Server defaults to http://localhost:3000.
+
+@base = http://localhost:3000
+
+### Health
+GET {{base}}/api/health
+
+### Site settings (singleton)
+GET {{base}}/api/site-settings
+
+### Top navigation
+GET {{base}}/api/nav?group=TOP_NAV
+
+### Mega menu
+GET {{base}}/api/nav?group=MEGA_MENU
+
+### Footer links
+GET {{base}}/api/nav?group=FOOTER_LINKS
+
+### Footer city links
+GET {{base}}/api/nav?group=FOOTER_CITIES
+
+### Categories
+GET {{base}}/api/categories
+
+### Courses — full list
+GET {{base}}/api/courses
+
+### Courses — featured only, limit 4
+GET {{base}}/api/courses?featured=true&limit=4
+
+### Courses — by category slug
+GET {{base}}/api/courses?category=data-science
+
+### Course detail
+GET {{base}}/api/courses/data-science
+
+### Testimonials
+GET {{base}}/api/testimonials
+
+### Hiring partners
+GET {{base}}/api/hiring-partners
+
+### Team
+GET {{base}}/api/team
+
+### FAQs (global)
+GET {{base}}/api/faqs?scope=GLOBAL
+
+### FAQs (about page)
+GET {{base}}/api/faqs?scope=ABOUT
+
+### FAQs for a course
+GET {{base}}/api/faqs?courseSlug=data-science
+
+### Blog posts
+GET {{base}}/api/posts?limit=10
+
+### Blog post detail
+GET {{base}}/api/posts/some-slug
+
+### Editable Page block (about, why-us, etc.)
+GET {{base}}/api/pages/about
+
+### Active masterclass banner
+GET {{base}}/api/masterclass/active
+
+### Offices
+GET {{base}}/api/offices
+
+### Lead — contact form
+POST {{base}}/api/leads
+Content-Type: application/json
+
+{
+  "name": "Test Person",
+  "email": "test@example.com",
+  "countryCode": "+91",
+  "phone": "9999999999",
+  "city": "Bengaluru",
+  "message": "Sample contact message",
+  "source": "contact-form"
+}
+
+### Lead — corporate enquiry
+POST {{base}}/api/leads
+Content-Type: application/json
+
+{
+  "name": "Corporate Lead",
+  "email": "corp@example.com",
+  "company": "Acme Inc",
+  "teamSize": "20-50",
+  "source": "corporate-enquiry"
+}
+
+### Admin — login
+# @name login
+POST {{base}}/api/admin/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@alabs.local",
+  "password": "Admin@123"
+}
+
+### Admin — current session
+GET {{base}}/api/admin/auth/me
+
+### Admin — logout
+POST {{base}}/api/admin/auth/logout
+
+### Admin — upload (multipart). VSCode REST Client supports file refs.
+# POST {{base}}/api/admin/uploads
+# Content-Type: multipart/form-data; boundary=----boundary
+#
+# ------boundary
+# Content-Disposition: form-data; name="file"; filename="logo.png"
+# Content-Type: image/png
+#
+# < ./public/uploads/sample.png
+# ------boundary--

@@ -33,10 +33,15 @@ export async function verifyPassword(
   return bcrypt.compare(plain, hashed);
 }
 
-export async function signSession(
-  claims: Omit<AdminClaims, keyof JWTPayload> & { sub: string },
-): Promise<string> {
-  return new SignJWT(claims)
+export type SessionInput = {
+  sub: string;
+  email: string;
+  role: "ADMIN" | "EDITOR";
+  name: string;
+};
+
+export async function signSession(claims: SessionInput): Promise<string> {
+  return new SignJWT({ ...claims })
     .setProtectedHeader({ alg: ALG })
     .setIssuedAt()
     .setExpirationTime("7d")
