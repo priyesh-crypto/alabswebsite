@@ -42,6 +42,6 @@ prisma/migrations/dev.db*
 *.db
 *.db-journal
 
-# uploads (dev local)
-uploads/
-public/uploads/
+# uploads (dev local) — anchor to root so app/api/admin/uploads/ isn't matched
+/uploads/
+/public/uploads/
