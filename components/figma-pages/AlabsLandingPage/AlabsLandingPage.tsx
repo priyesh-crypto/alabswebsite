@@ -788,106 +788,117 @@ function Icon5() {
   );
 }
 
-function Group9() {
+function Group9({ course }: { course?: Course }) {
+  const b0 = course?.batches?.[0];
+  const b1 = course?.batches?.[1];
+  const b2 = course?.batches?.[2];
   return (
     <div className="absolute contents left-[520px] top-[1427px]">
       <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[540px] left-[520px] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[1427px] w-[400px]" />
       <div className="absolute h-[262px] left-[531px] rounded-[15px] top-[1435px] w-[378px]" data-name="course img">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[15px] size-full" src={imgCourseImg.src} />
+        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[15px] size-full" src={course?.thumbnailUrl ?? imgCourseImg.src} />
       </div>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[539px] not-italic text-[24px] text-black top-[1740px] whitespace-nowrap">Data Analytics</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[539px] not-italic text-[24px] text-black top-[1740px] whitespace-nowrap">{course?.title ?? "Data Analytics"}</p>
       <div className="absolute bg-[#f0fbff] h-[23px] left-[666px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1706px] w-[77px]" />
       <div className="absolute bg-[#fffad2] h-[23px] left-[747px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1706px] w-[82px]" />
       <div className="absolute bg-[#fff2fa] h-[23px] left-[832px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1706px] w-[77px]" />
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[678px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1712px] whitespace-nowrap">46 Classes</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[759px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1712px] whitespace-nowrap">500+ Hours</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[844px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1712px] whitespace-nowrap">Experience</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[678px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1712px] whitespace-nowrap">{course?.classesCount ? `${course.classesCount} Classes` : "46 Classes"}</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[759px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1712px] whitespace-nowrap">{course?.hoursCount ? `${course.hoursCount}+ Hours` : "500+ Hours"}</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[844px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1712px] whitespace-nowrap">{course?.experienceLabel ?? "Experience"}</p>
       <div className="absolute bg-[#f0fbff] h-[43px] left-[546px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1789px] w-[101px]" />
       <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[539px] rounded-[81px] top-[1846px] w-[117px]" />
       <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[658px] rounded-[81px] top-[1846px] w-[117px]" />
       <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[777px] rounded-[81px] top-[1846px] w-[121px]" />
       <div className="absolute bg-[#fffad2] h-[43px] left-[656px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1789px] w-[116px]" />
       <div className="absolute bg-[#fff2fa] h-[43px] left-[781px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1789px] w-[116px]" />
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[579px] not-italic text-[12px] text-black top-[1796px] whitespace-nowrap">Noida</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[579px] not-italic text-[12px] text-black top-[1796px] whitespace-nowrap">{b0?.location ?? "Noida"}</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[551px] not-italic text-[#09263f] text-[8px] top-[1856px] whitespace-nowrap">
-        <span className="leading-[normal]">Weekend -</span>
-        <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal]">{` `}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">10 Seats left</span>
+        <span className="leading-[normal]">{b0?.schedule ?? "Weekend"} -</span>
+        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{` ${b0?.seatsLeft ?? 10} Seats left`}</span>
       </p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[670px] not-italic text-[#09263f] text-[8px] top-[1856px] whitespace-nowrap">
-        <span className="leading-[normal]">Weekday -</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{` 08 Seats left`}</span>
+        <span className="leading-[normal]">{b1?.schedule ?? "Weekday"} -</span>
+        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{` ${b1?.seatsLeft ?? 8} Seats left`}</span>
       </p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[789px] not-italic text-[#09263f] text-[8px] top-[1856px] whitespace-nowrap">
-        <span className="leading-[normal]">Self-Placed -</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{` 10 Seats left`}</span>
+        <span className="leading-[normal]">{b2?.schedule ?? "Self-Placed"} -</span>
+        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{` ${b2?.seatsLeft ?? 10} Seats left`}</span>
       </p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[684px] not-italic text-[12px] text-black top-[1796px] whitespace-nowrap">Bangalore</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[814px] not-italic text-[12px] text-black top-[1796px] whitespace-nowrap">Gurgaon</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[577px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1812px] whitespace-nowrap">20 April</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[697px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1812px] whitespace-nowrap">13 April</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[821px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1812px] whitespace-nowrap">04 May</p>
-      <div className="absolute bg-[#1de5b5] h-[56px] left-[539px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[1894px] w-[364px]" />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[720.5px] not-italic text-[#09263f] text-[16px] text-center top-[1912px] whitespace-nowrap">Explore Course</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[684px] not-italic text-[12px] text-black top-[1796px] whitespace-nowrap">{b1?.location ?? "Bangalore"}</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[814px] not-italic text-[12px] text-black top-[1796px] whitespace-nowrap">{b2?.location ?? "Gurgaon"}</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[577px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1812px] whitespace-nowrap">{fmtDate(b0?.startDate) || "20 April"}</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[697px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1812px] whitespace-nowrap">{fmtDate(b1?.startDate) || "13 April"}</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[821px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1812px] whitespace-nowrap">{fmtDate(b2?.startDate) || "04 May"}</p>
+      <Link href={course?.slug ? `/courses/${course.slug}` : "/courses"} className="contents">
+        <div className="absolute bg-[#1de5b5] h-[56px] left-[539px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[1894px] w-[364px]" />
+        <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[720.5px] not-italic text-[#09263f] text-[16px] text-center top-[1912px] whitespace-nowrap">Explore Course</p>
+      </Link>
     </div>
   );
 }
 
-function Group10() {
+function Group10({ course }: { course?: Course }) {
+  const b0 = course?.batches?.[0];
+  const b1 = course?.batches?.[1];
+  const b2 = course?.batches?.[2];
   return (
     <div className="absolute contents left-[961px] top-[1427px]">
       <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[540px] left-[961px] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[1427px] w-[400px]" />
       <div className="absolute h-[262px] left-[972px] rounded-[15px] top-[1435px] w-[378px]" data-name="course img">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[15px] size-full" src={imgCourseImg1.src} />
+        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[15px] size-full" src={course?.thumbnailUrl ?? imgCourseImg1.src} />
       </div>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[980px] not-italic text-[24px] text-black top-[1740px] whitespace-nowrap">Business Analytics</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[980px] not-italic text-[24px] text-black top-[1740px] whitespace-nowrap">{course?.title ?? "Business Analytics"}</p>
       <div className="absolute bg-[#f0fbff] h-[23px] left-[1107px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1706px] w-[77px]" />
       <div className="absolute bg-[#fffad2] h-[23px] left-[1188px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1706px] w-[82px]" />
       <div className="absolute bg-[#fff2fa] h-[23px] left-[1273px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1706px] w-[77px]" />
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1119px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1712px] whitespace-nowrap">46 Classes</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1200px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1712px] whitespace-nowrap">500+ Hours</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1285px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1712px] whitespace-nowrap">Experience</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1119px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1712px] whitespace-nowrap">{course?.classesCount ? `${course.classesCount} Classes` : "46 Classes"}</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1200px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1712px] whitespace-nowrap">{course?.hoursCount ? `${course.hoursCount}+ Hours` : "500+ Hours"}</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1285px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1712px] whitespace-nowrap">{course?.experienceLabel ?? "Experience"}</p>
       <div className="absolute bg-[#f0fbff] h-[43px] left-[987px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1789px] w-[101px]" />
       <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[980px] rounded-[81px] top-[1846px] w-[117px]" />
       <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[1099px] rounded-[81px] top-[1846px] w-[117px]" />
       <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[1218px] rounded-[81px] top-[1846px] w-[121px]" />
       <div className="absolute bg-[#fffad2] h-[43px] left-[1097px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1789px] w-[116px]" />
       <div className="absolute bg-[#fff2fa] h-[43px] left-[1222px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1789px] w-[116px]" />
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1020px] not-italic text-[12px] text-black top-[1796px] whitespace-nowrap">Noida</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1020px] not-italic text-[12px] text-black top-[1796px] whitespace-nowrap">{b0?.location ?? "Noida"}</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[992px] not-italic text-[#09263f] text-[8px] top-[1856px] whitespace-nowrap">
-        <span className="leading-[normal]">Weekend -</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{` 10 Seats left`}</span>
+        <span className="leading-[normal]">{b0?.schedule ?? "Weekend"} -</span>
+        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{` ${b0?.seatsLeft ?? 10} Seats left`}</span>
       </p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[1111px] not-italic text-[#09263f] text-[8px] top-[1856px] whitespace-nowrap">
-        <span className="leading-[normal]">Weekday -</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{` 08 Seats left`}</span>
+        <span className="leading-[normal]">{b1?.schedule ?? "Weekday"} -</span>
+        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{` ${b1?.seatsLeft ?? 8} Seats left`}</span>
       </p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[1230px] not-italic text-[#09263f] text-[8px] top-[1856px] whitespace-nowrap">
-        <span className="leading-[normal]">Self-Placed -</span>
-        <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal]">{` `}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">10 Seats left</span>
+        <span className="leading-[normal]">{b2?.schedule ?? "Self-Placed"} -</span>
+        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{` ${b2?.seatsLeft ?? 10} Seats left`}</span>
       </p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1125px] not-italic text-[12px] text-black top-[1796px] whitespace-nowrap">Bangalore</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1255px] not-italic text-[12px] text-black top-[1796px] whitespace-nowrap">Gurgaon</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1018px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1812px] whitespace-nowrap">20 April</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1138px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1812px] whitespace-nowrap">13 April</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1262px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1812px] whitespace-nowrap">04 May</p>
-      <div className="absolute bg-[#1de5b5] h-[56px] left-[980px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[1894px] w-[364px]" />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1161.5px] not-italic text-[#09263f] text-[16px] text-center top-[1912px] whitespace-nowrap">Explore Course</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1125px] not-italic text-[12px] text-black top-[1796px] whitespace-nowrap">{b1?.location ?? "Bangalore"}</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1255px] not-italic text-[12px] text-black top-[1796px] whitespace-nowrap">{b2?.location ?? "Gurgaon"}</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1018px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1812px] whitespace-nowrap">{fmtDate(b0?.startDate) || "20 April"}</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1138px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1812px] whitespace-nowrap">{fmtDate(b1?.startDate) || "13 April"}</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1262px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1812px] whitespace-nowrap">{fmtDate(b2?.startDate) || "04 May"}</p>
+      <Link href={course?.slug ? `/courses/${course.slug}` : "/courses"} className="contents">
+        <div className="absolute bg-[#1de5b5] h-[56px] left-[980px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[1894px] w-[364px]" />
+        <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1161.5px] not-italic text-[#09263f] text-[16px] text-center top-[1912px] whitespace-nowrap">Explore Course</p>
+      </Link>
     </div>
   );
 }
 
-function Group13() {
+function Group13({ topNav }: { topNav?: LandingPageProps["topNav"] }) {
+  const nav = topNav ?? [];
+  const navLabel = (idx: number, fallback: string) => nav[idx]?.label ?? fallback;
+  const navUrl = (idx: number, fallback: string) => nav[idx]?.url ?? fallback;
   return (
     <div className="absolute contents left-0 top-0">
       <div className="absolute bg-white h-[68px] left-0 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-0 w-[1440px]" />
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[426px] not-italic text-[13px] text-black top-[27px] w-[119px]">Upcoming Batches</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[569px] not-italic text-[13px] text-black top-[27px] w-[102px]">Explore Courses</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[694px] not-italic text-[13px] text-black top-[27px] w-[49px]">Why Us</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[766px] not-italic text-[13px] text-black top-[27px] w-[95px]">For Corporates</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[887px] not-italic text-[13px] text-black top-[27px] w-[29px]">Blog</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[943px] not-italic text-[13px] text-black top-[27px] w-[71px]">Contact Us</p>
+      <Link href={navUrl(0, "/batches")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[426px] not-italic text-[13px] text-black top-[27px] w-[119px]">{navLabel(0, "Upcoming Batches")}</p></Link>
+      <Link href={navUrl(1, "/courses")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[569px] not-italic text-[13px] text-black top-[27px] w-[102px]">{navLabel(1, "Explore Courses")}</p></Link>
+      <Link href={navUrl(2, "/why-us")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[694px] not-italic text-[13px] text-black top-[27px] w-[49px]">{navLabel(2, "Why Us")}</p></Link>
+      <Link href={navUrl(3, "/for-corporates")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[766px] not-italic text-[13px] text-black top-[27px] w-[95px]">{navLabel(3, "For Corporates")}</p></Link>
+      <Link href={navUrl(4, "/blog")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[887px] not-italic text-[13px] text-black top-[27px] w-[29px]">{navLabel(4, "Blog")}</p></Link>
+      <Link href={navUrl(5, "/contact")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[943px] not-italic text-[13px] text-black top-[27px] w-[71px]">{navLabel(5, "Contact Us")}</p></Link>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1203px] not-italic text-[#09263f] text-[14px] text-center top-[27px] whitespace-nowrap">Sign in</p>
       <div className="absolute bg-[#1de5b5] h-[44px] left-[1240px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[12px] w-[168px]" />
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1325px] not-italic text-[#09263f] text-[14px] text-center top-[26px] whitespace-nowrap">Create Free Account</p>
@@ -1115,7 +1126,22 @@ function AkarIconsMediumFill() {
   return <div className="absolute left-[1310px] size-[24px] top-[676px]" data-name="akar-icons:medium-fill" />;
 }
 
-function Frame() {
+function Frame({ offices, footerLinks, footerCities, siteSettings }: {
+  offices?: LandingPageProps["offices"];
+  footerLinks?: LandingPageProps["footerLinks"];
+  footerCities?: LandingPageProps["footerCities"];
+  siteSettings?: LandingPageProps["siteSettings"];
+}) {
+  const o0 = offices?.[0];
+  const o1 = offices?.[1];
+  const o2 = offices?.[2];
+  const fl = footerLinks ?? [];
+  const fc = footerCities ?? [];
+  const flLabel = (i: number, fb: string) => fl[i]?.label ?? fb;
+  const flUrl = (i: number, fb: string) => fl[i]?.url ?? fb;
+  const fcLabel = (i: number, fb: string) => fc[i]?.label ?? fb;
+  const fcUrl = (i: number, fb: string) => fc[i]?.url ?? fb;
+  const copyYear = new Date().getFullYear();
   return (
     <div className="absolute bg-gradient-to-r from-[#094c80] from-[13.037%] h-[797px] left-0 overflow-clip to-[#2096cb] top-[7546px] w-[1440px]">
       <div className="absolute left-[-123px] size-[500px] top-[-254px]">
@@ -1129,38 +1155,38 @@ function Frame() {
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1094px] not-italic text-[16px] text-white top-[62px] whitespace-nowrap">Popular Searches</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[804px] not-italic text-[16px] text-white top-[62px] whitespace-nowrap">Etcetera</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[514px] not-italic text-[16px] text-white top-[62px] whitespace-nowrap">About Us</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[108px] not-italic text-[16px] text-white top-[562px] whitespace-nowrap">Noida</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[550px] not-italic text-[16px] text-white top-[562px] whitespace-nowrap">Gurgaon</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[992px] not-italic text-[16px] text-white top-[562px] whitespace-nowrap">Bangalore</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[108px] not-italic text-[16px] text-white top-[562px] whitespace-nowrap">{o0?.city ?? "Noida"}</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[550px] not-italic text-[16px] text-white top-[562px] whitespace-nowrap">{o1?.city ?? "Gurgaon"}</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[992px] not-italic text-[16px] text-white top-[562px] whitespace-nowrap">{o2?.city ?? "Bangalore"}</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[261px] not-italic text-[16px] text-white top-[281px] whitespace-nowrap">Blog</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[92px] w-[242px]">Data Analyst Training Course In Delhi</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[92px] w-[143px]">System Requirements</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[92px] w-[51px]">Why Us</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[88px] not-italic text-[14px] text-white top-[593px] w-[363px]">1st Floor, A78, A Block, Sector 2, Metro Gate 3, Noida, UP 201301.</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[66px] not-italic text-[14px] text-white top-[757px] w-[363px]">© 2026 AnalytixLabs. All Rights Reserved.</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[92px] w-[242px]">{fcLabel(0, "Data Analyst Training Course In Delhi")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[92px] w-[143px]">{flLabel(0, "System Requirements")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[92px] w-[51px]">{flLabel(1, "Why Us")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[88px] not-italic text-[14px] text-white top-[593px] w-[363px]">{o0?.addressLine1 ?? "1st Floor, A78, A Block, Sector 2, Metro Gate 3, Noida, UP 201301."}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[66px] not-italic text-[14px] text-white top-[757px] w-[363px]">{" © " + copyYear + " AnalytixLabs. All Rights Reserved."}</p>
       <p className="-translate-x-full absolute font-['Inter:Light',sans-serif] font-light leading-[normal] left-[1370px] not-italic text-[14px] text-right text-white top-[758px] whitespace-pre">{`Privacy Policy       Terms and Conditions      Sitemap`}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[530px] not-italic text-[14px] text-white top-[593px] w-[402px]">2nd Floor, Sidhartha House, Building No. 6, Sector 44, Gurugram, Haryana 122003, (600 meters from HUDA City Metro).</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[972px] not-italic text-[14px] text-white top-[593px] w-[387px]">Bldg 51/2, First floor 12th Main Road, Near BDA complex Sector 6, HSR Layout Back Gate of BDA Complex, Opp A2B (Adayar Ananda Bhavan) Bangalore, Karnataka 560102.</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[118px] w-[248px]">Data Analyst Training Course In Noida</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[118px] w-[102px]">Free Resources</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[118px] w-[54px]">Courses</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[143px] w-[265px]">Data Analyst Training Course In Gurgaon</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[143px] w-[105px]">Success Stories</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[143px] w-[91px]">About Faculty</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[169px] w-[275px]">Data Analyst Training Course In Bangalore</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[37px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[169px] w-[171px]">Colleges Universities Training Courses</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[169px] w-[74px]">Contact Us</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[194px] w-[190px]">Data Science Course in Delhi</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[194px] w-[163px]">AnalytixLabs Placements</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[220px] w-[196px]">Data Science Course In Noida</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[220px] w-[143px]">System Requirements</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[245px] w-[213px]">Data Science Course In Gurgaon</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[271px] w-[223px]">Data Science Course In Bangalore</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[296px] w-[247px]">Business Analyst Course In Bangalore</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[322px] w-[214px]">Business Analyst Course In Delhi</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[347px] w-[268px]">Artificial Intelligence Course in Bangalore</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[373px] w-[235px]">Artificial Intelligence Course in Delhi</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[398px] w-[139px]">Generative AI Course</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[530px] not-italic text-[14px] text-white top-[593px] w-[402px]">{o1?.addressLine1 ?? "2nd Floor, Sidhartha House, Building No. 6, Sector 44, Gurugram, Haryana 122003, (600 meters from HUDA City Metro)."}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[972px] not-italic text-[14px] text-white top-[593px] w-[387px]">{o2?.addressLine1 ?? "Bldg 51/2, First floor 12th Main Road, Near BDA complex Sector 6, HSR Layout Back Gate of BDA Complex, Opp A2B (Adayar Ananda Bhavan) Bangalore, Karnataka 560102."}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[118px] w-[248px]">{fcLabel(1, "Data Analyst Training Course In Noida")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[118px] w-[102px]">{flLabel(2, "Free Resources")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[118px] w-[54px]">{flLabel(3, "Courses")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[143px] w-[265px]">{fcLabel(2, "Data Analyst Training Course In Gurgaon")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[143px] w-[105px]">{flLabel(4, "Success Stories")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[143px] w-[91px]">{flLabel(5, "About Faculty")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[169px] w-[275px]">{fcLabel(3, "Data Analyst Training Course In Bangalore")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[37px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[169px] w-[171px]">{flLabel(6, "Colleges Universities Training Courses")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[169px] w-[74px]">{flLabel(7, "Contact Us")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[194px] w-[190px]">{fcLabel(4, "Data Science Course in Delhi")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[194px] w-[163px]">{flLabel(8, "AnalytixLabs Placements")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[220px] w-[196px]">{fcLabel(5, "Data Science Course In Noida")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[220px] w-[143px]">{flLabel(9, "System Requirements")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[245px] w-[213px]">{fcLabel(6, "Data Science Course In Gurgaon")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[271px] w-[223px]">{fcLabel(7, "Data Science Course In Bangalore")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[296px] w-[247px]">{fcLabel(8, "Business Analyst Course In Bangalore")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[322px] w-[214px]">{fcLabel(9, "Business Analyst Course In Delhi")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[347px] w-[268px]">{fcLabel(10, "Artificial Intelligence Course in Bangalore")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[373px] w-[235px]">{fcLabel(11, "Artificial Intelligence Course in Delhi")}</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[398px] w-[139px]">{fcLabel(12, "Generative AI Course")}</p>
       <Group15 />
       <div className="absolute border-[0.5px] border-[rgba(255,255,255,0.5)] border-solid h-[118px] left-[947px] rounded-[15px] top-[541px] w-[426px]" />
       <div className="absolute border-[0.5px] border-[rgba(255,255,255,0.5)] border-solid h-[118px] left-[507px] rounded-[15px] top-[541px] w-[425px]" />
@@ -1245,25 +1271,37 @@ function block(p: LandingPageProps, key: string): string | undefined {
   return typeof v === "string" ? v : undefined;
 }
 
+// Format a batch start-date as "20 April" for card display.
+function fmtDate(d: Date | string | null | undefined): string {
+  if (!d) return "";
+  const dt = typeof d === "string" ? new Date(d) : d;
+  return dt.toLocaleDateString("en-IN", { day: "numeric", month: "long" });
+}
+
 export default function AlabsLandingPage(props: LandingPageProps = {}) {
   const {
     siteSettings,
     categories = [],
-    featuredCourses: _featuredCourses = [],
-    topNav: _topNav = [],
+    featuredCourses = [],
+    topNav = [],
+    testimonials = [],
+    hiringPartners = [],
+    faqs = [],
+    offices = [],
+    footerLinks = [],
+    footerCities = [],
   } = props;
 
-  // Stats are stored on SiteSettings.stats as a Json blob; pluck a
-  // string for display with a Figma-original fallback.
   const stats = (siteSettings?.stats ?? {}) as Record<string, string>;
   const sinceTagline = stats.years ? `Since 20${(2026 - Number(stats.years.replace(/\D/g, "") || 15)).toString().slice(2)}` : undefined;
 
-  // Course-pill strip (8 slots in the Figma) — index into seeded categories,
-  // fall back to the literal Figma label per §8 step 4.
   const pill = (i: number, fallback: string): string =>
     categories[i]?.name ?? fallback;
   const pillUrl = (i: number, fallback: string): string =>
     categories[i]?.slug ? `/courses?category=${categories[i]!.slug}` : fallback;
+
+  // Active (isActive===true) testimonial at position 0 for the hero carousel slot.
+  const t0 = testimonials[0];
 
   return (
     <div className="bg-white relative size-full" data-name="Alabs- Landing page">
@@ -1552,10 +1590,10 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
       <div className="-translate-x-1/2 absolute bg-white h-[58px] left-[calc(50%-450px)] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.1)] top-[1506px] w-[408px]" />
       <div className="-translate-x-1/2 absolute bg-white h-[58px] left-[calc(50%-450px)] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.1)] top-[1578px] w-[408px]" />
       <div className="-translate-x-1/2 absolute bg-white h-[58px] left-[calc(50%-450px)] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.1)] top-[1650px] w-[408px]" />
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[122px] not-italic text-[20px] text-white top-[1452px] whitespace-nowrap">{`Data Science & Analytics `}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[122px] not-italic text-[#09263f] text-[20px] top-[1524px] whitespace-nowrap">Artificial intelligence (AI)</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[122px] not-italic text-[#09263f] text-[20px] top-[1596px] whitespace-nowrap">{`Full Stack AI `}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[122px] not-italic text-[#09263f] text-[20px] top-[1668px] whitespace-nowrap">Agentic AI Course</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[122px] not-italic text-[20px] text-white top-[1452px] whitespace-nowrap">{categories[0]?.name ?? `Data Science & Analytics `}</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[122px] not-italic text-[#09263f] text-[20px] top-[1524px] whitespace-nowrap">{categories[1]?.name ?? "Artificial intelligence (AI)"}</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[122px] not-italic text-[#09263f] text-[20px] top-[1596px] whitespace-nowrap">{categories[2]?.name ?? `Full Stack AI `}</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[122px] not-italic text-[#09263f] text-[20px] top-[1668px] whitespace-nowrap">{categories[3]?.name ?? "Agentic AI Course"}</p>
       <MdiTickCircle />
       <MdiTickCircle1 />
       <MdiTickCircle2 />
@@ -1734,20 +1772,18 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
       <div className="-translate-x-1/2 absolute bg-[#f4fafa] border-[0.5px] border-[rgba(0,0,0,0.5)] border-solid h-[82px] left-[calc(50%+0.5px)] rounded-[20px] top-[7081px] w-[1067px]" />
       <div className="-translate-x-1/2 absolute bg-[#f4fafa] border-[0.5px] border-[rgba(0,0,0,0.5)] border-solid h-[82px] left-[calc(50%+0.5px)] rounded-[20px] top-[7181px] w-[1067px]" />
       <div className="-translate-x-1/2 absolute border-[0.5px] border-[rgba(0,0,0,0.5)] border-solid h-[133px] left-[calc(50%+0.5px)] rounded-[20px] top-[7332px] w-[1067px]" />
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[6347px] whitespace-nowrap">Does the institute offer any discounts?</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[6612px] whitespace-nowrap">What is the best course to get started with data analytics?</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[6711px] whitespace-nowrap">What distinguishes AnalytixLabs as a data analytics institute?</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[6810px] whitespace-nowrap">What comes under the Machine Learning course?</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[6910px] whitespace-nowrap">What is a dual certification or co-branded certification?</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[7010px] whitespace-nowrap">How many candiates have trained under AnalytixLabs?</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[7110px] whitespace-nowrap">What does Deep Learning with Python training cover?</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[7210px] whitespace-nowrap">What is the Analytics Edge course?</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[6347px] whitespace-nowrap">{faqs[0]?.question ?? "Does the institute offer any discounts?"}</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[6612px] whitespace-nowrap">{faqs[1]?.question ?? "What is the best course to get started with data analytics?"}</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[6711px] whitespace-nowrap">{faqs[2]?.question ?? "What distinguishes AnalytixLabs as a data analytics institute?"}</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[6810px] whitespace-nowrap">{faqs[3]?.question ?? "What comes under the Machine Learning course?"}</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[6910px] whitespace-nowrap">{faqs[4]?.question ?? "What is a dual certification or co-branded certification?"}</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[7010px] whitespace-nowrap">{faqs[5]?.question ?? "How many candiates have trained under AnalytixLabs?"}</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[7110px] whitespace-nowrap">{faqs[6]?.question ?? "What does Deep Learning with Python training cover?"}</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[7210px] whitespace-nowrap">{faqs[7]?.question ?? "What is the Analytics Edge course?"}</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[7361px] whitespace-nowrap">Still have questions?</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[219px] not-italic text-[#09263f] text-[16px] top-[7397px] w-[749px]">Not sure which course is right for you? Talk to our program advisors and get personalized guidance on curriculum, career outcomes, and the best learning path based on your goals.</p>
-      <div className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[219px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[6396px] w-[927px] whitespace-pre-wrap">
-        <p className="leading-[normal] mb-0">We believe in delivering a high-quality learning experience at a good value for your hard-earned money. First, our fee structure is highly competitive compared to any other reputed data science institute, considering the comprehensive curriculum, actual duration in hours, and well-rounded student support. However, we offer scholarships and referral benefits based on the candidates’ profiles. To know more about the ongoing offers contact our admission counselors.</p>
-        <p className="leading-[normal] mb-0">&nbsp;</p>
-        <p className="leading-[normal]">In addition, AnalytixLabs is fully transparent about pricing and offers the same price to everyone on the website. We take pride in the quality of work and want it to be a driving factor for the students to join us rather than the discount offers!</p>
+      <div className="absolute font-[‘Inter:Regular’,sans-serif] font-normal leading-[0] left-[219px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[6396px] w-[927px] whitespace-pre-wrap">
+        <p className="leading-[normal] mb-0">{faqs[0]?.answer ?? "We believe in delivering a high-quality learning experience at a good value for your hard-earned money. First, our fee structure is highly competitive compared to any other reputed data science institute, considering the comprehensive curriculum, actual duration in hours, and well-rounded student support. However, we offer scholarships and referral benefits based on the candidates’ profiles. To know more about the ongoing offers contact our admission counselors."}</p>
       </div>
       <div className="absolute left-[1171px] size-[51px] top-[6338px]">
         <div className="absolute inset-[-31.37%_-39.22%_-47.06%_-39.22%]">
@@ -1954,14 +1990,14 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
         </div>
       </div>
       <div className="-translate-x-1/2 absolute left-1/2 size-[150px] top-[5585px]">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" height="150" src={imgEllipse92.src} width="150" />
+        <img alt="" className="absolute block inset-0 max-w-none size-full" height="150" src={t0?.photoUrl ?? imgEllipse92.src} width="150" />
       </div>
       <div className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-1/2 not-italic text-[#09263f] text-[0px] text-center top-[5745px] whitespace-nowrap">
-        <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[116.02999877929688%] mb-0 text-[16px] whitespace-pre">Piyush Ganar</p>
-        <p className="leading-[116.02999877929688%] text-[14px] whitespace-pre">{` Class of 2012 IIM Ahmedabad`}</p>
+        <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[116.02999877929688%] mb-0 text-[16px] whitespace-pre">{t0?.name ?? "Piyush Ganar"}</p>
+        <p className="leading-[116.02999877929688%] text-[14px] whitespace-pre">{t0?.role ? ` ${t0.role}` : ` Class of 2012 IIM Ahmedabad`}</p>
       </div>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[116.02999877929688%] left-1/2 not-italic text-[#09263f] text-[14px] text-center top-[5789px] whitespace-nowrap">(Assistant General Manager Sales Marketing, Findability Sciences)</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[1.404] left-[calc(50%+6.5px)] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[5835px] w-[525px]">The course material is very easy to understand and the case studies were based on real time business problems. What I love the most about Sumeet and his team is that they never operated the institute like a typical commercial enterprise but more like a temple for learning. The gates of Alabs are always open for students for any kind of help and guidance. I would recommend ALabs to all.</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[116.02999877929688%] left-1/2 not-italic text-[#09263f] text-[14px] text-center top-[5789px] whitespace-nowrap">{t0?.company ? `(${t0.company})` : "(Assistant General Manager Sales Marketing, Findability Sciences)"}</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[1.404] left-[calc(50%+6.5px)] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[5835px] w-[525px]">{t0?.quote ?? "The course material is very easy to understand and the case studies were based on real time business problems. What I love the most about Sumeet and his team is that they never operated the institute like a typical commercial enterprise but more like a temple for learning. The gates of Alabs are always open for students for any kind of help and guidance. I would recommend ALabs to all."}</p>
       <LineMdStarFilled />
       <LineMdStarFilled1 />
       <LineMdStarFilled2 />
@@ -2044,7 +2080,7 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
       </p>
       <div className="absolute bg-[rgba(255,255,255,0.1)] h-[169px] left-[695px] rounded-[15px] top-[2596px] w-[299px]" />
       <div className="absolute bg-[rgba(255,255,255,0.1)] h-[169px] left-[1035px] rounded-[15px] top-[2596px] w-[299px]" />
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-4px)] not-italic text-[24px] text-white top-[2531px] whitespace-nowrap">DataScience 360</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-4px)] not-italic text-[24px] text-white top-[2531px] whitespace-nowrap">{featuredCourses[0]?.title ?? "DataScience 360"}</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+16px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2612px] whitespace-nowrap">{`Location - `}</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+356px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2612px] whitespace-nowrap">{`Location - `}</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+16px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2652px] whitespace-nowrap">{`Date - `}</p>
@@ -2053,15 +2089,15 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+356px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2690px] whitespace-nowrap">Time -</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+16px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2728px] whitespace-nowrap">{`Available seats - `}</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+356px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2728px] whitespace-nowrap">{`Available seats - `}</p>
-      <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+253px)] not-italic text-[14px] text-right text-white top-[2612px] whitespace-nowrap">Noida</p>
-      <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+593px)] not-italic text-[14px] text-right text-white top-[2612px] whitespace-nowrap">Noida</p>
-      <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+253px)] not-italic text-[14px] text-right text-white top-[2652px] whitespace-nowrap">05 May</p>
-      <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+593px)] not-italic text-[14px] text-right text-white top-[2652px] whitespace-nowrap">05 May</p>
-      <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+253px)] not-italic text-[14px] text-right text-white top-[2690px] whitespace-nowrap">9:30 am - 01:30pm</p>
-      <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+593px)] not-italic text-[14px] text-right text-white top-[2690px] whitespace-nowrap">9:30 am - 01:30pm</p>
-      <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+253px)] not-italic text-[14px] text-right text-white top-[2728px] whitespace-nowrap">08 Seats</p>
-      <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+593px)] not-italic text-[14px] text-right text-white top-[2728px] whitespace-nowrap">08 Seats</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+335px)] not-italic text-[24px] text-white top-[2531px] w-[246px]">{`Data Visualization & Analytics`}</p>
+      <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+253px)] not-italic text-[14px] text-right text-white top-[2612px] whitespace-nowrap">{featuredCourses[0]?.batches?.[0]?.location ?? "Noida"}</p>
+      <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+593px)] not-italic text-[14px] text-right text-white top-[2612px] whitespace-nowrap">{featuredCourses[1]?.batches?.[0]?.location ?? "Noida"}</p>
+      <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+253px)] not-italic text-[14px] text-right text-white top-[2652px] whitespace-nowrap">{fmtDate(featuredCourses[0]?.batches?.[0]?.startDate) || "05 May"}</p>
+      <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+593px)] not-italic text-[14px] text-right text-white top-[2652px] whitespace-nowrap">{fmtDate(featuredCourses[1]?.batches?.[0]?.startDate) || "05 May"}</p>
+      <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+253px)] not-italic text-[14px] text-right text-white top-[2690px] whitespace-nowrap">{featuredCourses[0]?.batches?.[0]?.schedule ?? "9:30 am - 01:30pm"}</p>
+      <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+593px)] not-italic text-[14px] text-right text-white top-[2690px] whitespace-nowrap">{featuredCourses[1]?.batches?.[0]?.schedule ?? "9:30 am - 01:30pm"}</p>
+      <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+253px)] not-italic text-[14px] text-right text-white top-[2728px] whitespace-nowrap">{featuredCourses[0]?.batches?.[0]?.seatsLeft != null ? `${featuredCourses[0].batches[0].seatsLeft} Seats` : "08 Seats"}</p>
+      <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+593px)] not-italic text-[14px] text-right text-white top-[2728px] whitespace-nowrap">{featuredCourses[1]?.batches?.[0]?.seatsLeft != null ? `${featuredCourses[1].batches[0].seatsLeft} Seats` : "08 Seats"}</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+335px)] not-italic text-[24px] text-white top-[2531px] w-[246px]">{featuredCourses[1]?.title ?? "Data Visualization & Analytics"}</p>
       <div className="absolute h-0 left-[713px] top-[2640px] w-[264px]">
         <div className="absolute inset-[-0.5px_0_0_0]">
           <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 264 0.5">
@@ -2115,35 +2151,35 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
         </div>
       </div>
       <Icon5 />
-      <Group9 />
-      <Group10 />
-      <Group13 />
+      <Group9 course={featuredCourses[0]} />
+      <Group10 course={featuredCourses[1]} />
+      <Group13 topNav={topNav} />
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold h-[73px] leading-[0] left-[195px] not-italic text-[#09263f] text-[0px] text-center top-[848px] w-[284px]">
-        <span className="leading-[normal] text-[40px]">15,000+</span>
+        <span className="leading-[normal] text-[40px]">{stats.candidates ?? "15,000+"}</span>
         <span className="leading-[normal] text-[32px]">{` `}</span>
         <span className="leading-[normal] text-[20px]">Candidates</span>
       </p>
       <div className="absolute h-[53px] left-[377px] top-[847px] w-[196px]" data-name="brand">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgBrand.src} />
+        <img alt={hiringPartners[0]?.name ?? ""} className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={hiringPartners[0]?.logoUrl ?? imgBrand.src} />
       </div>
       <div className="absolute h-[64px] left-[578px] top-[842px] w-[186px]" data-name="brand">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgBrand1.src} />
+        <img alt={hiringPartners[1]?.name ?? ""} className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={hiringPartners[1]?.logoUrl ?? imgBrand1.src} />
       </div>
       <div className="absolute h-[68px] left-[766px] top-[839px] w-[183px]" data-name="image 41">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage41.src} />
+        <img alt={hiringPartners[2]?.name ?? ""} className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={hiringPartners[2]?.logoUrl ?? imgImage41.src} />
       </div>
       <div className="absolute h-[55px] left-[963px] top-[845px] w-[197px]" data-name="brand">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgBrand2.src} />
+        <img alt={hiringPartners[3]?.name ?? ""} className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={hiringPartners[3]?.logoUrl ?? imgBrand2.src} />
       </div>
       <div className="absolute h-[61px] left-[1165px] top-[842px] w-[195px]" data-name="brand">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgBrand3.src} />
+        <img alt={hiringPartners[4]?.name ?? ""} className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={hiringPartners[4]?.logoUrl ?? imgBrand3.src} />
       </div>
       <div className="absolute h-[347px] left-[66px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[4751px] w-[603px]">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgRectangle135.src} />
       </div>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[114px] not-italic text-[#09263f] text-[24px] top-[5146px] whitespace-nowrap">Noida</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[333px] not-italic text-[#09263f] text-[24px] top-[5151px] whitespace-nowrap">Gurgaon</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[550px] not-italic text-[#09263f] text-[24px] top-[5152px] whitespace-nowrap">Bengaluru</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[114px] not-italic text-[#09263f] text-[24px] top-[5146px] whitespace-nowrap">{offices[0]?.city ?? "Noida"}</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[333px] not-italic text-[#09263f] text-[24px] top-[5151px] whitespace-nowrap">{offices[1]?.city ?? "Gurgaon"}</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[550px] not-italic text-[#09263f] text-[24px] top-[5152px] whitespace-nowrap">{offices[2]?.city ?? "Bengaluru"}</p>
       <div className="-translate-x-1/2 absolute flex h-[17.436px] items-center justify-center left-[139.54px] top-[5201.03px] w-[111.066px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "18" } as React.CSSProperties}>
         <div className="flex-none rotate-[0.22deg]">
           <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] not-italic relative text-[#09263f] text-[14px] text-center whitespace-nowrap">Get Directions→</p>
@@ -2168,7 +2204,7 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
           <WeuiArrowOutlined />
         </div>
       </div>
-      <Frame />
+      <Frame offices={offices} footerLinks={footerLinks} footerCities={footerCities} siteSettings={siteSettings} />
       <div className="absolute h-[151px] left-[43px] top-[578px] w-[579px]" data-name="SPONSER">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgSponser.src} />
       </div>
