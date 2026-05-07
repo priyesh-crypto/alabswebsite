@@ -1,13 +1,12 @@
 /**
- * Home placeholder — Phase 4a infrastructure ready.
- *
- * Phase 4b will replace this with the dynamic AlabsLandingPage
- * Figma export, copied into components/figma-pages/ and converted
- * per CLAUDE.md §8 recipe (props-driven, PNG imports preserved as
- * fallbacks, repeating cards rendered as N explicit slots).
+ * Home — wired to the dynamic AlabsLandingPage Figma export
+ * (components/figma-pages/AlabsLandingPage). Per CLAUDE.md §8 step
+ * 8: gather every data source in parallel, pass as props.
  */
+import AlabsLandingPage from "@/components/figma-pages/AlabsLandingPage/AlabsLandingPage";
 import {
   getActiveMasterclass,
+  getCategories,
   getCourses,
   getFaqs,
   getHiringPartners,
@@ -18,15 +17,17 @@ import {
   getTestimonials,
 } from "@/lib/api-client";
 
+// The Figma export is 8343px tall (per the Vite-era Home wrapper).
+const HOME_HEIGHT_PX = 8343;
+
 export default async function HomePage() {
-  // Smoke-load: verify the api-client wiring works end-to-end and
-  // the seeded data flows through. Phase 4b consumes these.
   const [
     siteSettings,
     topNav,
     megaMenu,
     footerLinks,
     footerCities,
+    categories,
     featuredCourses,
     testimonials,
     hiringPartners,
@@ -40,6 +41,7 @@ export default async function HomePage() {
     getNav("MEGA_MENU"),
     getNav("FOOTER_LINKS"),
     getNav("FOOTER_CITIES"),
+    getCategories(),
     getCourses({ featured: true, limit: 6 }),
     getTestimonials(),
     getHiringPartners(),
@@ -51,34 +53,24 @@ export default async function HomePage() {
 
   return (
     <div
-      className="relative mx-auto bg-white"
-      style={{ width: "1440px", minHeight: "600px" }}
+      className="relative mx-auto"
+      style={{ width: "1440px", height: `${HOME_HEIGHT_PX}px` }}
     >
-      <div className="p-12">
-        <h1 className="text-3xl font-medium mb-4">
-          Phase 4a — infrastructure ready
-        </h1>
-        <p className="text-muted-foreground mb-6 max-w-3xl">
-          Public route group, server-side API client, and PNG/SVG type
-          declarations are in place. Phase 4b copies the
-          AlabsLandingPage Figma export into components/figma-pages/
-          and applies the §8 recipe.
-        </p>
-        <ul className="space-y-1 text-sm">
-          <li>siteSettings: {siteSettings ? "✓ loaded" : "× null"}</li>
-          <li>top nav items: {topNav.length}</li>
-          <li>mega menu items: {megaMenu.length}</li>
-          <li>footer link items: {footerLinks.length}</li>
-          <li>footer city items: {footerCities.length}</li>
-          <li>featured courses: {featuredCourses.length}</li>
-          <li>testimonials: {testimonials.length}</li>
-          <li>hiring partners: {hiringPartners.length}</li>
-          <li>global faqs: {faqs.length}</li>
-          <li>offices: {offices.length}</li>
-          <li>masterclass: {masterclass ? "✓ active" : "× none"}</li>
-          <li>home page blocks: {pageBlocks ? "✓ loaded" : "× missing"}</li>
-        </ul>
-      </div>
+      <AlabsLandingPage
+        siteSettings={siteSettings}
+        topNav={topNav}
+        megaMenu={megaMenu}
+        footerLinks={footerLinks}
+        footerCities={footerCities}
+        categories={categories}
+        featuredCourses={featuredCourses}
+        testimonials={testimonials}
+        hiringPartners={hiringPartners}
+        faqs={faqs}
+        offices={offices}
+        masterclass={masterclass}
+        pageBlocks={pageBlocks}
+      />
     </div>
   );
 }
