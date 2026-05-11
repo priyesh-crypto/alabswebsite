@@ -10,15 +10,16 @@ import {
   getCourses,
   getFaqs,
   getHiringPartners,
+  getLearningModes,
   getNav,
   getOffices,
   getPage,
+  getPosts,
   getSiteSettings,
   getTestimonials,
 } from "@/lib/api-client";
 
-// The Figma export is 8343px tall (per the Vite-era Home wrapper).
-const HOME_HEIGHT_PX = 8343;
+
 
 export default async function HomePage() {
   const [
@@ -35,6 +36,8 @@ export default async function HomePage() {
     offices,
     masterclass,
     pageBlocks,
+    posts,
+    learningModes,
   ] = await Promise.all([
     getSiteSettings(),
     getNav("TOP_NAV"),
@@ -49,13 +52,12 @@ export default async function HomePage() {
     getOffices(),
     getActiveMasterclass(),
     getPage("home"),
+    getPosts({ limit: 3 }),
+    getLearningModes(),
   ]);
 
   return (
-    <div
-      className="relative mx-auto"
-      style={{ width: "1440px", height: `${HOME_HEIGHT_PX}px` }}
-    >
+    <div className="relative w-full">
       <AlabsLandingPage
         siteSettings={siteSettings}
         topNav={topNav}
@@ -70,6 +72,8 @@ export default async function HomePage() {
         offices={offices}
         masterclass={masterclass}
         pageBlocks={pageBlocks}
+        posts={posts}
+        learningModes={learningModes}
       />
     </div>
   );

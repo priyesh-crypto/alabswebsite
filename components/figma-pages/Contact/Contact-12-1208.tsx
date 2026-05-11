@@ -134,28 +134,7 @@ function Group8() {
   );
 }
 
-function Group6({ topNav, siteSettings }: { topNav?: NavItem[]; siteSettings?: SiteSettings | null }) {
-  const navLabel = (i: number, fb: string) => topNav?.[i]?.label ?? fb;
-  const navUrl   = (i: number, fb: string) => topNav?.[i]?.url   ?? fb;
-  return (
-    <div className="absolute contents left-0 top-0">
-      <div className="absolute bg-white h-[68px] left-0 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-0 w-[1440px]" />
-      <Link href={navUrl(0, "/upcoming-batches")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[426px] not-italic text-[13px] text-black top-[27px] w-[119px]">{navLabel(0, "Upcoming Batches")}</p></Link>
-      <Link href={navUrl(1, "/courses")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[569px] not-italic text-[13px] text-black top-[27px] whitespace-nowrap">{navLabel(1, "Explore Courses")}</p></Link>
-      <Link href={navUrl(2, "/why-us")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[694px] not-italic text-[13px] text-black top-[27px] w-[49px]">{navLabel(2, "Why Us")}</p></Link>
-      <Link href={navUrl(3, "/for-corporates")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[766px] not-italic text-[13px] text-black top-[27px] w-[95px]">{navLabel(3, "For Corporates")}</p></Link>
-      <Link href={navUrl(4, "/blog")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[887px] not-italic text-[13px] text-black top-[27px] w-[29px]">{navLabel(4, "Blog")}</p></Link>
-      <Link href={navUrl(5, "/contact")} className="contents"><p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[943px] not-italic text-[#4c7fd2] text-[13px] top-[27px] w-[71px]">{navLabel(5, "Contact Us")}</p></Link>
-      <Link href={navUrl(6, "/login")} className="contents"><p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1203px] not-italic text-[#09263f] text-[14px] text-center top-[27px] whitespace-nowrap">{navLabel(6, "Sign in")}</p></Link>
-      <div className="absolute bg-[#1de5b5] h-[44px] left-[1240px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[12px] w-[168px]" />
-      <Link href={navUrl(7, "/register")} className="contents"><p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1325px] not-italic text-[#09263f] text-[14px] text-center top-[26px] whitespace-nowrap">{navLabel(7, "Create Free Account")}</p></Link>
-      <div className="absolute bg-[#4c7fd2] h-[4px] left-[934px] rounded-[1000px] top-[64px] w-[87px]" />
-      <div className="absolute h-[57px] left-[33px] top-[6px] w-[191px]" data-name="image 14">
-        <Link href="/" className="contents"><img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={siteSettings?.logoUrl ?? imgImage14.src} /></Link>
-      </div>
-    </div>
-  );
-}
+
 
 function IcRoundEmail() {
   return (
@@ -565,12 +544,14 @@ function Frame({ offices, footerLinks, footerCities, siteSettings }: { offices?:
   const fcUrl   = (i: number, fb: string) => fc[i]?.url   ?? fb;
   const year = new Date().getFullYear();
   return (
-    <div className="absolute bg-gradient-to-r from-[#094c80] from-[13.037%] h-[797px] left-0 overflow-clip to-[#2096cb] top-[2328px] w-[1440px]">
-      <div className="absolute left-[-123px] size-[500px] top-[-254px]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 500 500">
-          <circle cx="250" cy="250" fill="var(--fill-0, white)" id="Ellipse 117" r="250" />
-        </svg>
-      </div>
+    <footer className="relative bg-gradient-to-r from-[#094c80] from-[13.037%] to-[#2096cb] w-screen left-1/2 -translate-x-1/2 flex justify-center text-white font-['Inter',sans-serif] overflow-hidden">
+      <div className="w-[1440px] px-[66px] py-[80px] relative min-h-[800px]">
+        {/* Decorative background circle */}
+        <div className="absolute left-[-123px] size-[500px] top-[-254px] pointer-events-none">
+          <svg className="size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 500 500">
+            <circle cx="250" cy="250" fill="var(--fill-0, white)" id="Ellipse 117" r="250" />
+          </svg>
+        </div>
       <div className="absolute h-[69px] left-[52px] top-[58px] w-[233px]" data-name="image 14">
         <Link href="/" className="contents"><img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={siteSettings?.logoUrl ?? imgImage14.src} /></Link>
       </div>
@@ -660,26 +641,30 @@ function Frame({ offices, footerLinks, footerCities, siteSettings }: { offices?:
           <path d={svgPaths.p19230580} fill="var(--fill-0, white)" id="medium" />
         </svg>
       </div>
-    </div>
+      </div>
+    </footer>
   );
 }
 
 export default function Contact({ topNav, footerLinks, footerCities, offices, siteSettings }: ContactProps) {
   const o = offices ?? [];
   return (
-    <div className="bg-white relative size-full" data-name="contact">
-      <div className="absolute bg-[#f4fafa] h-[335px] left-0 top-[64px] w-[1440px]" />
-      <div className="absolute bg-[#f4fafa] h-[335px] left-0 top-[64px] w-[1440px]" />
+    <div className="bg-white relative w-full overflow-x-hidden flex flex-col items-center" data-name="Contact">
+      {/* Full-width backgrounds */}
+      <div className="absolute bg-[#f4fafa] h-[335px] top-[64px] w-screen left-1/2 -translate-x-1/2" />
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-1/2 not-italic text-[#09263f] text-[42px] text-center top-[176px] w-[798px]">CONTACT US</p>
-      <Group7 />
-      <Group8 />
-      <div className="-translate-x-1/2 absolute bg-white h-[717px] left-1/2 rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[319px] w-[1134px]" />
+
+      {/* Main absolute canvas (locked to 1440px) */}
+      <div className="relative w-[1440px] h-[2328px] flex-shrink-0">
+        <Group7 />
+        <Group8 />
+        <div className="-translate-x-1/2 absolute bg-white h-[717px] left-1/2 rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[319px] w-[1134px]" />
       <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+0.5px)] not-italic text-[14px] text-[rgba(9,38,63,0.5)] text-center top-[251px] w-[481px]">Analytixlabs is here to support you at every step of your journey.</p>
       <div className="absolute bg-[#07b3e7] h-[717px] left-[150px] rounded-bl-[15px] rounded-tl-[15px] top-[319px] w-[501px]" />
       <div className="absolute bg-[#ffd700] h-[49px] left-[714px] rounded-[1000px] top-[916px] w-[494px]" />
       <div className="absolute bg-[#1de5b5] h-[49px] left-[197px] rounded-[1000px] top-[926px] w-[182px]" />
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[961.5px] not-italic text-[#09263f] text-[18px] text-center top-[929px] whitespace-nowrap">Send</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[286.5px] not-italic text-[#09263f] text-[18px] text-center top-[939px] whitespace-nowrap">Sign up→</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[286.5px] not-italic text-white text-[18px] text-center top-[939px] whitespace-nowrap">Sign up→</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-6px)] not-italic text-[#09263f] text-[28px] top-[373px] whitespace-nowrap">Request a Call back</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-523px)] not-italic text-[28px] text-white top-[360px] whitespace-nowrap">Get in touch</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-523px)] not-italic text-[28px] text-white top-[870px] whitespace-nowrap">Sign up for demo</p>
@@ -690,7 +675,7 @@ export default function Contact({ topNav, footerLinks, footerCities, offices, si
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[291px] not-italic text-[20px] text-white top-[511px] whitespace-nowrap">Email</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[291px] not-italic text-[20px] text-white top-[636px] whitespace-nowrap">Phone no.</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[291px] not-italic text-[20px] text-white top-[761px] whitespace-nowrap">Timing</p>
-      <Group6 topNav={topNav} siteSettings={siteSettings} />
+
       <div className="absolute h-[72px] left-[197px] top-[500px] w-[71px]">
         <div className="absolute inset-[-22.22%_-28.17%_-33.33%_-28.17%]">
           <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 111 112">
@@ -1026,7 +1011,8 @@ export default function Contact({ topNav, footerLinks, footerCities, offices, si
       <p className="absolute font-['Inter:Light',sans-serif] font-light leading-[normal] left-[752px] not-italic text-[16px] text-[rgba(0,0,0,0.5)] top-[719px] whitespace-nowrap">Your Email</p>
       <p className="absolute font-['Inter:Light',sans-serif] font-light leading-[normal] left-[752px] not-italic text-[16px] text-black top-[606px] whitespace-nowrap">+91</p>
       <p className="absolute font-['Inter:Light',sans-serif] font-light leading-[normal] left-[983px] not-italic text-[16px] text-[rgba(0,0,0,0.5)] top-[606px] whitespace-nowrap">Mobile</p>
-      <Frame offices={offices} footerLinks={footerLinks} footerCities={footerCities} siteSettings={siteSettings} />
+      </div>{/* /absolute canvas */}
+
     </div>
   );
 }

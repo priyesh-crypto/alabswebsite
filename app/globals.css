@@ -130,3 +130,74 @@ body {
   background: var(--background);
   color: var(--foreground);
 }
+
+@keyframes marquee-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.marquee-track {
+  display: flex;
+  flex-direction: row;     /* explicit — prevents inherited flex-col from stacking items vertically */
+  flex-wrap: nowrap;
+  flex-shrink: 0;          /* don't let parent flex shrink us — that's what causes vertical wrapping */
+  width: max-content;
+  white-space: nowrap;
+  align-items: center;
+  animation: marquee-left 28s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+.marquee-track-reverse {
+  display: flex;
+  flex-direction: row;     /* explicit — same fix */
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  width: max-content;
+  white-space: nowrap;
+  align-items: center;
+  animation: marquee-right 28s linear infinite;
+}
+.marquee-track-reverse:hover {
+  animation-play-state: paused;
+}
+
+/* Testimonial slide fade — replays whenever the React key changes */
+@keyframes testimonial-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.testimonial-fade {
+  animation: testimonial-fade-in 350ms ease-out both;
+}
+/* Preserve existing -translate-x-1/2 on absolute elements that already use it. */
+.testimonial-fade.-translate-x-1\/2 {
+  animation-name: testimonial-fade-in-centered;
+}
+@keyframes testimonial-fade-in-centered {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* FAQ answer slide-in */
+@keyframes faq-answer-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.faq-answer {
+  animation: faq-answer-in 200ms ease-out both;
+}
+
+/* Hide native scrollbar while keeping the element scrollable */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

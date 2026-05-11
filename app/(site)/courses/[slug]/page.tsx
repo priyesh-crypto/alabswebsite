@@ -12,11 +12,12 @@ const PDP_HEIGHT_PX = 11000;
 export default async function CourseDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const { slug } = await params;
   const [course, siteSettings, topNav, footerLinks, footerCities, offices] =
     await Promise.all([
-      getCourse(params.slug),
+      getCourse(slug),
       getSiteSettings(),
       getNav("TOP_NAV"),
       getNav("FOOTER_LINKS"),

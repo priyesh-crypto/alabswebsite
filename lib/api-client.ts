@@ -65,11 +65,21 @@ export type Page = Prisma.PageGetPayload<true>;
 export type Office = Prisma.OfficeGetPayload<true>;
 export type Masterclass = Prisma.MasterclassGetPayload<true>;
 export type Category = Prisma.CategoryGetPayload<true>;
+export type LearningMode = Prisma.LearningModeGetPayload<true>;
 
 export const getSiteSettings = () =>
   get<Prisma.SiteSettingsGetPayload<true> | null>("/api/site-settings");
 
-export const getNav = (group: "TOP_NAV" | "MEGA_MENU" | "FOOTER_LINKS" | "FOOTER_CITIES") =>
+export type NavGroup =
+  | "TOP_NAV"
+  | "MEGA_MENU"
+  | "FOOTER_LINKS"
+  | "FOOTER_CITIES"
+  | "FOOTER_COL_ABOUT"
+  | "FOOTER_COL_ETC"
+  | "FOOTER_COL_POPULAR";
+
+export const getNav = (group: NavGroup) =>
   get<NavItem[]>(`/api/nav?group=${group}`).then((r) => r ?? []);
 
 export const getCategories = () => get<Category[]>("/api/categories").then((r) => r ?? []);
@@ -114,6 +124,9 @@ export const getPost = (slug: string) => get<BlogPost>(`/api/posts/${slug}`);
 export const getPage = (slug: string) => get<Page>(`/api/pages/${slug}`);
 
 export const getOffices = () => get<Office[]>("/api/offices").then((r) => r ?? []);
+
+export const getLearningModes = () =>
+  get<LearningMode[]>("/api/learning-modes").then((r) => r ?? []);
 
 export const getActiveMasterclass = () =>
   get<Masterclass | null>("/api/masterclass/active");

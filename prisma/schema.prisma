@@ -72,6 +72,9 @@ enum NavGroup {
   MEGA_MENU
   FOOTER_LINKS
   FOOTER_CITIES
+  FOOTER_COL_ABOUT
+  FOOTER_COL_ETC
+  FOOTER_COL_POPULAR
 }
 
 // ============================================================
@@ -83,43 +86,56 @@ model Category {
   name    String
   slug    String   @unique
   order   Int
+  // Hex pill background used by the landing-page marquee. Optional — if null
+  // the component falls back to a per-index palette.
+  color   String?
   courses Course[]
 }
 
 model Course {
-  id                 String          @id @default(cuid())
-  slug               String          @unique
-  title              String
-  shortDesc          String
-  longDesc           String
-  thumbnailUrl       String
-  heroImageUrl       String?
-  durationMonths     Int?
-  classesCount       Int?
-  hoursCount         Int?
-  experienceLabel    String?
-  price              Int?
-  discountedPrice    Int?
-  emiPerMonth        Int?
-  brochureUrl        String?
-  isFeatured         Boolean         @default(false)
-  isPublished        Boolean         @default(true)
-  order              Int             @default(0)
-  jobRoles           String[]        @default([])
-  keySkills          String[]        @default([])
-  careerSupportText  String?
-  metaTitle          String?
-  metaDesc           String?
-  createdAt          DateTime        @default(now())
-  updatedAt          DateTime        @updatedAt
-  categoryId         String
-  category           Category        @relation(fields: [categoryId], references: [id])
-  modules            CourseModule[]
-  batches            Batch[]
-  faqs               Faq[]
-  tools              Tool[]          @relation("CourseTools")
-  certifications     Certification[]
-  projects           Project[]
+  id                String          @id @default(cuid())
+  slug              String          @unique
+  title             String
+  shortDesc         String
+  longDesc          String
+  thumbnailUrl      String
+  heroImageUrl      String?
+  durationMonths    Int?
+  classesCount      Int?
+  hoursCount        Int?
+  experienceLabel   String?
+  price             Int?
+  discountedPrice   Int?
+  emiPerMonth       Int?
+  brochureUrl       String?
+  isFeatured        Boolean         @default(false)
+  isPublished       Boolean         @default(true)
+  order             Int             @default(0)
+  jobRoles          String[]        @default([])
+  keySkills         String[]        @default([])
+  careerSupportText String?
+  metaTitle         String?
+  metaDesc          String?
+  // Phase 1 additions (admin panel section-based editing)
+  rating            Decimal?        @db.Decimal(3, 1)
+  alumniCount       Int?
+  heroImage         String?
+  heroBadges        Json?           // string[]
+  heroCtaPrimary    Json?           // { label, href }
+  heroCtaSecondary  Json?           // { label, href }
+  whoShouldJoin     Json?           // { audience, description }[]
+  hasNoCodingRequired Boolean       @default(false)
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  categoryId        String
+  category          Category        @relation(fields: [categoryId], references: [id])
+  modules           CourseModule[]
+  batches           Batch[]
+  faqs              Faq[]
+  tools             Tool[]          @relation("CourseTools")
+  certifications    Certification[]
+  projects          Project[]
+  pricing           CoursePricing[]
 }
 
 model CourseModule {
@@ -167,14 +183,33 @@ model Project {
 }
 
 model Batch {
-  id        String   @id @default(cuid())
+  id        String        @id @default(cuid())
   courseId  String
-  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  course    Course        @relation(fields: [courseId], references: [id], onDelete: Cascade)
   location  String
   startDate DateTime
   schedule  String
   seatsLeft Int
-  isActive  Boolean  @default(true)
+  isActive  Boolean       @default(true)
+  // Optional FK linking a batch to a LearningMode (Weekday Bootcamp, Weekday
+  // Batches, Self-paced Blended, …). When set, the landing-page Learning
+  // Modes section filters its right-side cards by this field.
+  modeId    String?
+  mode      LearningMode? @relation(fields: [modeId], references: [id])
+}
+
+// ============================================================
+// Learning modes (NEW — landing-page Phase A)
+// ============================================================
+
+model LearningMode {
+  id       String  @id @default(cuid())
+  slug     String  @unique
+  name     String
+  subtitle String?
+  order    Int     @default(0)
+  isActive Boolean @default(true)
+  batches  Batch[]
 }
 
 // ============================================================
@@ -215,7 +250,7 @@ model Faq {
   id       String  @id @default(cuid())
   question String
   answer   String
-  scope    String  // "GLOBAL" | "ABOUT" | "CONTACT" | <courseId>
+  scope    String // "GLOBAL" | "ABOUT" | "CONTACT" | <courseId>
   courseId String?
   course   Course? @relation(fields: [courseId], references: [id])
   order    Int     @default(0)
@@ -263,6 +298,10 @@ model Office {
   hours         String
   directionsUrl String
   mapImageUrl   String?
+  // Google Maps embed iframe `src`. Validated server-side to start with
+  // `https://www.google.com/maps`. Optional — the public site falls back to
+  // `?q=AnalytixLabs+<city>&output=embed` when null.
+  mapEmbedUrl   String?
   order         Int     @default(0)
   isActive      Boolean @default(true)
 }
@@ -307,4 +346,67 @@ model UploadedAsset {
   size      Int
   alt       String?
   createdAt DateTime @default(now())
+}
+
+// ============================================================
+// Section-based page editing (Phase 1 admin panel)
+// ============================================================
+
+// One row per visible section on a page. `type` maps to a registered
+// section definition in lib/sections/index.ts. Content is stored as JSON
+// blobs (draft + published) so non-destructive editing is trivial.
+model Section {
+  id               String   @id @default(cuid())
+  pageSlug         String   // "landing" | "courses" | "course/<courseSlug>"
+  type             String   // e.g. "hero_landing", "testimonials_carousel"
+  label            String   // human-readable name for admin accordion header
+  order            Int
+  isVisible        Boolean  @default(true)
+  contentDraft     Json
+  contentPublished Json?
+  updatedAt        DateTime @updatedAt
+  updatedById      String?
+
+  @@index([pageSlug, order])
+}
+
+// Singleton records for global blocks (header, footer, cta-banner, call-back).
+// key is one of: "header" | "footer" | "cta_banner" | "call_back"
+model GlobalBlock {
+  key         String   @id
+  label       String
+  data        Json
+  updatedAt   DateTime @updatedAt
+  updatedById String?
+}
+
+// Immutable audit trail. Written on every section/global-block save + publish.
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String
+  userName   String
+  entityType String   // "Section" | "GlobalBlock" | "Course" | ...
+  entityId   String
+  action     String   // "update_draft" | "publish" | "revert" | "create" | "delete"
+  diff       Json
+  createdAt  DateTime @default(now())
+
+  @@index([entityType, entityId])
+  @@index([createdAt])
+}
+
+// Per-course pricing rows (one per learning mode: classroom / online / elearning).
+model CoursePricing {
+  id           String  @id @default(cuid())
+  courseId     String
+  course       Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  mode         String  // "classroom" | "online" | "elearning"
+  label        String  // display label e.g. "Classroom & Bootcamp"
+  price        Int     // in paise
+  priceStruck  Int?    // struck-through original price
+  installments Int     @default(3)
+  hasEmi       Boolean @default(true)
+  ctaLabel     String  @default("Enroll now")
+  ctaHref      String?
+  order        Int     @default(0)
 }

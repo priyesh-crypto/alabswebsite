@@ -511,29 +511,7 @@ function PrimeBookmark2() {
   );
 }
 
-function Group11({ topNav, siteSettings }: { topNav?: ExploreCoursesProps["topNav"]; siteSettings?: ExploreCoursesProps["siteSettings"] }) {
-  const nav = topNav ?? [];
-  const navLabel = (i: number, fb: string) => nav[i]?.label ?? fb;
-  const navUrl = (i: number, fb: string) => nav[i]?.url ?? fb;
-  return (
-    <div className="absolute contents left-0 top-0">
-      <div className="absolute bg-white h-[68px] left-0 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-0 w-[1440px]" />
-      <Link href={navUrl(0, "/")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[426px] not-italic text-[13px] text-black top-[27px] w-[119px]">{navLabel(0, "Upcoming Batches")}</p></Link>
-      <Link href={navUrl(1, "/courses")} className="contents"><p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[569px] not-italic text-[#4c7fd2] text-[13px] top-[27px] whitespace-nowrap">{navLabel(1, "Explore Courses")}</p></Link>
-      <Link href={navUrl(2, "/why-us")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[694px] not-italic text-[13px] text-black top-[27px] w-[49px]">{navLabel(2, "Why Us")}</p></Link>
-      <Link href={navUrl(3, "/for-corporates")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[766px] not-italic text-[13px] text-black top-[27px] w-[95px]">{navLabel(3, "For Corporates")}</p></Link>
-      <Link href={navUrl(4, "/blog")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[887px] not-italic text-[13px] text-black top-[27px] w-[29px]">{navLabel(4, "Blog")}</p></Link>
-      <Link href={navUrl(5, "/contact")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[943px] not-italic text-[13px] text-black top-[27px] w-[71px]">{navLabel(5, "Contact Us")}</p></Link>
-      <Link href={navUrl(6, "/login")} className="contents"><p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1203px] not-italic text-[#09263f] text-[14px] text-center top-[27px] whitespace-nowrap">{navLabel(6, "Sign in")}</p></Link>
-      <div className="absolute bg-[#1de5b5] h-[44px] left-[1240px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[12px] w-[168px]" />
-      <Link href={navUrl(7, "/register")} className="contents"><p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1325px] not-italic text-[#09263f] text-[14px] text-center top-[26px] whitespace-nowrap">{navLabel(7, "Create Free Account")}</p></Link>
-      <div className="absolute bg-[#4c7fd2] h-[4px] left-[558px] rounded-[1000px] top-[64px] w-[127px]" />
-      <div className="absolute h-[57px] left-[33px] top-[6px] w-[191px]" data-name="image 14">
-        <img alt="AnalytixLabs" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={siteSettings?.logoUrl ?? imgImage14.src} />
-      </div>
-    </div>
-  );
-}
+
 
 function FamiconsCall() {
   return (
@@ -547,15 +525,7 @@ function FamiconsCall() {
   );
 }
 
-function Group12({ siteSettings }: { siteSettings?: ExploreCoursesProps["siteSettings"] }) {
-  return (
-    <div className="absolute contents left-[66px] top-[138px]">
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[116px] not-italic text-[#09263f] text-[16px] top-[150px] whitespace-nowrap">{siteSettings?.contactPhone ?? "+91 9555219007"}</p>
-      <div className="absolute border border-[rgba(9,38,63,0.3)] border-solid h-[40px] left-[66px] rounded-[56px] top-[138px] w-[206px]" />
-      <FamiconsCall />
-    </div>
-  );
-}
+
 
 function BoxiconsLocationFilled() {
   return (
@@ -687,12 +657,14 @@ function Frame({ offices, footerLinks, footerCities, siteSettings }: {
   const fcUrl = (i: number, fb: string) => fc[i]?.url ?? fb;
   const copyYear = new Date().getFullYear();
   return (
-    <div className="absolute bg-gradient-to-r from-[#094c80] from-[13.037%] h-[797px] left-0 overflow-clip to-[#2096cb] top-[3452px] w-[1440px]">
-      <div className="absolute left-[-123px] size-[500px] top-[-254px]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 500 500">
-          <circle cx="250" cy="250" fill="var(--fill-0, white)" id="Ellipse 117" r="250" />
-        </svg>
-      </div>
+    <footer className="relative bg-gradient-to-r from-[#094c80] from-[13.037%] to-[#2096cb] w-screen left-1/2 -translate-x-1/2 flex justify-center text-white font-['Inter',sans-serif] overflow-hidden">
+      <div className="w-[1440px] px-[66px] py-[80px] relative min-h-[800px]">
+        {/* Decorative background circle */}
+        <div className="absolute left-[-123px] size-[500px] top-[-254px] pointer-events-none">
+          <svg className="size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 500 500">
+            <circle cx="250" cy="250" fill="var(--fill-0, white)" id="Ellipse 117" r="250" />
+          </svg>
+        </div>
       <div className="absolute h-[69px] left-[52px] top-[58px] w-[233px]" data-name="image 14">
         <img alt="AnalytixLabs" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={siteSettings?.logoUrl ?? imgImage14.src} />
       </div>
@@ -731,7 +703,7 @@ function Frame({ offices, footerLinks, footerCities, siteSettings }: {
       <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[347px] w-[268px]">{fcLabel(10, "Artificial Intelligence Course in Bangalore")}</p>
       <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[373px] w-[235px]">{fcLabel(11, "Artificial Intelligence Course in Delhi")}</p>
       <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[398px] w-[139px]">{fcLabel(12, "Generative AI Course")}</p>
-      <Group12 siteSettings={siteSettings} />
+
       <div className="absolute border-[0.5px] border-[rgba(255,255,255,0.5)] border-solid h-[118px] left-[947px] rounded-[15px] top-[541px] w-[426px]" />
       <div className="absolute border-[0.5px] border-[rgba(255,255,255,0.5)] border-solid h-[118px] left-[507px] rounded-[15px] top-[541px] w-[425px]" />
       <div className="absolute border-[0.5px] border-[rgba(255,255,255,0.5)] border-solid h-[118px] left-[66px] rounded-[15px] top-[541px] w-[426px]" />
@@ -782,7 +754,8 @@ function Frame({ offices, footerLinks, footerCities, siteSettings }: {
           <path d={svgPaths.p19230580} fill="var(--fill-0, white)" id="medium" />
         </svg>
       </div>
-    </div>
+      </div>
+    </footer>
   );
 }
 
@@ -798,10 +771,14 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
     siteSettings,
   } = props;
   return (
-    <div className="bg-white relative size-full" data-name="Explore courses">
-      <div className="absolute bg-[#f4fafa] h-[335px] left-0 top-[64px] w-[1440px]" />
-      <Group9 />
-      <div className="absolute bg-[#f4fafa] h-[872px] left-0 top-[2004px] w-[1440px]" />
+    <div className="bg-white relative w-full overflow-x-hidden flex flex-col items-center" data-name="Explore courses">
+      {/* Full-width backgrounds */}
+      <div className="absolute bg-[#f4fafa] h-[335px] top-[64px] w-screen left-1/2 -translate-x-1/2" />
+      <div className="absolute bg-[#f4fafa] h-[872px] top-[2004px] w-screen left-1/2 -translate-x-1/2" />
+
+      {/* Main absolute canvas (locked to 1440px) */}
+      <div className="relative w-[1440px] h-[3452px] flex-shrink-0">
+        <Group9 />
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[0] left-[63px] not-italic text-[#09263f] text-[42px] top-[142px] w-[667px]">
         <span className="leading-[normal]">{`Explore `}</span>
         <span className="bg-clip-text bg-gradient-to-r from-[#1de5b5] from-[34.135%] leading-[normal] text-[transparent] to-[#07b3e7] to-[78.846%]">{`AI & Data Science`}</span>
@@ -917,7 +894,7 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
       <div className="-translate-x-1/2 absolute bg-[#ffd700] h-[49px] left-1/2 rounded-[1000px] top-[2754px] w-[200px]" />
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[311px] not-italic text-[#09263f] text-[18px] text-center top-[3238px] whitespace-nowrap">Contact Us</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-1/2 not-italic text-[#09263f] text-[18px] text-center top-[2767px] whitespace-nowrap">Explore Blogs→</p>
-      <Group11 topNav={topNav} siteSettings={siteSettings} />
+
       <div className="absolute h-[331px] left-[1060px] top-[68px] w-[315px]" data-name="Asset 25@3x 2">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgAsset253X2.src} />
       </div>
@@ -930,7 +907,8 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
         </div>
       </div>
       <div className="absolute bg-gradient-to-b from-[rgba(255,255,255,0)] h-[46px] left-0 to-white top-[353px] w-[1395px]" />
-      <Frame offices={offices} footerLinks={footerLinks} footerCities={footerCities} siteSettings={siteSettings} />
+      </div>{/* /absolute canvas */}
+
     </div>
   );
 }

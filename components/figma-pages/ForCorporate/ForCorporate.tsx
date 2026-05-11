@@ -85,28 +85,7 @@ function Group4() {
   );
 }
 
-function Group3({ topNav, siteSettings }: { topNav?: NavItem[]; siteSettings?: SiteSettings | null }) {
-  const navLabel = (i: number, fb: string) => topNav?.[i]?.label ?? fb;
-  const navUrl   = (i: number, fb: string) => topNav?.[i]?.url   ?? fb;
-  return (
-    <div className="absolute contents left-0 top-0">
-      <div className="absolute bg-white h-[68px] left-0 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-0 w-[1440px]" />
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[426px] not-italic text-[13px] text-black top-[27px] w-[119px]">{navLabel(0, "Upcoming Batches")}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[569px] not-italic text-[13px] text-black top-[27px] whitespace-nowrap">{navLabel(1, "Explore Courses")}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[694px] not-italic text-[13px] text-black top-[27px] w-[49px]">{navLabel(2, "Why Us")}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[766px] not-italic text-[#4c7fd2] text-[13px] top-[27px] w-[95px]">{navLabel(3, "For Corporates")}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[887px] not-italic text-[13px] text-black top-[27px] w-[29px]">{navLabel(4, "Blog")}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[943px] not-italic text-[13px] text-black top-[27px] w-[71px]">{navLabel(5, "Contact Us")}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1203px] not-italic text-[#09263f] text-[14px] text-center top-[27px] whitespace-nowrap">{navLabel(6, "Sign in")}</p>
-      <div className="absolute bg-[#1de5b5] h-[44px] left-[1240px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[12px] w-[168px]" />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1325px] not-italic text-[#09263f] text-[14px] text-center top-[26px] whitespace-nowrap">{navLabel(7, "Create Free Account")}</p>
-      <div className="absolute bg-[#4c7fd2] h-[4px] left-[761px] rounded-[1000px] top-[64px] w-[105px]" />
-      <div className="absolute h-[57px] left-[33px] top-[6px] w-[191px]" data-name="image 14">
-        <Link href="/" className="contents"><img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={siteSettings?.logoUrl ?? imgImage14.src} /></Link>
-      </div>
-    </div>
-  );
-}
+
 
 function TeenyiconsTickCircleSolid() {
   return (
@@ -631,12 +610,14 @@ function Frame({ offices, footerLinks, footerCities, siteSettings }: { offices?:
   const fcUrl   = (i: number, fb: string) => fc[i]?.url   ?? fb;
   const year = new Date().getFullYear();
   return (
-    <div className="absolute bg-gradient-to-r from-[#094c80] from-[13.037%] h-[797px] left-0 overflow-clip to-[#2096cb] top-[4317px] w-[1440px]">
-      <div className="absolute left-[-123px] size-[500px] top-[-254px]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 500 500">
-          <circle cx="250" cy="250" fill="var(--fill-0, white)" id="Ellipse 117" r="250" />
-        </svg>
-      </div>
+    <footer className="relative bg-gradient-to-r from-[#094c80] from-[13.037%] to-[#2096cb] w-screen left-1/2 -translate-x-1/2 flex justify-center text-white font-['Inter',sans-serif] overflow-hidden">
+      <div className="w-[1440px] px-[66px] py-[80px] relative min-h-[800px]">
+        {/* Decorative background circle */}
+        <div className="absolute left-[-123px] size-[500px] top-[-254px] pointer-events-none">
+          <svg className="size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 500 500">
+            <circle cx="250" cy="250" fill="var(--fill-0, white)" id="Ellipse 117" r="250" />
+          </svg>
+        </div>
       <div className="absolute h-[69px] left-[52px] top-[58px] w-[233px]" data-name="image 14">
         <Link href="/" className="contents"><img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={siteSettings?.logoUrl ?? imgImage14.src} /></Link>
       </div>
@@ -726,20 +707,25 @@ function Frame({ offices, footerLinks, footerCities, siteSettings }: { offices?:
           <path d={svgPaths.p19230580} fill="var(--fill-0, white)" id="medium" />
         </svg>
       </div>
-    </div>
-  );
-}
+        </div>
+      </footer>
+    );
+  }
 
 export default function ForCorporate({ topNav, footerLinks, footerCities, offices, siteSettings }: ForCorporateProps) {
   return (
-    <div className="bg-white relative size-full" data-name="For corporate">
-      <div className="absolute bg-[#f4fafa] h-[335px] left-0 top-[64px] w-[1440px]" />
-      <Group4 />
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[0] left-[63px] not-italic text-[#09263f] text-[42px] top-[142px] w-[667px]">
-        <span className="leading-[normal]">{`For `}</span>
-        <span className="bg-clip-text bg-gradient-to-r from-[#1de5b5] from-[34.135%] leading-[normal] text-[transparent] to-[#07b3e7] to-[78.846%]">{`Corporates & Enterprises`}</span>
-        <span className="leading-[normal] text-[#07b3e7]">{` `}</span>
-      </p>
+    <div className="bg-white relative w-full overflow-x-hidden flex flex-col items-center" data-name="For Corporate">
+      {/* Full-width backgrounds */}
+      <div className="absolute bg-[#f4fafa] h-[335px] top-[64px] w-screen left-1/2 -translate-x-1/2" />
+
+      {/* Main absolute canvas (locked to 1440px) */}
+      <div className="relative w-[1440px] h-[4317px] flex-shrink-0">
+        <Group4 />
+        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[0] left-[63px] not-italic text-[#09263f] text-[42px] top-[142px] w-[667px]">
+          <span className="leading-[normal]">{`For `}</span>
+          <span className="bg-clip-text bg-gradient-to-r from-[#1de5b5] from-[34.135%] leading-[normal] text-[transparent] to-[#07b3e7] to-[78.846%]">{`Corporates & Enterprises`}</span>
+          <span className="leading-[normal] text-[#07b3e7]">{` `}</span>
+        </p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[63px] not-italic text-[14px] text-[rgba(9,38,63,0.5)] top-[225px] w-[422px]">Build data-driven managers or upskill teams—AnalytixLabs trains in Data Science, AI, and ML.</p>
       <div className="absolute h-[342px] left-[1055px] top-[57px] w-[325px]" data-name="Asset 25@3x 2">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgAsset253X2.src} />
@@ -751,7 +737,6 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgChatGptImageApr212026035233Pm1.src} />
       </div>
       <div className="absolute bg-gradient-to-b from-[rgba(255,255,255,0)] h-[46px] left-0 to-white top-[353px] w-[1395px]" />
-      <Group3 topNav={topNav} siteSettings={siteSettings} />
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-657px)] not-italic text-[#09263f] text-[40px] top-[499px] w-[711px]">End-to-End Analytics Solutions</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-632px)] not-italic text-[#09263f] text-[40px] top-[1283px] w-[711px]">{`Wide Array of Courses Crafted for Beginners & Working Professionals`}</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%-648px)] not-italic text-[#09263f] text-[18px] top-[559px] whitespace-nowrap">Consulting, training, and staffing for data-driven growth.</p>
@@ -941,7 +926,7 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
       <LetsIconsSettingFill />
       <IconParkOutlineSettingComputer />
       <MaterialSymbolsManageAccountsRounded />
-      <div className="absolute bg-[#f4fafa] h-[872px] left-0 top-[2874px] w-[1440px]" />
+      <div className="absolute bg-[#f4fafa] h-[872px] top-[2874px] w-screen left-1/2 -translate-x-1/2" />
       <div className="absolute bg-white h-[481px] left-[63px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[3071px] w-[414px]" />
       <div className="absolute bg-white h-[481px] left-[509px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[3071px] w-[414px]" />
       <div className="absolute bg-white h-[481px] left-[956px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[3071px] w-[414px]" />
@@ -1032,14 +1017,14 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
       </div>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[283px] not-italic text-[20px] text-black text-center top-[2562px] w-[328px]">Skill Gap 2025-26: Mapping India’s AI Talent</p>
       <div className="absolute bg-[#1de5b5] h-[56px] left-[88px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[2634px] w-[364px]" />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[269px] not-italic text-[#09263f] text-[16px] text-center top-[2652px] whitespace-nowrap">Download</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[269px] not-italic text-white text-[16px] text-center top-[2652px] whitespace-nowrap">Download</p>
       <div className="absolute bg-white border border-[rgba(9,38,63,0.2)] border-solid h-[481px] left-[513px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[2235px] w-[414px]" />
       <div className="absolute h-[294px] left-[521px] rounded-tl-[8px] rounded-tr-[8px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[2244px] w-[397px]">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle54.src} />
       </div>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[733px] not-italic text-[20px] text-black text-center top-[2562px] w-[328px]">AI Skills in Demand - A Complete Playbook For 2026</p>
       <div className="absolute bg-[#1de5b5] h-[56px] left-[538px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[2634px] w-[364px]" />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[719px] not-italic text-[#09263f] text-[16px] text-center top-[2652px] whitespace-nowrap">Download</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[719px] not-italic text-white text-[16px] text-center top-[2652px] whitespace-nowrap">Download</p>
       <div className="absolute bg-white border border-[rgba(9,38,63,0.2)] border-solid h-[481px] left-[963px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[2235px] w-[414px]" />
       <div className="absolute h-[294px] left-[971px] rounded-tl-[8px] rounded-tr-[8px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[2244px] w-[397px]">
         <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-tl-[8px] rounded-tr-[8px]">
@@ -1048,10 +1033,10 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
       </div>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1183px] not-italic text-[20px] text-black text-center top-[2574px] w-[328px]">Data Science and AI Job Outlook</p>
       <div className="absolute bg-[#1de5b5] h-[56px] left-[988px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[2634px] w-[364px]" />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1169px] not-italic text-[#09263f] text-[16px] text-center top-[2652px] whitespace-nowrap">Download</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1169px] not-italic text-white text-[16px] text-center top-[2652px] whitespace-nowrap">Download</p>
       <div className="absolute bg-[#ffd700] h-[30px] left-[513px] rounded-br-[70px] rounded-tl-[23px] rounded-tr-[70px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[2223px] w-[120px]" />
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[574.5px] not-italic text-[#09263f] text-[14px] text-center top-[2229px] whitespace-nowrap">Latest</p>
-      <Frame offices={offices} footerLinks={footerLinks} footerCities={footerCities} siteSettings={siteSettings} />
+      </div>{/* /absolute canvas */}
     </div>
   );
 }

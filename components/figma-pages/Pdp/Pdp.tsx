@@ -40,32 +40,11 @@ function fmtRupees(amount: number | null | undefined): string {
   return "₹" + amount.toLocaleString("en-IN") + "/-";
 }
 
-function Group6({ topNav, siteSettings }: { topNav?: PdpProps["topNav"]; siteSettings?: PdpProps["siteSettings"] }) {
-  const nav = topNav ?? [];
-  const navLabel = (i: number, fb: string) => nav[i]?.label ?? fb;
-  const navUrl = (i: number, fb: string) => nav[i]?.url ?? fb;
-  return (
-    <div className="absolute contents left-0 top-0">
-      <div className="absolute bg-white h-[68px] left-0 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-0 w-[1440px]" />
-      <Link href={navUrl(0, "/upcoming-batches")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[426px] not-italic text-[13px] text-black top-[27px] w-[119px]">{navLabel(0, "Upcoming Batches")}</p></Link>
-      <Link href={navUrl(1, "/explore-courses")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[569px] not-italic text-[13px] text-black top-[27px] w-[102px]">{navLabel(1, "Explore Courses")}</p></Link>
-      <Link href={navUrl(2, "/why-us")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[694px] not-italic text-[13px] text-black top-[27px] w-[49px]">{navLabel(2, "Why Us")}</p></Link>
-      <Link href={navUrl(3, "/for-corporates")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[766px] not-italic text-[13px] text-black top-[27px] w-[95px]">{navLabel(3, "For Corporates")}</p></Link>
-      <Link href={navUrl(4, "/blog")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[887px] not-italic text-[13px] text-black top-[27px] w-[29px]">{navLabel(4, "Blog")}</p></Link>
-      <Link href={navUrl(5, "/contact-us")} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[943px] not-italic text-[13px] text-black top-[27px] w-[71px]">{navLabel(5, "Contact Us")}</p></Link>
-      <Link href={navUrl(6, "/login")} className="contents"><p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1203px] not-italic text-[#09263f] text-[14px] text-center top-[27px] whitespace-nowrap">{navLabel(6, "Sign in")}</p></Link>
-      <div className="absolute bg-[#1de5b5] h-[44px] left-[1240px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[12px] w-[168px]" />
-      <Link href={navUrl(7, "/register")} className="contents"><p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1325px] not-italic text-[#09263f] text-[14px] text-center top-[26px] whitespace-nowrap">{navLabel(7, "Create Free Account")}</p></Link>
-      <div className="absolute h-[57px] left-[33px] top-[6px] w-[191px]" data-name="image 14">
-        <img alt="AnalytixLabs" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={siteSettings?.logoUrl ?? imgImage14.src} />
-      </div>
-    </div>
-  );
-}
+
 
 function LineMdPlay() {
   return (
-    <div className="absolute left-[1047px] size-[22px] top-[979px]" data-name="line-md:play">
+    <div className="absolute left-[1047px] size-[22px] top-[879px]" data-name="line-md:play">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 22 22">
         <g id="line-md:play">
           <path d={svgPaths.p39787d00} id="Vector" stroke="var(--stroke-0, black)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
@@ -77,7 +56,7 @@ function LineMdPlay() {
 
 function MaterialSymbolsDownloadRounded() {
   return (
-    <div className="absolute left-[1053px] size-[19px] top-[1007px]" data-name="material-symbols:download-rounded">
+    <div className="absolute left-[1053px] size-[19px] top-[907px]" data-name="material-symbols:download-rounded">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 19 19">
         <g id="material-symbols:download-rounded">
           <path d={svgPaths.p25202e00} fill="var(--fill-0, black)" id="Vector" />
@@ -89,7 +68,7 @@ function MaterialSymbolsDownloadRounded() {
 
 function IcBaselineTv() {
   return (
-    <div className="absolute left-[1055px] size-[15px] top-[1033px]" data-name="ic:baseline-tv">
+    <div className="absolute left-[1055px] size-[15px] top-[933px]" data-name="ic:baseline-tv">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 15 15">
         <g id="ic:baseline-tv">
           <path d={svgPaths.p17981300} fill="var(--fill-0, black)" id="Vector" />
@@ -114,7 +93,7 @@ function Group() {
 
 function MingcuteTimeLine() {
   return (
-    <div className="absolute left-[1055px] overflow-clip size-[16px] top-[1056px]" data-name="mingcute:time-line">
+    <div className="absolute left-[1055px] overflow-clip size-[16px] top-[956px]" data-name="mingcute:time-line">
       <Group />
     </div>
   );
@@ -122,7 +101,7 @@ function MingcuteTimeLine() {
 
 function MaterialSymbolsStarOutlineRounded() {
   return (
-    <div className="absolute left-[1053px] size-[20px] top-[1079px]" data-name="material-symbols:star-outline-rounded">
+    <div className="absolute left-[1053px] size-[20px] top-[979px]" data-name="material-symbols:star-outline-rounded">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
         <g id="material-symbols:star-outline-rounded">
           <path d={svgPaths.p406a4f0} fill="var(--fill-0, black)" id="Vector" />
@@ -134,7 +113,7 @@ function MaterialSymbolsStarOutlineRounded() {
 
 function IxSupport() {
   return (
-    <div className="absolute left-[1055px] size-[16px] top-[1106px]" data-name="ix:support">
+    <div className="absolute left-[1055px] size-[16px] top-[1006px]" data-name="ix:support">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
         <g id="ix:support">
           <path clipRule="evenodd" d={svgPaths.pec3e100} fill="var(--fill-0, black)" fillRule="evenodd" id="Vector" />
@@ -146,7 +125,7 @@ function IxSupport() {
 
 function IconParkOutlineQuote() {
   return (
-    <div className="absolute left-[1064px] size-[32px] top-[1345px]" data-name="icon-park-outline:quote">
+    <div className="absolute left-[1064px] size-[32px] top-[1245px]" data-name="icon-park-outline:quote">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 32 32">
         <g id="icon-park-outline:quote">
           <path clipRule="evenodd" d={svgPaths.pf903f80} fill="var(--fill-0, #09263F)" fillRule="evenodd" id="Vector" />
@@ -158,21 +137,20 @@ function IconParkOutlineQuote() {
 
 function Group9() {
   return (
-    <div className="absolute contents left-[1031px] top-[1328px]">
-      <div className="absolute bg-white h-[217px] left-[1031px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[1328px] w-[343px]" />
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[112px] leading-[1.8] left-[1064px] not-italic text-[#09263f] text-[11px] top-[1383px] w-[277px]">The structure was exactly what I needed. I went from zero Python to deploying an ML model within 8 months. The placement support helped me crack my first data scientist role.</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1108px] not-italic text-[#09263f] text-[12px] top-[1480px] whitespace-nowrap">Rahul Kapoor</p>
-      <div className="absolute left-[1064px] size-[39px] top-[1483px]">
+    <div className="absolute contents left-[1031px] top-[1228px]">
+      <div className="absolute bg-white h-[217px] left-[1031px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[1228px] w-[343px]" />
+      <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[112px] leading-[1.8] left-[1064px] not-italic text-[#09263f] text-[11px] top-[1283px] w-[277px]">The structure was exactly what I needed. I went from zero Python to deploying an ML model within 8 months. The placement support helped me crack my first data scientist role.</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1108px] not-italic text-[#09263f] text-[12px] top-[1380px] whitespace-nowrap">Rahul Kapoor</p>
+      <div className="absolute left-[1064px] size-[39px] top-[1383px]">
         <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 39 39">
           <circle cx="19.5" cy="19.5" fill="var(--fill-0, #1DE5B5)" id="Ellipse 118" r="19.5" />
         </svg>
       </div>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1108px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1497px] whitespace-nowrap">Data Scientist @ Flipkart</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1111.5px] not-italic text-[10px] text-black text-center top-[1514px] w-[7px]">{`⭐ `}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1122.5px] not-italic text-[10px] text-black text-center top-[1514px] w-[7px]">{`⭐ `}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1133.5px] not-italic text-[10px] text-black text-center top-[1514px] w-[7px]">{`⭐ `}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1144.5px] not-italic text-[10px] text-black text-center top-[1514px] w-[7px]">{`⭐ `}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1155.5px] not-italic text-[10px] text-black text-center top-[1514px] w-[7px]">{`⭐ `}</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1111.5px] not-italic text-[10px] text-black text-center top-[1414px] w-[7px]">{`⭐ `}</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1122.5px] not-italic text-[10px] text-black text-center top-[1414px] w-[7px]">{`⭐ `}</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1133.5px] not-italic text-[10px] text-black text-center top-[1414px] w-[7px]">{`⭐ `}</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1144.5px] not-italic text-[10px] text-black text-center top-[1414px] w-[7px]">{`⭐ `}</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1155.5px] not-italic text-[10px] text-black text-center top-[1414px] w-[7px]">{`⭐ `}</p>
       <IconParkOutlineQuote />
     </div>
   );
@@ -1024,12 +1002,14 @@ function Frame({ offices, footerLinks, footerCities, siteSettings }: {
   const fcUrl   = (i: number, fb: string) => fc[i]?.url ?? fb;
   const copyYear = new Date().getFullYear();
   return (
-    <div className="absolute bg-gradient-to-r from-[#094c80] from-[13.037%] h-[797px] left-0 overflow-clip to-[#2096cb] top-[10913px] w-[1440px]">
-      <div className="absolute left-[-123px] size-[500px] top-[-254px]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 500 500">
-          <circle cx="250" cy="250" fill="var(--fill-0, white)" id="Ellipse 117" r="250" />
-        </svg>
-      </div>
+    <footer className="relative bg-gradient-to-r from-[#094c80] from-[13.037%] to-[#2096cb] w-screen left-1/2 -translate-x-1/2 flex justify-center text-white font-['Inter',sans-serif] overflow-hidden">
+      <div className="w-[1440px] px-[66px] py-[80px] relative min-h-[800px]">
+        {/* Decorative background circle */}
+        <div className="absolute left-[-123px] size-[500px] top-[-254px] pointer-events-none">
+          <svg className="size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 500 500">
+            <circle cx="250" cy="250" fill="var(--fill-0, white)" id="Ellipse 117" r="250" />
+          </svg>
+        </div>
       <div className="absolute h-[69px] left-[52px] top-[58px] w-[233px]" data-name="image 14">
         <img alt="AnalytixLabs" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={siteSettings?.logoUrl ?? imgImage14.src} />
       </div>
@@ -1119,38 +1099,39 @@ function Frame({ offices, footerLinks, footerCities, siteSettings }: {
           <path d={svgPaths.p19230580} fill="var(--fill-0, white)" id="medium" />
         </svg>
       </div>
-    </div>
+      </div>
+    </footer>
   );
 }
 
 function Group8({ course }: { course?: PdpProps["course"] }) {
   return (
     <div className="absolute contents left-[967px] top-[143px]">
-      <div className="absolute bg-white h-[521px] left-[967px] rounded-[15px] top-[143px] w-[407px]" />
+      <div className="absolute bg-white h-[505px] left-[967px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[143px] w-[407px]" />
       <div className="absolute h-[198.888px] left-[967px] rounded-tl-[15px] rounded-tr-[15px] top-[143px] w-[407px]">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[15px] rounded-tr-[15px] size-full" src={course?.heroImageUrl ?? imgRectangle155.src} />
       </div>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold h-[33.508px] leading-[normal] left-[993.1px] not-italic text-[26px] text-black top-[365.67px] w-[126.965px]">{course?.discountedPrice ? fmtRupees(course.discountedPrice) : "₹59,000"}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[18.376px] leading-[normal] left-[1107.31px] not-italic text-[14px] text-[rgba(0,0,0,0.5)] top-[378.64px] w-[65.262px]">{course?.price ? fmtRupees(course.price) : "₹65,000"}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[12.971px] leading-[normal] left-[993.1px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[412.15px] w-[226.638px]">Inclusive of all taxes• Easy EMI available</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[993.1px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[503.81px] whitespace-pre">{`Noida   Gurgaon   Bangalore`}</p>
-      <div className="absolute bg-[#1de5b5] h-[34px] left-[993px] rounded-[5px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[440px] w-[114px]" />
-      <div className="absolute border border-[rgba(9,38,63,0.5)] border-solid h-[34px] left-[1114px] rounded-[5px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[440px] w-[113px]" />
-      <div className="absolute border border-[rgba(9,38,63,0.5)] border-solid h-[34px] left-[1234px] rounded-[5px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[440px] w-[114px]" />
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[12.971px] leading-[normal] left-[1024.84px] not-italic text-[#09263f] text-[10px] top-[449.74px] w-[67.636px]">Classroom</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal h-[12.971px] leading-[normal] left-[1170.09px] not-italic text-[#09263f] text-[10px] text-center top-[449.74px] w-[40.344px]">Online</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal h-[12.971px] leading-[normal] left-[1292.13px] not-italic text-[#09263f] text-[10px] text-center top-[449.74px] w-[64.076px]">eLearning</p>
-      <div className="absolute h-0 left-[1108px] top-[388px] w-[53px]">
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold h-[33.508px] leading-[normal] left-[993.1px] not-italic text-[26px] text-black top-[365.67px] w-[180px]">{course?.discountedPrice ? fmtRupees(course.discountedPrice) : "₹59,000"}</p>
+      <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[18.376px] leading-[normal] left-[1180px] not-italic text-[14px] text-[rgba(0,0,0,0.5)] top-[378px] w-[100px] line-through">{course?.price ? fmtRupees(course.price) : "₹65,000"}</p>
+      <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[12.971px] leading-[normal] left-[993.1px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[405px] w-[226.638px]">Inclusive of all taxes• Easy EMI available</p>
+      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[993.1px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[505px] whitespace-pre">{`Noida   Gurgaon   Bangalore`}</p>
+      <div className="absolute bg-[#1de5b5] h-[34px] left-[993px] rounded-[5px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] top-[430px] w-[114px]" />
+      <div className="absolute border border-[rgba(9,38,63,0.5)] border-solid h-[34px] left-[1114px] rounded-[5px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] top-[430px] w-[113px]" />
+      <div className="absolute border border-[rgba(9,38,63,0.5)] border-solid h-[34px] left-[1234px] rounded-[5px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] top-[430px] w-[114px]" />
+      <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[12.971px] leading-[normal] left-[1024.84px] not-italic text-white text-[10px] top-[440px] w-[67.636px]">Classroom</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal h-[12.971px] leading-[normal] left-[1170.09px] not-italic text-[#09263f] text-[10px] text-center top-[440px] w-[40.344px]">Online</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal h-[12.971px] leading-[normal] left-[1292.13px] not-italic text-[#09263f] text-[10px] text-center top-[440px] w-[64.076px]">eLearning</p>
+      <div className="absolute h-0 left-[1180px] top-[388px] w-[53px]">
         <div className="absolute inset-[-0.5px_0_0_0]">
           <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 53 0.5">
             <line id="Line 16" stroke="var(--stroke-0, black)" strokeOpacity="0.5" strokeWidth="0.5" x2="53" y1="0.25" y2="0.25" />
           </svg>
         </div>
       </div>
-      <div className="absolute bg-[#ffd700] h-[47.56px] left-[993.1px] rounded-[109px] top-[541.86px] w-[354.79px]" />
-      <div className="absolute border border-[rgba(9,38,63,0.5)] border-solid h-[47.56px] left-[993.1px] rounded-[109px] top-[595.9px] w-[354.79px]" />
-      <Link href={course?.brochureUrl ?? "#"} className="contents"><p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold h-[16.214px] leading-[normal] left-[1170.5px] not-italic text-[#09263f] text-[12px] text-center top-[556.99px] w-[221.892px]">Download Syllabus</p></Link>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold h-[16.214px] leading-[normal] left-[1170.5px] not-italic text-[#09263f] text-[12px] text-center top-[611.04px] w-[221.892px]">Contact Us</p>
+      <div className="absolute bg-[#ffd700] h-[40px] left-[993.1px] rounded-[109px] top-[540px] w-[354.79px]" />
+      <div className="absolute border border-[rgba(9,38,63,0.5)] border-solid h-[40px] left-[993.1px] rounded-[109px] top-[590px] w-[354.79px]" />
+      <Link href={course?.brochureUrl ?? "#"} className="contents"><p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold h-[16.214px] leading-[normal] left-[1170.5px] not-italic text-[#09263f] text-[12px] text-center top-[552px] w-[221.892px]">Download Syllabus</p></Link>
+      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold h-[16.214px] leading-[normal] left-[1170.5px] not-italic text-[#09263f] text-[12px] text-center top-[602px] w-[221.892px]">Contact Us</p>
     </div>
   );
 }
@@ -1159,13 +1140,13 @@ function Group10({ course }: { course?: PdpProps["course"] }) {
   return (
     <div className="absolute contents left-[967px] top-[143px]">
       <Group8 course={course} />
-      <div className="absolute border border-[rgba(9,38,63,0.2)] border-solid h-[16px] left-[1126px] rounded-bl-[5px] rounded-br-[5px] top-[473px] w-[90px]" />
-      <div className="absolute border border-[rgba(9,38,63,0.2)] border-solid h-[16px] left-[1246px] rounded-bl-[5px] rounded-br-[5px] top-[473px] w-[90px]" />
-      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium leading-[0] left-[1170.5px] not-italic text-[#09263f] text-[0px] text-center top-[476px] whitespace-nowrap">
+      <div className="absolute border border-[rgba(9,38,63,0.2)] border-solid h-[16px] left-[1126px] rounded-bl-[5px] rounded-br-[5px] top-[465px] w-[90px]" />
+      <div className="absolute border border-[rgba(9,38,63,0.2)] border-solid h-[16px] left-[1246px] rounded-bl-[5px] rounded-br-[5px] top-[465px] w-[90px]" />
+      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium leading-[0] left-[1170.5px] not-italic text-[#09263f] text-[0px] text-center top-[468px] whitespace-nowrap">
         <span className="leading-[normal] text-[8px]">{`@₹68,440/- `}</span>
         <span className="leading-[normal] text-[5px] text-[rgba(9,38,63,0.5)]">easy EMI</span>
       </p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium leading-[0] left-[1290.5px] not-italic text-[#09263f] text-[0px] text-center top-[476px] whitespace-nowrap">
+      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium leading-[0] left-[1290.5px] not-italic text-[#09263f] text-[0px] text-center top-[468px] whitespace-nowrap">
         <span className="leading-[normal] text-[8px]">@₹</span>
         <span className="leading-[normal] text-[8px]">48</span>
         <span className="leading-[normal] text-[8px]">{`,440/- `}</span>
@@ -1185,14 +1166,15 @@ export default function Pdp(props: PdpProps) {
     siteSettings,
   } = props;
   return (
-    <div className="bg-white relative size-full" data-name="PDP">
-      <Group6 topNav={topNav} siteSettings={siteSettings} />
-      <div className="-translate-x-1/2 absolute h-[464px] left-[calc(50%+93.5px)] top-[68px] w-[441px]" data-name="Asset 25@3x 2">
-        <img alt="" className="absolute inset-0 max-w-none object-cover opacity-44 pointer-events-none size-full" src={imgAsset253X2.src} />
-      </div>
-      <div className="absolute bg-gradient-to-b from-[rgba(255,255,255,0)] h-[46px] left-0 to-white top-[488px] w-[1395px]" />
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[63px] not-italic text-[#09263f] text-[42px] top-[142px] w-[667px]">{course?.title ?? "Data Science Course with Certification & Placement"}</p>
-      <div className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[63px] not-italic text-[14px] text-[rgba(9,38,63,0.5)] top-[262px] w-[467px]">
+    <div className="bg-white relative w-full overflow-x-hidden flex flex-col items-center" data-name="Pdp">
+      {/* Main absolute canvas (locked to 1440px) */}
+      <div className="relative w-[1440px] h-[10913px] flex-shrink-0">
+        <div className="-translate-x-1/2 absolute h-[464px] left-[calc(50%+93.5px)] top-[68px] w-[441px]" data-name="Asset 25@3x 2">
+          <img alt="" className="absolute inset-0 max-w-none object-cover opacity-44 pointer-events-none size-full" src={imgAsset253X2.src} />
+        </div>
+        <div className="absolute bg-gradient-to-b from-[rgba(255,255,255,0)] h-[46px] left-0 to-white top-[488px] w-[1395px]" />
+        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[63px] not-italic text-[#09263f] text-[42px] top-[142px] w-[667px]">{course?.title ?? "Data Science Course with Certification & Placement"}</p>
+        <div className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[63px] not-italic text-[14px] text-[rgba(9,38,63,0.5)] top-[262px] w-[467px]">
         <p className="leading-[normal] mb-0">{course?.shortDesc ?? "An extensive industry-relevant Data Science course with 8 weeks of Placement Assistance. No coding background required — start from zero, finish job-ready."}</p>
         <p className="leading-[normal]">​</p>
       </div>
@@ -1210,19 +1192,19 @@ export default function Pdp(props: PdpProps) {
       <div className="absolute bg-[#d2faf0] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[143px] left-[49px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[886px] w-[295px]" />
       <div className="absolute bg-[#d2faf0] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[213px] left-[49px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[3972px] w-[295px]" />
       <div className="absolute border-[0.5px] border-[rgba(9,38,63,0.5)] border-solid h-[349px] left-[49px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[4338px] w-[295px]" />
-      <div className="absolute bg-[#d2faf0] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[1031px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[762px] w-[172px]" />
+      <div className="absolute bg-[#d2faf0] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[1031px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[672px] w-[172px]" />
       <div className="absolute bg-[#fffad2] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[177px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[371px] w-[114px]" />
-      <div className="absolute bg-[#fffad2] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[1203px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[762px] w-[171px]" />
+      <div className="absolute bg-[#fffad2] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[1203px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[672px] w-[171px]" />
       <div className="absolute bg-[#f0fbff] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[291px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[371px] w-[113px]" />
       <div className="absolute bg-[#f0fbff] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[143px] left-[357px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[886px] w-[293px]" />
       <div className="absolute bg-[#f0fbff] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[213px] left-[357px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[3972px] w-[293px]" />
       <div className="absolute border-[0.5px] border-[rgba(9,38,63,0.5)] border-solid h-[349px] left-[364px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[4338px] w-[293px]" />
-      <div className="absolute bg-[#f0fbff] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[1031px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[838px] w-[170px]" />
+      <div className="absolute bg-[#f0fbff] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[1031px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[748px] w-[170px]" />
       <div className="absolute bg-[#fff2fa] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[404px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[371px] w-[114px]" />
       <div className="absolute bg-[#fff2fa] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[143px] left-[662px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[886px] w-[294px]" />
       <div className="absolute bg-[#fff2fa] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[213px] left-[662px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[3972px] w-[294px]" />
       <div className="absolute border-[0.5px] border-[rgba(9,38,63,0.5)] border-solid h-[349px] left-[677px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[4338px] w-[294px]" />
-      <div className="absolute bg-[#fff2fa] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[1201px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[838px] w-[171px]" />
+      <div className="absolute bg-[#fff2fa] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[1201px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[748px] w-[171px]" />
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[119.5px] not-italic text-[#09263f] text-[20px] text-center top-[387px] w-[43px]">{course?.hoursCount ?? 675}</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[75px] not-italic text-[#09263f] text-[20px] top-[925px] w-[74px]">195 hrs</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[197px] not-italic text-[#09263f] text-[14px] text-center top-[4016px] whitespace-nowrap">{`Classroom & Bootcamp`}</p>
@@ -1242,19 +1224,19 @@ export default function Pdp(props: PdpProps) {
         <span className="leading-[normal] text-[16px]">&nbsp;</span>
         <span className="leading-[normal] text-[13px]">including taxes</span>
       </p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1116px] not-italic text-[20px] text-black text-center top-[781px] w-[64px]">₹48k</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1116px] not-italic text-[20px] text-black text-center top-[691px] w-[64px]">₹48k</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[233px] not-italic text-[#09263f] text-[20px] text-center top-[387px] w-[30px]">{course?.classesCount ?? 65}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1286px] not-italic text-[#09263f] text-[20px] text-center top-[778px] whitespace-nowrap">8 mo</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1286px] not-italic text-[#09263f] text-[20px] text-center top-[688px] whitespace-nowrap">8 mo</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[347px] not-italic text-[#09263f] text-[20px] text-center top-[387px] w-[22px]">{course?.modules?.length ?? 11}</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[383px] not-italic text-[#09263f] text-[20px] top-[925px] w-[77px]">422 hrs</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[504.5px] not-italic text-[#09263f] text-[14px] text-center top-[4016px] whitespace-nowrap">Interactive Live Online</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[533.5px] not-italic text-[#09263f] text-[16px] text-center top-[4365px] whitespace-nowrap">Interactive Live Online</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1115.5px] not-italic text-[#09263f] text-[20px] text-center top-[864px] w-[33px]">9.6</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1115.5px] not-italic text-[#09263f] text-[20px] text-center top-[774px] w-[33px]">9.6</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[460.5px] not-italic text-[#09263f] text-[20px] text-center top-[387px] w-[59px]">20K+</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[690px] not-italic text-[#09263f] text-[20px] top-[925px] w-[85px]">8 Weeks</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[809.5px] not-italic text-[#09263f] text-[14px] text-center top-[4016px] whitespace-nowrap">Blended eLearning</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[832.5px] not-italic text-[#09263f] text-[16px] text-center top-[4365px] whitespace-nowrap">Blended eLearning</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1286px] not-italic text-[#09263f] text-[20px] text-center top-[854px] w-[88px]">20K+</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1286px] not-italic text-[#09263f] text-[20px] text-center top-[764px] w-[88px]">20K+</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[119px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[413px] w-[74px]">Total Hours</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[75px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] top-[954px] w-[89px]">Live instruction</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[75px] not-italic text-[#09263f] text-[13px] top-[977px] w-[237px]">65 classes × 3 hrs + 20 hrs eLearning</p>
@@ -1268,19 +1250,19 @@ export default function Pdp(props: PdpProps) {
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[95px] not-italic text-[#09263f] text-[13px] top-[4567px] whitespace-nowrap">Fees payable in up to 3 installment​s</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[408px] not-italic text-[#09263f] text-[13px] top-[4567px] whitespace-nowrap">Fees payable in up to 3 installment​s</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[721px] not-italic text-[#09263f] text-[13px] top-[4567px] whitespace-nowrap">Fees payable in up to 3 installment​s</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1115.5px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[804px] w-[111px]">Starting price</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1115.5px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[714px] w-[111px]">Starting price</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[233.5px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[413px] w-[77px]">Live classes</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1287.5px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[804px] w-[115px]">Program duration</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1287.5px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[714px] w-[115px]">Program duration</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[347.5px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[413px] w-[55px]">Modules</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[383px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] top-[954px] w-[60px]">Self-study</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[383px] not-italic text-[#09263f] text-[13px] top-[977px] w-[228px]">8–10 hrs/week · 38 hrs assessments</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[504px] not-italic text-[13px] text-[rgba(9,38,63,0.5)] text-center top-[4041px] w-[244px]">Blend the dynamic experience of traditional classroom with engaging, real-time interactive sessions, carefully tailored to meet the demand of busy schedules. This innovative approach ensures effective learning, fostering a deeper understanding and retention of knowledge.</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1116px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[890px] w-[82px]">Avg rating</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1116px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[800px] w-[82px]">Avg rating</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[461px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[413px] w-[44px]">Alumni</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[690px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] top-[954px] w-[120px]">Placement readiness</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[690px] not-italic text-[#09263f] text-[13px] top-[977px] w-[163px]">Post certification program</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[809.5px] not-italic text-[13px] text-[rgba(9,38,63,0.5)] text-center top-[4041px] w-[267px]">Fuse the rich atmosphere of classroom instruction with the flexibility and accessibility of eLearning modules, meticulously integrated to accommodate learning preferences. This unique blend ensures an optimal learning experience, empowering participants to delve into subjects deeply.</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1287px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[880px] w-[66px]">Alumni</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1287px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[790px] w-[66px]">Alumni</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[195px] not-italic text-[14px] text-[rgba(9,38,63,0.5)] text-center top-[761px] whitespace-nowrap">Curriculum</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[54px] not-italic text-[14px] text-[rgba(9,38,63,0.5)] top-[1512px] whitespace-nowrap">11 modules · 600+ hours · no prior coding experience needed</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[54px] not-italic text-[14px] text-[rgba(9,38,63,0.5)] top-[1950px] whitespace-nowrap">6 capstone projects and 20+ graded assignments modelled on real business problems from banking, e-commerce, telecom, and retail.</p>
@@ -1300,22 +1282,11 @@ export default function Pdp(props: PdpProps) {
       <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[517px] not-italic text-[14px] text-[rgba(9,38,63,0.5)] text-center top-[761px] whitespace-nowrap">Who should Join</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[672.5px] not-italic text-[14px] text-[rgba(9,38,63,0.5)] text-center top-[761px] whitespace-nowrap">Learning Modes</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[799px] not-italic text-[14px] text-[rgba(9,38,63,0.5)] text-center top-[761px] whitespace-nowrap">Batches</p>
-      <div className="absolute bg-white h-[382px] left-[1031px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[930px] w-[343px]" />
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1053px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[962px] whitespace-nowrap">Includes</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1078px] not-italic text-[#09263f] text-[11px] top-[976px] whitespace-nowrap">65 hrs on-demand video</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1078px] not-italic text-[#09263f] text-[11px] top-[1000px] whitespace-nowrap">49 downloadable resources</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1078px] not-italic text-[#09263f] text-[11px] top-[1024px] whitespace-nowrap">{`Access on mobile & TV`}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1078px] not-italic text-[#09263f] text-[11px] top-[1048px] whitespace-nowrap">6 capstone projects</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1078px] not-italic text-[#09263f] text-[11px] top-[1072px] whitespace-nowrap">Certificate of completion</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1078px] not-italic text-[#09263f] text-[11px] top-[1096px] whitespace-nowrap">8 weeks placement support</p>
-      <div className="absolute bg-[#ffd700] h-[44px] left-[1053px] rounded-[109px] top-[1142px] w-[299px]" />
       <div className="absolute bg-[#ffd700] h-[44px] left-[70px] rounded-[109px] top-[4610px] w-[250px]" />
       <div className="absolute bg-[#ffd700] h-[44px] left-[386px] rounded-[109px] top-[4610px] w-[250px]" />
       <div className="absolute bg-[#ffd700] h-[44px] left-[698px] rounded-[109px] top-[4610px] w-[250px]" />
-      <div className="absolute bg-[#1de5b5] h-[44px] left-[1053px] rounded-[109px] top-[1242px] w-[299px]" />
       <div className="absolute bg-[#1de5b5] h-[44px] left-[49px] rounded-[109px] top-[5683px] w-[177px]" />
       <div className="absolute border-[0.5px] border-[rgba(9,38,63,0.5)] border-solid h-[44px] left-[49px] rounded-[109px] top-[5933px] w-[270px]" />
-      <div className="absolute border border-[rgba(9,38,63,0.5)] border-solid h-[44px] left-[1053px] rounded-[109px] top-[1192px] w-[299px]" />
       <div className="absolute border-[0.5px] border-[rgba(9,38,63,0.5)] border-solid h-[49px] left-[52px] rounded-[15px] top-[1559px] w-[904px]" />
       <div className="absolute border-[0.5px] border-[rgba(9,38,63,0.5)] border-solid h-[49px] left-[52px] rounded-[15px] top-[1619px] w-[904px]" />
       <div className="absolute border-[0.5px] border-[rgba(9,38,63,0.5)] border-solid h-[49px] left-[52px] rounded-[15px] top-[1679px] w-[904px]" />
@@ -1368,28 +1339,11 @@ export default function Pdp(props: PdpProps) {
       <div className="absolute border-[0.5px] border-[rgba(9,38,63,0.5)] border-solid h-[113px] left-[512px] rounded-[15px] top-[6244px] w-[444px]" />
       <div className="absolute border-[0.5px] border-[rgba(9,38,63,0.5)] border-solid h-[113px] left-[512px] rounded-[15px] top-[2265px] w-[444px]" />
       <div className="absolute border-[0.5px] border-[rgba(9,38,63,0.5)] border-solid h-[113px] left-[512px] rounded-[15px] top-[2395px] w-[444px]" />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1202.5px] not-italic text-[#09263f] text-[12px] text-center top-[1156px] w-[187px]">Download Syllabus</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[195px] not-italic text-[#09263f] text-[12px] text-center top-[4624px] w-[156px]">Enroll now</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[511px] not-italic text-[#09263f] text-[12px] text-center top-[4624px] w-[156px]">Enroll now</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[823px] not-italic text-[#09263f] text-[12px] text-center top-[4624px] w-[156px]">Enroll now</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1202.5px] not-italic text-[#09263f] text-[12px] text-center top-[1256px] w-[187px]">Sign up for Free Demo</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[138.5px] not-italic text-[#09263f] text-[12px] text-center top-[5697px] w-[187px]">Check your Eligibility</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[138.5px] not-italic text-white text-[12px] text-center top-[5697px] w-[187px]">Check your Eligibility</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[182.5px] not-italic text-[#09263f] text-[12px] text-center top-[5947px] w-[259px]">Download our Latest Placement Report</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1202.5px] not-italic text-[#09263f] text-[12px] text-center top-[1206px] w-[187px]">Add to Wishlish</p>
-      <div className="absolute h-0 left-[1054px] top-[1127px] w-[298px]">
-        <div className="absolute inset-[-1px_0_0_0]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 298 1">
-            <line id="Line 18" stroke="var(--stroke-0, #09263F)" strokeOpacity="0.2" x2="298" y1="0.5" y2="0.5" />
-          </svg>
-        </div>
-      </div>
-      <LineMdPlay />
-      <MaterialSymbolsDownloadRounded />
-      <IcBaselineTv />
-      <MingcuteTimeLine />
-      <MaterialSymbolsStarOutlineRounded />
-      <IxSupport />
-      <Group9 />
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-671px)] not-italic text-[#09263f] text-[32px] top-[822px] whitespace-nowrap">Overview</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-671px)] not-italic text-[#09263f] text-[32px] top-[3908px] whitespace-nowrap">Data Science Learning Modes</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-671px)] not-italic text-[#09263f] text-[32px] top-[4226px] whitespace-nowrap">Data Science Course Fees</p>
@@ -1460,79 +1414,23 @@ export default function Pdp(props: PdpProps) {
           </svg>
         </div>
       </div>
-      <div className="absolute bg-[#f0fbff] h-[26px] left-[64px] rounded-[6px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[1571px] w-[36px]" />
-      <div className="absolute bg-[#d2faf0] h-[26px] left-[64px] rounded-[6px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[1631px] w-[36px]" />
-      <div className="absolute bg-[#fff2fa] h-[26px] left-[64px] rounded-[6px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[1691px] w-[36px]" />
-      <div className="absolute bg-[#fffad2] h-[26px] left-[64px] rounded-[6px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[1751px] w-[36px]" />
-      <div className="absolute bg-[#d2faf0] h-[26px] left-[64px] rounded-[6px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[1811px] w-[36px]" />
-      <div className="absolute bg-[#d2faf0] left-[68px] rounded-[46px] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.25)] size-[12px] top-[2729px]" />
-      <div className="absolute bg-[#fef9d1] left-[68px] rounded-[46px] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.25)] size-[12px] top-[2786px]" />
-      <div className="absolute bg-[#fff2fa] left-[190px] rounded-[46px] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.25)] size-[12px] top-[2729px]" />
-      <div className="absolute bg-[#f0fbff] left-[183px] rounded-[46px] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.25)] size-[12px] top-[2786px]" />
-      <div className="absolute bg-[#fef9d1] left-[295px] rounded-[46px] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.25)] size-[12px] top-[2729px]" />
-      <div className="absolute bg-[#fff2fa] left-[343px] rounded-[46px] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.25)] size-[12px] top-[2786px]" />
-      <div className="absolute bg-[#f0fbff] left-[435px] rounded-[46px] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.25)] size-[12px] top-[2729px]" />
-      <div className="absolute bg-[#fef9d1] left-[536px] rounded-[46px] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.25)] size-[12px] top-[2786px]" />
-      <div className="absolute bg-[#fff2fa] left-[574px] rounded-[46px] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.25)] size-[12px] top-[2729px]" />
-      <div className="absolute bg-[#f0fbff] left-[644px] rounded-[46px] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.25)] size-[12px] top-[2786px]" />
-      <div className="absolute bg-[#d2faf0] left-[701px] rounded-[46px] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.25)] size-[12px] top-[2729px]" />
-      <div className="absolute bg-[#f0fbff] left-[826px] rounded-[46px] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.25)] size-[12px] top-[2729px]" />
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[117px] not-italic text-[#09263f] text-[16px] top-[1576px] whitespace-nowrap">{course?.modules?.[0]?.title ?? "Data Visualization & Analytics"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[117px] not-italic text-[#09263f] text-[16px] top-[1636px] whitespace-nowrap">{course?.modules?.[1]?.title ?? "Data Science"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[117px] not-italic text-[#09263f] text-[16px] top-[1696px] whitespace-nowrap">{course?.modules?.[2]?.title ?? "Machine Learning & Text Mining"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[117px] not-italic text-[#09263f] text-[16px] top-[1756px] whitespace-nowrap">{course?.modules?.[3]?.title ?? "MLOps"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[117px] not-italic text-[#09263f] text-[16px] top-[1816px] whitespace-nowrap">{course?.modules?.[4]?.title ?? "Generative AI"}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[92px] not-italic text-[#09263f] text-[14px] top-[2727px] whitespace-nowrap">Python</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[79px] not-italic text-[#09263f] text-[14px] top-[3298px] whitespace-nowrap">Data Scientist</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[92px] not-italic text-[#09263f] text-[14px] top-[2784px] whitespace-nowrap">NLTK</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[78px] not-italic text-[#09263f] text-[14px] top-[3355px] whitespace-nowrap">Statistical Analyst</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[214px] not-italic text-[#09263f] text-[14px] top-[2727px] whitespace-nowrap">SQL</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[227px] not-italic text-[#09263f] text-[14px] top-[3298px] whitespace-nowrap">Data Analyst</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[207px] not-italic text-[#09263f] text-[14px] top-[2784px] whitespace-nowrap">{`Git & GitHub`}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[319px] not-italic text-[#09263f] text-[14px] top-[2727px] whitespace-nowrap">MS Excel</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[364px] not-italic text-[#09263f] text-[14px] top-[3298px] whitespace-nowrap">ML Specialist</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[367px] not-italic text-[#09263f] text-[14px] top-[2784px] whitespace-nowrap">Cloud Computing</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[255px] not-italic text-[#09263f] text-[14px] top-[3355px] whitespace-nowrap">Data Science Consultant</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[459px] not-italic text-[#09263f] text-[14px] top-[2727px] whitespace-nowrap">Power BI</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[505px] not-italic text-[#09263f] text-[14px] top-[3298px] whitespace-nowrap">Analytics Consultant</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[560px] not-italic text-[#09263f] text-[14px] top-[2784px] whitespace-nowrap">JIRA</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[479px] not-italic text-[#09263f] text-[14px] top-[3355px] whitespace-nowrap">Data Science Specialist</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[598px] not-italic text-[#09263f] text-[14px] top-[2727px] whitespace-nowrap">Pandas</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[690px] not-italic text-[#09263f] text-[14px] top-[3298px] whitespace-nowrap">Business Analyst</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[668px] not-italic text-[#09263f] text-[14px] top-[2784px] whitespace-nowrap">Flask</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[725px] not-italic text-[#09263f] text-[14px] top-[2727px] whitespace-nowrap">NumPy</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[850px] not-italic text-[#09263f] text-[14px] top-[2727px] whitespace-nowrap">Scikit-learn</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[851px] not-italic text-[#09263f] text-[14px] top-[3298px] whitespace-nowrap">BI Analyst</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[82px] not-italic text-[#09263f] text-[16px] text-center top-[1575px] whitespace-nowrap">1</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[82px] not-italic text-[#09263f] text-[16px] text-center top-[1635px] whitespace-nowrap">2</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[82.5px] not-italic text-[#09263f] text-[16px] text-center top-[1695px] whitespace-nowrap">3</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[82.5px] not-italic text-[#09263f] text-[16px] text-center top-[1755px] whitespace-nowrap">4</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[82.5px] not-italic text-[#09263f] text-[16px] text-center top-[1815px] whitespace-nowrap">5</p>
-      <div className="absolute flex h-[18px] items-center justify-center left-[910px] top-[1575px] w-[36px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "2403" } as React.CSSProperties}>
-        <div className="-scale-y-100 flex-none rotate-90">
-          <WeuiArrowOutlined />
-        </div>
-      </div>
-      <div className="absolute flex h-[18px] items-center justify-center left-[910px] top-[1635px] w-[36px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "2403" } as React.CSSProperties}>
-        <div className="-scale-y-100 flex-none rotate-90">
-          <WeuiArrowOutlined1 />
-        </div>
-      </div>
-      <div className="absolute flex h-[18px] items-center justify-center left-[910px] top-[1695px] w-[36px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "2403" } as React.CSSProperties}>
-        <div className="-scale-y-100 flex-none rotate-90">
-          <WeuiArrowOutlined2 />
-        </div>
-      </div>
-      <div className="absolute flex h-[18px] items-center justify-center left-[910px] top-[1755px] w-[36px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "2403" } as React.CSSProperties}>
-        <div className="-scale-y-100 flex-none rotate-90">
-          <WeuiArrowOutlined3 />
-        </div>
-      </div>
-      <div className="absolute flex h-[18px] items-center justify-center left-[910px] top-[1815px] w-[36px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "2403" } as React.CSSProperties}>
-        <div className="-scale-y-100 flex-none rotate-90">
-          <WeuiArrowOutlined4 />
-        </div>
-      </div>
+
+      {course?.modules?.slice(0, 8).map((mod, idx) => {
+        const rowTop = 1571 + idx * 60;
+        const bgColors = ["#f0fbff", "#d2faf0", "#fff2fa", "#fffad2", "#d2faf0"];
+        return (
+          <div key={idx} className="absolute contents">
+            <div className="absolute h-[26px] left-[64px] rounded-[6px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] w-[36px]" style={{ top: `${rowTop}px`, backgroundColor: bgColors[idx % bgColors.length] }} />
+            <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[117px] not-italic text-[#09263f] text-[16px] whitespace-nowrap" style={{ top: `${rowTop + 5}px` }}>{mod.title}</p>
+            <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[82px] not-italic text-[#09263f] text-[16px] text-center whitespace-nowrap" style={{ top: `${rowTop + 4}px` }}>{idx + 1}</p>
+            <div className="absolute flex h-[18px] items-center justify-center left-[910px] w-[36px]" style={{ top: `${rowTop + 4}px`, "--transform-inner-width": "1200", "--transform-inner-height": "2403" } as any}>
+              <div className="-scale-y-100 flex-none rotate-90">
+                <WeuiArrowOutlined />
+              </div>
+            </div>
+          </div>
+        );
+      })}
       <div className="absolute bg-[#d2faf0] h-[31px] left-[77px] rounded-[32px] top-[2022px] w-[123px]" />
       <div className="absolute bg-[#fef9d1] h-[31px] left-[77px] rounded-[32px] top-[2152px] w-[123px]" />
       <div className="absolute bg-[#f0fbff] h-[31px] left-[77px] rounded-[32px] top-[2282px] w-[123px]" />
@@ -1557,7 +1455,18 @@ export default function Pdp(props: PdpProps) {
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[537px] not-italic text-[#09263f] text-[12px] top-[6307px] w-[402px]">Seeking hands-One-time payment, instalments, or 0% EMI through our financing partners.</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[598.5px] not-italic text-[#09263f] text-[12px] text-center top-[2290px] whitespace-nowrap">Time Series</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[598.5px] not-italic text-[#09263f] text-[12px] text-center top-[2420px] whitespace-nowrap">Deployment</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[77px] not-italic text-[#09263f] text-[16px] top-[2075px] whitespace-nowrap">Network intrusion detection using supervised ML</p>
+      {course?.projects?.slice(0, 8).map((proj, idx) => {
+        const isLeft = idx < 4;
+        const colIdx = isLeft ? idx : idx - 4;
+        const topY = 2075 + colIdx * 130;
+        const leftX = isLeft ? 77 : 537;
+        return (
+          <p key={idx} className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] not-italic text-[#09263f] text-[16px] whitespace-nowrap" style={{ top: `${topY}px`, left: `${leftX}px` }}>
+            {proj.title}
+          </p>
+        );
+      })}
+      {/* Restored static content */}
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[77px] not-italic text-[#09263f] text-[16px] top-[2965px] whitespace-nowrap">Fresh graduates (any stream)</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[77px] not-italic text-[#09263f] text-[18px] top-[6141px] whitespace-nowrap">Step 1: Get in touch</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[119px] not-italic text-[#09263f] text-[16px] top-[3520px] whitespace-nowrap">Python for Data Analysis</p>
@@ -1570,19 +1479,12 @@ export default function Pdp(props: PdpProps) {
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[579px] not-italic text-[#09263f] text-[16px] top-[3676px] whitespace-nowrap">{`Text Mining & NLP`}</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[579px] not-italic text-[#09263f] text-[16px] top-[3754px] whitespace-nowrap">Reporting Analytics</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[579px] not-italic text-[#09263f] text-[16px] top-[3832px] whitespace-nowrap">{`Data Blending & Manipulation`}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[77px] not-italic text-[#09263f] text-[16px] top-[2205px] whitespace-nowrap">Bank customer review analysis — text mining</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[77px] not-italic text-[#09263f] text-[16px] top-[3095px] whitespace-nowrap">{`Analysts & reporting professionals`}</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[77px] not-italic text-[#09263f] text-[18px] top-[6271px] whitespace-nowrap">Step 3: Reserve your Seat</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[77px] not-italic text-[#09263f] text-[16px] top-[2335px] whitespace-nowrap">{`Banking customer segmentation & clustering`}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[77px] not-italic text-[#09263f] text-[16px] top-[2465px] whitespace-nowrap">{`Peer lending analysis & credit score prediction`}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[537px] not-italic text-[#09263f] text-[16px] top-[2075px] whitespace-nowrap">Recommendation engine using MBA algorithms</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[537px] not-italic text-[#09263f] text-[16px] top-[2965px] whitespace-nowrap">IT / BPO / Operations professionals</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[537px] not-italic text-[#09263f] text-[18px] top-[6141px] whitespace-nowrap">Step 2: Speak with a Learning Advisor</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[537px] not-italic text-[#09263f] text-[16px] top-[2205px] whitespace-nowrap">{`Churn prediction using classification & ML`}</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[537px] not-italic text-[#09263f] text-[16px] top-[3095px] whitespace-nowrap">{`Managers & team leads`}</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[537px] not-italic text-[#09263f] text-[18px] top-[6271px] whitespace-nowrap">Step 4: Complete Payment</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[537px] not-italic text-[#09263f] text-[16px] top-[2335px] whitespace-nowrap">Retail chain sales forecasting — multivariate</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[537px] not-italic text-[#09263f] text-[16px] top-[2465px] whitespace-nowrap">Deploy ML model and create Flask application</p>
       <MdiTickCircle />
       <MdiTickCircle1 />
       <MdiTickCircle2 />
@@ -1606,8 +1508,17 @@ export default function Pdp(props: PdpProps) {
       <FluentLive20Filled1 />
       <MingcuteLiveFill />
       <MingcuteLiveFill1 />
-      <div className="absolute h-[88px] left-0 top-[2603px] w-[956px]" data-name="tools">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgTools.src} />
+      <div className="absolute h-[88px] left-[77px] top-[2603px] w-[956px] flex items-center gap-[40px] overflow-x-auto scrollbar-hide" data-name="tools">
+        {course?.tools?.map((tool, idx) => (
+          <div key={idx} className="flex flex-col items-center flex-shrink-0">
+             {tool.iconUrl ? (
+               <img src={tool.iconUrl} alt={tool.name} className="h-[40px] w-auto mb-2" />
+             ) : (
+               <div className="h-[40px] w-[40px] bg-[#f0f0f0] rounded-lg mb-2" />
+             )}
+             <span className="text-[12px] text-[#09263f] font-medium">{tool.name}</span>
+          </div>
+        ))}
       </div>
       <div className="absolute h-0 left-[72px] top-[4452px] w-[248px]">
         <div className="absolute inset-[-0.5px_0_0_0]">
@@ -1755,7 +1666,7 @@ export default function Pdp(props: PdpProps) {
       <div className="absolute bg-[#ffd700] h-[49px] left-[786px] rounded-[1000px] top-[9302px] w-[182px]" />
       <div className="absolute bg-[#19cf9e] h-[49px] left-[66px] rounded-[1000px] top-[8851px] w-[182px]" />
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[875.5px] not-italic text-[#09263f] text-[18px] text-center top-[9315px] whitespace-nowrap">Send</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[155.5px] not-italic text-[#09263f] text-[18px] text-center top-[8864px] whitespace-nowrap">Call Us</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[155.5px] not-italic text-white text-[18px] text-center top-[8864px] whitespace-nowrap">Call Us</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+37px)] not-italic text-[#09263f] text-[36px] top-[8670px] whitespace-nowrap">Request a Call back</p>
       <div className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[0] left-[calc(50%-654px)] not-italic text-[#09263f] text-[36px] top-[8664px] whitespace-nowrap">
         <p className="leading-[128.33999633789062%] mb-0 whitespace-pre">{`Excited? `}</p>
@@ -1790,7 +1701,7 @@ export default function Pdp(props: PdpProps) {
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[550px] not-italic text-[#09263f] text-[24px] top-[9340px] whitespace-nowrap">Bengaluru</p>
       <div className="-translate-x-1/2 absolute flex h-[17.436px] items-center justify-center left-[139.54px] top-[9389.03px] w-[111.066px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "18" } as React.CSSProperties}>
         <div className="flex-none rotate-[0.22deg]">
-          <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] not-italic relative text-[#09263f] text-[14px] text-center whitespace-nowrap">Get Directions→</p>
+          <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] not-italic relative text-white text-[14px] text-center whitespace-nowrap">Get Directions→</p>
         </div>
       </div>
       <div className="-translate-x-1/2 absolute flex h-[17.436px] items-center justify-center left-[374.54px] top-[9389.03px] w-[111.066px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "18" } as React.CSSProperties}>
@@ -1809,7 +1720,7 @@ export default function Pdp(props: PdpProps) {
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+0.5px)] not-italic text-[#09263f] text-[40px] text-center top-[9544px] whitespace-nowrap">Frequently Asked Questions</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-1/2 not-italic text-[18px] text-[rgba(9,38,63,0.5)] text-center top-[9615px] w-[988px]">Have Questions on how you benefit from the course?</p>
       <div className="absolute bg-[#19cf9e] h-[49px] left-[1040px] rounded-[1000px] top-[10741px] w-[182px]" />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1129.5px] not-italic text-[#09263f] text-[18px] text-center top-[10754px] whitespace-nowrap">Call Us</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1129.5px] not-italic text-white text-[18px] text-center top-[10754px] whitespace-nowrap">Call Us</p>
       <div className="-translate-x-1/2 absolute h-[261px] left-[calc(50%+0.5px)] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[9674px] w-[1067px]" style={{ backgroundImage: "linear-gradient(189.091777deg, rgb(215, 247, 246) 3.8424%, rgb(242, 250, 228) 97.744%)" }} />
       <div className="-translate-x-1/2 absolute bg-[#f4fafa] border-[0.5px] border-[rgba(0,0,0,0.5)] border-solid h-[82px] left-[calc(50%+0.5px)] rounded-[20px] top-[9950px] w-[1067px]" />
       <div className="-translate-x-1/2 absolute bg-[#f4fafa] border-[0.5px] border-[rgba(0,0,0,0.5)] border-solid h-[82px] left-[calc(50%+0.5px)] rounded-[20px] top-[10049px] w-[1067px]" />
@@ -1820,13 +1731,14 @@ export default function Pdp(props: PdpProps) {
       <div className="-translate-x-1/2 absolute bg-[#f4fafa] border-[0.5px] border-[rgba(0,0,0,0.5)] border-solid h-[82px] left-[calc(50%+0.5px)] rounded-[20px] top-[10548px] w-[1067px]" />
       <div className="-translate-x-1/2 absolute border-[0.5px] border-[rgba(0,0,0,0.5)] border-solid h-[133px] left-[calc(50%+0.5px)] rounded-[20px] top-[10699px] w-[1067px]" />
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[9714px] whitespace-nowrap">Does the institute offer any discounts?</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[9979px] whitespace-nowrap">{course?.faqs?.[0]?.question ?? "What is the best course to get started with data analytics?"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[10078px] whitespace-nowrap">{course?.faqs?.[1]?.question ?? "What distinguishes AnalytixLabs as a data analytics institute?"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[10177px] whitespace-nowrap">{course?.faqs?.[2]?.question ?? "What comes under the Machine Learning course?"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[10277px] whitespace-nowrap">{course?.faqs?.[3]?.question ?? "What is a dual certification or co-branded certification?"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[10377px] whitespace-nowrap">{course?.faqs?.[4]?.question ?? "How many candiates have trained under AnalytixLabs?"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[10477px] whitespace-nowrap">{course?.faqs?.[5]?.question ?? "What does Deep Learning with Python training cover?"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[10577px] whitespace-nowrap">{course?.faqs?.[6]?.question ?? "What is the Analytics Edge course?"}</p>
+      {course?.faqs?.slice(0, 10).map((faq, idx) => {
+        const topY = 9979 + idx * 99;
+        return (
+          <p key={idx} className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] whitespace-nowrap" style={{ top: `${topY}px` }}>
+            {faq.question}
+          </p>
+        );
+      })}
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[219px] not-italic text-[#09263f] text-[20px] top-[10728px] whitespace-nowrap">Still have questions?</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[219px] not-italic text-[#09263f] text-[16px] top-[10764px] w-[749px]">Not sure which course is right for you? Talk to our program advisors and get personalized guidance on curriculum, career outcomes, and the best learning path based on your goals.</p>
       <div className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[219px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[9763px] w-[927px] whitespace-pre-wrap">
@@ -2038,8 +1950,54 @@ export default function Pdp(props: PdpProps) {
           <AkarIconsCross7 />
         </div>
       </div>
-      <Frame offices={offices} footerLinks={footerLinks} footerCities={footerCities} siteSettings={siteSettings} />
-      <Group10 course={course} />
+
+      {/* Sticky Sidebar Container */}
+      <div className="absolute left-[967px] pointer-events-none top-[143px] w-[407px] z-20" style={{ height: "calc(6504px - 143px)" }}>
+        <div className="sticky pointer-events-auto top-[100px]">
+          <Group10 course={course} />
+          
+          {/* Includes Section */}
+          <div className="absolute contents left-0 top-0">
+            <div className="absolute bg-white h-[382px] left-[64px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[687px] w-[343px]" />
+            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[86px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[719px] whitespace-nowrap">Includes</p>
+            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[111px] not-italic text-[#09263f] text-[11px] top-[733px] whitespace-nowrap">65 hrs on-demand video</p>
+            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[111px] not-italic text-[#09263f] text-[11px] top-[757px] whitespace-nowrap">49 downloadable resources</p>
+            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[111px] not-italic text-[#09263f] text-[11px] top-[781px] whitespace-nowrap">{`Access on mobile & TV`}</p>
+            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[111px] not-italic text-[#09263f] text-[11px] top-[805px] whitespace-nowrap">6 capstone projects</p>
+            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[111px] not-italic text-[#09263f] text-[11px] top-[829px] whitespace-nowrap">Certificate of completion</p>
+            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[111px] not-italic text-[#09263f] text-[11px] top-[853px] whitespace-nowrap">8 weeks placement support</p>
+            
+            <div className="absolute h-0 left-[87px] top-[784px] w-[298px]">
+              <div className="absolute inset-[-1px_0_0_0]">
+                <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 298 1">
+                  <line id="Line 18" stroke="var(--stroke-0, #09263F)" strokeOpacity="0.2" x2="298" y1="0.5" y2="0.5" />
+                </svg>
+              </div>
+            </div>
+
+            <div className="absolute bg-[#ffd700] h-[40px] left-[86px] rounded-[109px] top-[899px] w-[299px]" />
+            <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[235.5px] not-italic text-[#09263f] text-[12px] text-center top-[911px] w-[187px]">Download Syllabus</p>
+            
+            <div className="absolute border border-[rgba(9,38,63,0.5)] border-solid h-[40px] left-[86px] rounded-[109px] top-[949px] w-[299px]" />
+            <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[235.5px] not-italic text-[#09263f] text-[12px] text-center top-[961px] w-[187px]">Add to Wishlist</p>
+
+            <div className="absolute bg-[#1de5b5] h-[40px] left-[86px] rounded-[109px] top-[999px] w-[299px]" />
+            <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[235.5px] not-italic text-white text-[12px] text-center top-[1011px] w-[187px]">Sign up for Free Demo</p>
+
+            {/* Icons adjusted for relative container */}
+            <div className="absolute left-[80px] size-[22px] top-[733px]"><LineMdPlay /></div>
+            <div className="absolute left-[86px] size-[19px] top-[757px]"><MaterialSymbolsDownloadRounded /></div>
+            <div className="absolute left-[88px] size-[15px] top-[781px]"><IcBaselineTv /></div>
+            <div className="absolute left-[88px] size-[16px] top-[805px]"><MingcuteTimeLine /></div>
+            <div className="absolute left-[86px] size-[20px] top-[829px]"><MaterialSymbolsStarOutlineRounded /></div>
+            <div className="absolute left-[88px] size-[16px] top-[853px]"><IxSupport /></div>
+          </div>
+
+          <div className="absolute left-0 top-[1085px]">
+            <Group9 />
+          </div>
+        </div>
+      </div>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[81.5px] not-italic text-[#09263f] text-[14px] text-center top-[761px] whitespace-nowrap">Overview</p>
       <div className="absolute bg-[#09263f] h-[3px] left-[48px] rounded-[21px] top-[781px] w-[66px]" />
       <div className="absolute h-[157px] left-[47px] top-[552px] w-[601px]" data-name="1 97">
@@ -2047,6 +2005,7 @@ export default function Pdp(props: PdpProps) {
       </div>
       <div className="absolute bg-[#1de5b5] h-[44px] left-[63px] rounded-[109px] top-[497px] w-[193px]" />
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[164.5px] not-italic text-[#09263f] text-[14px] text-center top-[511px] whitespace-nowrap">Sign up for Demo</p>
+      </div>{/* /absolute canvas */}
     </div>
   );
 }

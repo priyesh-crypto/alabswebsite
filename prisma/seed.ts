@@ -72,6 +72,9 @@ async function seedSiteSettings() {
         trainingHours: "130,000+",
         companies: "50+",
         avgRating: "9.7+",
+        // Hero rating row (small "(4.8) Rated by 5000+ learners" line).
+        rating: "4.8",
+        ratedBy: "5000+",
       },
       defaultMetaDesc:
         "AnalytixLabs offers Data Science, AI, and Analytics training with 600+ learning hours and industry projects.",
@@ -97,6 +100,9 @@ async function seedOffices() {
         hours: HOURS,
         directionsUrl: "https://maps.google.com/?q=AnalytixLabs+Noida",
         mapImageUrl: placeholder(480, 200, "Noida+Map"),
+        // Live admins should paste a Google Maps embed iframe `src` here.
+        // Until then, the public site falls back to ?q=...&output=embed.
+        mapEmbedUrl: "https://www.google.com/maps?q=AnalytixLabs+Noida&output=embed",
         order: 0,
       },
       {
@@ -107,6 +113,7 @@ async function seedOffices() {
         hours: HOURS,
         directionsUrl: "https://maps.google.com/?q=AnalytixLabs+Gurgaon",
         mapImageUrl: placeholder(480, 200, "Gurgaon+Map"),
+        mapEmbedUrl: "https://www.google.com/maps?q=AnalytixLabs+Gurgaon&output=embed",
         order: 1,
       },
       {
@@ -117,6 +124,7 @@ async function seedOffices() {
         hours: HOURS,
         directionsUrl: "https://maps.google.com/?q=AnalytixLabs+Bengaluru",
         mapImageUrl: placeholder(480, 200, "Bengaluru+Map"),
+        mapEmbedUrl: "https://www.google.com/maps?q=AnalytixLabs+Bengaluru&output=embed",
         order: 2,
       },
     ],
@@ -125,24 +133,86 @@ async function seedOffices() {
 }
 
 async function seedCategories() {
+  // Pill colors mirror the original Figma marquee strip palette so the
+  // landing-page <CategoryPill> can drop its hardcoded fallback once seed runs.
   const categories = [
-    { name: "Artificial Intelligence", slug: "artificial-intelligence", order: 0 },
+    { name: "Artificial Intelligence", slug: "artificial-intelligence", order: 0, color: "#d2faf0" },
     {
       name: "Business & Data Analytics",
       slug: "business-and-data-analytics",
       order: 1,
+      color: "#fffad2",
     },
-    { name: "Data Science", slug: "data-science", order: 2 },
-    { name: "Specialization Modules", slug: "specialization-modules", order: 3 },
+    { name: "Data Science", slug: "data-science", order: 2, color: "#f0fbff" },
+    { name: "Specialization Modules", slug: "specialization-modules", order: 3, color: "#fff2fa" },
   ];
   for (const c of categories) {
     await prisma.category.upsert({
       where: { slug: c.slug },
       create: c,
-      update: { name: c.name, order: c.order },
+      update: { name: c.name, order: c.order, color: c.color },
     });
   }
   console.log(`✓ categories (${categories.length})`);
+}
+
+async function seedLearningModes() {
+  // Subtitles mirror what the LearningModes UI hardcodes today
+  // (components/ui/LearningModes.tsx). Idempotent via slug upsert.
+  const modes = [
+    {
+      slug: "weekday-bootcamp",
+      name: "Weekday Bootcamp",
+      subtitle: "Intensive full-day sessions for rapid upskilling.",
+      order: 0,
+    },
+    {
+      slug: "weekday-batches",
+      name: "Weekday Batches",
+      subtitle: "Experiential learning with in-person mentorship!",
+      order: 1,
+    },
+    {
+      slug: "self-paced-blended",
+      name: "Self-paced Blended",
+      subtitle: "Learn at your own speed with weekend doubt sessions.",
+      order: 2,
+    },
+  ];
+  for (const m of modes) {
+    await prisma.learningMode.upsert({
+      where: { slug: m.slug },
+      create: m,
+      update: { name: m.name, subtitle: m.subtitle, order: m.order },
+    });
+  }
+  console.log(`✓ learning modes (${modes.length})`);
+}
+
+// Heuristic: classify a Batch.schedule string into a LearningMode slug.
+function inferLearningModeSlug(schedule: string): string | null {
+  const s = schedule.toLowerCase();
+  if (s.includes("bootcamp")) return "weekday-bootcamp";
+  if (s.includes("self") || s.includes("anytime")) return "self-paced-blended";
+  if (s.includes("weekday") || s.includes("evening") || s.includes("weekend") || s.includes("am") || s.includes("pm"))
+    return "weekday-batches";
+  return null;
+}
+
+async function backfillBatchLearningModes() {
+  const modes = await prisma.learningMode.findMany();
+  const bySlug = new Map(modes.map(m => [m.slug, m.id]));
+  const batches = await prisma.batch.findMany({ where: { modeId: null } });
+  let tagged = 0;
+  for (const b of batches) {
+    const slug = inferLearningModeSlug(b.schedule);
+    if (!slug) continue;
+    const modeId = bySlug.get(slug);
+    if (!modeId) continue;
+    await prisma.batch.update({ where: { id: b.id }, data: { modeId } });
+    tagged++;
+  }
+  console.log(`✓ batches tagged with learning mode (${tagged}/${batches.length})`);
 }
 
 type CourseSpec = {
@@ -762,17 +832,45 @@ async function seedPages() {
       slug: "home",
       title: "Home",
       blocks: {
+        // Hero title — three editable slots that compose into the rich-text headline.
+        // Locked structure: prefix " " brand-gradient " " suffix (gradient styling stays in code).
+        "hero.title.prefix": "Become a",
+        "hero.title.brand": "Data Scientist",
+        "hero.title.suffix": "with Real Industry Projects & Placement Support",
         "hero.tagline": "Since 2011",
+        // The subtitle below the hero title (was previously "hero.heading").
+        "hero.subheading":
+          "Learn Data Science, AI and Data Analytics with 600+ learning hours and industry projects.",
+        // Legacy alias, kept for one release so any external admin previews don't break.
         "hero.heading":
           "Learn Data Science, AI and Data Analytics with 600+ learning hours and industry projects.",
         "hero.cta1": { label: "Explore Courses", url: "/courses" },
         "hero.cta2": { label: "Book Free Career Consultation", url: "/contact" },
         "hero.rating": "4.8",
+        "hero.ratedBy": "5000+",
         "whyUs.items": [
           "Data Science & Analytics",
           "Artificial Intelligence (AI)",
           "Full Stack AI",
           "Agentic AI Course",
+        ],
+        // Lead-capture cards (Phase B2)
+        "leadCard1.title": "Fresher / Student",
+        "leadCard1.subtitle": "Starting or preparing to start your carrer",
+        "leadCard1.bestFor": "Best for",
+        "leadCard2.title": "Experienced Professional",
+        "leadCard2.subtitle": "Working, switching roles, or restarting your career",
+        "leadCard2.bestFor": "Best for",
+        // About + city highlights (Phase B4)
+        "about.heading": "AnalytixLabs is a top-ranked Data Science Institute",
+        "about.body":
+          "When it comes to industry-relevant data analytics courses and certifications. Offering a wide array of meticulously curated curriculums for students from various backgrounds, AnalytixLabs has led thousands of aspirants to desired job roles in data engineering, data science, artificial intelligence, and business analytics since 2011.",
+        "about.cityIntro": "You can pick a data science course in :",
+        "about.cityHighlights": [
+          "One to one mentorship",
+          "Industry driven curriculum curated",
+          "Experiential learning",
+          "Extensive post-class sessions",
         ],
       },
     },
@@ -1057,13 +1155,129 @@ async function seedMasterclass() {
   console.log("✓ masterclass (1 active)");
 }
 
+async function seedGlobalBlocks() {
+  const blocks = [
+    {
+      key: "header",
+      label: "Header & Navigation",
+      data: {
+        logoUrl: "",
+        logoAlt: "AnalytixLabs",
+        signInLabel: "Sign In",
+        signInHref: "https://lms.analytixlabs.co.in",
+        createAccountLabel: "Create Free Account",
+        createAccountHref: "https://lms.analytixlabs.co.in/register",
+        navLinks: [
+          { label: "Upcoming Batches", href: "/batches" },
+          { label: "Explore Courses", href: "/courses" },
+          { label: "Why Us", href: "/why-us" },
+          { label: "For Corporates", href: "/for-corporates" },
+          { label: "Blog", href: "/blog" },
+          { label: "Contact Us", href: "/contact" },
+        ],
+        megaMenuCategories: [
+          { label: "Artificial Intelligence", href: "/courses?category=artificial-intelligence" },
+          { label: "Business & Data Analytics", href: "/courses?category=business-analytics" },
+          { label: "Data Science", href: "/courses?category=data-science" },
+          { label: "Data Visualization & Analytics", href: "/courses?category=data-visualization" },
+        ],
+      },
+    },
+    {
+      key: "footer",
+      label: "Footer",
+      data: {
+        tagline: "AnalytixLabs — India's #1 Data Science & AI Training Institute since 2011.",
+        copyrightText: "© 2024 AnalytixLabs. All rights reserved.",
+        phone: "+91-8010-841-841",
+        email: "enquiry@analytixlabs.co.in",
+        address: "Sector 44, Gurgaon, Haryana — 122003",
+        social: {
+          linkedin: "https://www.linkedin.com/school/analytixlabs/",
+          facebook: "https://www.facebook.com/AnalytixLabs",
+          twitter: "",
+          instagram: "https://www.instagram.com/analytixlabs/",
+          youtube: "https://www.youtube.com/c/AnalytixLabs",
+        },
+        col1: [
+          { label: "About Us", href: "/about" },
+          { label: "Why Us", href: "/why-us" },
+          { label: "For Corporates", href: "/for-corporates" },
+          { label: "Contact Us", href: "/contact" },
+          { label: "Blog", href: "/blog" },
+        ],
+        col2: [
+          { label: "Data Science Course", href: "/courses/data-science" },
+          { label: "Agentic AI Course", href: "/courses/agentic-ai" },
+          { label: "Business Analytics", href: "/courses/business-analytics" },
+          { label: "Data Analyst Course", href: "/courses/data-analytics" },
+          { label: "Explore All Courses", href: "/courses" },
+        ],
+        col3: [
+          { label: "Upcoming Batches", href: "/batches" },
+          { label: "Free Masterclass", href: "/contact?source=masterclass" },
+          { label: "Download Brochure", href: "/contact?source=brochure" },
+          { label: "Careers", href: "https://www.analytixlabs.co.in/careers" },
+          { label: "Privacy Policy", href: "/privacy" },
+        ],
+        cityLinks: [
+          { label: "Data Science Course in Delhi", href: "/courses/data-science?city=Delhi" },
+          { label: "Data Science Course in Noida", href: "/courses/data-science?city=Noida" },
+          { label: "Data Science Course in Gurgaon", href: "/courses/data-science?city=Gurgaon" },
+          { label: "Data Science Course in Bangalore", href: "/courses/data-science?city=Bangalore" },
+        ],
+      },
+    },
+    {
+      key: "cta_banner",
+      label: "CTA Banner",
+      data: {
+        headline: "Unlock Insights. Enroll Now.",
+        subhead: "Join 60,000+ professionals who have transformed their careers with AnalytixLabs.",
+        ctaLabel: "Explore Courses",
+        ctaHref: "/courses",
+        image: { url: "", alt: "" },
+        isActive: true,
+      },
+    },
+    {
+      key: "call_back",
+      label: "Call-back Form",
+      data: {
+        headline: "Request a Call Back",
+        subhead: "Our counsellors will get back to you within 24 hours.",
+        namePlaceholder: "Your Name",
+        emailPlaceholder: "Your Email",
+        phonePlaceholder: "Your Phone",
+        messagePlaceholder: "How can we help?",
+        submitLabel: "Request a Call Back",
+        successMessage: "Thank you! We'll get back to you within 24 hours.",
+        recipientEmails: ["enquiry@analytixlabs.co.in"],
+        cityOptions: ["Gurgaon", "Noida", "Bangalore", "Online"],
+      },
+    },
+  ] as const;
+
+  for (const block of blocks) {
+    await prisma.globalBlock.upsert({
+      where: { key: block.key },
+      update: {},
+      create: block,
+    });
+  }
+
+  console.log(`✓ global blocks (${blocks.length})`);
+}
+
 async function main() {
   console.log("Seeding…");
   await seedAdmin();
   await seedSiteSettings();
   await seedOffices();
   await seedCategories();
+  await seedLearningModes();
   await seedCoursesAndDescendants();
+  await backfillBatchLearningModes();
   await seedTestimonials();
   await seedHiringPartners();
   await seedTeamMembers();
@@ -1072,6 +1286,7 @@ async function main() {
   await seedPages();
   await seedNavItems();
   await seedMasterclass();
+  await seedGlobalBlocks();
   console.log("Seed complete.");
 }
 
