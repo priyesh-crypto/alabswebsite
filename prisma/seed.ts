@@ -1359,6 +1359,186 @@ async function seedGlobalBlocks() {
   console.log(`✓ global blocks (${blocks.length})`);
 }
 
+async function seedPdpReferenceCourse() {
+  // Target both the spec slug and the existing seed slug. Whichever exists
+  // gets the full PDP block written.
+  const candidateSlugs = [
+    "data-science-course-with-certification-and-placement",
+    "data-science",
+  ];
+
+  const pdpData = {
+    pdpAlumniText: "20,000+",
+    pdpStarsTotal: 675,
+    pdpRatingScale: 10.0,
+    pdpTaxNote: "Inclusive of all taxes",
+    pdpEmiNote: "Easy EMI available",
+    pdpCities: ["Noida", "Gurgaon", "Bangalore"],
+    pdpStatTiles: [
+      { label: "Total Hours", value: "675" },
+      { label: "Live Classes", value: "65" },
+      { label: "Modules", value: "11" },
+    ],
+    pdpOverviewHighlights: [
+      { title: "Industry-aligned curriculum", description: "Co-designed with hiring managers at top analytics firms." },
+      { title: "100% placement assistance", description: "Dedicated career services until you land your role." },
+      { title: "Live project portfolio", description: "Build 6 capstone projects across domains." },
+      { title: "1:1 mentorship", description: "Personal mentor from day one through placement." },
+      { title: "Lifetime LMS access", description: "Re-watch every recorded session forever." },
+    ],
+    pdpCurriculumHeading: "Comprehensive Data Science Curriculum",
+    pdpCurriculumSubheading: "11 modules covering everything from statistics to deep learning, designed by industry experts.",
+    pdpCurriculumSummary: {
+      liveHours: "300",
+      selfStudyHours: "375",
+      placementWeeks: "12",
+      includes: [
+        "Live instructor-led classes",
+        "Hands-on labs every week",
+        "6 capstone projects",
+        "Resume + LinkedIn review",
+        "Mock interviews",
+        "Job placement support",
+      ],
+    },
+    pdpTestimonialStrip: [
+      {
+        quote: "The hands-on projects gave me real confidence going into interviews. Within 3 months I had three offers.",
+        name: "Priya Sharma",
+        role: "Data Scientist",
+        company: "Accenture",
+        stars: 5,
+        photoUrl: "https://placehold.co/120x120/0EC9C9/FFFFFF?text=PS",
+      },
+      {
+        quote: "Best decision I made for my career. The mentors are world-class.",
+        name: "Rohit Kumar",
+        role: "ML Engineer",
+        company: "Flipkart",
+        stars: 5,
+        photoUrl: "https://placehold.co/120x120/C8F032/0B1B3B?text=RK",
+      },
+    ],
+    pdpProjectDomains: [
+      { domain: "Healthcare", title: "Diabetes Risk Prediction", description: "Build an ML model on real patient data to predict diabetes risk.", icon: "🏥" },
+      { domain: "Retail", title: "Customer Churn Analysis", description: "Predict customer churn for an e-commerce brand with 1M+ users.", icon: "🛒" },
+      { domain: "Finance", title: "Credit Card Fraud Detection", description: "Detect fraudulent transactions in real-time using anomaly detection.", icon: "💳" },
+      { domain: "NLP", title: "Sentiment Analyzer", description: "Build a sentiment analysis model on Twitter data using transformers.", icon: "💬" },
+    ],
+    pdpCareerSupport: {
+      intro: "Our placement team works with 500+ hiring partners to match you with the right role.",
+      features: [
+        { title: "Resume Building", body: "Industry-standard resume crafting with our career coaches." },
+        { title: "Mock Interviews", body: "Unlimited mock interviews with hiring managers." },
+        { title: "Portfolio Review", body: "Curated GitHub portfolio that showcases your best work." },
+        { title: "Job Referrals", body: "Direct referrals to open roles at our hiring partners." },
+      ],
+      partnerLogos: [
+        { name: "Accenture", logoUrl: "https://placehold.co/120x60/FFFFFF/0B1B3B?text=Accenture" },
+        { name: "Amex", logoUrl: "https://placehold.co/120x60/FFFFFF/0B1B3B?text=Amex" },
+        { name: "Flipkart", logoUrl: "https://placehold.co/120x60/FFFFFF/0B1B3B?text=Flipkart" },
+        { name: "Wipro", logoUrl: "https://placehold.co/120x60/FFFFFF/0B1B3B?text=Wipro" },
+        { name: "Genpact", logoUrl: "https://placehold.co/120x60/FFFFFF/0B1B3B?text=Genpact" },
+        { name: "TCS", logoUrl: "https://placehold.co/120x60/FFFFFF/0B1B3B?text=TCS" },
+      ],
+    },
+    pdpHowToApply: [
+      { stepNumber: "1", title: "Apply Online", description: "Submit your application in under 2 minutes." },
+      { stepNumber: "2", title: "Counseling Call", description: "Speak with an advisor about your goals and fit." },
+      { stepNumber: "3", title: "Choose Batch", description: "Pick a learning mode and start date that suits you." },
+      { stepNumber: "4", title: "Begin Learning", description: "Get LMS access and start your first module." },
+    ],
+    pdpStudentStories: [
+      { photoUrl: "https://placehold.co/200x200/0EC9C9/FFFFFF?text=AB", name: "Anjali B.", credential: "Placed @ Accenture", role: "Senior Data Scientist", quote: "Went from finance background to senior data scientist in 9 months." },
+      { photoUrl: "https://placehold.co/200x200/C8F032/0B1B3B?text=RM", name: "Rahul M.", credential: "Placed @ Genpact", role: "ML Engineer", quote: "The capstone projects were exactly what hiring managers wanted to see." },
+      { photoUrl: "https://placehold.co/200x200/0B1B3B/FFFFFF?text=SK", name: "Sneha K.", credential: "Promoted at TCS", role: "Lead Data Analyst", quote: "Got promoted internally within 6 months of completing the course." },
+    ],
+    pdpRelatedArticles: [
+      { category: "Career", readTime: "6 min read", title: "How to break into data science in 2026", excerpt: "A practical roadmap based on what's working for our alumni.", author: "AnalytixLabs Team", url: "/blog/break-into-data-science", imageUrl: "https://placehold.co/600x340/0B1B3B/FFFFFF?text=Career" },
+      { category: "Tutorial", readTime: "10 min read", title: "Top 10 Python libraries for data scientists", excerpt: "The must-know tooling every working data scientist relies on.", author: "AnalytixLabs Team", url: "/blog/python-libraries", imageUrl: "https://placehold.co/600x340/0EC9C9/FFFFFF?text=Python" },
+      { category: "Insights", readTime: "8 min read", title: "Salary trends for data scientists in India", excerpt: "What you can expect to earn at every experience level.", author: "AnalytixLabs Team", url: "/blog/salary-trends", imageUrl: "https://placehold.co/600x340/C8F032/0B1B3B?text=Salary" },
+    ],
+    pdpCtaBanner: {
+      headline: "Ready to become a Data Scientist?",
+      subheadline: "Join 20,000+ alumni who transformed their careers with AnalytixLabs.",
+      ctaText: "Talk to a Counselor",
+      ctaUrl: "#contact",
+      bgColor: "#0B1B3B",
+    },
+    pdpContactBlock: {
+      heading: "Have questions? Let's talk.",
+      description: "Our advisors will help you choose the right batch and answer any questions you have.",
+    },
+    pdpFaqsData: [
+      { question: "What is the eligibility to enroll?", answer: "Any graduate with a basic understanding of mathematics. No prior coding experience required." },
+      { question: "What's the placement support like?", answer: "Dedicated career services with mock interviews, resume reviews, and direct referrals to 500+ hiring partners." },
+      { question: "Can I attend live classes if I miss one?", answer: "Yes — every session is recorded and available on the LMS within 24 hours." },
+      { question: "Is EMI available?", answer: "Yes, we offer no-cost EMI options across 3, 6, and 12 month tenures." },
+      { question: "Will I get a certificate?", answer: "Yes — an industry-recognized AnalytixLabs certificate, plus an optional co-branded certificate from our university partner." },
+    ],
+    pdpLearningModesData: [
+      { name: "Classroom Bootcamp", description: "Immersive in-person bootcamp at our city campuses. Best for full-time career-switchers.", icon: "🏫" },
+      { name: "Live Online", description: "Instructor-led weekend or weekday batches. Same content, same outcomes, from anywhere.", icon: "💻" },
+      { name: "Self-paced Blended", description: "Pre-recorded sessions + weekly live mentor sessions. Perfect for busy professionals.", icon: "🎯" },
+    ],
+    pdpCertificationData: {
+      heading: "Industry-Recognized Certification",
+      body: "Earn an AnalytixLabs certificate recognized by 500+ hiring partners across India and globally. Includes an optional co-branded certificate from our university partner.",
+      certificateImageUrl: "https://placehold.co/800x550/F7F8FA/0B1B3B?text=Certificate",
+      coBrandedName: "Jain University (Deemed-to-be)",
+      coBrandedDesc: "Optional UGC-recognized co-branded certificate.",
+      coBrandedLogoUrl: "https://placehold.co/120x120/FFFFFF/0B1B3B?text=Jain",
+    },
+    pdpWhoShouldJoinData: [
+      { icon: "🎓", title: "Fresh Graduates", description: "Recent graduates from any stream looking to start a data career." },
+      { icon: "💼", title: "Working Professionals", description: "Non-tech professionals who want to switch into data roles." },
+      { icon: "📊", title: "Analysts", description: "Existing analysts looking to upskill into full data scientist roles." },
+      { icon: "🏆", title: "Career Switchers", description: "Anyone serious about a 9-month career transformation." },
+    ],
+    pdpJobRolesData: [
+      "Data Scientist",
+      "Data Analyst",
+      "Machine Learning Engineer",
+      "Business Analyst",
+      "Data Science Consultant",
+      "Analytics Manager",
+      "AI Engineer",
+      "Research Analyst",
+    ],
+    pdpKeySkillsData: [
+      "Python for Data Analysis",
+      "Statistics & Probability",
+      "SQL & Databases",
+      "Machine Learning",
+      "Deep Learning",
+      "Natural Language Processing",
+      "Computer Vision",
+      "Time-series Forecasting",
+      "Data Visualization (Tableau, Power BI)",
+      "Cloud (AWS/GCP) Basics",
+      "MLOps Fundamentals",
+      "Storytelling with Data",
+    ],
+  } as const;
+
+  let updated = 0;
+  for (const slug of candidateSlugs) {
+    const existing = await prisma.course.findUnique({ where: { slug } });
+    if (!existing) continue;
+    await prisma.course.update({
+      where: { slug },
+      // The Prisma client treats Json columns as JsonValue — pdpData is JSON-compatible.
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      data: pdpData as any,
+    });
+    updated++;
+    console.log(`✓ PDP reference data seeded for slug=${slug}`);
+  }
+  if (!updated) {
+    console.log("  (no matching course slug found for PDP reference data; skipped)");
+  }
+}
+
 async function main() {
   console.log("Seeding…");
   await seedAdmin();
@@ -1377,6 +1557,7 @@ async function main() {
   await seedNavItems();
   await seedMasterclass();
   await seedGlobalBlocks();
+  await seedPdpReferenceCourse();
   console.log("Seed complete.");
 }
 

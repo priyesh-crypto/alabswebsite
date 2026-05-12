@@ -18,6 +18,25 @@ type Pricing = { id?: string; mode: string; label: string; price: number; priceS
 type Project = { id?: string; title: string; desc: string; imageUrl: string };
 type Certification = { id?: string; title: string; issuer: string; imageUrl: string };
 
+// PDP extension types
+type StatTile = { label: string; value: string };
+type Highlight = { title: string; description: string };
+type CurriculumSummary = { liveHours: string; selfStudyHours: string; placementWeeks: string; includes: string[] };
+type TestimonialStripItem = { quote: string; name: string; role: string; company: string; stars: number; photoUrl: string };
+type ProjectDomain = { domain: string; title: string; description: string; icon: string };
+type CareerFeature = { title: string; body: string };
+type CareerPartner = { name: string; logoUrl: string };
+type CareerSupport = { intro: string; features: CareerFeature[]; partnerLogos: CareerPartner[] };
+type HowToApplyStep = { stepNumber: string; title: string; description: string };
+type StudentStory = { photoUrl: string; name: string; credential: string; role: string; quote: string };
+type RelatedArticle = { category: string; readTime: string; title: string; excerpt: string; author: string; url: string; imageUrl: string };
+type CtaBanner = { headline: string; subheadline: string; ctaText: string; ctaUrl: string; bgColor: string };
+type ContactBlock = { heading: string; description: string };
+type FaqItem = { question: string; answer: string };
+type LearningModeItem = { name: string; description: string; icon: string };
+type CertificationData = { heading: string; body: string; certificateImageUrl: string; coBrandedName: string; coBrandedDesc: string; coBrandedLogoUrl: string };
+type WhoShouldJoinItem = { icon: string; title: string; description: string };
+
 type CourseData = {
   id: string;
   slug: string;
@@ -50,6 +69,32 @@ type CourseData = {
   pricing: Pricing[];
   projects: Project[];
   certifications: Certification[];
+  // PDP extension
+  pdpAlumniText: string;
+  pdpStarsTotal: number;
+  pdpRatingScale: number;
+  pdpTaxNote: string;
+  pdpEmiNote: string;
+  pdpCities: string[];
+  pdpStatTiles: StatTile[];
+  pdpOverviewHighlights: Highlight[];
+  pdpCurriculumHeading: string;
+  pdpCurriculumSubheading: string;
+  pdpCurriculumSummary: CurriculumSummary;
+  pdpTestimonialStrip: TestimonialStripItem[];
+  pdpProjectDomains: ProjectDomain[];
+  pdpCareerSupport: CareerSupport;
+  pdpHowToApply: HowToApplyStep[];
+  pdpStudentStories: StudentStory[];
+  pdpRelatedArticles: RelatedArticle[];
+  pdpCtaBanner: CtaBanner;
+  pdpContactBlock: ContactBlock;
+  pdpFaqsData: FaqItem[];
+  pdpLearningModesData: LearningModeItem[];
+  pdpCertificationData: CertificationData;
+  pdpWhoShouldJoinData: WhoShouldJoinItem[];
+  pdpJobRolesData: string[];
+  pdpKeySkillsData: string[];
 };
 
 type Category = { id: string; name: string };
@@ -62,6 +107,23 @@ const TABS = [
   { key: "curriculum", label: "Curriculum" },
   { key: "projects", label: "Projects" },
   { key: "tools", label: "Tools & Skills" },
+  // PDP extension tabs
+  { key: "pdpHero", label: "PDP Hero" },
+  { key: "pdpOverview", label: "Overview" },
+  { key: "pdpCurriculum", label: "PDP Curriculum" },
+  { key: "pdpWho", label: "Who Should Join" },
+  { key: "pdpRoles", label: "Roles & Skills" },
+  { key: "pdpModes", label: "Learning Modes" },
+  { key: "pdpProjects", label: "Projects (PDP)" },
+  { key: "pdpCert", label: "Certification" },
+  { key: "pdpCareer", label: "Career Support" },
+  { key: "pdpApply", label: "How To Apply" },
+  { key: "pdpTestimonials", label: "Testimonials" },
+  { key: "pdpStories", label: "Student Stories" },
+  { key: "pdpArticles", label: "Articles" },
+  { key: "pdpCta", label: "CTA Banner" },
+  { key: "pdpContact", label: "Contact Block" },
+  { key: "pdpFaqs", label: "FAQs (PDP)" },
   { key: "seo", label: "SEO" },
   { key: "publish", label: "Publish" },
 ];
@@ -291,6 +353,332 @@ export default function CourseEditorClient({
               )}
             />
             <p className="text-xs text-gray-400">Tools taught (Python, SQL, etc.) are managed in the global Tools table and linked from there.</p>
+          </div>
+        )}
+
+        {activeTab === "pdpHero" && (
+          <div className="flex flex-col gap-4 max-w-2xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <TextField label="Alumni text" value={data.pdpAlumniText} onChange={v => set("pdpAlumniText", v)} placeholder="20,000+" />
+              <NumberField label="Stars total (reviews)" value={data.pdpStarsTotal} onChange={v => set("pdpStarsTotal", v)} min={0} />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <NumberField label="Rating scale" value={data.pdpRatingScale} onChange={v => set("pdpRatingScale", v)} min={1} max={10} />
+              <TextField label="Tax note" value={data.pdpTaxNote} onChange={v => set("pdpTaxNote", v)} placeholder="Inclusive of all taxes" />
+            </div>
+            <TextField label="EMI note" value={data.pdpEmiNote} onChange={v => set("pdpEmiNote", v)} placeholder="Easy EMI available" />
+            <ArrayField<string>
+              label="Cities"
+              items={data.pdpCities}
+              onChange={v => set("pdpCities", v)}
+              newItem={() => ""}
+              renderItem={(c, _i, update) => <TextField label="" value={c} onChange={update} placeholder="Noida" />}
+            />
+            <ArrayField<StatTile>
+              label="Stat tiles (max 3 shown)"
+              items={data.pdpStatTiles}
+              onChange={v => set("pdpStatTiles", v)}
+              newItem={() => ({ label: "", value: "" })}
+              renderItem={(t, _i, update) => (
+                <div className="grid grid-cols-2 gap-2">
+                  <TextField label="Label" value={t.label} onChange={v => update({ ...t, label: v })} />
+                  <TextField label="Value" value={t.value} onChange={v => update({ ...t, value: v })} />
+                </div>
+              )}
+            />
+          </div>
+        )}
+
+        {activeTab === "pdpOverview" && (
+          <div className="flex flex-col gap-4 max-w-2xl">
+            <ArrayField<Highlight>
+              label="Overview highlights"
+              items={data.pdpOverviewHighlights}
+              onChange={v => set("pdpOverviewHighlights", v)}
+              newItem={() => ({ title: "", description: "" })}
+              renderItem={(h, _i, update) => (
+                <div className="flex flex-col gap-2">
+                  <TextField label="Title" value={h.title} onChange={v => update({ ...h, title: v })} />
+                  <TextareaField label="Description" value={h.description} onChange={v => update({ ...h, description: v })} rows={2} />
+                </div>
+              )}
+            />
+          </div>
+        )}
+
+        {activeTab === "pdpCurriculum" && (
+          <div className="flex flex-col gap-4 max-w-2xl">
+            <TextField label="Curriculum heading" value={data.pdpCurriculumHeading} onChange={v => set("pdpCurriculumHeading", v)} />
+            <TextareaField label="Curriculum subheading" value={data.pdpCurriculumSubheading} onChange={v => set("pdpCurriculumSubheading", v)} rows={2} />
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <TextField label="Live hours" value={data.pdpCurriculumSummary.liveHours} onChange={v => set("pdpCurriculumSummary", { ...data.pdpCurriculumSummary, liveHours: v })} />
+              <TextField label="Self-study hours" value={data.pdpCurriculumSummary.selfStudyHours} onChange={v => set("pdpCurriculumSummary", { ...data.pdpCurriculumSummary, selfStudyHours: v })} />
+              <TextField label="Placement weeks" value={data.pdpCurriculumSummary.placementWeeks} onChange={v => set("pdpCurriculumSummary", { ...data.pdpCurriculumSummary, placementWeeks: v })} />
+            </div>
+            <ArrayField<string>
+              label="What's included"
+              items={data.pdpCurriculumSummary.includes}
+              onChange={v => set("pdpCurriculumSummary", { ...data.pdpCurriculumSummary, includes: v })}
+              newItem={() => ""}
+              renderItem={(s, _i, update) => <TextField label="" value={s} onChange={update} />}
+            />
+          </div>
+        )}
+
+        {activeTab === "pdpWho" && (
+          <div className="flex flex-col gap-4 max-w-2xl">
+            <ArrayField<WhoShouldJoinItem>
+              label="Who should join"
+              items={data.pdpWhoShouldJoinData}
+              onChange={v => set("pdpWhoShouldJoinData", v)}
+              newItem={() => ({ icon: "", title: "", description: "" })}
+              renderItem={(w, _i, update) => (
+                <div className="flex flex-col gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    <TextField label="Icon (emoji)" value={w.icon} onChange={v => update({ ...w, icon: v })} placeholder="🎓" />
+                    <div className="sm:col-span-2">
+                      <TextField label="Title" value={w.title} onChange={v => update({ ...w, title: v })} />
+                    </div>
+                  </div>
+                  <TextareaField label="Description" value={w.description} onChange={v => update({ ...w, description: v })} rows={2} />
+                </div>
+              )}
+            />
+          </div>
+        )}
+
+        {activeTab === "pdpRoles" && (
+          <div className="flex flex-col gap-4 max-w-2xl">
+            <ArrayField<string>
+              label="Job roles (PDP)"
+              items={data.pdpJobRolesData}
+              onChange={v => set("pdpJobRolesData", v)}
+              newItem={() => ""}
+              renderItem={(r, _i, update) => <TextField label="" value={r} onChange={update} placeholder="Data Scientist" />}
+            />
+            <ArrayField<string>
+              label="Key skills (PDP)"
+              items={data.pdpKeySkillsData}
+              onChange={v => set("pdpKeySkillsData", v)}
+              newItem={() => ""}
+              renderItem={(s, _i, update) => <TextField label="" value={s} onChange={update} placeholder="Python" />}
+            />
+          </div>
+        )}
+
+        {activeTab === "pdpModes" && (
+          <div className="flex flex-col gap-4 max-w-2xl">
+            <ArrayField<LearningModeItem>
+              label="Learning modes"
+              items={data.pdpLearningModesData}
+              onChange={v => set("pdpLearningModesData", v)}
+              newItem={() => ({ name: "", description: "", icon: "" })}
+              renderItem={(m, _i, update) => (
+                <div className="flex flex-col gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    <TextField label="Icon (emoji)" value={m.icon} onChange={v => update({ ...m, icon: v })} placeholder="🏫" />
+                    <div className="sm:col-span-2">
+                      <TextField label="Mode name" value={m.name} onChange={v => update({ ...m, name: v })} />
+                    </div>
+                  </div>
+                  <TextareaField label="Description" value={m.description} onChange={v => update({ ...m, description: v })} rows={2} />
+                </div>
+              )}
+            />
+          </div>
+        )}
+
+        {activeTab === "pdpProjects" && (
+          <div className="flex flex-col gap-4 max-w-2xl">
+            <ArrayField<ProjectDomain>
+              label="Project domains"
+              items={data.pdpProjectDomains}
+              onChange={v => set("pdpProjectDomains", v)}
+              newItem={() => ({ domain: "", title: "", description: "", icon: "" })}
+              renderItem={(p, _i, update) => (
+                <div className="flex flex-col gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    <TextField label="Icon (emoji)" value={p.icon} onChange={v => update({ ...p, icon: v })} />
+                    <TextField label="Domain" value={p.domain} onChange={v => update({ ...p, domain: v })} placeholder="Healthcare" />
+                    <TextField label="Title" value={p.title} onChange={v => update({ ...p, title: v })} />
+                  </div>
+                  <TextareaField label="Description" value={p.description} onChange={v => update({ ...p, description: v })} rows={2} />
+                </div>
+              )}
+            />
+          </div>
+        )}
+
+        {activeTab === "pdpCert" && (
+          <div className="flex flex-col gap-4 max-w-2xl">
+            <p className="text-xs text-gray-500">Tools are linked from the global Tools table. Below: certification block.</p>
+            <TextField label="Heading" value={data.pdpCertificationData.heading} onChange={v => set("pdpCertificationData", { ...data.pdpCertificationData, heading: v })} />
+            <TextareaField label="Body" value={data.pdpCertificationData.body} onChange={v => set("pdpCertificationData", { ...data.pdpCertificationData, body: v })} rows={3} />
+            <MediaPicker label="Certificate image" value={{ url: data.pdpCertificationData.certificateImageUrl, alt: "Certificate" }} onChange={v => set("pdpCertificationData", { ...data.pdpCertificationData, certificateImageUrl: v.url })} />
+            <TextField label="Co-branded partner name" value={data.pdpCertificationData.coBrandedName} onChange={v => set("pdpCertificationData", { ...data.pdpCertificationData, coBrandedName: v })} />
+            <TextareaField label="Co-branded description" value={data.pdpCertificationData.coBrandedDesc} onChange={v => set("pdpCertificationData", { ...data.pdpCertificationData, coBrandedDesc: v })} rows={2} />
+            <MediaPicker label="Co-branded logo" value={{ url: data.pdpCertificationData.coBrandedLogoUrl, alt: data.pdpCertificationData.coBrandedName }} onChange={v => set("pdpCertificationData", { ...data.pdpCertificationData, coBrandedLogoUrl: v.url })} />
+          </div>
+        )}
+
+        {activeTab === "pdpCareer" && (
+          <div className="flex flex-col gap-4 max-w-2xl">
+            <TextareaField label="Intro" value={data.pdpCareerSupport.intro} onChange={v => set("pdpCareerSupport", { ...data.pdpCareerSupport, intro: v })} rows={3} />
+            <ArrayField<CareerFeature>
+              label="Features"
+              items={data.pdpCareerSupport.features}
+              onChange={v => set("pdpCareerSupport", { ...data.pdpCareerSupport, features: v })}
+              newItem={() => ({ title: "", body: "" })}
+              renderItem={(f, _i, update) => (
+                <div className="flex flex-col gap-2">
+                  <TextField label="Title" value={f.title} onChange={v => update({ ...f, title: v })} />
+                  <TextareaField label="Body" value={f.body} onChange={v => update({ ...f, body: v })} rows={2} />
+                </div>
+              )}
+            />
+            <ArrayField<CareerPartner>
+              label="Hiring partner logos"
+              items={data.pdpCareerSupport.partnerLogos}
+              onChange={v => set("pdpCareerSupport", { ...data.pdpCareerSupport, partnerLogos: v })}
+              newItem={() => ({ name: "", logoUrl: "" })}
+              renderItem={(p, _i, update) => (
+                <div className="flex flex-col gap-2">
+                  <TextField label="Name" value={p.name} onChange={v => update({ ...p, name: v })} />
+                  <MediaPicker label="Logo" value={{ url: p.logoUrl, alt: p.name }} onChange={v => update({ ...p, logoUrl: v.url })} />
+                </div>
+              )}
+            />
+          </div>
+        )}
+
+        {activeTab === "pdpApply" && (
+          <div className="flex flex-col gap-4 max-w-2xl">
+            <ArrayField<HowToApplyStep>
+              label="How to apply (steps)"
+              items={data.pdpHowToApply}
+              onChange={v => set("pdpHowToApply", v)}
+              newItem={() => ({ stepNumber: String((data.pdpHowToApply?.length ?? 0) + 1), title: "", description: "" })}
+              renderItem={(s, _i, update) => (
+                <div className="flex flex-col gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-4 gap-2">
+                    <TextField label="Step" value={s.stepNumber} onChange={v => update({ ...s, stepNumber: v })} />
+                    <div className="sm:col-span-3">
+                      <TextField label="Title" value={s.title} onChange={v => update({ ...s, title: v })} />
+                    </div>
+                  </div>
+                  <TextareaField label="Description" value={s.description} onChange={v => update({ ...s, description: v })} rows={2} />
+                </div>
+              )}
+            />
+          </div>
+        )}
+
+        {activeTab === "pdpTestimonials" && (
+          <div className="flex flex-col gap-4 max-w-2xl">
+            <ArrayField<TestimonialStripItem>
+              label="Testimonial strip"
+              items={data.pdpTestimonialStrip}
+              onChange={v => set("pdpTestimonialStrip", v)}
+              newItem={() => ({ quote: "", name: "", role: "", company: "", stars: 5, photoUrl: "" })}
+              renderItem={(t, _i, update) => (
+                <div className="flex flex-col gap-2">
+                  <TextareaField label="Quote" value={t.quote} onChange={v => update({ ...t, quote: v })} rows={3} />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <TextField label="Name" value={t.name} onChange={v => update({ ...t, name: v })} />
+                    <TextField label="Role" value={t.role} onChange={v => update({ ...t, role: v })} />
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <TextField label="Company" value={t.company} onChange={v => update({ ...t, company: v })} />
+                    <NumberField label="Stars" value={t.stars} onChange={v => update({ ...t, stars: v })} min={0} max={5} />
+                  </div>
+                  <MediaPicker label="Photo" value={{ url: t.photoUrl, alt: t.name }} onChange={v => update({ ...t, photoUrl: v.url })} />
+                </div>
+              )}
+            />
+          </div>
+        )}
+
+        {activeTab === "pdpStories" && (
+          <div className="flex flex-col gap-4 max-w-2xl">
+            <ArrayField<StudentStory>
+              label="Student stories"
+              items={data.pdpStudentStories}
+              onChange={v => set("pdpStudentStories", v)}
+              newItem={() => ({ photoUrl: "", name: "", credential: "", role: "", quote: "" })}
+              renderItem={(s, _i, update) => (
+                <div className="flex flex-col gap-2">
+                  <MediaPicker label="Photo" value={{ url: s.photoUrl, alt: s.name }} onChange={v => update({ ...s, photoUrl: v.url })} />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <TextField label="Name" value={s.name} onChange={v => update({ ...s, name: v })} />
+                    <TextField label="Credential" value={s.credential} onChange={v => update({ ...s, credential: v })} placeholder="Placed @ Accenture" />
+                  </div>
+                  <TextField label="Role" value={s.role} onChange={v => update({ ...s, role: v })} />
+                  <TextareaField label="Quote" value={s.quote} onChange={v => update({ ...s, quote: v })} rows={3} />
+                </div>
+              )}
+            />
+          </div>
+        )}
+
+        {activeTab === "pdpArticles" && (
+          <div className="flex flex-col gap-4 max-w-2xl">
+            <ArrayField<RelatedArticle>
+              label="Related articles"
+              items={data.pdpRelatedArticles}
+              onChange={v => set("pdpRelatedArticles", v)}
+              newItem={() => ({ category: "", readTime: "", title: "", excerpt: "", author: "", url: "", imageUrl: "" })}
+              renderItem={(a, _i, update) => (
+                <div className="flex flex-col gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <TextField label="Category" value={a.category} onChange={v => update({ ...a, category: v })} />
+                    <TextField label="Read time" value={a.readTime} onChange={v => update({ ...a, readTime: v })} placeholder="6 min read" />
+                  </div>
+                  <TextField label="Title" value={a.title} onChange={v => update({ ...a, title: v })} />
+                  <TextareaField label="Excerpt" value={a.excerpt} onChange={v => update({ ...a, excerpt: v })} rows={2} />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <TextField label="Author" value={a.author} onChange={v => update({ ...a, author: v })} />
+                    <TextField label="URL" value={a.url} onChange={v => update({ ...a, url: v })} type="url" />
+                  </div>
+                  <MediaPicker label="Image" value={{ url: a.imageUrl, alt: a.title }} onChange={v => update({ ...a, imageUrl: v.url })} />
+                </div>
+              )}
+            />
+          </div>
+        )}
+
+        {activeTab === "pdpCta" && (
+          <div className="flex flex-col gap-4 max-w-2xl">
+            <TextField label="Headline" value={data.pdpCtaBanner.headline} onChange={v => set("pdpCtaBanner", { ...data.pdpCtaBanner, headline: v })} />
+            <TextareaField label="Subheadline" value={data.pdpCtaBanner.subheadline} onChange={v => set("pdpCtaBanner", { ...data.pdpCtaBanner, subheadline: v })} rows={2} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <TextField label="CTA text" value={data.pdpCtaBanner.ctaText} onChange={v => set("pdpCtaBanner", { ...data.pdpCtaBanner, ctaText: v })} />
+              <TextField label="CTA URL" value={data.pdpCtaBanner.ctaUrl} onChange={v => set("pdpCtaBanner", { ...data.pdpCtaBanner, ctaUrl: v })} />
+            </div>
+            <TextField label="Background color (hex)" value={data.pdpCtaBanner.bgColor} onChange={v => set("pdpCtaBanner", { ...data.pdpCtaBanner, bgColor: v })} placeholder="#0B1B3B" />
+          </div>
+        )}
+
+        {activeTab === "pdpContact" && (
+          <div className="flex flex-col gap-4 max-w-2xl">
+            <TextField label="Heading" value={data.pdpContactBlock.heading} onChange={v => set("pdpContactBlock", { ...data.pdpContactBlock, heading: v })} />
+            <TextareaField label="Description" value={data.pdpContactBlock.description} onChange={v => set("pdpContactBlock", { ...data.pdpContactBlock, description: v })} rows={3} />
+          </div>
+        )}
+
+        {activeTab === "pdpFaqs" && (
+          <div className="flex flex-col gap-4 max-w-2xl">
+            <ArrayField<FaqItem>
+              label="FAQs (PDP)"
+              items={data.pdpFaqsData}
+              onChange={v => set("pdpFaqsData", v)}
+              newItem={() => ({ question: "", answer: "" })}
+              renderItem={(f, _i, update) => (
+                <div className="flex flex-col gap-2">
+                  <TextField label="Question" value={f.question} onChange={v => update({ ...f, question: v })} />
+                  <TextareaField label="Answer" value={f.answer} onChange={v => update({ ...f, answer: v })} rows={3} />
+                </div>
+              )}
+            />
           </div>
         )}
 

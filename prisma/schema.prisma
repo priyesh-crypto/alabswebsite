@@ -125,6 +125,34 @@ model Course {
   heroCtaSecondary  Json?           // { label, href }
   whoShouldJoin     Json?           // { audience, description }[]
   hasNoCodingRequired Boolean       @default(false)
+  // ============================================================
+  // New PDP (Course Detail Page) extension fields — all optional.
+  // ============================================================
+  pdpAlumniText           String?
+  pdpStarsTotal           Int?
+  pdpRatingScale          Float?
+  pdpTaxNote              String?
+  pdpEmiNote              String?
+  pdpCities               String[] @default([])
+  pdpStatTiles            Json?
+  pdpOverviewHighlights   Json?
+  pdpCurriculumHeading    String?
+  pdpCurriculumSubheading String?
+  pdpCurriculumSummary    Json?
+  pdpTestimonialStrip     Json?
+  pdpProjectDomains       Json?
+  pdpCareerSupport        Json?
+  pdpHowToApply           Json?
+  pdpStudentStories       Json?
+  pdpRelatedArticles      Json?
+  pdpCtaBanner            Json?
+  pdpContactBlock         Json?
+  pdpFaqsData             Json?
+  pdpLearningModesData    Json?
+  pdpCertificationData    Json?
+  pdpWhoShouldJoinData    Json?
+  pdpJobRolesData         Json?
+  pdpKeySkillsData        Json?
   createdAt         DateTime        @default(now())
   updatedAt         DateTime        @updatedAt
   categoryId        String
