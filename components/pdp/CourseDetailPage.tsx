@@ -811,11 +811,11 @@ function ToolsGrid({ tools }: { tools: ToolLite[] }) {
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={t.iconUrl} alt={t.name} className="w-10 h-10 object-contain mb-2" />
               ) : (
-                <div className="w-10 h-10 rounded-lg bg-[#0EC9C9]/10 text-[#0EC9C9] font-bold flex items-center justify-center mb-2">
+                <div className="w-10 h-10 rounded-lg bg-[#07b3e7]/10 text-[#07b3e7] font-bold flex items-center justify-center mb-2">
                   {t.name.charAt(0)}
                 </div>
               )}
-              <span className="text-xs font-medium text-[#0B1B3B] text-center">{t.name}</span>
+              <span className="text-xs font-medium text-[#09263f] text-center">{t.name}</span>
             </div>
           ))}
         </div>
@@ -841,7 +841,7 @@ function WhoShouldJoinSection({ items }: { items: WhoShouldJoinItem[] }) {
               className="bg-[#F7F8FA] rounded-2xl p-6 border border-[#E5E7EB]"
             >
               {w.icon && <div className="text-3xl mb-3">{w.icon}</div>}
-              <h3 className="font-bold text-[#0B1B3B] mb-2">{w.title}</h3>
+              <h3 className="font-bold text-[#09263f] mb-2">{w.title}</h3>
               <p className="text-sm text-[#475569]">{w.description}</p>
             </div>
           ))}
@@ -868,7 +868,7 @@ function JobRolesSection({ roles }: { roles: string[] }) {
           {roles.map((r, i) => (
             <span
               key={i}
-              className="bg-white border border-[#E5E7EB] text-[#0B1B3B] font-semibold px-4 py-2 rounded-full text-sm hover:bg-[#C8F032] transition cursor-default"
+              className="bg-white border border-[#E5E7EB] text-[#09263f] font-semibold px-4 py-2 rounded-full text-sm hover:bg-[#ffd700] transition cursor-default"
             >
               {r}
             </span>
@@ -891,7 +891,7 @@ function KeySkillsSection({ skills }: { skills: string[] }) {
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8">Key Skills You&apos;ll Gain</h2>
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 max-w-3xl">
           {skills.map((s, i) => (
-            <li key={i} className="flex items-center gap-3 text-[#0B1B3B]">
+            <li key={i} className="flex items-center gap-3 text-[#09263f]">
               <Check />
               <span>{s}</span>
             </li>
@@ -919,11 +919,11 @@ function LearningModesSection({ modes }: { modes: LearningModeItem[] }) {
               className="bg-white rounded-2xl border border-[#E5E7EB] p-6 hover:shadow-md transition"
             >
               {m.icon && (
-                <div className="w-14 h-14 rounded-2xl bg-[#C8F032] text-[#0B1B3B] text-2xl flex items-center justify-center mb-4">
+                <div className="w-14 h-14 rounded-2xl bg-[#ffd700] text-[#09263f] text-2xl flex items-center justify-center mb-4">
                   {m.icon}
                 </div>
               )}
-              <h3 className="font-bold text-xl text-[#0B1B3B] mb-2">{m.name}</h3>
+              <h3 className="font-bold text-xl text-[#09263f] mb-2">{m.name}</h3>
               <p className="text-sm text-[#475569]">{m.description}</p>
             </div>
           ))}
@@ -952,22 +952,22 @@ function CourseFeesSection({ pricing }: { pricing: CoursePricing[] }) {
               key={p.id}
               className="bg-[#F7F8FA] border border-[#E5E7EB] rounded-2xl p-6 flex flex-col"
             >
-              <h3 className="text-xs font-semibold uppercase tracking-wide text-[#0EC9C9] mb-3">
+              <h3 className="text-xs font-semibold uppercase tracking-wide text-[#07b3e7] mb-3">
                 {p.label}
               </h3>
               <div className="flex items-baseline gap-2 mb-2">
-                <span className="text-3xl font-bold text-[#0B1B3B]">{inr(p.price)}</span>
+                <span className="text-3xl font-bold text-[#09263f]">{inr(p.price)}</span>
                 {p.priceStruck ? (
                   <span className="text-sm text-[#94A3B8] line-through">{inr(p.priceStruck)}</span>
                 ) : null}
               </div>
               <p className="text-sm text-[#475569] mb-1">{p.installments} easy installments</p>
               {p.hasEmi && (
-                <p className="text-sm font-semibold text-[#0EC9C9] mb-5">EMI available</p>
+                <p className="text-sm font-semibold text-[#07b3e7] mb-5">EMI available</p>
               )}
               <a
                 href={p.ctaHref || "#contact"}
-                className="mt-auto text-center bg-[#C8F032] text-[#0B1B3B] font-bold py-3 rounded-xl hover:brightness-95 transition"
+                className="mt-auto text-center bg-[#ffd700] text-[#09263f] font-bold py-3 rounded-xl hover:brightness-95 transition"
               >
                 {p.ctaLabel}
               </a>
@@ -1016,7 +1016,7 @@ function CertificationSection({
                 )}
                 <div>
                   {data.coBrandedName && (
-                    <h3 className="font-bold text-[#0B1B3B]">{data.coBrandedName}</h3>
+                    <h3 className="font-bold text-[#09263f]">{data.coBrandedName}</h3>
                   )}
                   {data.coBrandedDesc && (
                     <p className="text-sm text-[#475569]">{data.coBrandedDesc}</p>
@@ -1058,10 +1058,10 @@ function CareerSupportSection({ data }: { data: CareerSupport }) {
                 key={i}
                 className="bg-[#F7F8FA] border border-[#E5E7EB] rounded-2xl p-5"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#C8F032] text-[#0B1B3B] font-bold flex items-center justify-center mb-3">
+                <div className="w-10 h-10 rounded-xl bg-[#ffd700] text-[#09263f] font-bold flex items-center justify-center mb-3">
                   {i + 1}
                 </div>
-                <h3 className="font-bold text-[#0B1B3B] mb-2">{f.title}</h3>
+                <h3 className="font-bold text-[#09263f] mb-2">{f.title}</h3>
                 <p className="text-sm text-[#475569]">{f.body}</p>
               </div>
             ))}
@@ -1070,7 +1070,7 @@ function CareerSupportSection({ data }: { data: CareerSupport }) {
 
         {data.partnerLogos && data.partnerLogos.length > 0 && (
           <div>
-            <p className="text-xs uppercase tracking-wide font-semibold text-[#0EC9C9] mb-4">
+            <p className="text-xs uppercase tracking-wide font-semibold text-[#07b3e7] mb-4">
               Our hiring partners
             </p>
             <div className="grid grid-cols-3 md:grid-cols-6 gap-3 items-center">
@@ -1106,13 +1106,13 @@ function CareerSupportSection({ data }: { data: CareerSupport }) {
 function HowToApplySection({ steps }: { steps: HowToApplyStep[] }) {
   if (!steps.length) return null;
   return (
-    <section className={`bg-[#0B1B3B] text-white ${SECTION_PAD}`}>
+    <section className={`bg-[#09263f] text-white ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8">How to Apply</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {steps.map((s, i) => (
             <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-5">
-              <div className="w-12 h-12 rounded-xl bg-[#C8F032] text-[#0B1B3B] font-bold text-xl flex items-center justify-center mb-4">
+              <div className="w-12 h-12 rounded-xl bg-[#ffd700] text-[#09263f] font-bold text-xl flex items-center justify-center mb-4">
                 {s.stepNumber}
               </div>
               <h3 className="font-bold mb-2">{s.title}</h3>
@@ -1150,15 +1150,15 @@ function StudentStoriesSection({ stories }: { stories: StudentStory[] }) {
                     className="w-14 h-14 rounded-full object-cover"
                   />
                 ) : (
-                  <div className="w-14 h-14 rounded-full bg-[#0EC9C9] text-white font-bold flex items-center justify-center">
+                  <div className="w-14 h-14 rounded-full bg-[#07b3e7] text-white font-bold flex items-center justify-center">
                     {s.name.charAt(0)}
                   </div>
                 )}
                 <div>
-                  <div className="font-bold text-[#0B1B3B]">{s.name}</div>
+                  <div className="font-bold text-[#09263f]">{s.name}</div>
                   {s.role && <div className="text-xs text-[#475569]">{s.role}</div>}
                   {s.credential && (
-                    <div className="text-xs text-[#0EC9C9] font-semibold">{s.credential}</div>
+                    <div className="text-xs text-[#07b3e7] font-semibold">{s.credential}</div>
                   )}
                 </div>
               </div>
@@ -1199,13 +1199,13 @@ function RelatedArticlesSection({ articles }: { articles: RelatedArticle[] }) {
               <div className="p-5 flex flex-col gap-2 flex-1">
                 <div className="flex items-center gap-3 text-xs">
                   {a.category && (
-                    <span className="text-[#0EC9C9] font-semibold uppercase tracking-wide">
+                    <span className="text-[#07b3e7] font-semibold uppercase tracking-wide">
                       {a.category}
                     </span>
                   )}
                   {a.readTime && <span className="text-[#94A3B8]">{a.readTime}</span>}
                 </div>
-                <h3 className="font-bold text-[#0B1B3B]">{a.title}</h3>
+                <h3 className="font-bold text-[#09263f]">{a.title}</h3>
                 {a.excerpt && (
                   <p className="text-sm text-[#475569] line-clamp-2">{a.excerpt}</p>
                 )}
@@ -1226,7 +1226,7 @@ function RelatedArticlesSection({ articles }: { articles: RelatedArticle[] }) {
 // ============================================================
 
 function CtaBannerSection({ data }: { data: CtaBanner }) {
-  const bg = data.bgColor ?? "#0B1B3B";
+  const bg = data.bgColor ?? "#09263f";
   return (
     <section className="py-12 lg:py-16" style={{ backgroundColor: bg }}>
       <div className={`${SECTION_CONTAINER} flex flex-col md:flex-row items-center justify-between gap-6 text-white`}>
@@ -1237,7 +1237,7 @@ function CtaBannerSection({ data }: { data: CtaBanner }) {
         {data.ctaText && (
           <a
             href={data.ctaUrl ?? "#contact"}
-            className="bg-[#C8F032] text-[#0B1B3B] font-bold px-8 py-3.5 rounded-xl hover:brightness-95 transition whitespace-nowrap"
+            className="bg-[#ffd700] text-[#09263f] font-bold px-8 py-3.5 rounded-xl hover:brightness-95 transition whitespace-nowrap"
           >
             {data.ctaText}
           </a>
@@ -1300,10 +1300,10 @@ function ContactSection({
           <div className="bg-[#F7F8FA] border border-[#E5E7EB] rounded-2xl p-6">
             {done ? (
               <div className="text-center py-8">
-                <div className="w-16 h-16 rounded-full bg-[#C8F032] mx-auto mb-4 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-[#ffd700] mx-auto mb-4 flex items-center justify-center">
                   <Check />
                 </div>
-                <h3 className="font-bold text-[#0B1B3B] mb-2">Thank you!</h3>
+                <h3 className="font-bold text-[#09263f] mb-2">Thank you!</h3>
                 <p className="text-sm text-[#475569]">
                   We&apos;ll be in touch shortly.
                 </p>
@@ -1316,7 +1316,7 @@ function ContactSection({
                   placeholder="Full name"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="bg-white border border-[#E5E7EB] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#0EC9C9]"
+                  className="bg-white border border-[#E5E7EB] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#07b3e7]"
                 />
                 <input
                   type="tel"
@@ -1324,7 +1324,7 @@ function ContactSection({
                   placeholder="Mobile number"
                   value={form.phone}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  className="bg-white border border-[#E5E7EB] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#0EC9C9]"
+                  className="bg-white border border-[#E5E7EB] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#07b3e7]"
                 />
                 <input
                   type="email"
@@ -1332,12 +1332,12 @@ function ContactSection({
                   placeholder="Email address"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="bg-white border border-[#E5E7EB] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#0EC9C9]"
+                  className="bg-white border border-[#E5E7EB] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#07b3e7]"
                 />
                 <select
                   value={form.city}
                   onChange={(e) => setForm({ ...form, city: e.target.value })}
-                  className="bg-white border border-[#E5E7EB] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#0EC9C9]"
+                  className="bg-white border border-[#E5E7EB] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#07b3e7]"
                 >
                   <option value="">Select city</option>
                   <option value="Noida">Noida</option>
@@ -1350,7 +1350,7 @@ function ContactSection({
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="bg-[#C8F032] text-[#0B1B3B] font-bold py-3 rounded-xl hover:brightness-95 disabled:opacity-50 transition"
+                  className="bg-[#ffd700] text-[#09263f] font-bold py-3 rounded-xl hover:brightness-95 disabled:opacity-50 transition"
                 >
                   {submitting ? "Submitting…" : "Request Callback"}
                 </button>
@@ -1385,8 +1385,8 @@ function FaqSection({ items }: { items: FaqItem[] }) {
                 onClick={() => setOpen(open === i ? null : i)}
                 className="w-full flex items-center justify-between gap-4 p-5 text-left hover:bg-[#F7F8FA]"
               >
-                <h3 className="font-semibold text-[#0B1B3B]">{f.question}</h3>
-                <span className="text-2xl text-[#0EC9C9] leading-none">
+                <h3 className="font-semibold text-[#09263f]">{f.question}</h3>
+                <span className="text-2xl text-[#07b3e7] leading-none">
                   {open === i ? "−" : "+"}
                 </span>
               </button>
@@ -1415,7 +1415,7 @@ function BatchesTable({ batches }: { batches: Batch[] }) {
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8">Upcoming Batches</h2>
         <div className="overflow-x-auto border border-[#E5E7EB] rounded-2xl">
           <table className="w-full text-sm">
-            <thead className="bg-[#F7F8FA] text-[#0B1B3B]">
+            <thead className="bg-[#F7F8FA] text-[#09263f]">
               <tr>
                 <th className="text-left p-4 font-semibold">Location</th>
                 <th className="text-left p-4 font-semibold">Start Date</th>
@@ -1427,7 +1427,7 @@ function BatchesTable({ batches }: { batches: Batch[] }) {
             <tbody>
               {batches.map((b) => (
                 <tr key={b.id} className="border-t border-[#E5E7EB]">
-                  <td className="p-4 font-medium text-[#0B1B3B]">{b.location}</td>
+                  <td className="p-4 font-medium text-[#09263f]">{b.location}</td>
                   <td className="p-4 text-[#475569]">
                     {new Date(b.startDate).toLocaleDateString("en-IN", {
                       day: "numeric",
@@ -1441,7 +1441,7 @@ function BatchesTable({ batches }: { batches: Batch[] }) {
                       className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
                         b.seatsLeft <= 5
                           ? "bg-red-50 text-red-600"
-                          : "bg-[#C8F032]/30 text-[#0B1B3B]"
+                          : "bg-[#ffd700]/30 text-[#09263f]"
                       }`}
                     >
                       {b.seatsLeft} seats
@@ -1450,7 +1450,7 @@ function BatchesTable({ batches }: { batches: Batch[] }) {
                   <td className="p-4 text-right">
                     <a
                       href="#contact"
-                      className="inline-block bg-[#C8F032] text-[#0B1B3B] font-bold px-4 py-2 rounded-xl hover:brightness-95 transition text-xs"
+                      className="inline-block bg-[#ffd700] text-[#09263f] font-bold px-4 py-2 rounded-xl hover:brightness-95 transition text-xs"
                     >
                       Reserve Seat
                     </a>

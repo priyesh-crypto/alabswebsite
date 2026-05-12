@@ -143,7 +143,7 @@ function Group9() {
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1108px] not-italic text-[#09263f] text-[12px] top-[1380px] whitespace-nowrap">Rahul Kapoor</p>
       <div className="absolute left-[1064px] size-[39px] top-[1383px]">
         <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 39 39">
-          <circle cx="19.5" cy="19.5" fill="var(--fill-0, #1DE5B5)" id="Ellipse 118" r="19.5" />
+          <circle cx="19.5" cy="19.5" fill="var(--fill-0, #ffd700)" id="Ellipse 118" r="19.5" />
         </svg>
       </div>
       <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1111.5px] not-italic text-[10px] text-[#ffd700] text-center top-[1414px] w-[7px]">{`⭐ `}</p>
@@ -236,7 +236,7 @@ function WeuiArrowOutlined1() {
     <div className="h-[36px] relative w-[18px]" data-name="weui:arrow-outlined">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 18 36">
         <g id="weui:arrow-outlined">
-          <path d={svgPaths.p272be800} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p272be800} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -248,7 +248,7 @@ function WeuiArrowOutlined2() {
     <div className="h-[36px] relative w-[18px]" data-name="weui:arrow-outlined">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 18 36">
         <g id="weui:arrow-outlined">
-          <path d={svgPaths.p272be800} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p272be800} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -260,7 +260,7 @@ function WeuiArrowOutlined3() {
     <div className="h-[36px] relative w-[18px]" data-name="weui:arrow-outlined">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 18 36">
         <g id="weui:arrow-outlined">
-          <path d={svgPaths.p272be800} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p272be800} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -272,7 +272,7 @@ function WeuiArrowOutlined4() {
     <div className="h-[36px] relative w-[18px]" data-name="weui:arrow-outlined">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 18 36">
         <g id="weui:arrow-outlined">
-          <path d={svgPaths.p272be800} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p272be800} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -296,7 +296,7 @@ function MdiTickCircle1() {
     <div className="absolute left-[78px] size-[24px] top-[3596px]" data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p2299ac0} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p2299ac0} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -308,7 +308,7 @@ function MdiTickCircle2() {
     <div className="absolute left-[78px] size-[24px] top-[3674px]" data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p2299ac0} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p2299ac0} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -320,7 +320,7 @@ function MdiTickCircle3() {
     <div className="absolute left-[78px] size-[24px] top-[3752px]" data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p2299ac0} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p2299ac0} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -332,7 +332,7 @@ function MdiTickCircle4() {
     <div className="absolute left-[78px] size-[24px] top-[3830px]" data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p2299ac0} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p2299ac0} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -356,7 +356,7 @@ function MdiTickCircle6() {
     <div className="absolute left-[385px] size-[17px] top-[4485px]" data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 17 17">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p1941ea00} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p1941ea00} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -368,7 +368,7 @@ function MdiTickCircle7() {
     <div className="absolute left-[698px] size-[17px] top-[4485px]" data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 17 17">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p1941ea00} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p1941ea00} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -380,7 +380,7 @@ function MdiTickCircle8() {
     <div className="absolute left-[72px] size-[17px] top-[4510px]" data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 17 17">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p1941ea00} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p1941ea00} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -392,7 +392,7 @@ function MdiTickCircle9() {
     <div className="absolute left-[385px] size-[17px] top-[4510px]" data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 17 17">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p1941ea00} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p1941ea00} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -404,7 +404,7 @@ function MdiTickCircle10() {
     <div className="absolute left-[698px] size-[17px] top-[4510px]" data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 17 17">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p1941ea00} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p1941ea00} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -416,7 +416,7 @@ function MdiTickCircle11() {
     <div className="absolute left-[72px] size-[17px] top-[4566px]" data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 17 17">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p1941ea00} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p1941ea00} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -428,7 +428,7 @@ function MdiTickCircle12() {
     <div className="absolute left-[385px] size-[17px] top-[4566px]" data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 17 17">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p1941ea00} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p1941ea00} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -440,7 +440,7 @@ function MdiTickCircle13() {
     <div className="absolute left-[698px] size-[17px] top-[4566px]" data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 17 17">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p1941ea00} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p1941ea00} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -452,7 +452,7 @@ function MdiTickCircle14() {
     <div className="absolute left-[538px] size-[24px] top-[3518px]" data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p2299ac0} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p2299ac0} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -464,7 +464,7 @@ function MdiTickCircle15() {
     <div className="absolute left-[538px] size-[24px] top-[3596px]" data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p2299ac0} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p2299ac0} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -476,7 +476,7 @@ function MdiTickCircle16() {
     <div className="absolute left-[538px] size-[24px] top-[3674px]" data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p2299ac0} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p2299ac0} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -488,7 +488,7 @@ function MdiTickCircle17() {
     <div className="absolute left-[538px] size-[24px] top-[3752px]" data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p2299ac0} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p2299ac0} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -500,7 +500,7 @@ function MdiTickCircle18() {
     <div className="absolute left-[538px] size-[24px] top-[3830px]" data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p2299ac0} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p2299ac0} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -512,7 +512,7 @@ function FluentLive20Filled() {
     <div className="absolute left-[487px] size-[33px] top-[3985px]" data-name="fluent:live-20-filled">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 33 33">
         <g id="fluent:live-20-filled">
-          <path d={svgPaths.p457d980} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p457d980} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -524,7 +524,7 @@ function FluentLive20Filled1() {
     <div className="absolute left-[385px] size-[51px] top-[4349px]" data-name="fluent:live-20-filled">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 51 51">
         <g id="fluent:live-20-filled">
-          <path d={svgPaths.paa14600} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.paa14600} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -537,7 +537,7 @@ function Group1() {
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 18 21.5087">
         <g id="Group">
           <g id="Vector" />
-          <path clipRule="evenodd" d={svgPaths.pe75a580} fill="var(--fill-0, black)" fillRule="evenodd" id="Vector_2" />
+          <path clipRule="evenodd" d={svgPaths.pe75a580} fill="var(--fill-0, #09263f)" fillRule="evenodd" id="Vector_2" />
         </g>
       </svg>
     </div>
@@ -558,7 +558,7 @@ function Group2() {
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 31.5 37.6402">
         <g id="Group">
           <g id="Vector" />
-          <path clipRule="evenodd" d={svgPaths.pc6e3c80} fill="var(--fill-0, black)" fillRule="evenodd" id="Vector_2" />
+          <path clipRule="evenodd" d={svgPaths.pc6e3c80} fill="var(--fill-0, #09263f)" fillRule="evenodd" id="Vector_2" />
         </g>
       </svg>
     </div>
@@ -576,7 +576,7 @@ function MingcuteLiveFill1() {
 function Group3() {
   return (
     <div className="-translate-x-1/2 absolute contents left-[calc(50%-476px)] top-[6680px]">
-      <div className="-translate-x-1/2 absolute bg-[#1de5b5] h-[350px] left-[calc(50%-476px)] rounded-bl-[201px] rounded-br-[20px] rounded-tl-[201px] rounded-tr-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[6680px] w-[348px]" />
+      <div className="-translate-x-1/2 absolute bg-[#ffd700] h-[350px] left-[calc(50%-476px)] rounded-bl-[201px] rounded-br-[20px] rounded-tl-[201px] rounded-tr-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[6680px] w-[348px]" />
     </div>
   );
 }
@@ -759,7 +759,7 @@ function AkarIconsCross() {
     <div className="absolute left-[1185px] size-[24px] top-[9719px]" data-name="akar-icons:cross">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="akar-icons:cross">
-          <path d="M20 20L4 4M20 4L4 20" id="Vector" stroke="var(--stroke-0, black)" strokeLinecap="round" strokeWidth="2" />
+          <path d="M20 20L4 4M20 4L4 20" id="Vector" stroke="var(--stroke-0, #09263f)" strokeLinecap="round" strokeWidth="2" />
         </g>
       </svg>
     </div>
@@ -771,7 +771,7 @@ function AkarIconsCross1() {
     <div className="relative size-[24px]" data-name="akar-icons:cross">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="akar-icons:cross">
-          <path d={svgPaths.p13051a00} id="Vector" stroke="var(--stroke-0, black)" strokeLinecap="round" strokeWidth="2" />
+          <path d={svgPaths.p13051a00} id="Vector" stroke="var(--stroke-0, #09263f)" strokeLinecap="round" strokeWidth="2" />
         </g>
       </svg>
     </div>
@@ -783,7 +783,7 @@ function AkarIconsCross2() {
     <div className="relative size-[24px]" data-name="akar-icons:cross">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="akar-icons:cross">
-          <path d={svgPaths.p13051a00} id="Vector" stroke="var(--stroke-0, black)" strokeLinecap="round" strokeWidth="2" />
+          <path d={svgPaths.p13051a00} id="Vector" stroke="var(--stroke-0, #09263f)" strokeLinecap="round" strokeWidth="2" />
         </g>
       </svg>
     </div>
@@ -795,7 +795,7 @@ function AkarIconsCross3() {
     <div className="relative size-[24px]" data-name="akar-icons:cross">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="akar-icons:cross">
-          <path d={svgPaths.p13051a00} id="Vector" stroke="var(--stroke-0, black)" strokeLinecap="round" strokeWidth="2" />
+          <path d={svgPaths.p13051a00} id="Vector" stroke="var(--stroke-0, #09263f)" strokeLinecap="round" strokeWidth="2" />
         </g>
       </svg>
     </div>
@@ -807,7 +807,7 @@ function AkarIconsCross4() {
     <div className="relative size-[24px]" data-name="akar-icons:cross">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="akar-icons:cross">
-          <path d={svgPaths.p13051a00} id="Vector" stroke="var(--stroke-0, black)" strokeLinecap="round" strokeWidth="2" />
+          <path d={svgPaths.p13051a00} id="Vector" stroke="var(--stroke-0, #09263f)" strokeLinecap="round" strokeWidth="2" />
         </g>
       </svg>
     </div>
@@ -819,7 +819,7 @@ function AkarIconsCross5() {
     <div className="relative size-[24px]" data-name="akar-icons:cross">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="akar-icons:cross">
-          <path d={svgPaths.p13051a00} id="Vector" stroke="var(--stroke-0, black)" strokeLinecap="round" strokeWidth="2" />
+          <path d={svgPaths.p13051a00} id="Vector" stroke="var(--stroke-0, #09263f)" strokeLinecap="round" strokeWidth="2" />
         </g>
       </svg>
     </div>
@@ -831,7 +831,7 @@ function AkarIconsCross6() {
     <div className="relative size-[24px]" data-name="akar-icons:cross">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="akar-icons:cross">
-          <path d={svgPaths.p13051a00} id="Vector" stroke="var(--stroke-0, black)" strokeLinecap="round" strokeWidth="2" />
+          <path d={svgPaths.p13051a00} id="Vector" stroke="var(--stroke-0, #09263f)" strokeLinecap="round" strokeWidth="2" />
         </g>
       </svg>
     </div>
@@ -843,7 +843,7 @@ function AkarIconsCross7() {
     <div className="relative size-[24px]" data-name="akar-icons:cross">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="akar-icons:cross">
-          <path d={svgPaths.p13051a00} id="Vector" stroke="var(--stroke-0, black)" strokeLinecap="round" strokeWidth="2" />
+          <path d={svgPaths.p13051a00} id="Vector" stroke="var(--stroke-0, #09263f)" strokeLinecap="round" strokeWidth="2" />
         </g>
       </svg>
     </div>
@@ -855,7 +855,7 @@ function FamiconsCall() {
     <div className="absolute left-[88px] size-[21px] top-[150px]" data-name="famicons:call">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 21 21">
         <g id="famicons:call">
-          <path d={svgPaths.pea93a00} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.pea93a00} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -1111,11 +1111,11 @@ function Group8({ course }: { course?: PdpProps["course"] }) {
       <div className="absolute h-[198.888px] left-[967px] rounded-tl-[15px] rounded-tr-[15px] top-[143px] w-[407px]">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[15px] rounded-tr-[15px] size-full" src={course?.heroImageUrl ?? imgRectangle155.src} />
       </div>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold h-[33.508px] leading-[normal] left-[993.1px] not-italic text-[26px] text-black top-[365.67px] w-[180px]">{course?.discountedPrice ? fmtRupees(course.discountedPrice) : "₹59,000"}</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold h-[33.508px] leading-[normal] left-[993.1px] not-italic text-[26px] text-[#09263f] top-[365.67px] w-[180px]">{course?.discountedPrice ? fmtRupees(course.discountedPrice) : "₹59,000"}</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[18.376px] leading-[normal] left-[1180px] not-italic text-[14px] text-[rgba(0,0,0,0.5)] top-[378px] w-[100px] line-through">{course?.price ? fmtRupees(course.price) : "₹65,000"}</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[12.971px] leading-[normal] left-[993.1px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[405px] w-[226.638px]">Inclusive of all taxes• Easy EMI available</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[993.1px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[505px] whitespace-pre">{`Noida   Gurgaon   Bangalore`}</p>
-      <div className="absolute bg-[#1de5b5] h-[34px] left-[993px] rounded-[5px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] top-[430px] w-[114px]" />
+      <div className="absolute bg-[#ffd700] h-[34px] left-[993px] rounded-[5px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] top-[430px] w-[114px]" />
       <div className="absolute border border-[rgba(9,38,63,0.5)] border-solid h-[34px] left-[1114px] rounded-[5px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] top-[430px] w-[113px]" />
       <div className="absolute border border-[rgba(9,38,63,0.5)] border-solid h-[34px] left-[1234px] rounded-[5px] shadow-[0px_2px_10px_0px_rgba(0,0,0,0.1)] top-[430px] w-[114px]" />
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[12.971px] leading-[normal] left-[1024.84px] not-italic text-white text-[10px] top-[440px] w-[67.636px]">Classroom</p>
@@ -1124,7 +1124,7 @@ function Group8({ course }: { course?: PdpProps["course"] }) {
       <div className="absolute h-0 left-[1180px] top-[388px] w-[53px]">
         <div className="absolute inset-[-0.5px_0_0_0]">
           <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 53 0.5">
-            <line id="Line 16" stroke="var(--stroke-0, black)" strokeOpacity="0.5" strokeWidth="0.5" x2="53" y1="0.25" y2="0.25" />
+            <line id="Line 16" stroke="var(--stroke-0, #09263f)" strokeOpacity="0.5" strokeWidth="0.5" x2="53" y1="0.25" y2="0.25" />
           </svg>
         </div>
       </div>
@@ -1205,7 +1205,7 @@ export default function Pdp(props: PdpProps) {
               </div>
             ))}
           </div>
-          <Link href="#enroll" className="flex items-center justify-center bg-[#1de5b5] h-12 rounded-full font-semibold text-[#09263f] text-base mb-3">
+          <Link href="#enroll" className="flex items-center justify-center bg-[#ffd700] h-12 rounded-full font-semibold text-[#09263f] text-base mb-3">
             Sign up for Free Demo
           </Link>
           <div className="relative rounded-2xl overflow-hidden max-h-[180px]">
@@ -1239,7 +1239,7 @@ export default function Pdp(props: PdpProps) {
               </div>
             ))}
           </div>
-          <Link href="#enroll" id="enroll" className="flex items-center justify-center w-full bg-[#1de5b5] h-12 rounded-full font-semibold text-[#09263f] text-base mb-2">
+          <Link href="#enroll" id="enroll" className="flex items-center justify-center w-full bg-[#ffd700] h-12 rounded-full font-semibold text-[#09263f] text-base mb-2">
             Enroll Now
           </Link>
           <button className="flex items-center justify-center w-full h-11 rounded-full border border-[#09263f]/30 text-sm font-medium text-[#09263f]">
@@ -1283,7 +1283,7 @@ export default function Pdp(props: PdpProps) {
                     <ul className="px-4 pb-3 flex flex-col gap-1">
                       {mod.lessons.map((l, li) => (
                         <li key={li} className="text-sm text-[#09263f]/70 flex items-center gap-2">
-                          <span className="size-1.5 rounded-full bg-[#1de5b5] shrink-0" />
+                          <span className="size-1.5 rounded-full bg-[#ffd700] shrink-0" />
                           {l.title}
                         </li>
                       ))}
@@ -1481,7 +1481,7 @@ export default function Pdp(props: PdpProps) {
         <span className="leading-[normal] text-[16px]">&nbsp;</span>
         <span className="leading-[normal] text-[13px]">including taxes</span>
       </p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1116px] not-italic text-[20px] text-black text-center top-[691px] w-[64px]">₹48k</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1116px] not-italic text-[20px] text-[#09263f] text-center top-[691px] w-[64px]">₹48k</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[233px] not-italic text-[#09263f] text-[20px] text-center top-[387px] w-[30px]">{course?.classesCount ?? 65}</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1286px] not-italic text-[#09263f] text-[20px] text-center top-[688px] whitespace-nowrap">8 mo</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[347px] not-italic text-[#09263f] text-[20px] text-center top-[387px] w-[22px]">{course?.modules?.length ?? 11}</p>
@@ -1542,7 +1542,7 @@ export default function Pdp(props: PdpProps) {
       <div className="absolute bg-[#ffd700] h-[44px] left-[70px] rounded-[109px] top-[4610px] w-[250px]" />
       <div className="absolute bg-[#ffd700] h-[44px] left-[386px] rounded-[109px] top-[4610px] w-[250px]" />
       <div className="absolute bg-[#ffd700] h-[44px] left-[698px] rounded-[109px] top-[4610px] w-[250px]" />
-      <div className="absolute bg-[#1de5b5] h-[44px] left-[49px] rounded-[109px] top-[5683px] w-[177px]" />
+      <div className="absolute bg-[#ffd700] h-[44px] left-[49px] rounded-[109px] top-[5683px] w-[177px]" />
       <div className="absolute border-[0.5px] border-[rgba(9,38,63,0.5)] border-solid h-[44px] left-[49px] rounded-[109px] top-[5933px] w-[270px]" />
       <div className="absolute border-[0.5px] border-[rgba(9,38,63,0.5)] border-solid h-[49px] left-[52px] rounded-[15px] top-[1559px] w-[904px]" />
       <div className="absolute border-[0.5px] border-[rgba(9,38,63,0.5)] border-solid h-[49px] left-[52px] rounded-[15px] top-[1619px] w-[904px]" />
@@ -1851,21 +1851,21 @@ export default function Pdp(props: PdpProps) {
       <div className="absolute h-[246px] left-[956px] rounded-tl-[15px] rounded-tr-[15px] top-[7376px] w-[414px]">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[15px] rounded-tr-[15px] size-full" src={imgRectangle107.src} />
       </div>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[79px] not-italic text-[16px] text-black top-[7682px] w-[328px]">Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[525px] not-italic text-[16px] text-black top-[7682px] w-[323px]">Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[972px] not-italic text-[16px] text-black top-[7682px] w-[323px]">Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[79px] not-italic text-[16px] text-[#09263f] top-[7682px] w-[328px]">Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[525px] not-italic text-[16px] text-[#09263f] top-[7682px] w-[323px]">Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[972px] not-italic text-[16px] text-[#09263f] top-[7682px] w-[323px]">Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?</p>
       <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[79px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[7734px] w-[364px]">Statistical tests form the backbone of data-driven decision-making. They allow analysts to move beyond intuition and evaluate claims in a measurable w...</p>
       <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[525px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[7734px] w-[365px]">Statistical tests form the backbone of data-driven decision-making. They allow analysts to move beyond intuition and evaluate claims in a measurable w...</p>
       <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[972px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[7734px] w-[365px]">Statistical tests form the backbone of data-driven decision-making. They allow analysts to move beyond intuition and evaluate claims in a measurable w...</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[128px] not-italic text-[12px] text-black top-[7808px] whitespace-nowrap">S. Dutta</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[574px] not-italic text-[12px] text-black top-[7808px] whitespace-nowrap">S. Dutta</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1021px] not-italic text-[12px] text-black top-[7808px] whitespace-nowrap">S. Dutta</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[128px] not-italic text-[12px] text-[#09263f] top-[7808px] whitespace-nowrap">S. Dutta</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[574px] not-italic text-[12px] text-[#09263f] top-[7808px] whitespace-nowrap">S. Dutta</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1021px] not-italic text-[12px] text-[#09263f] top-[7808px] whitespace-nowrap">S. Dutta</p>
       <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[401px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[7640px] whitespace-nowrap">9 min read</p>
       <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[848px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[7640px] whitespace-nowrap">9 min read</p>
       <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1295px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[7640px] whitespace-nowrap">9 min read</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[79px] not-italic text-[#09263f] text-[16px] top-[7642px] whitespace-nowrap">Data Science</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[525px] not-italic text-[#ffd700] text-[16px] top-[7642px] whitespace-nowrap">Data Science</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[972px] not-italic text-[#1de5b5] text-[16px] top-[7642px] whitespace-nowrap">Data Science</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[972px] not-italic text-[#ffd700] text-[16px] top-[7642px] whitespace-nowrap">Data Science</p>
       <div className="absolute h-[40px] left-[79px] top-[7797px] w-[39px]">
         <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 39 40">
           <ellipse cx="19.5" cy="20" fill="var(--fill-0, #082962)" id="Ellipse 3" rx="19.5" ry="20" />
@@ -1917,7 +1917,7 @@ export default function Pdp(props: PdpProps) {
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[220px] not-italic text-[18px] text-white top-[8371px] whitespace-nowrap">Change the course of your career now</p>
       <div className="absolute bg-[#ffd700] h-[49px] left-[220px] rounded-[1000px] top-[8428px] w-[182px]" />
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[311px] not-italic text-[#09263f] text-[18px] text-center top-[8441px] whitespace-nowrap">Contact Us</p>
-      <div className="absolute bg-[#1de5b5] h-[41px] left-[66px] rounded-[80px] top-[9378px] w-[145px]" />
+      <div className="absolute bg-[#ffd700] h-[41px] left-[66px] rounded-[80px] top-[9378px] w-[145px]" />
       <div className="absolute bg-white border-[0.5px] border-[rgba(9,38,63,0.5)] border-solid h-[41px] left-[302px] rounded-[80px] top-[9378px] w-[144px]" />
       <div className="absolute bg-white border-[0.5px] border-[rgba(9,38,63,0.5)] border-solid h-[41px] left-[521px] rounded-[80px] top-[9378px] w-[148px]" />
       <div className="absolute bg-[#ffd700] h-[49px] left-[786px] rounded-[1000px] top-[9302px] w-[182px]" />
@@ -1934,16 +1934,16 @@ export default function Pdp(props: PdpProps) {
       <div className="absolute bg-white border-[#09263f] border-[0.5px] border-solid h-[62px] left-[786px] rounded-[178px] top-[9125px] w-[494px]" />
       <div className="absolute bg-white border-[#09263f] border-[0.5px] border-solid h-[62px] left-[786px] rounded-[178px] top-[8900px] w-[197px]" />
       <div className="absolute bg-white border-[#09263f] border-[0.5px] border-solid h-[62px] left-[1017px] rounded-[178px] top-[8900px] w-[263px]" />
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[786px] not-italic text-[16px] text-black top-[8755px] whitespace-nowrap">Name</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[66px] not-italic text-[16px] text-black top-[8789px] whitespace-nowrap">To gain insights into your profile and strategize your next career move!</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[786px] not-italic text-[16px] text-black top-[8981px] whitespace-nowrap">Email</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[786px] not-italic text-[16px] text-black top-[9093px] whitespace-nowrap">Select City</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[786px] not-italic text-[16px] text-black top-[8868px] whitespace-nowrap">Code</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1017px] not-italic text-[16px] text-black top-[8868px] whitespace-nowrap">Mobile</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[786px] not-italic text-[16px] text-[#09263f] top-[8755px] whitespace-nowrap">Name</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[66px] not-italic text-[16px] text-[#09263f] top-[8789px] whitespace-nowrap">To gain insights into your profile and strategize your next career move!</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[786px] not-italic text-[16px] text-[#09263f] top-[8981px] whitespace-nowrap">Email</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[786px] not-italic text-[16px] text-[#09263f] top-[9093px] whitespace-nowrap">Select City</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[786px] not-italic text-[16px] text-[#09263f] top-[8868px] whitespace-nowrap">Code</p>
+      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1017px] not-italic text-[16px] text-[#09263f] top-[8868px] whitespace-nowrap">Mobile</p>
       <p className="absolute font-['Inter:Light',sans-serif] font-light leading-[normal] left-[819px] not-italic text-[16px] text-[rgba(0,0,0,0.5)] top-[8808px] whitespace-nowrap">Your Name</p>
       <p className="absolute font-['Inter:Light',sans-serif] font-light leading-[normal] left-[819px] not-italic text-[16px] text-[rgba(0,0,0,0.5)] top-[9034px] whitespace-nowrap">Your Email</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light leading-[normal] left-[819px] not-italic text-[16px] text-black top-[9146px] whitespace-nowrap">Bangalore</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light leading-[normal] left-[819px] not-italic text-[16px] text-black top-[8921px] whitespace-nowrap">+91</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light leading-[normal] left-[819px] not-italic text-[16px] text-[#09263f] top-[9146px] whitespace-nowrap">Bangalore</p>
+      <p className="absolute font-['Inter:Light',sans-serif] font-light leading-[normal] left-[819px] not-italic text-[16px] text-[#09263f] top-[8921px] whitespace-nowrap">+91</p>
       <p className="absolute font-['Inter:Light',sans-serif] font-light leading-[normal] left-[1050px] not-italic text-[16px] text-[rgba(0,0,0,0.5)] top-[8921px] whitespace-nowrap">Mobile</p>
       <div className="absolute h-[58px] left-[786px] top-[9210px] w-[209px]" data-name="image 34">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
