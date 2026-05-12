@@ -580,6 +580,7 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
           <p className="text-white/70 text-sm mb-6">Change the course of your career now</p>
           <Link href="/contact" className="inline-flex items-center justify-center bg-[#ffd700] h-12 px-6 rounded-full font-semibold text-[#09263f] text-sm">Contact Us</Link>
         </section>
+        <Frame offices={offices} footerLinks={footerLinks} footerCities={footerCities} siteSettings={siteSettings} />
       </div>{/* /mobile layout */}
 
       {/* ═══ DESKTOP LAYOUT (hidden below lg) ═══ */}
@@ -746,7 +747,10 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
             <div className="w-full grid grid-cols-3 gap-10">
               {(posts ?? [undefined, undefined, undefined]).slice(0, 3).map((post, i) => {
                 const covers = [imgPic6, imgPic7, imgPic8];
-                const categoryColor = post?.category?.color || "#4c7fd2";
+                const categoryPalette = ["#4c7fd2", "#1de5b5", "#ff9b3d"];
+                const categoryFallbacks = ["Data Science", "AI & ML", "Analytics"];
+                const categoryColor = categoryPalette[i % categoryPalette.length];
+                const categoryLabel = post?.tags?.[0] ?? categoryFallbacks[i];
                 const authorAvatar = `https://ui-avatars.com/api/?name=AnalytixLabs&background=09263F&color=fff`; return (
                   <div key={i} className="bg-white rounded-[20px] shadow-[0px_4px_30px_0px_rgba(0,0,0,0.1)] flex flex-col h-full hover:shadow-[0px_8px_40px_0px_rgba(0,0,0,0.15)] transition-all group">
                     {/* Article Cover */}
@@ -754,14 +758,14 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
                       <img
                         alt={post?.title ?? ""}
                         className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500"
-                        src={post?.coverImage ?? covers[i]?.src ?? `https://placehold.co/640x360/09263F/FFFFFF?text=${post?.title?.split(' ').slice(0, 3).join(' ') || "Related Article"}`}
+                        src={post?.coverUrl ?? covers[i]?.src ?? `https://placehold.co/640x360/09263F/FFFFFF?text=${post?.title?.split(' ').slice(0, 3).join(' ') || "Related Article"}`}
                       />
                     </div>
 
                     <div className="flex flex-col flex-1 p-8">
                       <div className="flex justify-between items-center mb-4">
                         <span className="font-bold text-[14px]" style={{ color: categoryColor }}>
-                          {post?.category?.name ?? "Data Science"}
+                          {categoryLabel}
                         </span>
                         <span className="text-[12px] text-black/40 font-medium">9 min read</span>
                       </div>
@@ -822,7 +826,7 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
               </Link>
             </div>
           </div>
-        </section>
+        <Frame offices={offices} footerLinks={footerLinks} footerCities={footerCities} siteSettings={siteSettings} />
       </div>
 
     </div>
