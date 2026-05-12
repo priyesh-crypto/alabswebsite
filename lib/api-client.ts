@@ -14,7 +14,9 @@ import { Prisma } from "@prisma/client";
 type FetchOpts = { revalidate?: number; noStore?: boolean };
 
 function baseUrl(): string {
-  return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return "http://localhost:3000";
 }
 
 async function get<T>(path: string, opts: FetchOpts = {}): Promise<T | null> {
