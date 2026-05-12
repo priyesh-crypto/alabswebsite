@@ -650,6 +650,104 @@ export default function Contact({ topNav, footerLinks, footerCities, offices, si
   const o = offices ?? [];
   return (
     <div className="bg-white relative w-full overflow-x-hidden flex flex-col items-center" data-name="Contact">
+
+      {/* ═══ MOBILE LAYOUT (hidden on lg+) ═══ */}
+      <div className="block lg:hidden w-full">
+        {/* Page heading */}
+        <section className="bg-[#f4fafa] px-5 py-8 text-center">
+          <h1 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[32px]">CONTACT US</h1>
+          <p className="text-sm text-[#09263f]/50 mt-2">Analytixlabs is here to support you at every step of your journey.</p>
+        </section>
+
+        {/* Get in touch info */}
+        <section className="bg-[#07b3e7] px-5 py-8 text-white">
+          <h2 className="font-semibold text-2xl mb-4">Get in touch</h2>
+          <div className="flex flex-col gap-5">
+            <div>
+              <p className="text-lg font-semibold mb-0.5">Email</p>
+              <a href={`mailto:${siteSettings?.contactEmail ?? "info@analytixlabs.co.in"}`} className="text-base text-white/90">{siteSettings?.contactEmail ?? "info@analytixlabs.co.in"}</a>
+            </div>
+            <div>
+              <p className="text-lg font-semibold mb-0.5">Phone no.</p>
+              <a href={`tel:${siteSettings?.contactPhone ?? "+919555219007"}`} className="text-base text-white/90">{siteSettings?.contactPhone ?? "+91 95552 19007"}</a>
+            </div>
+            <div>
+              <p className="text-lg font-semibold mb-0.5">Timing</p>
+              <p className="text-base text-white/90">10:00 AM TO 07:00 PM</p>
+            </div>
+          </div>
+          <div className="mt-6">
+            <h2 className="font-semibold text-2xl mb-3">Sign up for demo</h2>
+            <Link href="/courses" className="inline-flex items-center justify-center bg-[#ffd700] h-12 px-6 rounded-full font-semibold text-[#09263f] text-sm">Sign up →</Link>
+          </div>
+        </section>
+
+        {/* Request callback form */}
+        <section className="bg-white px-5 py-8">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-xl mb-6">Request a Call back</h2>
+          <form className="flex flex-col gap-4">
+            <div>
+              <label className="block text-sm font-medium text-black mb-1">Name</label>
+              <input placeholder="Your Name" className="w-full border border-[#09263f]/30 rounded-full h-14 px-5 text-base outline-none focus:border-[#1de5b5]" />
+            </div>
+            <div className="flex gap-2">
+              <div className="w-24">
+                <label className="block text-sm font-medium text-black mb-1">Code</label>
+                <select className="w-full border border-[#09263f]/30 rounded-full h-14 px-3 text-sm bg-white outline-none focus:border-[#1de5b5]">
+                  <option>+91</option><option>+1</option><option>+44</option>
+                </select>
+              </div>
+              <div className="flex-1">
+                <label className="block text-sm font-medium text-black mb-1">Mobile</label>
+                <input placeholder="Mobile" className="w-full border border-[#09263f]/30 rounded-full h-14 px-5 text-base outline-none focus:border-[#1de5b5]" />
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-black mb-1">Email</label>
+              <input type="email" placeholder="Your Email" className="w-full border border-[#09263f]/30 rounded-full h-14 px-5 text-base outline-none focus:border-[#1de5b5]" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-black mb-1">Select City</label>
+              <select className="w-full border border-[#09263f]/30 rounded-full h-14 px-5 text-base bg-white outline-none focus:border-[#1de5b5]">
+                <option>Noida</option><option>Gurgaon</option><option>Bangalore</option>
+              </select>
+            </div>
+            <button type="submit" className="w-full bg-[#ffd700] h-14 rounded-full font-semibold text-[#09263f] text-base mt-1">Send</button>
+          </form>
+        </section>
+
+        {/* Office map cards */}
+        <section className="bg-[#f4fafa] px-5 py-8">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-xl mb-5">Our Offices</h2>
+          <div className="flex flex-col gap-5">
+            {(o.length ? o.map(office => ({
+              city: office.city,
+              address: [office.addressLine1, office.addressLine2].filter(Boolean).join(", "),
+              phone: office.phone,
+            })) : [
+              { city: "Noida", address: "Sector 62, Noida, UP", phone: siteSettings?.contactPhone ?? "+91 95552 19007" },
+              { city: "Gurgaon", address: "Sector 44, Gurgaon, Haryana", phone: siteSettings?.contactPhone ?? "+91 95552 19007" },
+              { city: "Bangalore", address: "Koramangala, Bangalore, Karnataka", phone: siteSettings?.contactPhone ?? "+91 95552 19007" },
+            ]).map((office, i) => (
+              <div key={i} className="bg-white rounded-2xl p-4 shadow-sm">
+                <h3 className="font-semibold text-[#09263f] text-base mb-1">{office.city ?? `Office ${i + 1}`}</h3>
+                <p className="text-sm text-[#09263f]/60 mb-3">{office.address ?? ""}</p>
+                {office.phone && <a href={`tel:${office.phone}`} className="text-sm text-[#19cf9e] font-semibold">{office.phone}</a>}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA Banner */}
+        <section className="bg-gradient-to-r from-[#094c80] from-[13%] to-[#2096cb] py-10 px-6">
+          <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-white text-xl leading-snug mb-2">{`"Unlock Insights. Enroll Now. Transform Tomorrow."`}</p>
+          <p className="text-white/70 text-sm mb-6">Change the course of your career now</p>
+          <Link href="/contact" className="inline-flex items-center justify-center bg-[#ffd700] h-12 px-6 rounded-full font-semibold text-[#09263f] text-sm">Contact Us</Link>
+        </section>
+      </div>{/* /mobile layout */}
+
+      {/* ═══ DESKTOP LAYOUT (hidden below lg) ═══ */}
+      <div className="hidden lg:flex w-full flex-col items-center">
       {/* Full-width backgrounds */}
       <div className="absolute bg-[#f4fafa] h-[335px] top-[64px] w-screen left-1/2 -translate-x-1/2" />
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-1/2 not-italic text-[#09263f] text-[42px] text-center top-[176px] w-[798px]">CONTACT US</p>
@@ -1012,6 +1110,7 @@ export default function Contact({ topNav, footerLinks, footerCities, offices, si
       <p className="absolute font-['Inter:Light',sans-serif] font-light leading-[normal] left-[752px] not-italic text-[16px] text-black top-[606px] whitespace-nowrap">+91</p>
       <p className="absolute font-['Inter:Light',sans-serif] font-light leading-[normal] left-[983px] not-italic text-[16px] text-[rgba(0,0,0,0.5)] top-[606px] whitespace-nowrap">Mobile</p>
       </div>{/* /absolute canvas */}
+      </div>{/* /desktop layout */}
 
     </div>
   );

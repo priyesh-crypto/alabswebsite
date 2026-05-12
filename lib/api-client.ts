@@ -130,3 +130,15 @@ export const getLearningModes = () =>
 
 export const getActiveMasterclass = () =>
   get<Masterclass | null>("/api/masterclass/active");
+
+export type BatchCourse = Prisma.CourseGetPayload<{
+  include: { category: true; batches: true };
+}>;
+
+export const getBatches = (params: { category?: string; location?: string } = {}) => {
+  const sp = new URLSearchParams();
+  if (params.category) sp.set("category", params.category);
+  if (params.location) sp.set("location", params.location);
+  const qs = sp.toString();
+  return get<BatchCourse[]>(`/api/batches${qs ? `?${qs}` : ""}`).then((r) => r ?? []);
+};

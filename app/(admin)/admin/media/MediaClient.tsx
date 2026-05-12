@@ -74,7 +74,7 @@ export default function MediaClient({ rows }: { rows: Asset[] }) {
           No files yet. Click <strong>Upload file</strong> to add one.
         </div>
       ) : (
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {rows.map(a => {
             const isImage = a.mimeType.startsWith("image/");
             return (

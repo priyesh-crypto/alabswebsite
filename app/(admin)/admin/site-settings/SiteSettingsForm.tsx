@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, useRef, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 
 type Form = {
@@ -86,9 +86,11 @@ export default function SiteSettingsForm({ initial }: { initial: Form | null }) 
   return (
     <form onSubmit={onSubmit} className="flex flex-col gap-8 bg-white rounded-xl border border-gray-200 p-6">
       <Section title="Brand">
-        <Input label="Logo URL" value={form.logoUrl} onChange={v => setField("logoUrl", v)} required />
-        <Input label="Favicon URL" value={form.faviconUrl} onChange={v => setField("faviconUrl", v)} />
-        <Input label="OG image URL" value={form.ogImageUrl} onChange={v => setField("ogImageUrl", v)} />
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <ImageUpload label="Logo *" value={form.logoUrl} onChange={v => setField("logoUrl", v)} />
+          <ImageUpload label="Favicon" value={form.faviconUrl} onChange={v => setField("faviconUrl", v)} hint="32×32 or 64×64 recommended" />
+          <ImageUpload label="OG / Share image" value={form.ogImageUrl} onChange={v => setField("ogImageUrl", v)} hint="1200×630 recommended" />
+        </div>
         <Input label="Primary color" value={form.primaryColor} onChange={v => setField("primaryColor", v)} placeholder="#09263f" />
       </Section>
 
@@ -100,7 +102,7 @@ export default function SiteSettingsForm({ initial }: { initial: Form | null }) 
       </Section>
 
       <Section title="Social links">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {SOCIAL_KEYS.map(key => (
             <Input
               key={key}
@@ -114,7 +116,7 @@ export default function SiteSettingsForm({ initial }: { initial: Form | null }) 
       </Section>
 
       <Section title="Stats" description="Used by hero counters and footer. Free-form key/value — leave blank to omit.">
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
           {STATS_KEYS.map(key => (
             <Input
               key={key}
@@ -173,6 +175,96 @@ function Section({
       </header>
       <div className="flex flex-col gap-4">{children}</div>
     </section>
+  );
+}
+
+function ImageUpload({
+  label,
+  value,
+  onChange,
+  hint,
+}: {
+  label: string;
+  value: string;
+  onChange: (url: string) => void;
+  hint?: string;
+}) {
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  async function handleFile(file: File) {
+    setError(null);
+    setUploading(true);
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      const res = await fetch("/api/admin/uploads", { method: "POST", body: fd });
+      if (!res.ok) throw new Error("Upload failed");
+      const { url } = (await res.json()) as { url: string };
+      onChange(url);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Upload failed");
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  return (
+    <div className="flex flex-col gap-1.5">
+      <span className="font-medium text-[#09263f] text-sm">{label}</span>
+      {value ? (
+        <div className="flex flex-col gap-2">
+          <div className="w-full h-24 rounded-lg border border-gray-200 overflow-hidden bg-gray-50 flex items-center justify-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={value} alt="" className="max-h-full max-w-full object-contain" />
+          </div>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => fileRef.current?.click()}
+              disabled={uploading}
+              className="text-xs font-semibold text-[#09263f] border border-gray-300 rounded-full px-3 py-1 hover:bg-gray-50 transition disabled:opacity-50"
+            >
+              {uploading ? "Uploading…" : "Replace"}
+            </button>
+            <button
+              type="button"
+              onClick={() => onChange("")}
+              className="text-xs font-semibold text-red-500 hover:text-red-700 transition"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+      ) : (
+        <button
+          type="button"
+          onClick={() => fileRef.current?.click()}
+          disabled={uploading}
+          className="w-full h-24 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center gap-1 text-gray-400 hover:border-[#1de5b5] hover:text-[#09263f] transition disabled:opacity-50"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+              d="M12 16v-8m0 0-3 3m3-3 3 3M6.5 19A4.5 4.5 0 0 1 2 14.5c0-2.18 1.54-4 3.5-4.38A7 7 0 0 1 19 12c0 .33-.02.65-.07.97A3.5 3.5 0 0 1 18.5 19h-12Z" />
+          </svg>
+          <span className="text-xs">{uploading ? "Uploading…" : "Upload"}</span>
+        </button>
+      )}
+      <input
+        ref={fileRef}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={e => {
+          const f = e.target.files?.[0];
+          if (f) handleFile(f);
+          e.target.value = "";
+        }}
+      />
+      {error && <p className="text-xs text-red-500">{error}</p>}
+      {hint && <p className="text-xs text-gray-400">{hint}</p>}
+    </div>
   );
 }
 

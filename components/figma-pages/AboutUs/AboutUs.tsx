@@ -831,8 +831,107 @@ function Frame({ offices, footerLinks, footerCities, siteSettings }: { offices?:
 export default function AboutUs({ topNav, footerLinks, footerCities, offices, siteSettings, testimonials, faqs }: AboutUsProps) {
   const t = testimonials ?? [];
   const faqList = faqs ?? [];
+  const aboutStats = (siteSettings?.stats ?? {}) as Record<string, string>;
   return (
     <div className="bg-white relative w-full overflow-x-hidden flex flex-col items-center" data-name="About us">
+
+      {/* ═══ MOBILE LAYOUT (hidden on lg+) ═══ */}
+      <div className="block lg:hidden w-full">
+        {/* Hero */}
+        <section className="bg-[#f4fafa] px-5 pt-8 pb-6 text-center">
+          <h1 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[26px] sm:text-[30px] leading-tight mb-3">
+            Others focus on completing a syllabus. We focus on{" "}
+            <span className="bg-clip-text bg-gradient-to-r from-[#19cf9e] from-[14%] to-[#07b3e7] to-[94%] text-transparent">building a career.</span>
+          </h1>
+          <p className="text-sm text-[#09263f]/60 mb-5">Over a decade of experience shaping real data careers.</p>
+          <Link href="/courses" className="inline-flex items-center justify-center bg-[#ffd700] h-12 px-6 rounded-full font-semibold text-[#09263f] text-sm">Explore Courses →</Link>
+        </section>
+
+        {/* Stats bar */}
+        <section className="bg-gradient-to-r from-[#094c80] to-[#2096cb] py-6 px-5">
+          <div className="grid grid-cols-2 gap-4">
+            {[
+              { val: aboutStats.candidates ?? "15,000+", label: "Candidates" },
+              { val: aboutStats.trainingHours ?? "130,000+", label: "Training Hours" },
+              { val: aboutStats.companies ?? "50+", label: "Companies" },
+              { val: aboutStats.avgRating ?? "9.7+", label: "Avg Rating" },
+            ].map((s, i) => (
+              <div key={i} className="text-center text-white">
+                <div className="text-2xl font-bold">{s.val}</div>
+                <div className="text-xs text-white/70">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Why Trust section */}
+        <section className="px-5 py-8">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl mb-6">Why Trust AnalytixLabs?</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              { color: "#d2faf0", title: "Placement Commitment", body: "We back our training with a clear commitment. Put in the work, and we ensure you land the right role." },
+              { color: "#fffad2", title: "Practical Curriculum", body: "Our syllabus evolves with the industry, and we teach it through real datasets and real business problems." },
+              { color: "#fff2fa", title: "Continuous Access", body: "Weekend batches, recorded sessions, and lifetime access to updated content. Built for working professionals." },
+              { color: "#f0fbff", title: "Interview Readiness", body: "Mock interviews, resume workshops, and real feedback loops. Designed to make interviews feel familiar." },
+              { color: "#d2faf0", title: "Lifetime Mentorship", body: "Learning doesn't stop when the batch ends. Our mentors stay with you through doubts and career decisions." },
+              { color: "#fff2fa", title: "Expert Instructors", body: "Our instructors are practitioners first. They bring years of hands-on experience from analytics roles." },
+            ].map((card, i) => (
+              <div key={i} className="rounded-2xl p-5" style={{ backgroundColor: card.color }}>
+                <h3 className="font-semibold text-[#09263f] text-base mb-2">{card.title}</h3>
+                <p className="text-sm text-[#09263f]/60 leading-relaxed">{card.body}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="bg-[#f4fafa] py-8 px-5">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl text-center mb-2">What Students Say About Us?</h2>
+          <p className="text-sm text-center text-[#09263f]/50 mb-6">True Stories, Transformative Career Experience</p>
+          {t.slice(0, 3).map((testimonial, i) => (
+            <div key={i} className="bg-white rounded-2xl p-5 mb-4 shadow-sm">
+              <div className="flex gap-3 items-start mb-3">
+                <div className="size-10 rounded-full overflow-hidden bg-gray-100 shrink-0">
+                  {testimonial.photoUrl && <img src={testimonial.photoUrl} className="size-full object-cover" alt="" />}
+                </div>
+                <div>
+                  <p className="font-semibold text-[#09263f] text-sm">{testimonial.name}</p>
+                  <p className="text-xs text-[#09263f]/60">{testimonial.role}</p>
+                </div>
+              </div>
+              <p className="text-sm text-[#09263f]/60 leading-relaxed">{testimonial.quote}</p>
+            </div>
+          ))}
+          {t.length === 0 && (
+            <div className="bg-white rounded-2xl p-5 shadow-sm">
+              <p className="text-sm text-[#09263f]/60 leading-relaxed">&ldquo;The course material is very easy to understand and the case studies were based on real time business problems.&rdquo;</p>
+              <p className="font-semibold text-[#09263f] text-sm mt-3">Piyush Ganar</p>
+            </div>
+          )}
+        </section>
+
+        {/* FAQs */}
+        <section className="bg-white py-8 px-5">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl mb-6">Frequently Asked Questions</h2>
+          <div className="flex flex-col gap-3">
+            {faqList.slice(0, 5).map((faq, i) => (
+              <details key={i} className="rounded-xl border border-gray-200 bg-[#f4fafa] p-4 group">
+                <summary className="font-semibold text-[#09263f] text-sm cursor-pointer list-none flex justify-between items-center gap-2">
+                  {faq.question}
+                  <span className="shrink-0 text-[#19cf9e] text-lg">+</span>
+                </summary>
+                <p className="text-sm text-[#09263f]/60 leading-relaxed mt-3">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+          <div className="mt-5 text-center">
+            <a href={`tel:${siteSettings?.contactPhone ?? ""}`} className="inline-flex items-center justify-center bg-[#19cf9e] h-12 px-6 rounded-full font-semibold text-white text-sm">Call Us</a>
+          </div>
+        </section>
+      </div>{/* /mobile layout */}
+
+      {/* ═══ DESKTOP LAYOUT (hidden below lg) ═══ */}
+      <div className="hidden lg:flex w-full flex-col items-center">
       {/* Full-width backgrounds */}
       <div className="absolute bg-[#f4fafa] h-[335px] top-[64px] w-screen left-1/2 -translate-x-1/2" />
       <div className="absolute bg-[#f4fafa] h-[687px] top-[2575px] w-screen left-1/2 -translate-x-1/2" />
@@ -1386,6 +1485,7 @@ export default function AboutUs({ topNav, footerLinks, footerCities, offices, si
       <FluentBuilding24Filled />
       <IconParkAddComputer />
       </div>{/* /absolute canvas */}
+      </div>{/* /desktop layout */}
     </div>
   );
 }

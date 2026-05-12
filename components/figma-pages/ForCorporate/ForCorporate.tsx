@@ -715,6 +715,153 @@ function Frame({ offices, footerLinks, footerCities, siteSettings }: { offices?:
 export default function ForCorporate({ topNav, footerLinks, footerCities, offices, siteSettings }: ForCorporateProps) {
   return (
     <div className="bg-white relative w-full overflow-x-hidden flex flex-col items-center" data-name="For Corporate">
+
+      {/* ═══ MOBILE LAYOUT (hidden at lg+) ═══ */}
+      <div className="block lg:hidden w-full">
+
+        {/* Hero */}
+        <section className="bg-[#f4fafa] px-5 pt-8 pb-10">
+          <h1 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[28px] sm:text-[34px] text-[#09263f] leading-[1.2] mb-3">
+            For{" "}
+            <span className="bg-clip-text bg-gradient-to-r from-[#1de5b5] from-[34%] to-[#07b3e7] to-[79%] text-transparent">
+              Corporates &amp; Enterprises
+            </span>
+          </h1>
+          <p className="text-sm text-[#09263f]/50 mb-6 leading-relaxed">
+            Build data-driven managers or upskill teams — AnalytixLabs trains in Data Science, AI, and ML.
+          </p>
+          <div className="relative max-w-[260px] mx-auto mb-6">
+            <img src={imgChatGptImageApr142026034518Pm3.src} alt="" className="w-full h-auto object-contain" />
+          </div>
+          <Link href="/contact" className="flex items-center justify-center bg-[#ffd700] h-12 rounded-full font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-base">
+            Get a Free Consultation
+          </Link>
+        </section>
+
+        {/* End-to-End Analytics Solutions */}
+        <section className="bg-white px-5 py-8">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl mb-1">End-to-End Analytics Solutions</h2>
+          <p className="text-sm text-[#09263f]/50 mb-6">Consulting, training, and staffing for data-driven growth.</p>
+          <div className="flex flex-col gap-5">
+            {[
+              { title: "Analytics Consulting & Solutions", desc: "A trusted provider since 2017, offering data analytics services including tool development, maintenance, and advanced statistical analysis.", bg: "#d2faf0", img: imgImg.src },
+              { title: "Analytics Capability Building", desc: "Expert-led, customized programs designed to help organizations fully leverage data through practical training and tailored case studies.", bg: "#fffad2", img: imgImg1.src },
+              { title: "Staffing & Recruitment", desc: "Supplying skilled, pre-screened analytics professionals for project-based roles, internships, and full-time positions.", bg: "#fff2fa", img: imgImg2.src },
+            ].map((card, i) => (
+              <div key={i} className="rounded-2xl overflow-hidden shadow-sm border border-black/10">
+                <img src={card.img} alt={card.title} className="w-full h-44 object-cover" />
+                <div className="p-4" style={{ background: card.bg }}>
+                  <h3 className="font-semibold text-[#09263f] text-base mb-2">{card.title}</h3>
+                  <p className="text-sm text-[#09263f]/60 leading-relaxed">{card.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Wide Array of Courses */}
+        <section className="bg-[#f4fafa] px-5 py-8">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl mb-2">Wide Array of Courses</h2>
+          <p className="text-sm text-[#09263f]/50 mb-5">Industry-relevant programs across technical, domain, and leadership tracks.</p>
+          <Link href="/courses" className="inline-flex items-center justify-center bg-[#ffd700] h-11 px-6 rounded-full font-semibold text-[#09263f] text-sm mb-6">
+            Explore Courses →
+          </Link>
+          <div className="flex flex-col gap-4">
+            {[
+              {
+                track: "Technical",
+                items: ["Analytics Reporting & Visualization", "Machine Learning Predictive Modeling", "Applied AI & Deep Learning", "Big Data & Cloud Computing"],
+              },
+              {
+                track: "Function / Domain",
+                items: ["Banking & Finance", "Marketing & Sales", "Retail Analytics", "Digital Analytics"],
+              },
+              {
+                track: "Management",
+                items: ["Analytics 101", "Analytics for Leaders", "Analytics Consulting", "Digital Transformation"],
+              },
+            ].map((col, i) => (
+              <div key={i} className="bg-white rounded-xl p-4 shadow-sm">
+                <h3 className="font-semibold text-[#09263f] text-base mb-3 pb-2 border-b border-[#09263f]/10">{col.track}</h3>
+                <ul className="flex flex-col gap-2">
+                  {col.items.map((item, j) => (
+                    <li key={j} className="flex items-center gap-2 text-sm text-[#09263f]/70">
+                      <svg className="size-4 shrink-0 text-[#19cf9e]" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Free Industry Reports */}
+        <section className="bg-white px-5 py-8">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl text-center mb-2">Free Industry Reports</h2>
+          <p className="text-sm text-[#09263f]/50 text-center mb-6">Access valuable insights and trends. Stay informed and make smarter career decisions.</p>
+          <div className="flex flex-col gap-4">
+            {[
+              { title: "Skill Gap 2025-26: Mapping India's AI Talent", img: imgRectangle52.src },
+              { title: "AI Skills in Demand – A Complete Playbook For 2026", img: imgRectangle54.src },
+              { title: "Data Science and AI Job Outlook", img: imgRectangle55.src },
+            ].map((report, i) => (
+              <div key={i} className="border border-[#09263f]/15 rounded-2xl overflow-hidden shadow-sm">
+                <img src={report.img} alt={report.title} className="w-full h-44 object-cover" />
+                <div className="p-4">
+                  <h3 className="font-semibold text-black text-base mb-3 leading-snug">{report.title}</h3>
+                  <button className="flex items-center justify-center w-full bg-[#1de5b5] h-11 rounded-full font-semibold text-white text-sm">
+                    Download
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Related Articles */}
+        <section className="bg-[#f4fafa] px-5 py-8">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl text-center mb-6">Related Articles</h2>
+          <div className="flex flex-col gap-4 mb-5">
+            {[imgRectangle51, imgRectangle53, imgRectangle107].map((img, i) => (
+              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-sm">
+                <img src={img.src} alt="" className="w-full h-40 object-cover" />
+                <div className="p-4">
+                  <p className="text-[#4c7fd2] text-xs font-semibold mb-1">Data Science</p>
+                  <h3 className="text-sm font-medium text-black mb-2 leading-snug">
+                    Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?
+                  </h3>
+                  <p className="text-xs text-black/50 line-clamp-2 mb-2">
+                    Statistical tests form the backbone of data-driven decision-making.
+                  </p>
+                  <span className="text-xs text-black/70">S. Dutta</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center">
+            <Link href="/blog" className="inline-flex items-center gap-1 bg-[#ffd700] h-11 px-6 rounded-full font-semibold text-[#09263f] text-sm">
+              Explore Blogs →
+            </Link>
+          </div>
+        </section>
+
+        {/* CTA Banner */}
+        <section className="bg-[#07b3e7] py-10 px-6">
+          <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-white text-xl leading-snug mb-2">
+            {`"Unlock Insights. Enroll Now. Transform Tomorrow."`}
+          </p>
+          <p className="text-white/70 text-sm mb-6">Change the course of your career now</p>
+          <Link href="/contact" className="inline-flex items-center justify-center bg-[#ffd700] h-12 px-6 rounded-full font-semibold text-[#09263f] text-sm">
+            Contact Us
+          </Link>
+        </section>
+      </div>{/* /mobile layout */}
+
+      {/* ═══ DESKTOP LAYOUT (hidden below lg) ═══ */}
+      <div className="hidden lg:flex w-full flex-col items-center">
       {/* Full-width backgrounds */}
       <div className="absolute bg-[#f4fafa] h-[335px] top-[64px] w-screen left-1/2 -translate-x-1/2" />
 
@@ -1037,6 +1184,7 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
       <div className="absolute bg-[#ffd700] h-[30px] left-[513px] rounded-br-[70px] rounded-tl-[23px] rounded-tr-[70px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[2223px] w-[120px]" />
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[574.5px] not-italic text-[#09263f] text-[14px] text-center top-[2229px] whitespace-nowrap">Latest</p>
       </div>{/* /absolute canvas */}
+      </div>{/* /desktop layout */}
     </div>
   );
 }

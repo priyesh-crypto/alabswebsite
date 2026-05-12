@@ -1,19 +1,11 @@
-/**
- * Admin shell — sidebar + top bar + content slot.
- *
- * The login route lives in a SEPARATE route group (`app/(admin-public)/admin/login/`)
- * so it does NOT inherit this layout. That keeps this file simple: by the time
- * this layout runs, the user is already authenticated (middleware redirects
- * unauth'd users to /admin/login) — we just verify the JWT and grab the user.
- */
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { readSession } from "@/lib/auth";
+import AdminShellClient from "./_components/AdminShellClient";
 import SignOutButton from "./_components/SignOutButton";
 
 export const dynamic = "force-dynamic";
 
-const NAV_GROUPS: { heading: string; items: { label: string; href: string }[] }[] = [
+const NAV_GROUPS = [
   {
     heading: "Overview",
     items: [{ label: "Dashboard", href: "/admin" }],
@@ -79,44 +71,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   if (!session) redirect("/admin/login");
 
   return (
-    <div className="min-h-screen bg-[#f4fafa] text-[#09263f]">
-      <div className="grid grid-cols-[260px_1fr] min-h-screen">
-        {/* Sidebar */}
-        <aside className="bg-white border-r border-gray-200 px-5 py-6 flex flex-col gap-6">
-          <Link href="/admin" className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-lg text-[#09263f]">
-            AnalytixLabs <span className="text-[#1de5b5]">Admin</span>
-          </Link>
-
-          <nav className="flex flex-col gap-5 text-sm">
-            {NAV_GROUPS.map(group => (
-              <div key={group.heading} className="flex flex-col gap-1">
-                <p className="text-[11px] uppercase tracking-wider text-gray-400 font-semibold mb-1">{group.heading}</p>
-                {group.items.map(item => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="px-3 py-2 rounded-md hover:bg-[#f4fafa] hover:text-[#09263f] text-[#09263f]/80 transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            ))}
-          </nav>
-
-          <div className="mt-auto pt-4 border-t border-gray-100 text-xs text-gray-500">
-            <p className="font-semibold text-[#09263f] truncate">{session.name}</p>
-            <p className="truncate">{session.email}</p>
-            <p className="text-[10px] uppercase tracking-wider mt-1 text-[#1de5b5] font-semibold">{session.role}</p>
-            <div className="mt-3">
-              <SignOutButton />
-            </div>
-          </div>
-        </aside>
-
-        {/* Content */}
-        <main className="p-8 overflow-x-hidden">{children}</main>
-      </div>
-    </div>
+    <AdminShellClient
+      navGroups={NAV_GROUPS}
+      userName={session.name}
+      userEmail={session.email}
+      userRole={session.role}
+      signOutButton={<SignOutButton />}
+    >
+      {children}
+    </AdminShellClient>
   );
 }

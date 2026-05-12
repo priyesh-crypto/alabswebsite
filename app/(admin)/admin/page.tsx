@@ -69,7 +69,7 @@ export default async function AdminDashboard() {
       </header>
 
       {/* Counts */}
-      <section className="grid grid-cols-4 gap-4">
+      <section className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
         <StatCard label="Courses" value={`${publishedCourseCount} / ${courseCount}`} href="/admin/courses" />
         <StatCard label="Leads (last 7d)" value={leadsLast7d} href="/admin/leads" />
         <StatCard label="Total leads" value={leadCount} href="/admin/leads" />
@@ -79,33 +79,51 @@ export default async function AdminDashboard() {
 
       {/* Recent leads */}
       <section className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-        <header className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+        <header className="flex items-center justify-between px-4 sm:px-5 py-4 border-b border-gray-100">
           <h2 className="font-semibold">Recent leads</h2>
           <Link href="/admin/leads" className="text-sm text-[#1de5b5] hover:underline">View all →</Link>
         </header>
         {recentLeads.length === 0 ? (
           <p className="px-5 py-8 text-sm text-gray-500 text-center">No leads yet.</p>
         ) : (
-          <table className="w-full text-sm">
-            <thead className="bg-gray-50 text-left text-xs uppercase tracking-wider text-gray-500">
-              <tr>
-                <th className="px-5 py-3 font-semibold">Name</th>
-                <th className="px-5 py-3 font-semibold">Email</th>
-                <th className="px-5 py-3 font-semibold">Source</th>
-                <th className="px-5 py-3 font-semibold">When</th>
-              </tr>
-            </thead>
-            <tbody>
+          <>
+            {/* Mobile cards */}
+            <ul className="sm:hidden divide-y divide-gray-100">
               {recentLeads.map(l => (
-                <tr key={l.id} className="border-t border-gray-100">
-                  <td className="px-5 py-3 font-semibold">{l.name}</td>
-                  <td className="px-5 py-3 text-gray-600">{l.email}</td>
-                  <td className="px-5 py-3 text-gray-600">{l.source}</td>
-                  <td className="px-5 py-3 text-gray-500">{l.createdAt.toLocaleString()}</td>
-                </tr>
+                <li key={l.id} className="px-4 py-3 flex flex-col gap-0.5">
+                  <span className="font-semibold text-sm">{l.name}</span>
+                  <span className="text-xs text-gray-500">{l.email}</span>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full font-semibold">{l.source}</span>
+                    <span className="text-[10px] text-gray-400">{l.createdAt.toLocaleDateString()}</span>
+                  </div>
+                </li>
               ))}
-            </tbody>
-          </table>
+            </ul>
+            {/* Desktop table */}
+            <div className="hidden sm:block overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead className="bg-gray-50 text-left text-xs uppercase tracking-wider text-gray-500">
+                  <tr>
+                    <th className="px-5 py-3 font-semibold">Name</th>
+                    <th className="px-5 py-3 font-semibold">Email</th>
+                    <th className="px-5 py-3 font-semibold">Source</th>
+                    <th className="px-5 py-3 font-semibold">When</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {recentLeads.map(l => (
+                    <tr key={l.id} className="border-t border-gray-100">
+                      <td className="px-5 py-3 font-semibold">{l.name}</td>
+                      <td className="px-5 py-3 text-gray-600">{l.email}</td>
+                      <td className="px-5 py-3 text-gray-600">{l.source}</td>
+                      <td className="px-5 py-3 text-gray-500 whitespace-nowrap">{l.createdAt.toLocaleString()}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
         )}
       </section>
     </div>

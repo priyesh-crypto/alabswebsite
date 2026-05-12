@@ -135,7 +135,16 @@ body {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+/* alias used by mobile marquee sections */
+@keyframes alp-marquee-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 @keyframes marquee-right {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+@keyframes alp-marquee-right {
   0%   { transform: translateX(-50%); }
   100% { transform: translateX(0); }
 }

@@ -126,14 +126,14 @@ export default function CourseEditorClient({
         </div>
       )}
 
-      {/* Tab bar */}
-      <div className="flex gap-0 border-b border-gray-200">
+      {/* Tab bar — scrollable on mobile */}
+      <div className="flex gap-0 border-b border-gray-200 overflow-x-auto scrollbar-none -mx-4 sm:mx-0 px-4 sm:px-0">
         {TABS.map(tab => (
           <button
             key={tab.key}
             type="button"
             onClick={() => setActiveTab(tab.key)}
-            className={`px-4 py-2.5 text-sm font-semibold border-b-2 -mb-px transition ${
+            className={`px-4 py-2.5 text-sm font-semibold border-b-2 -mb-px transition whitespace-nowrap shrink-0 ${
               activeTab === tab.key
                 ? "border-[#1de5b5] text-[#09263f]"
                 : "border-transparent text-gray-500 hover:text-[#09263f]"
@@ -145,10 +145,10 @@ export default function CourseEditorClient({
       </div>
 
       {/* Tab content */}
-      <div className="bg-white rounded-xl border border-gray-200 p-6">
+      <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
         {activeTab === "basics" && (
           <div className="flex flex-col gap-4 max-w-2xl">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <TextField label="Title" value={data.title} onChange={v => set("title", v)} required />
               <TextField label="Slug" value={data.slug} onChange={v => set("slug", v)} required hint="URL-safe, lowercase" />
             </div>
@@ -161,17 +161,17 @@ export default function CourseEditorClient({
             />
             <TextareaField label="Short description (card)" value={data.shortDesc} onChange={v => set("shortDesc", v)} rows={2} />
             <TextareaField label="Long description (overview)" value={data.longDesc} onChange={v => set("longDesc", v)} rows={6} />
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               <NumberField label="Duration (months)" value={data.durationMonths ?? 0} onChange={v => set("durationMonths", v)} min={0} />
               <NumberField label="Classes count" value={data.classesCount ?? 0} onChange={v => set("classesCount", v)} min={0} />
               <NumberField label="Hours count" value={data.hoursCount ?? 0} onChange={v => set("hoursCount", v)} min={0} />
             </div>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               <NumberField label="Rating (×10)" value={data.rating ?? 0} onChange={v => set("rating", v)} min={0} max={100} hint="e.g. 96 = 9.6" />
               <NumberField label="Alumni count" value={data.alumniCount ?? 0} onChange={v => set("alumniCount", v)} min={0} />
               <NumberField label="Sort order" value={data.order ?? 0} onChange={v => set("order", v)} min={0} />
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <MediaPicker label="Thumbnail" value={{ url: data.thumbnailUrl ?? "", alt: data.title }} onChange={v => set("thumbnailUrl", v.url)} />
               <MediaPicker label="Hero image" value={{ url: data.heroImageUrl ?? "", alt: data.title }} onChange={v => set("heroImageUrl", v.url)} />
             </div>
@@ -191,7 +191,7 @@ export default function CourseEditorClient({
               newItem={() => ({ mode: "online", label: "Online", price: 0, installments: 3, hasEmi: true, ctaLabel: "Enroll now", ctaHref: "", order: (data.pricing?.length ?? 0) })}
               renderItem={(row, _i, update) => (
                 <div className="flex flex-col gap-3">
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <SelectField
                       label="Mode"
                       value={row.mode}
@@ -204,12 +204,12 @@ export default function CourseEditorClient({
                     />
                     <TextField label="Display label" value={row.label} onChange={v => update({ ...row, label: v })} />
                   </div>
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                     <NumberField label="Price (₹)" value={row.price} onChange={v => update({ ...row, price: v })} min={0} />
                     <NumberField label="Struck price (₹)" value={row.priceStruck ?? 0} onChange={v => update({ ...row, priceStruck: v })} min={0} />
                     <NumberField label="Installments" value={row.installments} onChange={v => update({ ...row, installments: v })} min={1} max={36} />
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <TextField label="CTA label" value={row.ctaLabel} onChange={v => update({ ...row, ctaLabel: v })} />
                     <TextField label="CTA URL" value={row.ctaHref ?? ""} onChange={v => update({ ...row, ctaHref: v })} type="url" />
                   </div>
@@ -230,7 +230,7 @@ export default function CourseEditorClient({
               newItem={() => ({ title: "", summary: "", order: (data.modules?.length ?? 0), lessons: [] })}
               renderItem={(mod, _i, updateMod) => (
                 <div className="flex flex-col gap-3">
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <TextField label="Module title" value={mod.title} onChange={v => updateMod({ ...mod, title: v })} required />
                     <TextareaField label="Summary" value={mod.summary ?? ""} onChange={v => updateMod({ ...mod, summary: v })} rows={2} />
                   </div>
@@ -240,7 +240,7 @@ export default function CourseEditorClient({
                     onChange={lessons => updateMod({ ...mod, lessons })}
                     newItem={() => ({ title: "", duration: "", order: (mod.lessons?.length ?? 0) })}
                     renderItem={(lesson, _j, updateLesson) => (
-                      <div className="flex gap-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         <TextField label="Lesson title" value={lesson.title} onChange={v => updateLesson({ ...lesson, title: v })} />
                         <TextField label="Duration" value={lesson.duration ?? ""} onChange={v => updateLesson({ ...lesson, duration: v })} placeholder="45 min" />
                       </div>

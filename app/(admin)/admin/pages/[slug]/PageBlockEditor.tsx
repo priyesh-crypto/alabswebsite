@@ -99,7 +99,7 @@ export default function PageBlockEditor({
 
   return (
     <form onSubmit={onSubmit} className="flex flex-col gap-6 bg-white rounded-xl border border-gray-200 p-6">
-      <section className="grid grid-cols-2 gap-4">
+      <section className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <label className="flex flex-col gap-1.5 text-sm">
           <span className="font-medium text-[#09263f]">Page title</span>
           <input

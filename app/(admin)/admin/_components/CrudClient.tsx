@@ -13,14 +13,15 @@
  */
 
 import { useRouter } from "next/navigation";
-import { useState, type FormEvent } from "react";
+import { useState, useRef, type FormEvent } from "react";
 
 export type FieldDef =
   | { name: string; label: string; type: "text" | "url" | "email"; placeholder?: string; required?: boolean }
   | { name: string; label: string; type: "textarea"; rows?: number; required?: boolean }
   | { name: string; label: string; type: "number"; min?: number; max?: number; required?: boolean }
   | { name: string; label: string; type: "boolean" }
-  | { name: string; label: string; type: "select"; options: { value: string; label: string }[]; required?: boolean };
+  | { name: string; label: string; type: "select"; options: { value: string; label: string }[]; required?: boolean }
+  | { name: string; label: string; type: "image"; hint?: string; required?: boolean };
 
 export type ColumnDef<T> = {
   key: string;
@@ -71,25 +72,63 @@ export default function CrudClient<T extends { id: string }>({
   return (
     <div className="flex flex-col gap-4">
       {/* Search + create */}
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <input
           type="search"
           placeholder="Search…"
           value={search}
           onChange={e => setSearch(e.target.value)}
-          className="border border-gray-300 rounded-md h-10 px-3 text-sm w-72 outline-none focus:border-[#1de5b5]"
+          className="border border-gray-300 rounded-md h-10 px-3 text-sm w-full sm:w-72 outline-none focus:border-[#1de5b5]"
         />
         <button
           type="button"
           onClick={() => { setEditing(null); setCreating(true); }}
-          className="bg-[#1de5b5] text-[#09263f] rounded-full px-4 py-2 text-sm font-semibold hover:brightness-95 transition"
+          className="bg-[#1de5b5] text-[#09263f] rounded-full px-4 py-2 text-sm font-semibold hover:brightness-95 transition shrink-0"
         >
           + New
         </button>
       </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+      {/* Mobile card list */}
+      {filtered.length === 0 ? (
+        <div className="sm:hidden bg-white rounded-xl border border-gray-200 px-4 py-8 text-center text-gray-500 text-sm">
+          No rows.
+        </div>
+      ) : (
+        <ul className="sm:hidden flex flex-col divide-y divide-gray-100 bg-white rounded-xl border border-gray-200 overflow-hidden">
+          {filtered.map(row => (
+            <li key={row.id} className="px-4 py-3 flex flex-col gap-1">
+              {columns.map(c => (
+                <div key={c.key} className="flex gap-2 text-sm">
+                  <span className="text-gray-500 shrink-0 w-28 text-xs uppercase tracking-wider font-semibold pt-0.5">{c.label}</span>
+                  <span className="text-[#09263f] break-words min-w-0">
+                    {c.render ? c.render(row) : String((row as Record<string, unknown>)[c.key] ?? "")}
+                  </span>
+                </div>
+              ))}
+              <div className="flex gap-4 mt-2">
+                <button
+                  type="button"
+                  onClick={() => { setCreating(false); setEditing(row); }}
+                  className="text-[#1de5b5] font-semibold text-sm hover:underline"
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onDelete(row.id)}
+                  className="text-red-600 font-semibold text-sm hover:underline"
+                >
+                  Delete
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* Desktop table */}
+      <div className="hidden sm:block bg-white rounded-xl border border-gray-200 overflow-x-auto">
         <table className="w-full text-sm">
           <thead className="bg-gray-50 text-left text-xs uppercase tracking-wider text-gray-500">
             <tr>
@@ -203,11 +242,11 @@ function Drawer({
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-6" onClick={onCancel}>
+    <div className="fixed inset-0 z-50 bg-black/40 flex items-end sm:items-center justify-center sm:p-6" onClick={onCancel}>
       <form
         onSubmit={handleSubmit}
         onClick={e => e.stopPropagation()}
-        className="bg-white rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+        className="bg-white sm:rounded-xl shadow-xl max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto rounded-t-xl"
       >
         <header className="px-6 py-4 border-b border-gray-100 flex items-center justify-between sticky top-0 bg-white">
           <h2 className="font-semibold text-[#09263f]">{title}</h2>
@@ -245,6 +284,103 @@ function Drawer({
   );
 }
 
+function ImageUploadField({
+  label,
+  value,
+  onChange,
+  hint,
+  required,
+}: {
+  label: string;
+  value: string;
+  onChange: (url: string) => void;
+  hint?: string;
+  required?: boolean;
+}) {
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  async function handleFile(file: File) {
+    setError(null);
+    setUploading(true);
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      const res = await fetch("/api/admin/uploads", { method: "POST", body: fd });
+      if (!res.ok) throw new Error("Upload failed");
+      const { url } = (await res.json()) as { url: string };
+      onChange(url);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Upload failed");
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  return (
+    <div className="flex flex-col gap-1.5">
+      <span className="font-medium text-[#09263f] text-sm">
+        {label}
+        {required && <span className="text-red-500"> *</span>}
+      </span>
+
+      {value ? (
+        <div className="flex items-start gap-3">
+          <div className="relative w-36 h-24 rounded-lg border border-gray-200 overflow-hidden shrink-0 bg-gray-50">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={value} alt="" className="w-full h-full object-contain" />
+          </div>
+          <div className="flex flex-col gap-2 pt-1">
+            <button
+              type="button"
+              onClick={() => fileRef.current?.click()}
+              className="text-xs font-semibold text-[#09263f] border border-gray-300 rounded-full px-3 py-1.5 hover:bg-gray-50 transition"
+            >
+              {uploading ? "Uploading…" : "Replace"}
+            </button>
+            <button
+              type="button"
+              onClick={() => onChange("")}
+              className="text-xs font-semibold text-red-500 hover:text-red-700 transition text-left"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+      ) : (
+        <button
+          type="button"
+          onClick={() => fileRef.current?.click()}
+          disabled={uploading}
+          className="w-full h-28 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center gap-1.5 text-gray-400 hover:border-[#1de5b5] hover:text-[#09263f] transition disabled:opacity-50"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+              d="M12 16v-8m0 0-3 3m3-3 3 3M6.5 19A4.5 4.5 0 0 1 2 14.5c0-2.18 1.54-4 3.5-4.38A7 7 0 0 1 19 12c0 .33-.02.65-.07.97A3.5 3.5 0 0 1 18.5 19h-12Z" />
+          </svg>
+          <span className="text-xs font-medium">{uploading ? "Uploading…" : "Click to upload image"}</span>
+        </button>
+      )}
+
+      <input
+        ref={fileRef}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={e => {
+          const f = e.target.files?.[0];
+          if (f) handleFile(f);
+          e.target.value = "";
+        }}
+      />
+
+      {error && <p className="text-xs text-red-500">{error}</p>}
+      {hint && <p className="text-xs text-gray-400">{hint}</p>}
+    </div>
+  );
+}
+
 function FieldInput({ field, value, onChange }: { field: FieldDef; value: unknown; onChange: (v: unknown) => void }) {
   const labelRow = (
     <span className="font-medium text-[#09263f] text-sm">
@@ -252,6 +388,18 @@ function FieldInput({ field, value, onChange }: { field: FieldDef; value: unknow
       {"required" in field && field.required && <span className="text-red-500"> *</span>}
     </span>
   );
+
+  if (field.type === "image") {
+    return (
+      <ImageUploadField
+        label={field.label}
+        value={String(value ?? "")}
+        onChange={url => onChange(url)}
+        hint={field.hint}
+        required={field.required}
+      />
+    );
+  }
 
   if (field.type === "textarea") {
     return (

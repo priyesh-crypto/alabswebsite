@@ -1469,7 +1469,7 @@ const FALLBACK_CARDS = [
 // Self-contained course card. Positions are expressed relative to the card's
 // own 400×540 container so it can live inside a flex/scroll row rather than
 // being anchored to the 1440 px page canvas.
-function CourseCard({ course, idx }: { course?: Course; idx: number }) {
+function CourseCard({ course, idx, cardStyle }: { course?: Course; idx: number; cardStyle?: React.CSSProperties }) {
   const fb = FALLBACK_CARDS[idx % FALLBACK_CARDS.length]!;
   const b0 = course?.batches?.[0];
   const b1 = course?.batches?.[1];
@@ -1479,7 +1479,7 @@ function CourseCard({ course, idx }: { course?: Course; idx: number }) {
   return (
     <div
       className="relative bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] flex-none cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[0px_8px_32px_0px_rgba(0,0,0,0.22)] flex flex-col overflow-hidden snap-start"
-      style={{ width: "400px", minHeight: "560px" }}
+      style={{ width: "400px", minHeight: "560px", ...cardStyle }}
     >
       {/* Course thumbnail */}
       <div className="p-[11px_11px_0_11px]">
@@ -1574,16 +1574,16 @@ function FaqFlowSection({
   contactPhone?: string;
 }) {
   return (
-    <section className="w-screen relative left-1/2 -translate-x-1/2 bg-white flex justify-center py-[100px]" data-section="faq">
-      <div className="w-[1440px] px-[66px] relative">
-      <h2 className="text-center font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[40px]">
+    <section className="w-full bg-white flex justify-center py-[60px] lg:py-[100px]" data-section="faq">
+      <div className="w-full max-w-[1440px] px-4 sm:px-8 lg:px-[66px] relative">
+      <h2 className="text-center font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[28px] lg:text-[40px]">
         Frequently Asked Questions
       </h2>
-      <p className="text-center font-['Inter:Regular',sans-serif] font-normal text-[18px] text-[rgba(9,38,63,0.5)] mt-[24px] mb-[60px] mx-auto w-[988px]">
+      <p className="text-center font-['Inter:Regular',sans-serif] font-normal text-[16px] lg:text-[18px] text-[rgba(9,38,63,0.5)] mt-[16px] mb-[40px] lg:mb-[60px] mx-auto max-w-[988px]">
         Have Questions on how you benefit from the course?
       </p>
 
-      <div className="mx-auto w-[1067px] flex flex-col gap-4">
+      <div className="mx-auto w-full max-w-[1067px] flex flex-col gap-4">
         {FAQ_FALLBACK.map((fb, idx) => {
           const isOpen = openFaqId === idx;
           const question = faqs[idx]?.question ?? fb.question;
@@ -1637,6 +1637,7 @@ function FaqFlowSection({
             <p className="mt-2 font-['Inter:Regular',sans-serif] font-normal text-[#09263f] text-[16px] w-[749px]">
               Not sure which course is right for you? Talk to our program advisors and get personalized guidance on curriculum, career outcomes, and the best learning path based on your goals.
             </p>
+            <p className="hidden lg:block" aria-hidden="true" style={{ height: 0 }} />
           </div>
           <a
             href={contactPhone ? `tel:${contactPhone}` : "/contact"}
@@ -1843,8 +1844,301 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
         @keyframes alp-pulse-fade { 0%, 100% { opacity: 0.2; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.05); } }
         .alp-marquee-pause:hover { animation-play-state: paused !important; }
       `}</style>
-      {/* Absolute canvas — every Figma-positioned element above the FAQ lives in here.
-          Locked to h-[6177px] so the FAQ + footer that follow can flow naturally. */}
+      {/* ═══════════════════════════════════════════════════════════════════
+          MOBILE LAYOUT  (hidden on lg / ≥ 1024 px)
+          All sections use proper Tailwind flex / grid — no absolute px coords.
+          Desktop Figma canvas below shows on lg+ and is pixel-identical to Figma.
+      ═══════════════════════════════════════════════════════════════════ */}
+      <div className="block lg:hidden w-full">
+        {/* ── 1. HERO ── */}
+        <section className="px-5 pt-6 pb-8 bg-white">
+          <p className="text-xs font-semibold text-[#09263f] mb-3 opacity-70">{block(props, "hero.tagline") ?? sinceTagline ?? "Since 2011"}</p>
+          <h1 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[28px] sm:text-[34px] text-black leading-[1.2] mb-3">
+            <span>{block(props, "hero.title.prefix") ?? "Become a"} </span>
+            <span className="bg-clip-text bg-gradient-to-r from-[#1de5b5] from-[34%] to-[#07b3e7] to-[79%] text-transparent">{block(props, "hero.title.brand") ?? "Data Scientist"}</span>
+            <span> {block(props, "hero.title.suffix") ?? "with Real Industry Projects & Placement Support"}</span>
+          </h1>
+          <p className="text-sm text-black/50 mb-6 leading-relaxed">{block(props, "hero.subheading") ?? block(props, "hero.heading") ?? "Learn Data Science, AI and Data Analytics with 600+ learning hours and industry projects."}</p>
+          <div className="flex flex-col gap-3 mb-6">
+            <Link href={blockCta(props, "hero.cta1").url ?? "/courses"} className="flex items-center justify-center bg-[#1de5b5] h-12 rounded-full font-['Inter:Semi_Bold',sans-serif] font-semibold text-white text-base">
+              {blockCta(props, "hero.cta1").label ?? "Explore Courses"}
+            </Link>
+            <Link href={blockCta(props, "hero.cta2").url ?? "/contact"} className="flex items-center justify-center bg-[#ffd700] h-12 rounded-full font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-base">
+              {blockCta(props, "hero.cta2").label ?? "Book Free Career Consultation"}
+            </Link>
+          </div>
+          <div className="relative max-w-[280px] mx-auto mb-5">
+            <img alt="Students" src={imgAsset253X1.src} className="w-full h-auto object-contain" />
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex -space-x-2">
+              {[imgStudents, imgStudents1, imgStudents2, imgStudents3, imgStudents4].map((img, i) => (
+                <div key={i} className="size-8 rounded-full border-2 border-white overflow-hidden bg-gray-100">
+                  <img src={img.src} className="size-full object-cover" alt="" />
+                </div>
+              ))}
+            </div>
+            <div>
+              <div className="text-sm">{"⭐".repeat(Math.round(Number(stats.rating ?? 5)))}</div>
+              <span className="text-[11px] text-black/50">Rated by <strong>{stats.ratedBy ?? "5000+"}</strong> learners</span>
+            </div>
+          </div>
+        </section>
+        {/* Lead-capture cards */}
+        <div className="px-5 pb-6 flex gap-3">
+          <button className="flex-1 bg-[#f4fafa] border border-[#19cf9e] rounded-2xl p-4 text-left transition active:scale-[0.98]" onClick={() => { setLeadModalType("fresher"); setShowLeadModal(true); }}>
+            <p className="text-[#19cf9e] text-xs font-medium mb-0.5">{block(props, "leadCard1.bestFor") ?? "Best for"}</p>
+            <p className="text-black font-semibold text-sm">{block(props, "leadCard1.title") ?? "Fresher / Student"}</p>
+            <p className="text-black/50 text-xs mt-1">{block(props, "leadCard1.subtitle") ?? "Starting your data career"}</p>
+          </button>
+          <button className="flex-1 bg-[#f4fafa] border border-[#07b3e7] rounded-2xl p-4 text-left transition active:scale-[0.98]" onClick={() => { setLeadModalType("experienced"); setShowLeadModal(true); }}>
+            <p className="text-[#07b3e7] text-xs font-medium mb-0.5">{block(props, "leadCard2.bestFor") ?? "Best for"}</p>
+            <p className="text-black font-semibold text-sm">{block(props, "leadCard2.title") ?? "Experienced Professional"}</p>
+            <p className="text-black/50 text-xs mt-1">{block(props, "leadCard2.subtitle") ?? "Accelerate your career"}</p>
+          </button>
+        </div>
+
+        {/* ── 2. SPONSER ── */}
+        <div className="px-5 py-3 bg-white">
+          <img src={imgSponser.src} alt="" className="max-h-20 object-contain w-full" />
+        </div>
+
+        {/* ── 3. HIRING PARTNERS ── */}
+        <section className="bg-white py-8">
+          <p className="text-center font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-xl mb-1">
+            <span className="text-3xl">{stats.candidates ?? "15,000+"}</span> Candidates
+          </p>
+          <p className="text-center text-sm text-[#09263f]/50 mb-5">placed at top companies</p>
+          <div className="w-full flex items-center" style={{ overflow: "hidden", height: "64px" }}>
+            <div className="flex items-center gap-10 flex-none" style={{ width: "max-content", animation: "alp-marquee-left 20s linear infinite", willChange: "transform" }}>
+              {[
+                { src: imgBrand.src, h: 36 }, { src: imgBrand1.src, h: 40 }, { src: imgImage41.src, h: 42 }, { src: imgBrand2.src, h: 36 }, { src: imgBrand3.src, h: 38 },
+                { src: imgBrand.src, h: 36 }, { src: imgBrand1.src, h: 40 }, { src: imgImage41.src, h: 42 }, { src: imgBrand2.src, h: 36 }, { src: imgBrand3.src, h: 38 },
+              ].map((s, i) => (
+                <img key={i} src={s.src} alt="" className="object-contain flex-none opacity-70" style={{ height: s.h }} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── 4. CATEGORY MARQUEE PILLS ── */}
+        <div className="w-full py-4 bg-white" style={{ overflow: "hidden" }}>
+          <div className="flex items-center mb-3" style={{ overflow: "hidden", height: "44px" }}>
+            <div className="flex gap-4 items-center flex-none" style={{ width: "max-content", animation: "alp-marquee-left 20s linear infinite", willChange: "transform" }}>
+              {[
+                { text: pill(0,"Agentic AI"), color: categories[0]?.color ?? "#d2faf0" },
+                { text: pill(2,"Data Science"), color: categories[2]?.color ?? "#fffad2" },
+                { text: pill(4,"Data Analytics"), color: categories[4]?.color ?? "#f0fbff" },
+                { text: pill(6,"Business Analytics"), color: categories[6]?.color ?? "#fff2fa" },
+                { text: pill(0,"Agentic AI"), color: categories[0]?.color ?? "#d2faf0" },
+                { text: pill(2,"Data Science"), color: categories[2]?.color ?? "#fffad2" },
+                { text: pill(4,"Data Analytics"), color: categories[4]?.color ?? "#f0fbff" },
+                { text: pill(6,"Business Analytics"), color: categories[6]?.color ?? "#fff2fa" },
+              ].map((p, i) => (
+                <div key={i} className="flex-none px-5 py-2 rounded-full font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-sm whitespace-nowrap" style={{ background: p.color }}>{p.text}</div>
+              ))}
+            </div>
+          </div>
+          <div className="flex items-center" style={{ overflow: "hidden", height: "44px" }}>
+            <div className="flex gap-4 items-center flex-none" style={{ width: "max-content", animation: "alp-marquee-right 24s linear infinite", willChange: "transform" }}>
+              {[
+                { text: pill(1,"Full Stack AI"), color: categories[1]?.color ?? "#fffad2" },
+                { text: pill(3,"Data Visualization"), color: categories[3]?.color ?? "#d2faf0" },
+                { text: pill(5,"Bootcamp"), color: categories[5]?.color ?? "#fff2fa" },
+                { text: pill(7 % Math.max(categories.length,1),"Business Analytics"), color: categories[7 % Math.max(categories.length,1)]?.color ?? "#f0fbff" },
+                { text: pill(1,"Full Stack AI"), color: categories[1]?.color ?? "#fffad2" },
+                { text: pill(3,"Data Visualization"), color: categories[3]?.color ?? "#d2faf0" },
+                { text: pill(5,"Bootcamp"), color: categories[5]?.color ?? "#fff2fa" },
+                { text: pill(7 % Math.max(categories.length,1),"Business Analytics"), color: categories[7 % Math.max(categories.length,1)]?.color ?? "#f0fbff" },
+              ].map((p, i) => (
+                <div key={i} className="flex-none px-5 py-2 rounded-full font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-sm whitespace-nowrap" style={{ background: p.color }}>{p.text}</div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ── 5. COURSES ── */}
+        <section className="bg-[#f4fafa] py-8 px-5">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl mb-5">Our Courses – 6 Months Job Challenge</h2>
+          <div className="overflow-x-auto -mx-5 px-5 mb-5 scrollbar-none">
+            <div className="flex gap-2 w-max">
+              {([
+                categories[0]?.name ?? "Data Science & Analytics",
+                categories[1]?.name ?? "Artificial Intelligence",
+                categories[2]?.name ?? "Full Stack AI",
+                categories[3]?.name ?? "Agentic AI",
+              ]).map((label, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleCategoryClick(idx)}
+                  className={`shrink-0 px-4 py-2 rounded-xl text-sm font-semibold transition-colors ${activeCategory === idx ? "bg-[#19cf9e] text-white" : "bg-white border border-[#09263f]/20 text-[#09263f]"}`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className={`flex flex-col gap-4 transition-opacity duration-150 ${carouselFading ? "opacity-0" : "opacity-100"}`}>
+            {carouselCourses.slice(0, 3).map((course, i) => (
+              <CourseCard key={(course as Course)?.id ?? `mc-${i}`} course={course as Course} idx={i} cardStyle={{ width: "100%" }} />
+            ))}
+          </div>
+          <div className="mt-5 text-center">
+            <Link href="/courses" className="inline-flex items-center gap-2 text-[#19cf9e] font-semibold text-sm">View All Courses →</Link>
+          </div>
+        </section>
+
+        {/* ── 6. LEARNING MODES ── */}
+        <section className="bg-white py-8 px-5">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl text-center mb-2">Learning Modes</h2>
+          <p className="text-sm text-center text-[#09263f]/50 mb-6">Explore personalized learning to match your style</p>
+          <div className="flex flex-col gap-3 mb-5">
+            {[0, 1, 2].map(i => (
+              <button
+                key={i}
+                onClick={() => setActiveLearningMode(i)}
+                className={`w-full rounded-xl p-4 text-left font-semibold text-base transition-all duration-200 ${activeLearningMode === i ? "bg-gradient-to-r from-[#094c80] to-[#2096cb] text-white shadow-lg" : "border border-[#094c80]/30 bg-white text-[#09263f] shadow-sm"}`}
+              >
+                {learningModes[i]?.name ?? ["Weekday Bootcamp", "Weekday Batches", "Self-paced Blended"][i]}
+              </button>
+            ))}
+          </div>
+          <p className="text-sm text-[#09263f]/60 mb-5">
+            {learningModes[activeLearningMode]?.subtitle ?? (activeLearningMode === 0 ? "Intensive full-day sessions for rapid upskilling." : activeLearningMode === 1 ? "Experiential learning with in-person mentorship!" : "Learn at your own speed with weekend doubt sessions.")}
+          </p>
+          {(() => {
+            const MOBILE_MODE_MOCKS = [
+              { c1: { title: "Data Science Bootcamp", loc: "Noida", date: "14 May", time: "9:30 AM", seats: "08 Seats" }, c2: { title: "AI Engineering", loc: "Gurgaon", date: "21 May", time: "10:00 AM", seats: "12 Seats" } },
+              { c1: { title: "Business Analytics", loc: "Bengaluru", date: "15 May", time: "6:30 PM", seats: "10 Seats" }, c2: { title: "Data Visualization", loc: "Online", date: "22 May", time: "7:00 PM", seats: "05 Seats" } },
+              { c1: { title: "Machine Learning", loc: "Online", date: "Self-Paced", time: "Anytime", seats: "15 Seats" }, c2: { title: "Deep Learning", loc: "Online", date: "Self-Paced", time: "Anytime", seats: "20 Seats" } },
+            ];
+            const cur = MOBILE_MODE_MOCKS[activeLearningMode] ?? MOBILE_MODE_MOCKS[0]!;
+            return (
+              <div className="flex flex-col gap-3">
+                {[cur.c1, cur.c2].map((card, ci) => (
+                  <div key={ci} className="bg-[#094c80] rounded-xl p-4 text-white">
+                    <h3 className="font-semibold text-base mb-3">{card.title}</h3>
+                    <div className="grid grid-cols-2 gap-y-2 text-sm">
+                      <span className="text-white/50">Location</span><span>{card.loc}</span>
+                      <span className="text-white/50">Date</span><span>{card.date}</span>
+                      <span className="text-white/50">Time</span><span>{card.time}</span>
+                      <span className="text-white/50">Seats</span><span>{card.seats}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            );
+          })()}
+        </section>
+
+        {/* ── 7. INSTITUTE INTRO ── */}
+        <section className="bg-[#f4fafa] py-8 px-5">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl mb-4">{block(props, "about.heading") ?? "AnalytixLabs is a top-ranked Data Science Institute"}</h2>
+          <p className="text-sm text-[#09263f]/70 leading-relaxed mb-4">{block(props, "about.body") ?? "When it comes to industry-relevant data analytics courses and certifications, AnalytixLabs has led thousands of aspirants to desired job roles in data engineering, data science, AI, and business analytics since 2011."}</p>
+          <p className="text-sm text-[#09263f] font-medium mb-3">{block(props, "about.cityIntro") ?? "You can pick a data science course in:"}</p>
+          <div className="flex flex-wrap gap-2 mb-5">
+            {["Online", "Bangalore", "Gurgaon", "Noida"].map(city => (
+              <span key={city} className="px-3 py-1.5 rounded-full border border-[#09263f]/30 text-sm font-semibold text-[#09263f] bg-white">{city}</span>
+            ))}
+          </div>
+          <ul className="flex flex-col gap-2.5 mb-6">
+            {(blockList(props, "about.cityHighlights") ?? ["One to one mentorship", "Industry driven curriculum curated", "Experiential learning", "Extensive post-class sessions"]).map((item, i) => (
+              <li key={i} className="flex items-start gap-2.5 text-sm text-[#09263f]">
+                <svg className="size-4 shrink-0 mt-0.5 text-[#19cf9e]" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd"/>
+                </svg>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <Link href="/about" className="inline-flex items-center justify-center bg-[#19cf9e] h-12 px-6 rounded-full font-semibold text-white text-sm mb-6">Value Proposition</Link>
+          <div className="grid grid-cols-2 gap-3">
+            <img src={imgImg.src} alt="" className="rounded-2xl object-cover aspect-[3/4] w-full" />
+            <img src={imgImg1.src} alt="" className="rounded-2xl object-cover aspect-[3/4] w-full mt-6" />
+          </div>
+        </section>
+
+        {/* ── 8. CTA BANNER ── */}
+        <section className="bg-gradient-to-r from-[#094c80] from-[13%] to-[#2096cb] py-10 px-6">
+          <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-white text-xl leading-snug mb-2">{`"Unlock Insights. Enroll Now. Transform Tomorrow."`}</p>
+          <p className="text-white/70 text-sm mb-6">Change the course of your career now</p>
+          <Link href="/contact" className="inline-flex items-center justify-center bg-[#ffd700] h-12 px-6 rounded-full font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-sm">Contact Us</Link>
+        </section>
+
+        {/* ── 9. CALLBACK FORM ── */}
+        <section className="bg-white py-10 px-5">
+          <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl leading-snug mb-1">Excited?<br />Talk to Expert Counselor</p>
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-xl mt-3 mb-6">Request a Call back</h2>
+          <form onSubmit={handleFormSubmit} className="flex flex-col gap-4 mb-7">
+            <input value={formData.name} onChange={handleFormChange("name")} placeholder="Name" className="w-full border border-[#09263f]/30 rounded-full h-14 px-5 text-base outline-none focus:border-[#1de5b5]" />
+            <div className="flex gap-2">
+              <select value={formData.code} onChange={handleFormChange("code")} className="w-24 border border-[#09263f]/30 rounded-full h-14 px-3 text-sm outline-none focus:border-[#1de5b5] bg-white">
+                {COUNTRY_CODES.map(c => <option key={c.code + c.country} value={c.code}>{c.code}</option>)}
+              </select>
+              <input value={formData.mobile} onChange={handleFormChange("mobile")} placeholder="Mobile number" className="flex-1 border border-[#09263f]/30 rounded-full h-14 px-5 text-base outline-none focus:border-[#1de5b5]" />
+            </div>
+            <input type="email" value={formData.email} onChange={handleFormChange("email")} placeholder="Email" className="w-full border border-[#09263f]/30 rounded-full h-14 px-5 text-base outline-none focus:border-[#1de5b5]" />
+            <select value={formData.city} onChange={handleFormChange("city")} className="w-full border border-[#09263f]/30 rounded-full h-14 px-5 text-base outline-none focus:border-[#1de5b5] bg-white">
+              {CITY_LABELS.map(c => <option key={c}>{c}</option>)}
+            </select>
+            <label className="flex items-center gap-2 text-sm text-[#09263f]/70 cursor-pointer">
+              <input type="checkbox" checked={isNotRobot} onChange={e => setIsNotRobot(e.target.checked)} className="size-4 rounded" />
+              I am not a robot
+            </label>
+            {formError && <p className="text-red-500 text-sm">{formError}</p>}
+            {formSubmitted && <p className="text-[#19cf9e] text-sm font-medium">Thanks! We&rsquo;ll be in touch shortly.</p>}
+            <button type="submit" className="w-full bg-[#ffd700] h-14 rounded-full font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-base hover:brightness-95 transition">Send</button>
+          </form>
+          <div className="rounded-2xl overflow-hidden mb-4">
+            <iframe
+              key={`m-map-${activeLocation}`}
+              title={`${CITY_LABELS[activeLocation]} map (mobile)`}
+              src={mapEmbedUrl(CITY_LABELS[activeLocation])}
+              className="w-full border-0"
+              style={{ height: "280px" }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+          <div className="flex gap-2">
+            {([0, 1, 2] as const).map(idx => (
+              <button key={idx} onClick={() => setActiveLocation(idx)} className={`flex-1 h-11 rounded-full text-xs font-semibold transition-all ${activeLocation === idx ? "bg-[#19cf9e] text-white" : "bg-white border border-[#09263f]/20 text-[#09263f]"}`}>
+                {idx === 2 ? "Bengaluru" : CITY_LABELS[idx]}
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* ── 10. TESTIMONIALS ── */}
+        <section className="bg-[#f4fafa] py-8 px-5">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl text-center mb-2">What Students Say About Us?</h2>
+          <p className="text-sm text-center text-[#09263f]/50 mb-7">True Stories, Transformative Career Experience</p>
+          <div key={testimonialKey} className="flex flex-col items-center">
+            <div className="size-24 rounded-full border-4 border-white shadow-[0px_10px_30px_0px_rgba(0,0,0,0.15)] overflow-hidden mb-3 bg-white">
+              <img src={t0?.photoUrl ?? imgEllipse92.src} className="size-full object-cover" alt={t0?.name ?? ""} />
+            </div>
+            <p className="font-semibold text-[#09263f] text-base">{t0?.name ?? "Piyush Ganar"}</p>
+            <p className="text-sm text-[#09263f]/70 mt-0.5">{t0?.role ?? "Class of 2012 IIM Ahmedabad"}</p>
+            <p className="text-xs text-[#09263f]/50 mt-0.5 mb-4 text-center px-4">{t0?.company ? `(${t0.company})` : "(AGM Sales Marketing, Findability Sciences)"}</p>
+            <div className="flex gap-1 mb-4 text-base">{"⭐".repeat(5)}</div>
+            <p className="text-sm text-[#09263f]/60 text-center leading-relaxed mb-6">
+              {t0?.quote ?? "The course material is very easy to understand and the case studies were based on real time business problems."}
+            </p>
+          </div>
+          <div className="flex justify-center gap-2 mt-2">
+            {Array.from({ length: testimonialCount }).map((_, i) => (
+              <button key={i} onClick={() => handleTestimonialDot(i)} className="size-3 rounded-full border border-[#09263f] transition-colors" style={{ background: activeTestimonialIdx === i ? "#09263f" : "transparent" }} aria-label={`Testimonial ${i + 1}`} />
+            ))}
+          </div>
+        </section>
+      </div>{/* /mobile layout */}
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          DESKTOP LAYOUT  (hidden below lg / 1024 px)
+          Absolute canvas — every Figma-positioned element above the FAQ lives here.
+          Locked to h-[6177px] so the FAQ + footer that follow can flow naturally.
+      ═══════════════════════════════════════════════════════════════════ */}
+      <div className="hidden lg:block">
       <div className="relative w-[1440px] h-[6177px] self-center" data-section="absolute-canvas">
       {/* Legacy city pills removed — replaced by premium buttons below */}
       {/* Hero title — three slots with locked structure (prefix / brand-gradient / suffix).
@@ -2502,6 +2796,7 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgSponser.src} />
       </div>
       </div>{/* /absolute canvas */}
+      </div>{/* /desktop layout */}
 
       {/* ── FAQ section (flow-based) ────────────────────────────────────────────
           Per CLAUDE.md §15, this block is intentionally OUTSIDE the absolute canvas

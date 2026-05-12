@@ -772,6 +772,124 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
   } = props;
   return (
     <div className="bg-white relative w-full overflow-x-hidden flex flex-col items-center" data-name="Explore courses">
+
+      {/* ═══ MOBILE LAYOUT (hidden on lg+) ═══ */}
+      <div className="block lg:hidden w-full">
+        {/* Hero */}
+        <section className="bg-[#f4fafa] px-5 pt-6 pb-8">
+          <h1 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[28px] sm:text-[32px] leading-[1.2] mb-3">
+            <span>Explore </span>
+            <span className="bg-clip-text bg-gradient-to-r from-[#1de5b5] from-[34%] to-[#07b3e7] to-[79%] text-transparent">AI &amp; Data Science</span>
+            <span> Courses That Get You Job Ready</span>
+          </h1>
+          <p className="text-sm text-[#09263f]/50 mb-4">Find the Course That Moves Your Career Forward</p>
+          <div className="relative max-w-[260px] mx-auto">
+            <img src={imgAsset253X2.src} alt="" className="w-full h-auto object-contain" />
+          </div>
+        </section>
+
+        {/* Search + category pills */}
+        <section className="bg-white px-5 py-5">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-xl mb-4">All Courses</h2>
+          {/* Search */}
+          <div className="relative mb-4">
+            <input
+              type="search"
+              placeholder="Search courses..."
+              className="w-full border border-[#09263f]/30 rounded-xl h-12 pl-10 pr-4 text-sm outline-none focus:border-[#1de5b5]"
+            />
+            <svg className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-[#09263f]/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          {/* Category pills - horizontal scroll */}
+          <div className="overflow-x-auto -mx-5 px-5 scrollbar-none">
+            <div className="flex gap-2 w-max pb-1">
+              <Link href="/courses" className="shrink-0 px-4 py-2 bg-white rounded-full border border-[#09263f]/30 text-sm font-semibold text-[#09263f] whitespace-nowrap">All</Link>
+              {categories?.slice(0, 5).map((cat, i) => (
+                <Link key={i} href={`/courses?category=${encodeURIComponent(cat.slug ?? "")}`} className="shrink-0 px-4 py-2 bg-gradient-to-r from-[#094c80] to-[#2096cb] rounded-full text-sm font-semibold text-white whitespace-nowrap">{cat.name}</Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Course cards */}
+        <section className="px-5 py-5 flex flex-col gap-4">
+          {(courses?.length ? courses : [undefined, undefined, undefined, undefined, undefined, undefined]).slice(0, 6).map((course, i) => {
+            const imgs = [imgPic, imgPic1, imgPic2, imgPic3, imgPic4, imgPic5];
+            const fb = { title: ["Data Analytics", "Business Analytics", "Agentic AI", "Full Stack AI", "Data Science", "Machine Learning"][i] ?? "Course", classesCount: 46, hoursCount: 500 };
+            const b0 = course?.batches?.[0];
+            const b1 = course?.batches?.[1];
+            const b2 = course?.batches?.[2];
+            return (
+              <div key={i} className="bg-white border border-[rgba(0,0,0,0.15)] rounded-2xl shadow-[0px_4px_20px_0px_rgba(0,0,0,0.1)] overflow-hidden">
+                <div className="h-44 w-full overflow-hidden">
+                  <img src={course?.thumbnailUrl ?? imgs[i]?.src ?? imgPic.src} alt={course?.title ?? fb.title} className="w-full h-full object-cover" />
+                </div>
+                <div className="p-4">
+                  <div className="flex gap-2 justify-end mb-3">
+                    {[
+                      { label: course?.classesCount ? `${course.classesCount} Classes` : `${fb.classesCount} Classes`, bg: "#f0fbff" },
+                      { label: course?.hoursCount ? `${course.hoursCount}+ Hrs` : `${fb.hoursCount}+ Hrs`, bg: "#fffad2" },
+                    ].map((tag, ti) => (
+                      <div key={ti} className="px-2 py-1 rounded-full text-[10px] font-medium text-[#09263f]/50" style={{ backgroundColor: tag.bg }}>{tag.label}</div>
+                    ))}
+                  </div>
+                  <h3 className="font-semibold text-lg text-black mb-3">{course?.title ?? fb.title}</h3>
+                  <div className="flex gap-2 mb-3">
+                    {[
+                      { loc: b0?.location ?? "Noida", date: fmtDate(b0?.startDate) || "20 April", bg: "#f0fbff" },
+                      { loc: b1?.location ?? "Bangalore", date: fmtDate(b1?.startDate) || "13 April", bg: "#fffad2" },
+                      { loc: b2?.location ?? "Gurgaon", date: fmtDate(b2?.startDate) || "04 May", bg: "#fff2fa" },
+                    ].map((b, bi) => (
+                      <div key={bi} className="flex-1 flex flex-col items-center justify-center py-2 px-1 rounded-full min-h-[40px]" style={{ backgroundColor: b.bg }}>
+                        <span className="font-semibold text-[11px] text-black">{b.loc}</span>
+                        <span className="text-[9px] text-black/50">{b.date}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <Link href={course?.slug ? `/courses/${course.slug}` : "/courses"} className="flex items-center justify-center w-full bg-[#1de5b5] h-12 rounded-full font-semibold text-white text-sm mt-1">
+                    Explore Course
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
+        </section>
+
+        {/* Blog posts */}
+        <section className="bg-[#f4fafa] px-5 py-8">
+          <div className="flex flex-col gap-4 mb-5">
+            {(posts ?? [undefined, undefined, undefined]).slice(0, 3).map((post, i) => {
+              const covers = [imgPic6, imgPic7, imgPic8];
+              return (
+                <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-sm">
+                  <img src={post?.coverUrl ?? covers[i]?.src ?? imgPic6.src} alt={post?.title ?? ""} className="w-full h-40 object-cover" />
+                  <div className="p-4">
+                    <p className="text-[#4c7fd2] text-xs font-semibold mb-1">Data Science</p>
+                    <h3 className="text-sm font-medium text-black mb-2 leading-snug">{post?.title ?? "Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?"}</h3>
+                    <p className="text-xs text-black/50 line-clamp-2 mb-2">{post?.excerpt ?? "Statistical tests form the backbone of data-driven decision-making."}</p>
+                    <span className="text-xs text-black/70">{post?.authorName ?? "S. Dutta"}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="text-center">
+            <Link href="/blog" className="inline-flex items-center gap-1 bg-[#ffd700] h-11 px-6 rounded-full font-semibold text-[#09263f] text-sm">Explore Blogs →</Link>
+          </div>
+        </section>
+
+        {/* CTA Banner */}
+        <section className="bg-gradient-to-r from-[#094c80] from-[13%] to-[#2096cb] py-10 px-6">
+          <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-white text-xl leading-snug mb-2">{`"Unlock Insights. Enroll Now. Transform Tomorrow."`}</p>
+          <p className="text-white/70 text-sm mb-6">Change the course of your career now</p>
+          <Link href="/contact" className="inline-flex items-center justify-center bg-[#ffd700] h-12 px-6 rounded-full font-semibold text-[#09263f] text-sm">Contact Us</Link>
+        </section>
+      </div>{/* /mobile layout */}
+
+      {/* ═══ DESKTOP LAYOUT (hidden below lg) ═══ */}
+      <div className="hidden lg:flex w-full flex-col items-center">
       {/* Full-width backgrounds */}
       <div className="absolute bg-[#f4fafa] h-[335px] top-[64px] w-screen left-1/2 -translate-x-1/2" />
       <div className="absolute bg-[#f4fafa] h-[872px] top-[2004px] w-screen left-1/2 -translate-x-1/2" />
@@ -908,6 +1026,7 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
       </div>
       <div className="absolute bg-gradient-to-b from-[rgba(255,255,255,0)] h-[46px] left-0 to-white top-[353px] w-[1395px]" />
       </div>{/* /absolute canvas */}
+      </div>{/* /desktop layout */}
 
     </div>
   );

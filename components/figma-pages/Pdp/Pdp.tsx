@@ -1167,6 +1167,260 @@ export default function Pdp(props: PdpProps) {
   } = props;
   return (
     <div className="bg-white relative w-full overflow-x-hidden flex flex-col items-center" data-name="Pdp">
+
+      {/* ═══ MOBILE LAYOUT (hidden at lg+) ═══ */}
+      <div className="block lg:hidden w-full pb-20">
+
+        {/* Hero */}
+        <section className="bg-[#09263f] px-5 pt-7 pb-8">
+          <p className="text-xs text-white/50 mb-2">
+            <Link href="/" className="text-white/50">Home</Link>
+            {" / "}
+            <Link href="/courses" className="text-white/50">Courses</Link>
+            {" / "}
+            <span className="text-white/70">{course?.title ?? "Data Science"}</span>
+          </p>
+          <h1 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-white text-[26px] leading-[1.25] mb-3">
+            {course?.title ?? "Data Science Course with Certification & Placement"}
+          </h1>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-base">{"⭐".repeat(5)}</span>
+            <span className="text-white text-sm font-semibold">9.6 / 10</span>
+            <span className="text-white/50 text-xs">(20,000+ alumni)</span>
+          </div>
+          <p className="text-sm text-white/60 leading-relaxed mb-5">
+            {course?.shortDesc ?? "An extensive industry-relevant Data Science course with 8 weeks of Placement Assistance."}
+          </p>
+          {/* Stat pills */}
+          <div className="flex gap-2 flex-wrap mb-6">
+            {[
+              { label: String(course?.hoursCount ?? 675), sub: "Total Hours", bg: "#d2faf0" },
+              { label: String(course?.classesCount ?? 65), sub: "Live Classes", bg: "#fffad2" },
+              { label: String(course?.modules?.length ?? 11), sub: "Modules", bg: "#f0fbff" },
+              { label: "20K+", sub: "Alumni", bg: "#fff2fa" },
+            ].map((s, i) => (
+              <div key={i} className="flex flex-col items-center justify-center rounded-2xl px-4 py-2 min-w-[70px]" style={{ background: s.bg }}>
+                <span className="font-semibold text-[#09263f] text-lg leading-none">{s.label}</span>
+                <span className="text-[10px] text-[#09263f]/60 mt-0.5 whitespace-nowrap">{s.sub}</span>
+              </div>
+            ))}
+          </div>
+          <Link href="#enroll" className="flex items-center justify-center bg-[#1de5b5] h-12 rounded-full font-semibold text-[#09263f] text-base mb-3">
+            Sign up for Free Demo
+          </Link>
+          <div className="relative rounded-2xl overflow-hidden max-h-[180px]">
+            <img src={img197.src} alt="" className="w-full object-cover" style={{ maxHeight: "180px" }} />
+          </div>
+        </section>
+
+        {/* Pricing card */}
+        <section className="bg-white px-5 py-6 shadow-[0_4px_20px_0_rgba(0,0,0,0.08)]">
+          <div className="flex items-baseline gap-2 mb-1">
+            <span className="font-semibold text-[#09263f] text-2xl">
+              {course?.discountedPrice ? `₹${(course.discountedPrice / 100).toLocaleString("en-IN")}` : "₹48,000+"}
+            </span>
+            <span className="text-[#09263f]/40 text-sm">onwards</span>
+          </div>
+          {course?.emiPerMonth && (
+            <p className="text-sm text-[#09263f]/60 mb-3">EMI from ₹{(course.emiPerMonth / 100).toLocaleString("en-IN")}/month</p>
+          )}
+          <div className="flex flex-col gap-2 text-sm text-[#09263f]/70 mb-4">
+            {[
+              { icon: "▶", text: "Video lectures + Live sessions" },
+              { icon: "⬇", text: "Brochure download" },
+              { icon: "📺", text: "Lifetime LMS access" },
+              { icon: "⏱", text: `${course?.durationMonths ?? 8} months program` },
+              { icon: "⭐", text: "9.6 avg rating" },
+              { icon: "🤝", text: "8-week placement support" },
+            ].map((r, i) => (
+              <div key={i} className="flex items-center gap-2">
+                <span className="text-base w-5">{r.icon}</span>
+                <span>{r.text}</span>
+              </div>
+            ))}
+          </div>
+          <Link href="#enroll" id="enroll" className="flex items-center justify-center w-full bg-[#1de5b5] h-12 rounded-full font-semibold text-[#09263f] text-base mb-2">
+            Enroll Now
+          </Link>
+          <button className="flex items-center justify-center w-full h-11 rounded-full border border-[#09263f]/30 text-sm font-medium text-[#09263f]">
+            Add to Wishlist
+          </button>
+        </section>
+
+        {/* Overview */}
+        <section className="bg-white px-5 py-8 border-t border-[#09263f]/10">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-xl mb-4">Overview</h2>
+          <p className="text-sm text-[#09263f]/70 leading-relaxed mb-3">
+            {`AnalytixLabs' Advanced Certification in Data Science is a 700+ hour, 8-month program built for people with zero programming background.`}
+          </p>
+          <p className="text-sm text-[#09263f]/70 leading-relaxed">
+            The entire curriculum is designed in collaboration with NASSCOM FutureSkills Prime, aligned with what the industry needs.
+          </p>
+        </section>
+
+        {/* Curriculum */}
+        <section className="bg-[#f4fafa] px-5 py-8">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-xl mb-1">
+            {course?.title ? `${course.title} Curriculum` : "Data Science Course Curriculum"}
+          </h2>
+          <p className="text-sm text-[#09263f]/50 mb-5">{course?.modules?.length ?? 11} modules · 600+ hours · no prior coding experience needed</p>
+          <div className="flex flex-col gap-2">
+            {(course?.modules ?? Array.from({ length: 6 }, (_, i) => ({
+              id: String(i), title: ["Python & Statistics", "SQL & Data Wrangling", "Machine Learning", "Deep Learning & NLP", "BI & Visualisation", "Capstone Projects"][i] ?? `Module ${i + 1}`, summary: null, order: i, lessons: [],
+            }))).slice(0, 10).map((mod, idx) => {
+              const colors = ["#f0fbff", "#d2faf0", "#fff2fa", "#fffad2", "#d2faf0"];
+              return (
+                <details key={idx} className="bg-white rounded-xl shadow-sm group">
+                  <summary className="flex items-center gap-3 px-4 py-3 cursor-pointer list-none select-none min-h-[52px]">
+                    <span className="flex-none size-7 rounded-lg flex items-center justify-center font-semibold text-[#09263f] text-sm" style={{ background: colors[idx % colors.length] }}>{idx + 1}</span>
+                    <span className="flex-1 font-semibold text-[#09263f] text-sm">{mod.title}</span>
+                    <svg className="size-4 text-[#09263f]/40 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </summary>
+                  {mod.summary && <p className="px-4 pb-3 pt-1 text-sm text-[#09263f]/60">{mod.summary}</p>}
+                  {mod.lessons?.length > 0 && (
+                    <ul className="px-4 pb-3 flex flex-col gap-1">
+                      {mod.lessons.map((l, li) => (
+                        <li key={li} className="text-sm text-[#09263f]/70 flex items-center gap-2">
+                          <span className="size-1.5 rounded-full bg-[#1de5b5] shrink-0" />
+                          {l.title}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </details>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Tools */}
+        <section className="bg-white px-5 py-8">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-xl mb-4">Tools &amp; Technologies</h2>
+          {course?.tools?.length ? (
+            <div className="flex flex-wrap gap-2">
+              {course.tools.map((t, i) => (
+                <div key={i} className="px-3 py-1.5 rounded-full border border-[#09263f]/20 text-sm text-[#09263f] bg-[#f4fafa] flex items-center gap-1">
+                  {t.iconUrl && <img src={t.iconUrl} alt="" className="size-4 object-contain" />}
+                  {t.name}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <img src={imgTools.src} alt="Tools covered" className="w-full h-auto object-contain rounded-xl" />
+          )}
+        </section>
+
+        {/* Learning Modes */}
+        <section className="bg-[#f4fafa] px-5 py-8">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-xl mb-5">Learning Modes</h2>
+          <div className="flex flex-col gap-4">
+            {[
+              { mode: "Classroom & Bootcamp", price: "₹68,440/-", desc: "An immersive in-person experience designed to accelerate skill development." },
+              { mode: "Interactive Live Online", price: "₹59,000/-", desc: "Blend traditional classroom with real-time interactive sessions for busy schedules." },
+              { mode: "Blended eLearning", price: "₹53,100/-", desc: "Fuse classroom instruction with flexible eLearning modules." },
+            ].map((m, i) => (
+              <div key={i} className="bg-white rounded-xl p-4 shadow-sm border border-[#09263f]/10">
+                <h3 className="font-semibold text-[#09263f] text-base mb-1">{m.mode}</h3>
+                <p className="text-xl font-semibold text-[#09263f] mb-2">{m.price} <span className="text-xs font-normal text-[#09263f]/50">incl. taxes</span></p>
+                <p className="text-sm text-[#09263f]/60 mb-3">{m.desc}</p>
+                <Link href="#enroll" className="flex items-center justify-center w-full bg-[#ffd700] h-11 rounded-full font-semibold text-[#09263f] text-sm">Enroll now</Link>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Certifications */}
+        <section className="bg-white px-5 py-8">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-xl mb-5">Certifications</h2>
+          <div className="flex flex-col gap-4">
+            {(course?.certifications?.length ? course.certifications.map(c => ({ title: c.title, issuer: c.issuer, img: c.imageUrl ?? null })) : [
+              { title: "AnalytixLabs Certification", issuer: "AnalytixLabs", img: imgCertificate.src },
+              { title: "NASSCOM FutureSkills Prime", issuer: "NASSCOM / MeitY", img: imgCertificate1.src },
+            ]).map((cert, i) => (
+              <div key={i} className="border border-[#09263f]/15 rounded-xl p-4 flex items-center gap-4">
+                {cert.img && <img src={cert.img} alt={cert.title} className="w-16 h-16 object-contain shrink-0" />}
+                <div>
+                  <p className="font-semibold text-[#09263f] text-sm">{cert.title}</p>
+                  <p className="text-xs text-[#09263f]/50 mt-0.5">Issued by {cert.issuer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Career Support */}
+        <section className="bg-[#f4fafa] px-5 py-8">
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-xl mb-4">Career Support</h2>
+          <ul className="flex flex-col gap-4">
+            {[
+              { head: "Placement Readiness Program", body: "A focused 6–8 week module after certification with one-on-one resume reviews, mock interviews, and structured feedback." },
+              { head: "Diverse Job Opportunities", body: "50+ companies have hired our alumni. Active recruiter network and 20,000+ alumni community." },
+              { head: "Job Guarantee Program", body: "Meet the requirements and don't get placed? 50% fee refund." },
+              { head: "Continued Career Support", body: "Access to job postings, upskilling resources, and career counselling beyond the placement window." },
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <div className="size-2 rounded-full bg-[#09263f] mt-2 shrink-0" />
+                <div>
+                  <p className="font-semibold text-[#09263f] text-sm">{item.head}</p>
+                  <p className="text-sm text-[#09263f]/60 mt-0.5 leading-relaxed">{item.body}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <img src={imgCompanyLogo.src} alt="Hiring companies" className="w-full mt-6 h-auto object-contain opacity-70" />
+        </section>
+
+        {/* FAQs */}
+        {(course?.faqs?.length ?? 0) > 0 && (
+          <section className="bg-white px-5 py-8">
+            <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-xl mb-5">Frequently Asked Questions</h2>
+            <div className="flex flex-col gap-2">
+              {course!.faqs!.map((faq, i) => (
+                <details key={i} className="bg-[#f4fafa] rounded-xl group">
+                  <summary className="flex items-center justify-between gap-3 px-4 py-3 cursor-pointer list-none min-h-[52px]">
+                    <span className="font-medium text-[#09263f] text-sm">{faq.question}</span>
+                    <svg className="size-4 shrink-0 text-[#09263f]/40 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </summary>
+                  <p className="px-4 pb-3 pt-1 text-sm text-[#09263f]/70 leading-relaxed">{faq.answer}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* CTA Banner */}
+        <section className="bg-gradient-to-r from-[#094c80] from-[13%] to-[#2096cb] py-10 px-6">
+          <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-white text-xl leading-snug mb-2">
+            {`"Unlock Insights. Enroll Now. Transform Tomorrow."`}
+          </p>
+          <p className="text-white/70 text-sm mb-6">Change the course of your career now</p>
+          <Link href="/contact" className="inline-flex items-center justify-center bg-[#ffd700] h-12 px-6 rounded-full font-semibold text-[#09263f] text-sm">
+            Contact Us
+          </Link>
+        </section>
+      </div>{/* /mobile layout */}
+
+      {/* Sticky bottom CTA bar — mobile only */}
+      <div className="block lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-[#09263f]/15 px-4 py-3 shadow-[0_-4px_20px_0_rgba(0,0,0,0.1)]">
+        <div className="flex items-center gap-3">
+          <div className="flex-1">
+            <p className="text-xs text-[#09263f]/50 leading-none">Starting from</p>
+            <p className="font-semibold text-[#09263f] text-lg leading-tight">
+              {course?.discountedPrice ? `₹${(course.discountedPrice / 100).toLocaleString("en-IN")}` : "₹48,000+"}
+            </p>
+          </div>
+          <Link href="#enroll" className="flex items-center justify-center bg-[#1de5b5] h-12 px-6 rounded-full font-semibold text-[#09263f] text-sm whitespace-nowrap">
+            Enroll Now
+          </Link>
+        </div>
+      </div>
+
+      {/* ═══ DESKTOP LAYOUT (hidden below lg) ═══ */}
+      <div className="hidden lg:flex w-full flex-col items-center">
       {/* Main absolute canvas (locked to 1440px) */}
       <div className="relative w-[1440px] h-[10913px] flex-shrink-0">
         <div className="-translate-x-1/2 absolute h-[464px] left-[calc(50%+93.5px)] top-[68px] w-[441px]" data-name="Asset 25@3x 2">
@@ -2006,6 +2260,7 @@ export default function Pdp(props: PdpProps) {
       <div className="absolute bg-[#1de5b5] h-[44px] left-[63px] rounded-[109px] top-[497px] w-[193px]" />
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[164.5px] not-italic text-[#09263f] text-[14px] text-center top-[511px] whitespace-nowrap">Sign up for Demo</p>
       </div>{/* /absolute canvas */}
+      </div>{/* /desktop layout */}
     </div>
   );
 }
