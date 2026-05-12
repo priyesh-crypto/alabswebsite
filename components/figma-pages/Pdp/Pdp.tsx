@@ -47,7 +47,7 @@ function LineMdPlay() {
     <div className="absolute left-[1047px] size-[22px] top-[879px]" data-name="line-md:play">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 22 22">
         <g id="line-md:play">
-          <path d={svgPaths.p39787d00} id="Vector" stroke="var(--stroke-0, black)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+          <path d={svgPaths.p39787d00} id="Vector" stroke="var(--stroke-0, #09263f)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
         </g>
       </svg>
     </div>
@@ -59,7 +59,7 @@ function MaterialSymbolsDownloadRounded() {
     <div className="absolute left-[1053px] size-[19px] top-[907px]" data-name="material-symbols:download-rounded">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 19 19">
         <g id="material-symbols:download-rounded">
-          <path d={svgPaths.p25202e00} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p25202e00} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -71,7 +71,7 @@ function IcBaselineTv() {
     <div className="absolute left-[1055px] size-[15px] top-[933px]" data-name="ic:baseline-tv">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 15 15">
         <g id="ic:baseline-tv">
-          <path d={svgPaths.p17981300} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p17981300} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -84,7 +84,7 @@ function Group() {
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 13.3333 14.5427">
         <g id="Group">
           <g id="Vector" />
-          <path d={svgPaths.p3576d000} fill="var(--fill-0, black)" id="Vector_2" />
+          <path d={svgPaths.p3576d000} fill="var(--fill-0, #09263f)" id="Vector_2" />
         </g>
       </svg>
     </div>
@@ -104,7 +104,7 @@ function MaterialSymbolsStarOutlineRounded() {
     <div className="absolute left-[1053px] size-[20px] top-[979px]" data-name="material-symbols:star-outline-rounded">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
         <g id="material-symbols:star-outline-rounded">
-          <path d={svgPaths.p406a4f0} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p406a4f0} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -116,7 +116,7 @@ function IxSupport() {
     <div className="absolute left-[1055px] size-[16px] top-[1006px]" data-name="ix:support">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
         <g id="ix:support">
-          <path clipRule="evenodd" d={svgPaths.pec3e100} fill="var(--fill-0, black)" fillRule="evenodd" id="Vector" />
+          <path clipRule="evenodd" d={svgPaths.pec3e100} fill="var(--fill-0, #09263f)" fillRule="evenodd" id="Vector" />
         </g>
       </svg>
     </div>
@@ -146,11 +146,11 @@ function Group9() {
           <circle cx="19.5" cy="19.5" fill="var(--fill-0, #1DE5B5)" id="Ellipse 118" r="19.5" />
         </svg>
       </div>
-      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1111.5px] not-italic text-[10px] text-black text-center top-[1414px] w-[7px]">{`⭐ `}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1122.5px] not-italic text-[10px] text-black text-center top-[1414px] w-[7px]">{`⭐ `}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1133.5px] not-italic text-[10px] text-black text-center top-[1414px] w-[7px]">{`⭐ `}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1144.5px] not-italic text-[10px] text-black text-center top-[1414px] w-[7px]">{`⭐ `}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1155.5px] not-italic text-[10px] text-black text-center top-[1414px] w-[7px]">{`⭐ `}</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1111.5px] not-italic text-[10px] text-[#ffd700] text-center top-[1414px] w-[7px]">{`⭐ `}</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1122.5px] not-italic text-[10px] text-[#ffd700] text-center top-[1414px] w-[7px]">{`⭐ `}</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1133.5px] not-italic text-[10px] text-[#ffd700] text-center top-[1414px] w-[7px]">{`⭐ `}</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1144.5px] not-italic text-[10px] text-[#ffd700] text-center top-[1414px] w-[7px]">{`⭐ `}</p>
+      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium h-[9px] leading-[normal] left-[1155.5px] not-italic text-[10px] text-[#ffd700] text-center top-[1414px] w-[7px]">{`⭐ `}</p>
       <IconParkOutlineQuote />
     </div>
   );
@@ -224,7 +224,7 @@ function WeuiArrowOutlined() {
     <div className="h-[36px] relative w-[18px]" data-name="weui:arrow-outlined">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 18 36">
         <g id="weui:arrow-outlined">
-          <path d={svgPaths.p272be800} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p272be800} fill="var(--fill-0, #09263f)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -284,7 +284,7 @@ function MdiTickCircle() {
     <div className="absolute left-[78px] size-[24px] top-[3518px]" data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p2299ac0} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p2299ac0} fill="var(--fill-0, #19cf9e)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -344,7 +344,7 @@ function MdiTickCircle5() {
     <div className="absolute left-[72px] size-[17px] top-[4485px]" data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 17 17">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p1941ea00} fill="var(--fill-0, black)" id="Vector" />
+          <path d={svgPaths.p1941ea00} fill="var(--fill-0, #19cf9e)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -1413,7 +1413,7 @@ export default function Pdp(props: PdpProps) {
               {course?.discountedPrice ? `₹${(course.discountedPrice / 100).toLocaleString("en-IN")}` : "₹48,000+"}
             </p>
           </div>
-          <Link href="#enroll" className="flex items-center justify-center bg-[#1de5b5] h-12 px-6 rounded-full font-semibold text-[#09263f] text-sm whitespace-nowrap">
+          <Link href="#enroll" className="flex items-center justify-center bg-[#ffd700] h-12 px-6 rounded-full font-semibold text-[#09263f] text-sm whitespace-nowrap">
             Enroll Now
           </Link>
         </div>
@@ -1437,7 +1437,7 @@ export default function Pdp(props: PdpProps) {
           <div className="flex items-center gap-2">
             <div className="flex items-center text-[16px]">
               {Array.from({ length: 5 }).map((_, i) => (
-                <span key={i} className="text-black">⭐</span>
+                <span key={i} className="text-[#ffd700]">⭐</span>
               ))}
             </div>
             <p className="font-['Inter:Regular',sans-serif] font-normal text-[14px] text-[rgba(9,38,63,0.5)]">
@@ -1808,7 +1808,7 @@ export default function Pdp(props: PdpProps) {
         <img alt="" className="absolute inset-0 max-w-none object-bottom pointer-events-none size-full" src={imgCompanyLogo.src} />
       </div>
       <Group3 />
-      <div className="-translate-x-1/2 absolute h-[380px] left-[calc(50%+0.5px)] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[6664px] w-[565px]" style={{ backgroundImage: "linear-gradient(203.749457deg, rgb(215, 247, 246) 3.8424%, rgb(242, 250, 228) 97.744%)" }} />
+      <div className="-translate-x-1/2 absolute h-[380px] left-[calc(50%+0.5px)] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[6664px] w-[565px] bg-gradient-to-br from-[#f0fbff] to-[#d2faf0]" />
       <div className="-translate-x-1/2 absolute flex h-[350px] items-center justify-center left-[calc(50%+478px)] top-[6680px] w-[348px]">
         <div className="-scale-y-100 flex-none rotate-180">
           <div className="bg-[#07b3e7] h-[350px] relative rounded-bl-[201px] rounded-br-[20px] rounded-tl-[201px] rounded-tr-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] w-[348px]" />
@@ -1863,7 +1863,7 @@ export default function Pdp(props: PdpProps) {
       <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[401px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[7640px] whitespace-nowrap">9 min read</p>
       <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[848px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[7640px] whitespace-nowrap">9 min read</p>
       <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1295px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[7640px] whitespace-nowrap">9 min read</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[79px] not-italic text-[#4c7fd2] text-[16px] top-[7642px] whitespace-nowrap">Data Science</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[79px] not-italic text-[#09263f] text-[16px] top-[7642px] whitespace-nowrap">Data Science</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[525px] not-italic text-[#ffd700] text-[16px] top-[7642px] whitespace-nowrap">Data Science</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[972px] not-italic text-[#1de5b5] text-[16px] top-[7642px] whitespace-nowrap">Data Science</p>
       <div className="absolute h-[40px] left-[79px] top-[7797px] w-[39px]">
@@ -1978,7 +1978,7 @@ export default function Pdp(props: PdpProps) {
       <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-1/2 not-italic text-[18px] text-[rgba(9,38,63,0.5)] text-center top-[9615px] w-[988px]">Have Questions on how you benefit from the course?</p>
       <div className="absolute bg-[#19cf9e] h-[49px] left-[1040px] rounded-[1000px] top-[10741px] w-[182px]" />
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1129.5px] not-italic text-white text-[18px] text-center top-[10754px] whitespace-nowrap">Call Us</p>
-      <div className="-translate-x-1/2 absolute h-[261px] left-[calc(50%+0.5px)] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[9674px] w-[1067px]" style={{ backgroundImage: "linear-gradient(189.091777deg, rgb(215, 247, 246) 3.8424%, rgb(242, 250, 228) 97.744%)" }} />
+      <div className="-translate-x-1/2 absolute h-[261px] left-[calc(50%+0.5px)] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[9674px] w-[1067px] bg-gradient-to-br from-[#f0fbff] to-[#f4fafa]" />
       <div className="-translate-x-1/2 absolute bg-[#f4fafa] border-[0.5px] border-[rgba(0,0,0,0.5)] border-solid h-[82px] left-[calc(50%+0.5px)] rounded-[20px] top-[9950px] w-[1067px]" />
       <div className="-translate-x-1/2 absolute bg-[#f4fafa] border-[0.5px] border-[rgba(0,0,0,0.5)] border-solid h-[82px] left-[calc(50%+0.5px)] rounded-[20px] top-[10049px] w-[1067px]" />
       <div className="-translate-x-1/2 absolute bg-[#f4fafa] border-[0.5px] border-[rgba(0,0,0,0.5)] border-solid h-[82px] left-[calc(50%+0.5px)] rounded-[20px] top-[10148px] w-[1067px]" />
@@ -2238,8 +2238,8 @@ export default function Pdp(props: PdpProps) {
             <div className="absolute border border-[rgba(9,38,63,0.5)] border-solid h-[40px] left-[86px] rounded-[109px] top-[949px] w-[299px]" />
             <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[235.5px] not-italic text-[#09263f] text-[12px] text-center top-[961px] w-[187px]">Add to Wishlist</p>
 
-            <div className="absolute bg-[#1de5b5] h-[40px] left-[86px] rounded-[109px] top-[999px] w-[299px]" />
-            <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[235.5px] not-italic text-white text-[12px] text-center top-[1011px] w-[187px]">Sign up for Free Demo</p>
+            <div className="absolute bg-[#ffd700] h-[40px] left-[86px] rounded-[109px] top-[999px] w-[299px]" />
+            <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[235.5px] not-italic text-[#09263f] text-[12px] text-center top-[1011px] w-[187px]">Sign up for Free Demo</p>
 
             {/* Icons adjusted for relative container */}
             <div className="absolute left-[80px] size-[22px] top-[733px]"><LineMdPlay /></div>
@@ -2260,9 +2260,12 @@ export default function Pdp(props: PdpProps) {
       <div className="absolute h-[157px] left-[47px] top-[552px] w-[601px]" data-name="1 97">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={img197.src} />
       </div>
-      <div className="absolute bg-[#1de5b5] h-[44px] left-[63px] rounded-[109px] top-[497px] w-[193px]" />
+      <div className="absolute bg-[#ffd700] h-[44px] left-[63px] rounded-[109px] top-[497px] w-[193px]" />
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[164.5px] not-italic text-[#09263f] text-[14px] text-center top-[511px] whitespace-nowrap">Sign up for Demo</p>
       </div>{/* /absolute canvas */}
+      <div className="w-full">
+        <Frame offices={offices} footerLinks={footerLinks} footerCities={footerCities} siteSettings={siteSettings} />
+      </div>
       </div>{/* /desktop layout */}
     </div>
   );

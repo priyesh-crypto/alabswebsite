@@ -140,7 +140,7 @@ function Stars({ value, max = 5, size = 16 }: { value: number; max?: number; siz
           width={size}
           height={size}
           viewBox="0 0 20 20"
-          fill={i < Math.round(value) ? "#F5B400" : "#E5E7EB"}
+          fill={i < Math.round(value) ? "#ffd700" : "#E5E7EB"}
         >
           <path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 14.9l-5.3 2.8 1.1-5.9L1.5 7.7l5.9-.8z" />
         </svg>
@@ -152,8 +152,8 @@ function Stars({ value, max = 5, size = 16 }: { value: number; max?: number; siz
 function Check() {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="shrink-0 mt-0.5">
-      <circle cx="10" cy="10" r="9" fill="#C8F032" />
-      <path d="M5.5 10.5l3 3 6-6" stroke="#0B1B3B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="10" cy="10" r="9" fill="#19cf9e" />
+      <path d="M5.5 10.5l3 3 6-6" stroke="#09263f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -226,7 +226,7 @@ export default function CourseDetailPage({ course }: { course: PdpCourse }) {
   const starsTotal = course.pdpStarsTotal ?? 675;
 
   return (
-    <div className="bg-white text-[#0B1B3B] font-sans">
+    <div className="bg-white text-[#09263f] font-sans">
       <HeroSection
         course={course}
         pricing={pricing}
@@ -316,10 +316,10 @@ function HeroSection({
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-10 pb-20 lg:pb-0">
           {/* Left */}
           <div>
-            <p className="text-sm font-semibold text-[#0EC9C9] uppercase tracking-wide mb-3">
+            <p className="text-sm font-semibold text-[#07b3e7] uppercase tracking-wide mb-3">
               {course.category.name}
             </p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#0B1B3B] mb-4">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#09263f] mb-4">
               {course.title}
             </h1>
             <p className="text-base md:text-lg text-[#475569] mb-6 max-w-2xl">
@@ -334,10 +334,10 @@ function HeroSection({
                 </span>
               </div>
               <div className="text-sm text-[#475569]">
-                <span className="font-semibold text-[#0B1B3B]">{starsTotal}</span> Reviews
+                <span className="font-semibold text-[#09263f]">{starsTotal}</span> Reviews
               </div>
               <div className="text-sm text-[#475569]">
-                <span className="font-semibold text-[#0B1B3B]">{alumniText}</span> Alumni
+                <span className="font-semibold text-[#09263f]">{alumniText}</span> Alumni
               </div>
             </div>
 
@@ -347,7 +347,7 @@ function HeroSection({
                   key={i}
                   className="bg-white border border-[#E5E7EB] rounded-2xl p-4 text-center shadow-sm"
                 >
-                  <div className="text-2xl font-bold text-[#0B1B3B]">{tile.value}</div>
+                  <div className="text-2xl font-bold text-[#09263f]">{tile.value}</div>
                   <div className="text-xs text-[#475569] mt-1">{tile.label}</div>
                 </div>
               ))}
@@ -364,8 +364,8 @@ function HeroSection({
                   onClick={() => setMode(m)}
                   className={`flex-1 text-xs font-semibold py-2 rounded-lg capitalize transition ${
                     mode === m
-                      ? "bg-[#0B1B3B] text-white"
-                      : "text-[#475569] hover:text-[#0B1B3B]"
+                      ? "bg-[#09263f] text-white"
+                      : "text-[#475569] hover:text-[#09263f]"
                   }`}
                 >
                   {m === "elearning" ? "E-learning" : m}
@@ -376,7 +376,7 @@ function HeroSection({
             {activePricing ? (
               <div className="mb-5">
                 <div className="flex items-baseline gap-3">
-                  <span className="text-3xl font-bold text-[#0B1B3B]">
+                  <span className="text-3xl font-bold text-[#09263f]">
                     {inr(activePricing.price)}
                   </span>
                   {activePricing.priceStruck ? (
@@ -389,7 +389,7 @@ function HeroSection({
                   <p className="text-xs text-[#475569] mt-1">{course.pdpTaxNote}</p>
                 )}
                 {course.pdpEmiNote && (
-                  <p className="text-xs text-[#0EC9C9] font-semibold mt-1">
+                  <p className="text-xs text-[#07b3e7] font-semibold mt-1">
                     {course.pdpEmiNote}
                   </p>
                 )}
@@ -407,7 +407,7 @@ function HeroSection({
                   {cities.map((c) => (
                     <span
                       key={c}
-                      className="text-xs font-medium bg-[#F7F8FA] text-[#0B1B3B] px-2.5 py-1 rounded-full border border-[#E5E7EB]"
+                      className="text-xs font-medium bg-[#F7F8FA] text-[#09263f] px-2.5 py-1 rounded-full border border-[#E5E7EB]"
                     >
                       {c}
                     </span>
@@ -418,7 +418,7 @@ function HeroSection({
 
             <button
               type="button"
-              className="w-full bg-[#C8F032] text-[#0B1B3B] font-bold py-3 rounded-xl hover:brightness-95 transition mb-2"
+              className="w-full bg-[#ffd700] text-[#09263f] font-bold py-3 rounded-xl hover:brightness-95 transition mb-2"
             >
               Sign up for Demo
             </button>
@@ -426,21 +426,21 @@ function HeroSection({
               {course.brochureUrl ? (
                 <a
                   href={course.brochureUrl}
-                  className="text-center text-sm font-semibold border border-[#0B1B3B] text-[#0B1B3B] py-2.5 rounded-xl hover:bg-[#F7F8FA] transition"
+                  className="text-center text-sm font-semibold border border-[#09263f] text-[#09263f] py-2.5 rounded-xl hover:bg-[#F7F8FA] transition"
                 >
                   Download Syllabus
                 </a>
               ) : (
                 <button
                   type="button"
-                  className="text-sm font-semibold border border-[#0B1B3B] text-[#0B1B3B] py-2.5 rounded-xl hover:bg-[#F7F8FA] transition"
+                  className="text-sm font-semibold border border-[#09263f] text-[#09263f] py-2.5 rounded-xl hover:bg-[#F7F8FA] transition"
                 >
                   Download Syllabus
                 </button>
               )}
               <button
                 type="button"
-                className="text-sm font-semibold border border-[#0B1B3B] text-[#0B1B3B] py-2.5 rounded-xl hover:bg-[#F7F8FA] transition"
+                className="text-sm font-semibold border border-[#09263f] text-[#09263f] py-2.5 rounded-xl hover:bg-[#F7F8FA] transition"
               >
                 Contact Us
               </button>
@@ -454,7 +454,7 @@ function HeroSection({
     <div className="fixed bottom-0 inset-x-0 z-50 p-3 bg-white border-t border-[#E5E7EB] shadow-lg lg:hidden">
       <button
         type="button"
-        className="w-full bg-[#C8F032] text-[#0B1B3B] font-bold py-3.5 rounded-xl hover:brightness-95 transition text-base"
+        className="w-full bg-[#ffd700] text-[#09263f] font-bold py-3.5 rounded-xl hover:brightness-95 transition text-base"
         onClick={() => {
           const el = document.getElementById("contact");
           el?.scrollIntoView({ behavior: "smooth" });
@@ -488,7 +488,7 @@ function StickyAnchorNav() {
           <a
             key={it.id}
             href={`#${it.id}`}
-            className="text-sm font-semibold text-[#475569] hover:text-[#0B1B3B] px-3 py-3 whitespace-nowrap border-b-2 border-transparent hover:border-[#C8F032] transition"
+            className="text-sm font-semibold text-[#475569] hover:text-[#09263f] px-3 py-3 whitespace-nowrap border-b-2 border-transparent hover:border-[#ffd700] transition"
           >
             {it.label}
           </a>
@@ -535,7 +535,7 @@ function OverviewSection({
               key={i}
               className="bg-[#F7F8FA] border border-[#E5E7EB] rounded-2xl p-5 text-center"
             >
-              <div className="text-xl md:text-2xl font-bold text-[#0B1B3B]">{s.value}</div>
+              <div className="text-xl md:text-2xl font-bold text-[#09263f]">{s.value}</div>
               <div className="text-xs text-[#475569] mt-1 uppercase tracking-wide">{s.label}</div>
             </div>
           ))}
@@ -554,7 +554,7 @@ function OverviewSection({
         <button
           type="button"
           onClick={() => setExpanded((e) => !e)}
-          className="text-sm font-semibold text-[#0EC9C9] hover:underline mt-3"
+          className="text-sm font-semibold text-[#07b3e7] hover:underline mt-3"
         >
           {expanded ? "Show less" : "Read more"}
         </button>
@@ -565,7 +565,7 @@ function OverviewSection({
               <div key={i} className="flex gap-3 bg-[#F7F8FA] rounded-2xl p-5">
                 <Check />
                 <div>
-                  <h3 className="font-bold text-[#0B1B3B] mb-1">{h.title}</h3>
+                  <h3 className="font-bold text-[#09263f] mb-1">{h.title}</h3>
                   <p className="text-sm text-[#475569]">{h.description}</p>
                 </div>
               </div>
@@ -618,12 +618,12 @@ function CurriculumSection({
                     className="w-full flex items-center justify-between gap-4 p-5 text-left hover:bg-[#F7F8FA]"
                   >
                     <div className="flex items-center gap-4">
-                      <span className="w-10 h-10 rounded-full bg-[#C8F032] text-[#0B1B3B] font-bold flex items-center justify-center text-sm shrink-0">
+                      <span className="w-10 h-10 rounded-full bg-[#ffd700] text-[#09263f] font-bold flex items-center justify-center text-sm shrink-0">
                         {String(idx + 1).padStart(2, "0")}
                       </span>
-                      <h3 className="font-bold text-[#0B1B3B] text-base md:text-lg">{m.title}</h3>
+                      <h3 className="font-bold text-[#09263f] text-base md:text-lg">{m.title}</h3>
                     </div>
-                    <span className="text-2xl text-[#0EC9C9] leading-none">{isOpen ? "−" : "+"}</span>
+                    <span className="text-2xl text-[#07b3e7] leading-none">{isOpen ? "−" : "+"}</span>
                   </button>
                   {isOpen && (
                     <div className="px-5 pb-5 pt-0 border-t border-[#E5E7EB]">
@@ -634,7 +634,7 @@ function CurriculumSection({
                         <ul className="flex flex-col gap-2">
                           {m.lessons.map((l) => (
                             <li key={l.id} className="flex items-center justify-between text-sm">
-                              <span className="text-[#0B1B3B] flex items-center gap-2">
+                              <span className="text-[#09263f] flex items-center gap-2">
                                 <Check />
                                 {l.title}
                               </span>
@@ -652,7 +652,7 @@ function CurriculumSection({
             })}
           </div>
 
-          <aside className="bg-[#0B1B3B] text-white rounded-2xl p-6 h-fit">
+          <aside className="bg-[#09263f] text-white rounded-2xl p-6 h-fit">
             <h3 className="font-bold text-lg mb-4">Program Summary</h3>
             <ul className="flex flex-col gap-3 text-sm mb-6">
               {summary.liveHours && (
@@ -676,13 +676,13 @@ function CurriculumSection({
             </ul>
             {summary.includes && summary.includes.length > 0 && (
               <>
-                <p className="text-xs uppercase tracking-wide text-[#C8F032] font-semibold mb-3">
+                <p className="text-xs uppercase tracking-wide text-[#ffd700] font-semibold mb-3">
                   What&apos;s included
                 </p>
                 <ul className="flex flex-col gap-2 text-sm">
                   {summary.includes.map((it, i) => (
                     <li key={i} className="flex gap-2 items-start">
-                      <span className="text-[#C8F032]">✓</span>
+                      <span className="text-[#ffd700]">✓</span>
                       <span>{it}</span>
                     </li>
                   ))}
@@ -703,7 +703,7 @@ function CurriculumSection({
 function TestimonialStrip({ items }: { items: TestimonialStripItem[] }) {
   if (!items.length) return null;
   return (
-    <section className={`bg-[#0B1B3B] text-white ${SECTION_PAD}`}>
+    <section className={`bg-[#09263f] text-white ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-center">
           What Our Learners Say
@@ -722,7 +722,7 @@ function TestimonialStrip({ items }: { items: TestimonialStripItem[] }) {
                     className="w-12 h-12 rounded-full object-cover"
                   />
                 ) : (
-                  <div className="w-12 h-12 rounded-full bg-[#0EC9C9] flex items-center justify-center font-bold">
+                    <div className="w-12 h-12 rounded-full bg-[#07b3e7] flex items-center justify-center font-bold">
                     {t.name.charAt(0)}
                   </div>
                 )}
@@ -771,14 +771,14 @@ function CapstoneProjects({
               className="bg-[#F7F8FA] border border-[#E5E7EB] rounded-2xl p-5 hover:shadow-md transition"
             >
               {p.icon && (
-                <div className="w-12 h-12 rounded-xl bg-[#C8F032] flex items-center justify-center mb-3 text-xl">
+                <div className="w-12 h-12 rounded-xl bg-[#ffd700] flex items-center justify-center mb-3 text-xl">
                   {p.icon}
                 </div>
               )}
-              <span className="inline-block text-xs font-semibold text-[#0EC9C9] uppercase tracking-wide mb-2">
+              <span className="inline-block text-xs font-semibold text-[#07b3e7] uppercase tracking-wide mb-2">
                 {p.domain}
               </span>
-              <h3 className="font-bold text-[#0B1B3B] mb-2">{p.title}</h3>
+              <h3 className="font-bold text-[#09263f] mb-2">{p.title}</h3>
               <p className="text-sm text-[#475569]">{p.description}</p>
             </div>
           ))}
