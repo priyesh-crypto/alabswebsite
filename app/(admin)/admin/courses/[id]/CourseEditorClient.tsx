@@ -37,7 +37,7 @@ type LearningModeItem = { name: string; description: string; icon: string };
 type CertificationData = { heading: string; body: string; certificateImageUrl: string; coBrandedName: string; coBrandedDesc: string; coBrandedLogoUrl: string };
 type WhoShouldJoinItem = { icon: string; title: string; description: string };
 
-type CourseData = {
+export type CourseData = {
   id: string;
   slug: string;
   title: string;

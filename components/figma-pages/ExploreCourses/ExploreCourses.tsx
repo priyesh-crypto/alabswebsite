@@ -210,237 +210,9 @@ function FamiconsCall() {
 
 
 
-function BoxiconsLocationFilled() {
-  return (
-    <div className="absolute left-[85px] size-[21px] top-[560px]" data-name="boxicons:location-filled">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 21 21">
-        <g id="boxicons:location-filled">
-          <path d={svgPaths.p5169a80} fill="var(--fill-0, white)" id="Vector" />
-        </g>
-      </svg>
-    </div>
-  );
-}
 
-function BoxiconsLocationFilled1() {
-  return (
-    <div className="absolute left-[528px] size-[21px] top-[560px]" data-name="boxicons:location-filled">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 21 21">
-        <g id="boxicons:location-filled">
-          <path d={svgPaths.p5169a80} fill="var(--fill-0, white)" id="Vector" />
-        </g>
-      </svg>
-    </div>
-  );
-}
 
-function BoxiconsLocationFilled2() {
-  return (
-    <div className="absolute left-[971px] size-[21px] top-[560px]" data-name="boxicons:location-filled">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 21 21">
-        <g id="boxicons:location-filled">
-          <path d={svgPaths.p5169a80} fill="var(--fill-0, white)" id="Vector" />
-        </g>
-      </svg>
-    </div>
-  );
-}
 
-function RiInstagramFill() {
-  return <div className="absolute left-[898px] size-[24px] top-[688px]" data-name="ri:instagram-fill" />;
-}
-
-function IcRoundFacebook() {
-  return (
-    <div className="absolute left-[1177px] size-[29px] top-[701px]" data-name="ic:round-facebook">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 29 29">
-        <g id="ic:round-facebook">
-          <path d={svgPaths.p2610db70} fill="var(--fill-0, white)" id="Vector" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function MdiLinkedin() {
-  return (
-    <div className="absolute left-[1261px] size-[27px] top-[702px]" data-name="mdi:linkedin">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 27 27">
-        <g id="mdi:linkedin">
-          <path d={svgPaths.p2fc0e480} fill="var(--fill-0, white)" id="Vector" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function MdiYoutube() {
-  return (
-    <div className="absolute left-[1218px] size-[30px] top-[700px]" data-name="mdi:youtube">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 30 30">
-        <g id="mdi:youtube">
-          <path d={svgPaths.p16bc3a00} fill="var(--fill-0, white)" id="Vector" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function Group1() {
-  return (
-    <div className="absolute inset-[4.69%_0] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[0px_-0.984px] mask-size-[21px_21px]" style={{ maskImage: `url('${imgGroup}')` }} data-name="Group">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 21 19.032">
-        <g id="Group">
-          <path d={svgPaths.p18891d00} fill="var(--fill-0, white)" id="Vector" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function ClipPathGroup() {
-  return (
-    <div className="absolute contents inset-0" data-name="Clip path group">
-      <Group1 />
-    </div>
-  );
-}
-
-function Group() {
-  return (
-    <div className="absolute contents inset-0" data-name="Group">
-      <ClipPathGroup />
-    </div>
-  );
-}
-
-function PrimeTwitter() {
-  return (
-    <div className="absolute left-[1306px] overflow-clip size-[21px] top-[705px]" data-name="prime:twitter">
-      <Group />
-    </div>
-  );
-}
-
-function AkarIconsMediumFill() {
-  return <div className="absolute left-[1310px] size-[24px] top-[676px]" data-name="akar-icons:medium-fill" />;
-}
-
-function Frame({ offices, footerLinks, footerCities, siteSettings }: {
-  offices?: ExploreCoursesProps["offices"];
-  footerLinks?: ExploreCoursesProps["footerLinks"];
-  footerCities?: ExploreCoursesProps["footerCities"];
-  siteSettings?: ExploreCoursesProps["siteSettings"];
-}) {
-  const o0 = offices?.[0]; const o1 = offices?.[1]; const o2 = offices?.[2];
-  const fl = footerLinks ?? []; const fc = footerCities ?? [];
-  const flLabel = (i: number, fb: string) => fl[i]?.label ?? fb;
-  const flUrl = (i: number, fb: string) => fl[i]?.url ?? fb;
-  const fcLabel = (i: number, fb: string) => fc[i]?.label ?? fb;
-  const fcUrl = (i: number, fb: string) => fc[i]?.url ?? fb;
-  const copyYear = new Date().getFullYear();
-  return (
-    <footer className="relative bg-gradient-to-r from-[#094c80] from-[13.037%] to-[#2096cb] w-screen left-1/2 -translate-x-1/2 flex justify-center text-white font-['Inter',sans-serif] overflow-hidden">
-      <div className="w-[1440px] px-[66px] py-[80px] relative min-h-[800px]">
-        {/* Decorative background circle */}
-        <div className="absolute left-[-123px] size-[500px] top-[-254px] pointer-events-none">
-          <svg className="size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 500 500">
-            <circle cx="250" cy="250" fill="var(--fill-0, white)" id="Ellipse 117" r="250" />
-          </svg>
-        </div>
-        <div className="absolute h-[69px] left-[52px] top-[58px] w-[233px]" data-name="image 14">
-          <img alt="AnalytixLabs" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={siteSettings?.logoUrl ?? imgImage14.src} />
-        </div>
-        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1094px] not-italic text-[16px] text-white top-[62px] whitespace-nowrap">Popular Searches</p>
-        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[804px] not-italic text-[16px] text-white top-[62px] whitespace-nowrap">Etcetera</p>
-        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[514px] not-italic text-[16px] text-white top-[62px] whitespace-nowrap">About Us</p>
-        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[108px] not-italic text-[16px] text-white top-[562px] whitespace-nowrap">{o0?.city ?? "Noida"}</p>
-        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[550px] not-italic text-[16px] text-white top-[562px] whitespace-nowrap">{o1?.city ?? "Gurgaon"}</p>
-        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[992px] not-italic text-[16px] text-white top-[562px] whitespace-nowrap">{o2?.city ?? "Bangalore"}</p>
-        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[261px] not-italic text-[16px] text-white top-[281px] whitespace-nowrap">Blog</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[92px] w-[242px]">{fcLabel(0, "Data Analyst Training Course In Delhi")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[92px] w-[143px]">{flLabel(6, "System Requirements")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[92px] w-[51px]">{flLabel(0, "Why Us")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[88px] not-italic text-[14px] text-white top-[593px] w-[363px]">{o0?.addressLine1 ?? "1st Floor, A78, A Block, Sector 2, Metro Gate 3, Noida, UP 201301."}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[66px] not-italic text-[14px] text-white top-[757px] w-[363px]">© 2026 AnalytixLabs. All Rights Reserved.</p>
-        <p className="-translate-x-full absolute font-['Inter:Light',sans-serif] font-light leading-[normal] left-[1370px] not-italic text-[14px] text-right text-white top-[758px] whitespace-pre">{`Privacy Policy       Terms and Conditions      Sitemap`}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[530px] not-italic text-[14px] text-white top-[593px] w-[402px]">{o1?.addressLine1 ?? "2nd Floor, Sidhartha House, Building No. 6, Sector 44, Gurugram, Haryana 122003, (600 meters from HUDA City Metro)."}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[972px] not-italic text-[14px] text-white top-[593px] w-[387px]">{o2?.addressLine1 ?? "Bldg 51/2, First floor 12th Main Road, Near BDA complex Sector 6, HSR Layout Back Gate of BDA Complex, Opp A2B (Adayar Ananda Bhavan) Bangalore, Karnataka 560102."}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[118px] w-[248px]">{fcLabel(1, "Data Analyst Training Course In Noida")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[118px] w-[102px]">{flLabel(7, "Free Resources")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[118px] w-[54px]">{flLabel(1, "Courses")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[143px] w-[265px]">{fcLabel(2, "Data Analyst Training Course In Gurgaon")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[143px] w-[105px]">{flLabel(8, "Success Stories")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[143px] w-[91px]">{flLabel(2, "About Faculty")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[169px] w-[275px]">{fcLabel(3, "Data Analyst Training Course In Bangalore")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[37px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[169px] w-[171px]">{flLabel(9, "Colleges Universities Training Courses")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[169px] w-[74px]">{flLabel(3, "Contact Us")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[194px] w-[190px]">{fcLabel(4, "Data Science Course in Delhi")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[194px] w-[163px]">{flLabel(4, "AnalytixLabs Placements")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[220px] w-[196px]">{fcLabel(5, "Data Science Course In Noida")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[220px] w-[143px]">{flLabel(5, "System Requirements")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[245px] w-[213px]">{fcLabel(6, "Data Science Course In Gurgaon")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[271px] w-[223px]">{fcLabel(7, "Data Science Course In Bangalore")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[296px] w-[247px]">{fcLabel(8, "Business Analyst Course In Bangalore")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[322px] w-[214px]">{fcLabel(9, "Business Analyst Course In Delhi")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[347px] w-[268px]">{fcLabel(10, "Artificial Intelligence Course in Bangalore")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[373px] w-[235px]">{fcLabel(11, "Artificial Intelligence Course in Delhi")}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[398px] w-[139px]">{fcLabel(12, "Generative AI Course")}</p>
-
-        <div className="absolute border-[0.5px] border-[rgba(255,255,255,0.5)] border-solid h-[118px] left-[947px] rounded-[15px] top-[541px] w-[426px]" />
-        <div className="absolute border-[0.5px] border-[rgba(255,255,255,0.5)] border-solid h-[118px] left-[507px] rounded-[15px] top-[541px] w-[425px]" />
-        <div className="absolute border-[0.5px] border-[rgba(255,255,255,0.5)] border-solid h-[118px] left-[66px] rounded-[15px] top-[541px] w-[426px]" />
-        <div className="absolute border-[0.5px] border-[rgba(255,255,255,0.5)] border-solid h-[213px] left-[66px] rounded-[15px] top-[271px] w-[426px]" />
-        <div className="absolute bg-white h-[38px] left-[89px] rounded-[97px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[308px] w-[379px]" />
-        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[200px] not-italic text-[#09263f] text-[14px] top-[317px] whitespace-nowrap">{`Submit a Guest Post `}</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[89px] not-italic text-[14px] text-white top-[366px] w-[375px]">Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[89px] not-italic text-[14px] text-white top-[411px] w-[353px]">What is Agentic AI – A Technical Guide for Beginners</p>
-        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[89px] not-italic text-[14px] text-white top-[440px] w-[379px]">List vs Tuple in Python: Understanding Key Differences</p>
-        <BoxiconsLocationFilled />
-        <BoxiconsLocationFilled1 />
-        <BoxiconsLocationFilled2 />
-        <div className="-translate-x-1/2 absolute flex h-[17.424px] items-center justify-center left-[415.03px] top-[560px] w-[108.066px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "18" } as React.CSSProperties}>
-          <div className="flex-none rotate-[0.22deg]">
-            <p className="font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[14px] text-center text-white whitespace-nowrap">Get Directions→</p>
-          </div>
-        </div>
-        <div className="-translate-x-1/2 absolute flex h-[17.424px] items-center justify-center left-[855.03px] top-[560px] w-[108.066px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "18" } as React.CSSProperties}>
-          <div className="flex-none rotate-[0.22deg]">
-            <p className="font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[14px] text-center text-white whitespace-nowrap">Get Directions→</p>
-          </div>
-        </div>
-        <div className="-translate-x-1/2 absolute flex h-[17.424px] items-center justify-center left-[1295.03px] top-[560px] w-[108.066px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "18" } as React.CSSProperties}>
-          <div className="flex-none rotate-[0.22deg]">
-            <p className="font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[14px] text-center text-white whitespace-nowrap">Get Directions→</p>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[67px] top-[738px] w-[1306px]">
-          <div className="absolute inset-[-0.5px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1306 0.5">
-              <line id="Line 15" stroke="var(--stroke-0, white)" strokeOpacity="0.5" strokeWidth="0.5" x2="1306" y1="0.25" y2="0.25" />
-            </svg>
-          </div>
-        </div>
-        <RiInstagramFill />
-        <div className="absolute inset-[88.33%_19.24%_8.78%_79.17%]" data-name="Vector">
-          <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 23 23">
-            <path d={svgPaths.p22379000} fill="var(--fill-0, white)" id="insta" />
-          </svg>
-        </div>
-        <IcRoundFacebook />
-        <MdiLinkedin />
-        <MdiYoutube />
-        <PrimeTwitter />
-        <AkarIconsMediumFill />
-        <div className="absolute inset-[88.58%_5.14%_9.16%_93.26%]" data-name="Vector">
-          <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 23 18">
-            <path d={svgPaths.p19230580} fill="var(--fill-0, white)" id="medium" />
-          </svg>
-        </div>
-      </div>
-    </footer>
-  );
-}
 
 export default function ExploreCourses(props: ExploreCoursesProps) {
   const {
@@ -580,7 +352,7 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
           <p className="text-white/70 text-sm mb-6">Change the course of your career now</p>
           <Link href="/contact" className="inline-flex items-center justify-center bg-[#ffd700] h-12 px-6 rounded-full font-semibold text-[#09263f] text-sm">Contact Us</Link>
         </section>
-        <Frame offices={offices} footerLinks={footerLinks} footerCities={footerCities} siteSettings={siteSettings} />
+
       </div>{/* /mobile layout */}
 
       {/* ═══ DESKTOP LAYOUT (hidden below lg) ═══ */}
@@ -827,7 +599,7 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
             </div>
           </div>
         </section>
-        <Frame offices={offices} footerLinks={footerLinks} footerCities={footerCities} siteSettings={siteSettings} />
+
       </div>
 
     </div>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import CourseDetailPage from "@/components/pdp/CourseDetailPage";
+import CourseDetailPage, { type PdpCourse } from "@/components/pdp/CourseDetailPage";
 import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
@@ -46,10 +46,9 @@ export default async function CourseDetailRoute({
   });
   if (!course) notFound();
   // Prisma Decimal isn't serializable into client components — cast rating to number.
-  const safe = {
+  const safe: PdpCourse = {
     ...course,
     rating: course.rating ? Number(course.rating) : null,
-  };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return <CourseDetailPage course={safe as any} />;
+  } as PdpCourse;
+  return <CourseDetailPage course={safe} />;
 }

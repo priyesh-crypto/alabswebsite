@@ -6,6 +6,8 @@ import {
   getSiteSettings,
 } from "@/lib/api-client";
 
+export const dynamic = "force-dynamic";
+
 const CONTACT_HEIGHT_PX = 3200;
 
 export default async function ContactPage() {

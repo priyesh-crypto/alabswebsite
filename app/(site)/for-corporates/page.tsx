@@ -6,6 +6,8 @@ import {
   getSiteSettings,
 } from "@/lib/api-client";
 
+export const dynamic = "force-dynamic";
+
 const FOR_CORPORATE_HEIGHT_PX = 5200;
 
 export default async function ForCorporatesPage() {

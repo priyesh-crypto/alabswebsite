@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import AdminPageHeader from "../../_components/AdminPageHeader";
-import CourseEditorClient from "./CourseEditorClient";
+import CourseEditorClient, { type CourseData } from "./CourseEditorClient";
 
 export const dynamic = "force-dynamic";
 
@@ -28,8 +28,9 @@ export default async function CourseEditorPage({ params }: { params: Promise<{ i
 
   const defaultCategoryId = categories[0]?.id ?? "";
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const courseData: any = course
+  // Prisma's Json columns return JsonValue; we trust admin-validated writes
+  // produce the typed shapes defined in CourseEditorClient.
+  const courseData = (course
     ? {
         id: course.id,
         slug: course.slug,
@@ -178,7 +179,7 @@ export default async function CourseEditorPage({ params }: { params: Promise<{ i
         pdpWhoShouldJoinData: [],
         pdpJobRolesData: [],
         pdpKeySkillsData: [],
-      };
+      }) as CourseData;
 
   return (
     <div>

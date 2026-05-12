@@ -5,6 +5,8 @@ import {
   getCategories,
 } from "@/lib/api-client";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Upcoming Batches | AnalytixLabs",
   description:

@@ -8,6 +8,8 @@ import {
   getTestimonials,
 } from "@/lib/api-client";
 
+export const dynamic = "force-dynamic";
+
 const ABOUT_HEIGHT_PX = 6400;
 
 export default async function AboutPage() {

@@ -1687,7 +1687,7 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
   ) => setFormData(prev => ({ ...prev, [field]: e.target.value }));
 
   const [formError, setFormError] = useState<string | null>(null);
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isNotRobot) {
       setFormError("Please verify that you are not a robot.");
@@ -1701,7 +1701,6 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
       setFormSubmitted(false);
       return;
     }
-    // simple email + 10-digit mobile sanity checks
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setFormError("Please enter a valid email address.");
       return;
@@ -1711,12 +1710,30 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
       return;
     }
     setFormError(null);
-    // TODO: POST /api/leads — for now log + visual confirmation.
-    // eslint-disable-next-line no-console
-    console.log("[Request a Call back]", formData);
-    setFormSubmitted(true);
-    setIsNotRobot(false); // Reset captcha on success
-    setTimeout(() => setFormSubmitted(false), 2500);
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          phone: mobile,
+          source: "callback-request",
+        }),
+      });
+      if (!res.ok) {
+        const msg = res.status === 429
+          ? "Too many submissions, please try again in a minute."
+          : "Something went wrong. Please try again.";
+        setFormError(msg);
+        return;
+      }
+      setFormSubmitted(true);
+      setIsNotRobot(false);
+      setTimeout(() => setFormSubmitted(false), 2500);
+    } catch {
+      setFormError("Network error. Please try again.");
+    }
   };
 
   // Testimonial autoplay — every 6s. Pauses for 12s after manual click.

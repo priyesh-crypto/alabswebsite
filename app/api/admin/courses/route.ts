@@ -3,6 +3,7 @@ import { z } from "zod";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { withAdmin, parseBody, revalidatePublic } from "@/lib/admin-api";
+import { pdpExtensionFields } from "@/lib/pdp-schemas";
 
 export const runtime = "nodejs";
 
@@ -32,32 +33,7 @@ const courseSchema = z.object({
   alumniCount: z.coerce.number().int().min(0).default(0),
   hasNoCodingRequired: z.boolean().default(false),
   categoryId: z.string().min(1),
-  // PDP extension fields (all optional)
-  pdpAlumniText: z.string().nullable().optional(),
-  pdpStarsTotal: z.coerce.number().int().min(0).nullable().optional(),
-  pdpRatingScale: z.coerce.number().nullable().optional(),
-  pdpTaxNote: z.string().nullable().optional(),
-  pdpEmiNote: z.string().nullable().optional(),
-  pdpCities: z.array(z.string()).optional(),
-  pdpStatTiles: z.any().optional(),
-  pdpOverviewHighlights: z.any().optional(),
-  pdpCurriculumHeading: z.string().nullable().optional(),
-  pdpCurriculumSubheading: z.string().nullable().optional(),
-  pdpCurriculumSummary: z.any().optional(),
-  pdpTestimonialStrip: z.any().optional(),
-  pdpProjectDomains: z.any().optional(),
-  pdpCareerSupport: z.any().optional(),
-  pdpHowToApply: z.any().optional(),
-  pdpStudentStories: z.any().optional(),
-  pdpRelatedArticles: z.any().optional(),
-  pdpCtaBanner: z.any().optional(),
-  pdpContactBlock: z.any().optional(),
-  pdpFaqsData: z.any().optional(),
-  pdpLearningModesData: z.any().optional(),
-  pdpCertificationData: z.any().optional(),
-  pdpWhoShouldJoinData: z.any().optional(),
-  pdpJobRolesData: z.any().optional(),
-  pdpKeySkillsData: z.any().optional(),
+  ...pdpExtensionFields,
   modules: z.array(z.object({
     id: z.string().optional(),
     title: z.string().trim().min(1),
