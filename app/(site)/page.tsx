@@ -4,6 +4,7 @@
  * 8: gather every data source in parallel, pass as props.
  */
 import AlabsLandingPage from "@/components/figma-pages/AlabsLandingPage/AlabsLandingPage";
+import FigmaScaleWrapper from "@/components/figma-pages/shared/FigmaScaleWrapper";
 import {
   getActiveMasterclass,
   getCategories,
@@ -57,7 +58,7 @@ export default async function HomePage() {
   ]);
 
   return (
-    <div className="relative w-full">
+    <FigmaScaleWrapper>
       <AlabsLandingPage
         siteSettings={siteSettings}
         topNav={topNav}
@@ -75,6 +76,6 @@ export default async function HomePage() {
         posts={posts}
         learningModes={learningModes}
       />
-    </div>
+    </FigmaScaleWrapper>
   );
 }

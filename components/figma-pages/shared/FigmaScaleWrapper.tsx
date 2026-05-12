@@ -14,15 +14,22 @@ export default function FigmaScaleWrapper({ children }: { children: React.ReactN
     function apply() {
       if (!ref.current) return;
       const vw = window.innerWidth;
-      // Below lg (1024px) the mobile layouts take over — no zoom needed.
-      // Between lg and 1440px the desktop canvas needs to shrink to fit.
-      const scale = vw < 1024 ? 1 : vw >= 1440 ? 1 : vw / 1440;
+      // Figma exports are a fixed 1440px canvas. Scale them down to fit any
+      // viewport narrower than 1440 — including phones and tablets — since
+      // there are no dedicated mobile layouts to take over below lg.
+      const scale = vw >= 1440 ? 1 : vw / 1440;
+      // `zoom` is supported in all modern browsers (incl. iOS Safari 18+).
+      // It reflows the layout box so the document height auto-adjusts.
       ref.current.style.zoom = String(scale);
     }
 
     apply();
     window.addEventListener("resize", apply);
-    return () => window.removeEventListener("resize", apply);
+    window.addEventListener("orientationchange", apply);
+    return () => {
+      window.removeEventListener("resize", apply);
+      window.removeEventListener("orientationchange", apply);
+    };
   }, []);
 
   return (

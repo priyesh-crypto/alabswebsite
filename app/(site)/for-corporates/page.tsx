@@ -1,4 +1,5 @@
 import ForCorporate from "@/components/figma-pages/ForCorporate/ForCorporate";
+import FigmaScaleWrapper from "@/components/figma-pages/shared/FigmaScaleWrapper";
 import {
   getNav,
   getOffices,
@@ -18,17 +19,19 @@ export default async function ForCorporatesPage() {
     ]);
 
   return (
-    <div
-      className="relative mx-auto"
-      style={{ width: "1440px", height: `${FOR_CORPORATE_HEIGHT_PX}px` }}
-    >
-      <ForCorporate
+    <FigmaScaleWrapper>
+      <div
+        className="relative mx-auto"
+        style={{ width: "1440px", height: `${FOR_CORPORATE_HEIGHT_PX}px` }}
+      >
+        <ForCorporate
         siteSettings={siteSettings}
         topNav={topNav}
         footerLinks={footerLinks}
         footerCities={footerCities}
         offices={offices}
-      />
-    </div>
+        />
+      </div>
+    </FigmaScaleWrapper>
   );
 }

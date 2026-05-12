@@ -1,4 +1,5 @@
 import ExploreCourses from "@/components/figma-pages/ExploreCourses/ExploreCourses";
+import FigmaScaleWrapper from "@/components/figma-pages/shared/FigmaScaleWrapper";
 import {
   getCategories,
   getCourses,
@@ -32,11 +33,12 @@ export default async function CoursesPage() {
   ]);
 
   return (
-    <div
-      className="relative mx-auto"
-      style={{ width: "1440px", height: `${COURSES_HEIGHT_PX}px` }}
-    >
-      <ExploreCourses
+    <FigmaScaleWrapper>
+      <div
+        className="relative mx-auto"
+        style={{ width: "1440px", height: `${COURSES_HEIGHT_PX}px` }}
+      >
+        <ExploreCourses
         siteSettings={siteSettings}
         topNav={topNav}
         footerLinks={footerLinks}
@@ -45,7 +47,8 @@ export default async function CoursesPage() {
         courses={courses}
         posts={posts}
         offices={offices}
-      />
-    </div>
+        />
+      </div>
+    </FigmaScaleWrapper>
   );
 }

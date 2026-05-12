@@ -1,11 +1,11 @@
 import { GlobalNavbar, GlobalFooter } from "@/components/figma-pages/shared/GlobalLayout";
-import FigmaScaleWrapper from "@/components/figma-pages/shared/FigmaScaleWrapper";
 import { getNav, getOffices, getSiteSettings, getPosts } from "@/lib/api-client";
 
 /**
  * Public site layout. Hosts every route under app/(site)/.
- * Navbar and Footer are fully responsive. The Figma page bodies are
- * zoom-scaled to fit the viewport on screens narrower than 1440px.
+ * Navbar and footer are fully responsive. Pages that wrap fixed-width
+ * Figma exports apply FigmaScaleWrapper themselves so that already-responsive
+ * pages (new PDP, ported static pages) are not zoom-scaled.
  */
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
   const [siteSettings, topNav, footerLinks, footerCities, offices, posts] = await Promise.all([
@@ -21,7 +21,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
     <div className="w-full bg-white flex flex-col">
       <GlobalNavbar topNav={topNav} />
       <main className="w-full flex-grow overflow-x-hidden">
-        <FigmaScaleWrapper>{children}</FigmaScaleWrapper>
+        {children}
       </main>
       <GlobalFooter
         offices={offices}

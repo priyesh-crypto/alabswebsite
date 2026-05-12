@@ -1,4 +1,5 @@
 import AboutUs from "@/components/figma-pages/AboutUs/AboutUs";
+import FigmaScaleWrapper from "@/components/figma-pages/shared/FigmaScaleWrapper";
 import {
   getFaqs,
   getNav,
@@ -22,11 +23,12 @@ export default async function AboutPage() {
     ]);
 
   return (
-    <div
-      className="relative mx-auto"
-      style={{ width: "1440px", height: `${ABOUT_HEIGHT_PX}px` }}
-    >
-      <AboutUs
+    <FigmaScaleWrapper>
+      <div
+        className="relative mx-auto"
+        style={{ width: "1440px", height: `${ABOUT_HEIGHT_PX}px` }}
+      >
+        <AboutUs
         siteSettings={siteSettings}
         topNav={topNav}
         footerLinks={footerLinks}
@@ -34,7 +36,8 @@ export default async function AboutPage() {
         offices={offices}
         testimonials={testimonials}
         faqs={faqs}
-      />
-    </div>
+        />
+      </div>
+    </FigmaScaleWrapper>
   );
 }
