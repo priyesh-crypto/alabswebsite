@@ -166,16 +166,24 @@ const SECTION_PAD = "py-16 lg:py-24";
 // ============================================================
 
 export default function CourseDetailPage({ course }: { course: PdpCourse }) {
+  const modules = course.modules ?? [];
+  const pricing = course.pricing ?? [];
+  const projects = course.projects ?? [];
+  const certifications = course.certifications ?? [];
+  const batches = course.batches ?? [];
+  const tools = course.tools ?? [];
+  const faqs = course.faqs ?? [];
+
   const statTiles =
     safeArray<StatTile>(course.pdpStatTiles).length > 0
       ? safeArray<StatTile>(course.pdpStatTiles)
       : [
           { label: "Total Hours", value: String(course.hoursCount ?? "—") },
           { label: "Live Classes", value: String(course.classesCount ?? "—") },
-          { label: "Modules", value: String(course.modules.length) },
+          { label: "Modules", value: String(modules.length) },
         ];
 
-  const cities = course.pdpCities.length
+  const cities = (course.pdpCities ?? []).length
     ? course.pdpCities
     : ["Noida", "Gurgaon", "Bangalore"];
 
@@ -196,7 +204,7 @@ export default function CourseDetailPage({ course }: { course: PdpCourse }) {
   const faqsData =
     safeArray<FaqItem>(course.pdpFaqsData).length > 0
       ? safeArray<FaqItem>(course.pdpFaqsData)
-      : course.faqs.map((f) => ({ question: f.question, answer: f.answer }));
+      : faqs.map((f) => ({ question: f.question, answer: f.answer }));
   const learningModes = safeArray<LearningModeItem>(course.pdpLearningModesData);
   const certData = obj<CertificationData>(course.pdpCertificationData, {});
   const whoShouldJoin =
@@ -206,11 +214,11 @@ export default function CourseDetailPage({ course }: { course: PdpCourse }) {
   const jobRoles =
     safeArray<string>(course.pdpJobRolesData).length > 0
       ? safeArray<string>(course.pdpJobRolesData)
-      : course.jobRoles;
+      : (course.jobRoles ?? []);
   const keySkills =
     safeArray<string>(course.pdpKeySkillsData).length > 0
       ? safeArray<string>(course.pdpKeySkillsData)
-      : course.keySkills;
+      : (course.keySkills ?? []);
 
   const rating = course.rating ? Number(course.rating) : 9.6;
   const ratingScale = course.pdpRatingScale ?? 10;
@@ -221,6 +229,7 @@ export default function CourseDetailPage({ course }: { course: PdpCourse }) {
     <div className="bg-white text-[#0B1B3B] font-sans">
       <HeroSection
         course={course}
+        pricing={pricing}
         statTiles={statTiles}
         cities={cities}
         rating={rating}
@@ -231,15 +240,15 @@ export default function CourseDetailPage({ course }: { course: PdpCourse }) {
 
       <StickyAnchorNav />
 
-      <OverviewSection course={course} highlights={overviewHighlights} rating={rating} alumniText={alumniText} />
+      <OverviewSection course={course} pricing={pricing} highlights={overviewHighlights} rating={rating} alumniText={alumniText} />
 
-      <CurriculumSection course={course} summary={curriculumSummary} />
+      <CurriculumSection modules={modules} course={course} summary={curriculumSummary} />
 
       <TestimonialStrip items={testimonialStrip} />
 
-      <CapstoneProjects items={projectDomains} fallback={course.projects} />
+      <CapstoneProjects items={projectDomains} fallback={projects} />
 
-      <ToolsGrid tools={course.tools} />
+      <ToolsGrid tools={tools} />
 
       <WhoShouldJoinSection items={whoShouldJoin} />
 
@@ -249,9 +258,9 @@ export default function CourseDetailPage({ course }: { course: PdpCourse }) {
 
       <LearningModesSection modes={learningModes} />
 
-      <CourseFeesSection pricing={course.pricing} />
+      <CourseFeesSection pricing={pricing} />
 
-      <CertificationSection data={certData} certifications={course.certifications} />
+      <CertificationSection data={certData} certifications={certifications} />
 
       <CareerSupportSection data={careerSupport} />
 
@@ -267,7 +276,7 @@ export default function CourseDetailPage({ course }: { course: PdpCourse }) {
 
       <FaqSection items={faqsData} />
 
-      <BatchesTable batches={course.batches} />
+      <BatchesTable batches={batches} />
     </div>
   );
 }
@@ -278,6 +287,7 @@ export default function CourseDetailPage({ course }: { course: PdpCourse }) {
 
 function HeroSection({
   course,
+  pricing,
   statTiles,
   cities,
   rating,
@@ -286,6 +296,7 @@ function HeroSection({
   starsTotal,
 }: {
   course: PdpCourse;
+  pricing: CoursePricing[];
   statTiles: StatTile[];
   cities: string[];
   rating: number;
@@ -295,12 +306,14 @@ function HeroSection({
 }) {
   const [mode, setMode] = useState<"classroom" | "online" | "elearning">("online");
   const activePricing =
-    course.pricing.find((p) => p.mode === mode) ?? course.pricing[0];
+    pricing.find((p) => p.mode === mode) ?? pricing[0];
 
   return (
+    <>
     <section className="bg-gradient-to-br from-[#F7F8FA] to-white border-b border-[#E5E7EB]">
       <div className={`${SECTION_CONTAINER} ${SECTION_PAD}`}>
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-10">
+        {/* pb-24 on mobile to leave room for sticky CTA */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-10 pb-20 lg:pb-0">
           {/* Left */}
           <div>
             <p className="text-sm font-semibold text-[#0EC9C9] uppercase tracking-wide mb-3">
@@ -436,6 +449,21 @@ function HeroSection({
         </div>
       </div>
     </section>
+
+    {/* Mobile sticky CTA — hidden on lg+ where the pricing card is visible */}
+    <div className="fixed bottom-0 inset-x-0 z-50 p-3 bg-white border-t border-[#E5E7EB] shadow-lg lg:hidden">
+      <button
+        type="button"
+        className="w-full bg-[#C8F032] text-[#0B1B3B] font-bold py-3.5 rounded-xl hover:brightness-95 transition text-base"
+        onClick={() => {
+          const el = document.getElementById("contact");
+          el?.scrollIntoView({ behavior: "smooth" });
+        }}
+      >
+        Sign up for Demo
+      </button>
+    </div>
+    </>
   );
 }
 
@@ -476,17 +504,19 @@ function StickyAnchorNav() {
 
 function OverviewSection({
   course,
+  pricing,
   highlights,
   rating,
   alumniText,
 }: {
   course: PdpCourse;
+  pricing: CoursePricing[];
   highlights: Highlight[];
   rating: number;
   alumniText: string;
 }) {
   const [expanded, setExpanded] = useState(false);
-  const startingPrice = course.pricing[0]?.price;
+  const startingPrice = pricing[0]?.price;
   const stats = [
     { label: "Starting Price", value: startingPrice ? inr(startingPrice) : "—" },
     { label: "Avg Rating", value: `${rating}/10` },
@@ -552,16 +582,18 @@ function OverviewSection({
 // ============================================================
 
 function CurriculumSection({
+  modules,
   course,
   summary,
 }: {
+  modules: ModuleWithLessons[];
   course: PdpCourse;
   summary: CurriculumSummary;
 }) {
-  const [open, setOpen] = useState<string | null>(course.modules[0]?.id ?? null);
+  const [open, setOpen] = useState<string | null>(modules[0]?.id ?? null);
   const sortedModules = useMemo(
-    () => [...course.modules].sort((a, b) => a.order - b.order),
-    [course.modules]
+    () => [...modules].sort((a, b) => a.order - b.order),
+    [modules]
   );
   const heading = course.pdpCurriculumHeading ?? "Course Curriculum";
   const subheading =

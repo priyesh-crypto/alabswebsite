@@ -1,5 +1,48 @@
 @import "tailwindcss";
 
+/* ── Global responsive reset ──────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden; /* prevent horizontal scroll on any viewport */
+  margin: 0;
+  padding: 0;
+}
+
+img,
+video,
+svg,
+iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Prevent unbreakable strings from blowing out containers */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+a,
+li {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+
 /* Brought in from default_shadcn_theme.css — keep tokens identical so the
    Figma exports under src/imports/ render with the same colors as before.
    Per CLAUDE.md THE GOLDEN RULE, do not modify these tokens. */
