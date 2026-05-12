@@ -826,6 +826,7 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
               </Link>
             </div>
           </div>
+        </section>
         <Frame offices={offices} footerLinks={footerLinks} footerCities={footerCities} siteSettings={siteSettings} />
       </div>
 
