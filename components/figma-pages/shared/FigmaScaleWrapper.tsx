@@ -33,7 +33,7 @@ export default function FigmaScaleWrapper({ children }: { children: React.ReactN
   }, []);
 
   return (
-    <div ref={ref} style={{ transformOrigin: "top left" }}>
+    <div ref={ref} className="lg:-mt-[68px]" style={{ transformOrigin: "top left" }}>
       {children}
     </div>
   );

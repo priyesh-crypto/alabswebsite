@@ -5,6 +5,7 @@
  */
 import AlabsLandingPage from "@/components/figma-pages/AlabsLandingPage/AlabsLandingPage";
 import FigmaScaleWrapper from "@/components/figma-pages/shared/FigmaScaleWrapper";
+import MobileLandingPage from "@/components/mobile/MobileLandingPage";
 import {
   getActiveMasterclass,
   getCategories,
@@ -57,25 +58,34 @@ export default async function HomePage() {
     getLearningModes(),
   ]);
 
+  const sharedProps = {
+    siteSettings,
+    topNav,
+    megaMenu,
+    footerLinks,
+    footerCities,
+    categories,
+    featuredCourses,
+    testimonials,
+    hiringPartners,
+    faqs,
+    offices,
+    masterclass,
+    pageBlocks,
+    posts,
+    learningModes,
+  };
+
   return (
-    <FigmaScaleWrapper>
-      <AlabsLandingPage
-        siteSettings={siteSettings}
-        topNav={topNav}
-        megaMenu={megaMenu}
-        footerLinks={footerLinks}
-        footerCities={footerCities}
-        categories={categories}
-        featuredCourses={featuredCourses}
-        testimonials={testimonials}
-        hiringPartners={hiringPartners}
-        faqs={faqs}
-        offices={offices}
-        masterclass={masterclass}
-        pageBlocks={pageBlocks}
-        posts={posts}
-        learningModes={learningModes}
-      />
-    </FigmaScaleWrapper>
+    <>
+      <div className="lg:hidden">
+        <MobileLandingPage {...sharedProps} />
+      </div>
+      <div className="hidden lg:block">
+        <FigmaScaleWrapper>
+          <AlabsLandingPage {...sharedProps} />
+        </FigmaScaleWrapper>
+      </div>
+    </>
   );
 }

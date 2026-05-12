@@ -44,151 +44,201 @@ const CATEGORY_SLUGS: Record<string, string> = {
 
 function CourseCard({ course }: { course: BatchCourse }) {
   const batches = course.batches ?? [];
+  const [selectedBatchId, setSelectedBatchId] = useState<string | null>(
+    batches.length > 0 ? batches[0].id : null
+  );
+  const [showAllBatches, setShowAllBatches] = useState(false);
+
+  const selectedBatch = batches.find(b => b.id === selectedBatchId);
+  const visibleBatches = showAllBatches ? batches : batches.slice(0, 4);
+  const hiddenCount = batches.length - 4;
 
   return (
-    <div className="bg-white rounded-2xl shadow-[0px_4px_24px_0px_rgba(0,0,0,0.07)] border border-[#e8ecf0] overflow-hidden">
-      {/* Card header */}
-      <div className="flex flex-col sm:flex-row gap-0">
-        {/* Thumbnail */}
-        <div className="sm:w-[200px] shrink-0 bg-[#09263f]/5">
-          {course.thumbnailUrl ? (
-            <img
-              src={course.thumbnailUrl}
-              alt={course.title}
-              className="w-full h-[140px] sm:h-full object-cover"
-            />
-          ) : (
-            <div className="w-full h-[140px] sm:h-full bg-gradient-to-br from-[#07b3e7]/20 to-[#1de5b5]/20 flex items-center justify-center">
-              <span className="text-4xl">📊</span>
-            </div>
-          )}
+    <div className="bg-white rounded-[32px] shadow-[0px_4px_40px_0px_rgba(0,0,0,0.05)] border border-[#e8ecf0] overflow-hidden flex flex-col md:flex-row items-start transition-all">
+      {/* 1. Sticky Sidebar (Left/Top) */}
+      <div className="md:w-[400px] w-full bg-[#f9fafb] p-8 md:sticky md:top-24 md:self-start flex flex-col min-h-full border-b md:border-b-0 md:border-r border-[#e8ecf0]">
+        <div className="mb-6">
+          <span
+            className="text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block"
+            style={{
+              backgroundColor:
+                course.category.slug === "artificial-intelligence"
+                  ? "rgba(7,179,231,0.1)"
+                  : course.category.slug === "data-science"
+                  ? "rgba(255,215,0,0.1)"
+                  : course.category.slug === "business-data-analytics"
+                  ? "rgba(29,229,181,0.1)"
+                  : "rgba(9,38,63,0.1)",
+              color:
+                course.category.slug === "artificial-intelligence"
+                  ? "#07b3e7"
+                  : course.category.slug === "data-science"
+                  ? "#b89b00"
+                  : course.category.slug === "business-data-analytics"
+                  ? "#17c9a0"
+                  : "#09263f",
+            }}
+          >
+            {course.category.name}
+          </span>
+          <h2 className="font-bold text-[#09263f] text-[28px] leading-tight mb-4">
+            {course.title}
+          </h2>
+          <div className="flex flex-wrap gap-x-3 gap-y-1 mb-8">
+            {[
+              course.durationMonths ? `${course.durationMonths} Months` : null,
+              course.classesCount ? `${course.classesCount} Classes` : null,
+              course.hoursCount ? `${course.hoursCount} Hours` : null,
+            ].filter(Boolean).map((stat, i) => (
+              <span key={i} className="text-[14px] text-[#09263f]/60 font-medium flex items-center">
+                {i > 0 && <span className="mr-3 text-[#09263f]/20">|</span>}
+                {stat}
+              </span>
+            ))}
+          </div>
+
+          {/* Value Add: Why this course? */}
+          <div className="space-y-4 mb-10">
+            <h4 className="text-[14px] font-bold text-[#09263f] uppercase tracking-wider">Key Highlights</h4>
+            <ul className="space-y-3">
+              {[
+                "Hands-on Industry Projects",
+                "Placement Assistance",
+                "1-on-1 Mentorship Sessions"
+              ].map((item, i) => (
+                <li key={i} className="flex items-center gap-3 text-[14px] text-[#09263f]/70">
+                  <span className="size-1.5 rounded-full bg-[#1de5b5]" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        {/* Course info */}
-        <div className="flex-1 px-5 py-4">
-          <div className="flex items-start gap-2 flex-wrap">
-            <h2 className="font-semibold text-[#09263f] text-[16px] leading-snug flex-1 min-w-0">
-              {course.title}
-            </h2>
-            {course.isFeatured && (
-              <span className="shrink-0 text-[10px] font-bold text-white bg-[#1de5b5] px-2.5 py-1 rounded-full leading-none">
-                New
-              </span>
-            )}
+        {/* Sticky Action Block */}
+        <div className="mt-auto pt-8 border-t border-[#e8ecf0]">
+          <div className="mb-6 p-4 bg-white rounded-2xl border border-[#e8ecf0]">
+             <p className="text-[12px] font-bold text-[#09263f]/40 uppercase mb-1">Selected Batch</p>
+             {selectedBatch ? (
+               <div className="flex flex-col">
+                  <span className="font-bold text-[#09263f] text-[16px]">{fmtDate(selectedBatch.startDate)}</span>
+                  <span className="text-[13px] text-[#09263f]/60">{selectedBatch.location} • {selectedBatch.schedule}</span>
+               </div>
+             ) : (
+               <p className="text-[14px] text-red-500 font-medium italic">Please select a date</p>
+             )}
           </div>
-
-          {/* Stats pills */}
-          <div className="flex flex-wrap items-center gap-2 mt-2.5">
-            {(course.classesCount ?? 0) > 0 && (
-              <span className="text-[12px] text-[#09263f]/60 bg-[#f3f6f9] px-2.5 py-1 rounded-full font-medium">
-                {course.classesCount} Classes
-              </span>
-            )}
-            {(course.hoursCount ?? 0) > 0 && (
-              <span className="text-[12px] text-[#09263f]/60 bg-[#f3f6f9] px-2.5 py-1 rounded-full font-medium">
-                {course.hoursCount} Hours
-              </span>
-            )}
-            {(course.durationMonths ?? 0) > 0 && (
-              <span className="text-[12px] text-[#09263f]/60 bg-[#f3f6f9] px-2.5 py-1 rounded-full font-medium">
-                {course.durationMonths} Months
-              </span>
-            )}
-          </div>
-
-          {/* Category badge */}
-          <div className="mt-2">
-            <span
-              className="text-[11px] font-semibold px-2 py-0.5 rounded"
-              style={{
-                backgroundColor:
-                  course.category.slug === "artificial-intelligence"
-                    ? "#07b3e7"
-                    : course.category.slug === "data-science"
-                    ? "#ffd700"
-                    : course.category.slug === "business-data-analytics"
-                    ? "#1de5b5"
-                    : "#09263f",
-                color: course.category.slug === "business-data-analytics" ? "#09263f" : "#fff",
-              }}
+          
+          <div className="flex flex-col gap-3">
+            <button 
+              disabled={!selectedBatchId}
+              className="w-full h-[56px] rounded-2xl text-[16px] font-bold text-white bg-[#09263f] hover:bg-[#0c3150] disabled:opacity-30 disabled:grayscale transition-all shadow-xl shadow-[#09263f]/10"
             >
-              {course.category.name}
-            </span>
+              Enroll Now
+            </button>
+            <Link 
+              href={`/courses/${course.slug}`}
+              className="w-full h-[56px] rounded-2xl text-[16px] font-bold text-[#09263f] bg-white border border-[#09263f]/20 hover:bg-gray-50 flex items-center justify-center transition-all"
+            >
+              Explore Syllabus →
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* Divider */}
-      <div className="border-t border-[#e8ecf0]" />
-
-      {/* Batch rows */}
-      <div className="px-5 py-3">
-        {/* Desktop header row */}
-        <div className="hidden md:grid md:grid-cols-[1fr_160px_180px_120px_140px] gap-3 pb-2 mb-1 border-b border-[#e8ecf0]">
-          <span className="text-[11px] font-semibold text-[#09263f]/40 uppercase tracking-wide">Location / Mode</span>
-          <span className="text-[11px] font-semibold text-[#09263f]/40 uppercase tracking-wide">Start Date</span>
-          <span className="text-[11px] font-semibold text-[#09263f]/40 uppercase tracking-wide">Schedule</span>
-          <span className="text-[11px] font-semibold text-[#09263f]/40 uppercase tracking-wide">Seats</span>
-          <span className="text-[11px] font-semibold text-[#09263f]/40 uppercase tracking-wide"></span>
+      {/* 2. Batch List (Right) */}
+      <div className="flex-1 p-8 md:p-12 w-full">
+        <div className="flex items-center justify-between mb-8">
+          <h3 className="text-[14px] font-bold text-[#09263f]/40 uppercase tracking-widest">Available Schedules</h3>
+          <span className="text-[13px] font-medium text-[#09263f]/60 bg-[#f3f6f9] px-3 py-1 rounded-full">
+            {batches.length} Upcoming Batches
+          </span>
         </div>
-
-        <div className="flex flex-col divide-y divide-[#f0f4f7]">
+        
+        <div className="flex flex-col gap-4">
           {batches.length === 0 ? (
-            <p className="text-[13px] text-[#09263f]/40 py-3 italic">
-              No upcoming batches scheduled. Check back soon.
-            </p>
+            <div className="py-20 text-center bg-[#f9fafb] rounded-[24px] border-2 border-dashed border-[#e8ecf0]">
+              <p className="text-[#09263f]/40 text-[16px] italic">No upcoming batches scheduled</p>
+            </div>
           ) : (
-            batches.map((batch) => {
-              const seats = seatsLabel(batch.seatsLeft);
-              return (
-                <div key={batch.id} className="py-3">
-                  {/* Mobile layout */}
-                  <div className="flex flex-col gap-1.5 md:hidden">
-                    <div className="flex items-center gap-2">
-                      <span className="text-base">{modeIcon(batch.location)}</span>
-                      <span className="font-semibold text-[14px] text-[#09263f]">{batch.location}</span>
-                    </div>
-                    <div className="flex flex-wrap gap-x-4 gap-y-1 text-[13px] text-[#09263f]/70 ml-6">
-                      <span>📅 {fmtDate(batch.startDate)}</span>
-                      <span>⏰ {batch.schedule}</span>
-                      <span style={{ color: seats.color }} className="font-semibold">{seats.text}</span>
-                    </div>
-                    <div className="ml-6 mt-1">
-                      <Link
-                        href={`/courses/${course.slug}`}
-                        className="inline-flex items-center justify-center h-9 px-4 rounded-full text-[13px] font-semibold text-white bg-[#09263f] hover:bg-[#07294a] transition-colors"
-                      >
-                        Explore Course →
-                      </Link>
-                    </div>
-                  </div>
+            <>
+              {visibleBatches.map((batch) => {
+                const seats = batch.seatsLeft;
+                const isFull = seats === 0;
+                const isSelected = selectedBatchId === batch.id;
+                
+                return (
+                  <div 
+                    key={batch.id} 
+                    onClick={() => {
+                      if (isFull) return;
+                      setSelectedBatchId(isSelected ? null : batch.id);
+                    }}
+                    className={`group relative flex items-center p-6 rounded-[24px] border-2 transition-all cursor-pointer ${
+                      isFull 
+                        ? "opacity-40 cursor-not-allowed bg-gray-50 border-transparent" 
+                        : isSelected
+                          ? "border-[#1de5b5] bg-[#1de5b5]/5 shadow-md scale-[1.02]"
+                          : "border-[#f0f4f7] bg-white hover:border-[#1de5b5]/30 hover:shadow-sm"
+                    }`}
+                  >
+                    <div className="flex-1 grid grid-cols-1 sm:grid-cols-[160px_1fr_140px] gap-6 items-center">
+                      {/* Date Component */}
+                      <div className="flex flex-col">
+                        <span className="font-bold text-[18px] text-[#09263f]">{fmtDate(batch.startDate)}</span>
+                        <span className="text-[12px] font-bold text-[#1de5b5] uppercase tracking-wider">Starts Soon</span>
+                      </div>
 
-                  {/* Desktop layout */}
-                  <div className="hidden md:grid md:grid-cols-[1fr_160px_180px_120px_140px] gap-3 items-center">
-                    <div className="flex items-center gap-2">
-                      <span className="text-base">{modeIcon(batch.location)}</span>
-                      <span className="font-medium text-[14px] text-[#09263f]">{batch.location}</span>
+                      {/* Info Component */}
+                      <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xl">{modeIcon(batch.location)}</span>
+                          <span className="font-bold text-[15px] text-[#09263f]">{batch.location}</span>
+                        </div>
+                        <span className="text-[14px] text-[#09263f]/60 font-medium">{batch.schedule}</span>
+                      </div>
+
+                      {/* Status Component */}
+                      <div className="sm:text-right">
+                        {isFull ? (
+                          <div className="inline-flex px-3 py-1 bg-gray-100 rounded-full">
+                            <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Seats Full</span>
+                          </div>
+                        ) : (
+                          <div className={`inline-flex px-3 py-1 rounded-full ${seats <= 3 ? 'bg-red-50' : 'bg-green-50'}`}>
+                            <span className={`text-[11px] font-bold uppercase tracking-widest ${seats <= 3 ? 'text-red-500' : 'text-green-600'}`}>
+                              {seats <= 3 ? `${seats} Seats Left` : "Registration Open"}
+                            </span>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                    <span className="text-[14px] text-[#09263f]/70">{fmtDate(batch.startDate)}</span>
-                    <span className="text-[14px] text-[#09263f]/70">{batch.schedule}</span>
-                    <span
-                      className="text-[13px] font-semibold"
-                      style={{ color: seats.color }}
-                    >
-                      {seats.text}
-                    </span>
-                    <div>
-                      <Link
-                        href={`/courses/${course.slug}`}
-                        className="inline-flex items-center justify-center h-9 px-4 rounded-full text-[13px] font-semibold text-white bg-[#09263f] hover:bg-[#07294a] transition-colors whitespace-nowrap"
-                      >
-                        Explore Course →
-                      </Link>
-                    </div>
+
+                    {/* Radio */}
+                    {!isFull && (
+                      <div className={`ml-8 size-6 rounded-full border-2 flex items-center justify-center transition-all ${
+                        isSelected ? "border-[#1de5b5] bg-[#1de5b5]" : "border-[#e8ecf0] group-hover:border-[#1de5b5]/50"
+                      }`}>
+                        {isSelected && <div className="size-2.5 rounded-full bg-white shadow-sm" />}
+                      </div>
+                    )}
                   </div>
-                </div>
-              );
-            })
+                );
+              })}
+
+              {hiddenCount > 0 && (
+                <button 
+                  onClick={() => setShowAllBatches(!showAllBatches)}
+                  className="mt-4 w-full py-4 rounded-[18px] border-2 border-dashed border-[#e8ecf0] text-[#09263f]/60 font-bold text-[14px] hover:bg-[#f9fafb] hover:border-[#09263f]/20 transition-all flex items-center justify-center gap-2"
+                >
+                  {showAllBatches ? (
+                    <>Show Less ↑</>
+                  ) : (
+                    <>View {hiddenCount} More Batches ↓</>
+                  )}
+                </button>
+              )}
+            </>
           )}
         </div>
       </div>

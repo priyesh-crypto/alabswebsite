@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef } from "react";
 import svgPaths from "./svg-s11jurk4xd";
 import imgPic from "./b07f7603c1d930775ea51b61e35748804618ac7d.png";
 import imgPic1 from "./2ef37d3e065100931977d4110eb8885bb8c4fa15.png";
@@ -105,9 +108,9 @@ function IconoirSearch() {
   );
 }
 
-function Group2() {
+function Group2({ onClick }: { onClick?: () => void }) {
   return (
-    <div className="h-[25.421px] relative w-[23px]">
+    <div className="h-[25.421px] relative w-[23px] cursor-pointer" onClick={onClick}>
       <div className="absolute inset-[-58.18%_-86.96%_-89.65%_-86.96%]">
         <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 63 63">
           <g id="Group 6">
@@ -136,9 +139,9 @@ function Group2() {
   );
 }
 
-function Group3() {
+function Group3({ onClick }: { onClick?: () => void }) {
   return (
-    <div className="absolute h-[25.421px] left-[1319px] top-[615px] w-[23px]">
+    <div className="absolute h-[25.421px] left-[1319px] top-[615px] w-[23px] cursor-pointer" onClick={onClick}>
       <div className="absolute inset-[-58.18%_-86.96%_-89.65%_-86.96%]">
         <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 63 63">
           <g id="Group 7">
@@ -167,274 +170,16 @@ function Group3() {
   );
 }
 
-function Group4({ course }: { course?: Course }) {
-  return (
-    <div className="absolute contents left-[63px] top-[777px]">
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[540px] left-[63px] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[777px] w-[408.119px]" />
-      <div className="absolute h-[262px] left-[74.22px] rounded-[15px] top-[785px] w-[385.672px]" data-name="pic">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[15px] size-full" src={course?.thumbnailUrl ?? imgPic.src} />
-      </div>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[82.39px] not-italic text-[24px] text-black top-[1090px] w-[172.43px]">{course?.title ?? "Data Analytics"}</p>
-      <div className="absolute bg-[#f0fbff] h-[23px] left-[211.96px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1056px] w-[78.563px]" />
-      <div className="absolute bg-[#fffad2] h-[23px] left-[294.61px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1056px] w-[83.664px]" />
-      <div className="absolute bg-[#fff2fa] h-[23px] left-[381.33px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1056px] w-[78.563px]" />
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[224.21px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1062px] w-[55.096px]">{course?.classesCount ? `${course.classesCount} Classes` : "46 Classes"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[306.85px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1062px] w-[59.177px]">{course?.hoursCount ? `${course.hoursCount}+ Hours` : "500+ Hours"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[393.58px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1062px] w-[55.096px]">{course?.experienceLabel ?? "Experience"}</p>
-      <div className="absolute bg-[#f0fbff] h-[43px] left-[89.53px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1139px] w-[103.05px]" />
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[82.39px] rounded-[81px] top-[1196px] w-[119.375px]" />
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[203.8px] rounded-[81px] top-[1196px] w-[119.375px]" />
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[325.22px] rounded-[81px] top-[1196px] w-[123.456px]" />
-      <div className="absolute bg-[#fffad2] h-[43px] left-[201.76px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1139px] w-[118.354px]" />
-      <div className="absolute bg-[#fff2fa] h-[43px] left-[329.3px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1139px] w-[118.354px]" />
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[123.2px] not-italic text-[12px] text-black top-[1146px] w-[34.69px]">{course?.batches?.[0]?.location ?? "Noida"}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[94.63px] not-italic text-[#09263f] text-[8px] top-[1206px] w-[92.847px]">
-        <span className="leading-[normal]">{course?.batches?.[0]?.schedule ? `${course.batches[0].schedule} -` : "Weekend -"}</span>
-        <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal]">{` `}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{course?.batches?.[0]?.seatsLeft != null ? `${course.batches[0].seatsLeft} Seats left` : "10 Seats left"}</span>
-      </p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[216.04px] not-italic text-[#09263f] text-[8px] top-[1206px] w-[93.867px]">
-        <span className="leading-[normal]">{course?.batches?.[1]?.schedule ? `${course.batches[1].schedule} -` : "Weekday -"}</span>
-        <span className="font-['Inter:Bold',sans-serif] font-bold leading-[normal]">{` `}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{course?.batches?.[1]?.seatsLeft != null ? `${course.batches[1].seatsLeft} Seats left` : "08 Seats left"}</span>
-      </p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[337.46px] not-italic text-[#09263f] text-[8px] top-[1206px] w-[102.03px]">
-        <span className="leading-[normal]">{course?.batches?.[2]?.schedule ? `${course.batches[2].schedule} -` : "Self-Placed -"}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{course?.batches?.[2]?.seatsLeft != null ? ` ${course.batches[2].seatsLeft} Seats left` : " 10 Seats left"}</span>
-      </p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[230.33px] not-italic text-[12px] text-black top-[1146px] w-[60.198px]">{course?.batches?.[1]?.location ?? "Bangalore"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[362.97px] not-italic text-[12px] text-black top-[1146px] w-[51.015px]">{course?.batches?.[2]?.location ?? "Gurgaon"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[121.16px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1162px] w-[38.771px]">{fmtDate(course?.batches?.[0]?.startDate) || "20 April"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[243.59px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1162px] w-[36.731px]">{fmtDate(course?.batches?.[1]?.startDate) || "13 April"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[370.11px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1162px] w-[36.731px]">{fmtDate(course?.batches?.[2]?.startDate) || "04 May"}</p>
-      <Link href={course?.slug ? `/courses/${course.slug}` : "/courses"} className="contents"><div className="absolute bg-[#1de5b5] h-[56px] left-[82.39px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[1244px] w-[371.388px]" /></Link>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[267.57px] not-italic text-[#09263f] text-[16px] text-center top-[1262px] w-[121.415px]">Explore Course</p>
-    </div>
-  );
-}
 
-function Group5({ course }: { course?: Course }) {
-  return (
-    <div className="absolute contents left-[63px] top-[1359px]">
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[540px] left-[63px] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[1359px] w-[408.119px]" />
-      <div className="absolute h-[262px] left-[74.22px] rounded-[15px] top-[1367px] w-[385.672px]" data-name="pic">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[15px] size-full" src={course?.thumbnailUrl ?? imgPic1.src} />
-      </div>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[82.39px] not-italic text-[24px] text-black top-[1672px] w-[172.43px]">{course?.title ?? "Data Analytics"}</p>
-      <div className="absolute bg-[#f0fbff] h-[23px] left-[211.96px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1638px] w-[78.563px]" />
-      <div className="absolute bg-[#fffad2] h-[23px] left-[294.61px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1638px] w-[83.664px]" />
-      <div className="absolute bg-[#fff2fa] h-[23px] left-[381.33px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1638px] w-[78.563px]" />
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[224.21px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1644px] w-[55.096px]">{course?.classesCount ? `${course.classesCount} Classes` : "46 Classes"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[306.85px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1644px] w-[59.177px]">{course?.hoursCount ? `${course.hoursCount}+ Hours` : "500+ Hours"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[393.58px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1644px] w-[55.096px]">{course?.experienceLabel ?? "Experience"}</p>
-      <div className="absolute bg-[#f0fbff] h-[43px] left-[89.53px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1721px] w-[103.05px]" />
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[82.39px] rounded-[81px] top-[1778px] w-[119.375px]" />
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[203.8px] rounded-[81px] top-[1778px] w-[119.375px]" />
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[325.22px] rounded-[81px] top-[1778px] w-[123.456px]" />
-      <div className="absolute bg-[#fffad2] h-[43px] left-[201.76px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1721px] w-[118.354px]" />
-      <div className="absolute bg-[#fff2fa] h-[43px] left-[329.3px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1721px] w-[118.354px]" />
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[123.2px] not-italic text-[12px] text-black top-[1728px] w-[34.69px]">{course?.batches?.[0]?.location ?? "Noida"}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[94.63px] not-italic text-[#09263f] text-[8px] top-[1788px] w-[92.847px]">
-        <span className="leading-[normal]">{course?.batches?.[0]?.schedule ? `${course.batches[0].schedule} -` : "Weekend -"}</span>
-        <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal]">{` `}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{course?.batches?.[0]?.seatsLeft != null ? `${course.batches[0].seatsLeft} Seats left` : "10 Seats left"}</span>
-      </p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[216.04px] not-italic text-[#09263f] text-[8px] top-[1788px] w-[93.867px]">
-        <span className="leading-[normal]">{course?.batches?.[1]?.schedule ? `${course.batches[1].schedule} -` : "Weekday -"}</span>
-        <span className="font-['Inter:Bold',sans-serif] font-bold leading-[normal]">{` `}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{course?.batches?.[1]?.seatsLeft != null ? `${course.batches[1].seatsLeft} Seats left` : "08 Seats left"}</span>
-      </p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[337.46px] not-italic text-[#09263f] text-[8px] top-[1788px] w-[102.03px]">
-        <span className="leading-[normal]">{course?.batches?.[2]?.schedule ? `${course.batches[2].schedule} -` : "Self-Placed -"}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{course?.batches?.[2]?.seatsLeft != null ? ` ${course.batches[2].seatsLeft} Seats left` : " 10 Seats left"}</span>
-      </p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[230.33px] not-italic text-[12px] text-black top-[1728px] w-[60.198px]">{course?.batches?.[1]?.location ?? "Bangalore"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[362.97px] not-italic text-[12px] text-black top-[1728px] w-[51.015px]">{course?.batches?.[2]?.location ?? "Gurgaon"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[121.16px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1744px] w-[38.771px]">{fmtDate(course?.batches?.[0]?.startDate) || "20 April"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[243.59px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1744px] w-[36.731px]">{fmtDate(course?.batches?.[1]?.startDate) || "13 April"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[370.11px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1744px] w-[36.731px]">{fmtDate(course?.batches?.[2]?.startDate) || "04 May"}</p>
-      <Link href={course?.slug ? `/courses/${course.slug}` : "/courses"} className="contents"><div className="absolute bg-[#1de5b5] h-[56px] left-[82.39px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[1826px] w-[371.388px]" /></Link>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[267.57px] not-italic text-[#09263f] text-[16px] text-center top-[1844px] w-[121.415px]">Explore Course</p>
-    </div>
-  );
-}
 
-function Group6({ course }: { course?: Course }) {
-  return (
-    <div className="absolute contents left-[961.88px] top-[777px]">
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[540px] left-[961.88px] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[777px] w-[408.119px]" />
-      <div className="absolute h-[262px] left-[973.11px] rounded-[15px] top-[785px] w-[385.672px]" data-name="pic">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[15px] size-full" src={course?.thumbnailUrl ?? imgPic2.src} />
-      </div>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[981.27px] not-italic text-[24px] text-black top-[1090px] w-[172.43px]">{course?.title ?? "Data Analytics"}</p>
-      <div className="absolute bg-[#f0fbff] h-[23px] left-[1110.85px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1056px] w-[78.563px]" />
-      <div className="absolute bg-[#fffad2] h-[23px] left-[1193.49px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1056px] w-[83.664px]" />
-      <div className="absolute bg-[#fff2fa] h-[23px] left-[1280.22px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1056px] w-[78.563px]" />
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1123.09px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1062px] w-[55.096px]">{course?.classesCount ? `${course.classesCount} Classes` : "46 Classes"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1205.73px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1062px] w-[59.177px]">{course?.hoursCount ? `${course.hoursCount}+ Hours` : "500+ Hours"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1292.46px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1062px] w-[55.096px]">{course?.experienceLabel ?? "Experience"}</p>
-      <div className="absolute bg-[#f0fbff] h-[43px] left-[988.41px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1139px] w-[103.05px]" />
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[981.27px] rounded-[81px] top-[1196px] w-[119.375px]" />
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[1102.68px] rounded-[81px] top-[1196px] w-[119.375px]" />
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[1224.1px] rounded-[81px] top-[1196px] w-[123.456px]" />
-      <div className="absolute bg-[#fffad2] h-[43px] left-[1100.64px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1139px] w-[118.354px]" />
-      <div className="absolute bg-[#fff2fa] h-[43px] left-[1228.18px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1139px] w-[118.354px]" />
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1022.08px] not-italic text-[12px] text-black top-[1146px] w-[34.69px]">{course?.batches?.[0]?.location ?? "Noida"}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[993.51px] not-italic text-[#09263f] text-[8px] top-[1206px] w-[92.847px]">
-        <span className="leading-[normal]">{course?.batches?.[0]?.schedule ? `${course.batches[0].schedule} -` : "Weekend -"}</span>
-        <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal]">{` `}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{course?.batches?.[0]?.seatsLeft != null ? `${course.batches[0].seatsLeft} Seats left` : "10 Seats left"}</span>
-      </p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[1114.93px] not-italic text-[#09263f] text-[8px] top-[1206px] w-[93.867px]">
-        <span className="leading-[normal]">{course?.batches?.[1]?.schedule ? `${course.batches[1].schedule} -` : "Weekday -"}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{course?.batches?.[1]?.seatsLeft != null ? ` ${course.batches[1].seatsLeft} Seats left` : " 08 Seats left"}</span>
-      </p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[1236.34px] not-italic text-[#09263f] text-[8px] top-[1206px] w-[102.03px]">
-        <span className="leading-[normal]">{course?.batches?.[2]?.schedule ? `${course.batches[2].schedule} -` : "Self-Placed -"}</span>
-        <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal]">{` `}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{course?.batches?.[2]?.seatsLeft != null ? `${course.batches[2].seatsLeft} Seats left` : "10 Seats left"}</span>
-      </p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1129.21px] not-italic text-[12px] text-black top-[1146px] w-[60.198px]">{course?.batches?.[1]?.location ?? "Bangalore"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1261.85px] not-italic text-[12px] text-black top-[1146px] w-[51.015px]">{course?.batches?.[2]?.location ?? "Gurgaon"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1020.04px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1162px] w-[38.771px]">{fmtDate(course?.batches?.[0]?.startDate) || "20 April"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1142.48px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1162px] w-[36.731px]">{fmtDate(course?.batches?.[1]?.startDate) || "13 April"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1268.99px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1162px] w-[36.731px]">{fmtDate(course?.batches?.[2]?.startDate) || "04 May"}</p>
-      <Link href={course?.slug ? `/courses/${course.slug}` : "/courses"} className="contents"><div className="absolute bg-[#1de5b5] h-[56px] left-[981.27px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[1244px] w-[371.388px]" /></Link>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1166.45px] not-italic text-[#09263f] text-[16px] text-center top-[1262px] w-[121.415px]">Explore Course</p>
-    </div>
-  );
-}
 
-function Group7({ course }: { course?: Course }) {
-  return (
-    <div className="absolute contents left-[961.88px] top-[1359px]">
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[540px] left-[961.88px] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[1359px] w-[408.119px]" />
-      <div className="absolute h-[262px] left-[973.11px] rounded-[15px] top-[1367px] w-[385.672px]" data-name="pic">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[15px] size-full" src={course?.thumbnailUrl ?? imgPic3.src} />
-      </div>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[981.27px] not-italic text-[24px] text-black top-[1672px] w-[172.43px]">{course?.title ?? "Data Analytics"}</p>
-      <div className="absolute bg-[#f0fbff] h-[23px] left-[1110.85px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1638px] w-[78.563px]" />
-      <div className="absolute bg-[#fffad2] h-[23px] left-[1193.49px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1638px] w-[83.664px]" />
-      <div className="absolute bg-[#fff2fa] h-[23px] left-[1280.22px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1638px] w-[78.563px]" />
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1123.09px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1644px] w-[55.096px]">{course?.classesCount ? `${course.classesCount} Classes` : "46 Classes"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1205.73px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1644px] w-[59.177px]">{course?.hoursCount ? `${course.hoursCount}+ Hours` : "500+ Hours"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1292.46px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1644px] w-[55.096px]">{course?.experienceLabel ?? "Experience"}</p>
-      <div className="absolute bg-[#f0fbff] h-[43px] left-[988.41px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1721px] w-[103.05px]" />
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[981.27px] rounded-[81px] top-[1778px] w-[119.375px]" />
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[1102.68px] rounded-[81px] top-[1778px] w-[119.375px]" />
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[1224.1px] rounded-[81px] top-[1778px] w-[123.456px]" />
-      <div className="absolute bg-[#fffad2] h-[43px] left-[1100.64px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1721px] w-[118.354px]" />
-      <div className="absolute bg-[#fff2fa] h-[43px] left-[1228.18px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1721px] w-[118.354px]" />
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1022.08px] not-italic text-[12px] text-black top-[1728px] w-[34.69px]">{course?.batches?.[0]?.location ?? "Noida"}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[993.51px] not-italic text-[#09263f] text-[8px] top-[1788px] w-[92.847px]">
-        <span className="leading-[normal]">{course?.batches?.[0]?.schedule ? `${course.batches[0].schedule} -` : "Weekend -"}</span>
-        <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal]">{` `}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{course?.batches?.[0]?.seatsLeft != null ? `${course.batches[0].seatsLeft} Seats left` : "10 Seats left"}</span>
-      </p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[1114.93px] not-italic text-[#09263f] text-[8px] top-[1788px] w-[93.867px]">
-        <span className="leading-[normal]">{course?.batches?.[1]?.schedule ? `${course.batches[1].schedule} -` : "Weekday -"}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{course?.batches?.[1]?.seatsLeft != null ? ` ${course.batches[1].seatsLeft} Seats left` : " 08 Seats left"}</span>
-      </p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[1236.34px] not-italic text-[#09263f] text-[8px] top-[1788px] w-[102.03px]">
-        <span className="leading-[normal]">{course?.batches?.[2]?.schedule ? `${course.batches[2].schedule} -` : "Self-Placed -"}</span>
-        <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal]">{` `}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{course?.batches?.[2]?.seatsLeft != null ? `${course.batches[2].seatsLeft} Seats left` : "10 Seats left"}</span>
-      </p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1129.21px] not-italic text-[12px] text-black top-[1728px] w-[60.198px]">{course?.batches?.[1]?.location ?? "Bangalore"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1261.85px] not-italic text-[12px] text-black top-[1728px] w-[51.015px]">{course?.batches?.[2]?.location ?? "Gurgaon"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1020.04px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1744px] w-[38.771px]">{fmtDate(course?.batches?.[0]?.startDate) || "20 April"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1142.48px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1744px] w-[36.731px]">{fmtDate(course?.batches?.[1]?.startDate) || "13 April"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1268.99px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1744px] w-[36.731px]">{fmtDate(course?.batches?.[2]?.startDate) || "04 May"}</p>
-      <Link href={course?.slug ? `/courses/${course.slug}` : "/courses"} className="contents"><div className="absolute bg-[#1de5b5] h-[56px] left-[981.27px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[1826px] w-[371.388px]" /></Link>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1166.45px] not-italic text-[#09263f] text-[16px] text-center top-[1844px] w-[121.415px]">Explore Course</p>
-    </div>
-  );
-}
 
-function Group8({ course }: { course?: Course }) {
+function IconoirArrowUpRight({ className }: { className?: string }) {
   return (
-    <div className="absolute contents left-[512.95px] top-[777px]">
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[540px] left-[512.95px] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[777px] w-[408.119px]" />
-      <div className="absolute h-[262px] left-[524.18px] rounded-[15px] top-[785px] w-[385.672px]" data-name="pic">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[15px] size-full" src={course?.thumbnailUrl ?? imgPic4.src} />
-      </div>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[532.34px] not-italic text-[24px] text-black top-[1090px] w-[224.465px]">{course?.title ?? "Business Analytics"}</p>
-      <div className="absolute bg-[#f0fbff] h-[23px] left-[661.92px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1056px] w-[78.563px]" />
-      <div className="absolute bg-[#fffad2] h-[23px] left-[744.56px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1056px] w-[83.664px]" />
-      <div className="absolute bg-[#fff2fa] h-[23px] left-[831.29px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1056px] w-[78.563px]" />
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[674.16px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1062px] w-[55.096px]">{course?.classesCount ? `${course.classesCount} Classes` : "46 Classes"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[756.8px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1062px] w-[59.177px]">{course?.hoursCount ? `${course.hoursCount}+ Hours` : "500+ Hours"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[843.53px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1062px] w-[55.096px]">{course?.experienceLabel ?? "Experience"}</p>
-      <div className="absolute bg-[#f0fbff] h-[43px] left-[539.48px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1139px] w-[103.05px]" />
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[532.34px] rounded-[81px] top-[1196px] w-[119.375px]" />
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[653.75px] rounded-[81px] top-[1196px] w-[119.375px]" />
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[775.17px] rounded-[81px] top-[1196px] w-[123.456px]" />
-      <div className="absolute bg-[#fffad2] h-[43px] left-[651.71px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1139px] w-[118.354px]" />
-      <div className="absolute bg-[#fff2fa] h-[43px] left-[779.25px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1139px] w-[118.354px]" />
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[573.15px] not-italic text-[12px] text-black top-[1146px] w-[34.69px]">{course?.batches?.[0]?.location ?? "Noida"}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[544.58px] not-italic text-[#09263f] text-[8px] top-[1206px] w-[92.847px]">
-        <span className="leading-[normal]">{course?.batches?.[0]?.schedule ? `${course.batches[0].schedule} -` : "Weekend -"}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{course?.batches?.[0]?.seatsLeft != null ? ` ${course.batches[0].seatsLeft} Seats left` : " 10 Seats left"}</span>
-      </p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[666px] not-italic text-[#09263f] text-[8px] top-[1206px] w-[93.867px]">
-        <span className="leading-[normal]">{course?.batches?.[1]?.schedule ? `${course.batches[1].schedule} -` : "Weekday -"}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{course?.batches?.[1]?.seatsLeft != null ? ` ${course.batches[1].seatsLeft} Seats left` : " 08 Seats left"}</span>
-      </p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[787.41px] not-italic text-[#09263f] text-[8px] top-[1206px] w-[102.03px]">
-        <span className="leading-[normal]">{course?.batches?.[2]?.schedule ? `${course.batches[2].schedule} -` : "Self-Placed -"}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{course?.batches?.[2]?.seatsLeft != null ? ` ${course.batches[2].seatsLeft} Seats left` : " 10 Seats left"}</span>
-      </p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[680.28px] not-italic text-[12px] text-black top-[1146px] w-[60.198px]">{course?.batches?.[1]?.location ?? "Bangalore"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[812.92px] not-italic text-[12px] text-black top-[1146px] w-[51.015px]">{course?.batches?.[2]?.location ?? "Gurgaon"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[571.11px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1162px] w-[38.771px]">{fmtDate(course?.batches?.[0]?.startDate) || "20 April"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[693.55px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1162px] w-[36.731px]">{fmtDate(course?.batches?.[1]?.startDate) || "13 April"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[820.06px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1162px] w-[36.731px]">{fmtDate(course?.batches?.[2]?.startDate) || "04 May"}</p>
-      <Link href={course?.slug ? `/courses/${course.slug}` : "/courses"} className="contents"><div className="absolute bg-[#1de5b5] h-[56px] left-[532.34px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[1244px] w-[371.388px]" /></Link>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[717.52px] not-italic text-[#09263f] text-[16px] text-center top-[1262px] w-[121.415px]">Explore Course</p>
-    </div>
-  );
-}
-
-function Group10({ course }: { course?: Course }) {
-  return (
-    <div className="absolute contents left-[512.95px] top-[1359px]">
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[540px] left-[512.95px] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[1359px] w-[408.119px]" />
-      <div className="absolute h-[262px] left-[524.18px] rounded-[15px] top-[1367px] w-[385.672px]" data-name="pic">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[15px] size-full" src={course?.thumbnailUrl ?? imgPic5.src} />
-      </div>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[532.34px] not-italic text-[24px] text-black top-[1672px] w-[224.465px]">{course?.title ?? "Business Analytics"}</p>
-      <div className="absolute bg-[#f0fbff] h-[23px] left-[661.92px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1638px] w-[78.563px]" />
-      <div className="absolute bg-[#fffad2] h-[23px] left-[744.56px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1638px] w-[83.664px]" />
-      <div className="absolute bg-[#fff2fa] h-[23px] left-[831.29px] rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1638px] w-[78.563px]" />
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[674.16px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1644px] w-[55.096px]">{course?.classesCount ? `${course.classesCount} Classes` : "46 Classes"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[756.8px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1644px] w-[59.177px]">{course?.hoursCount ? `${course.hoursCount}+ Hours` : "500+ Hours"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[843.53px] not-italic text-[10px] text-[rgba(9,38,63,0.5)] top-[1644px] w-[55.096px]">{course?.experienceLabel ?? "Experience"}</p>
-      <div className="absolute bg-[#f0fbff] h-[43px] left-[539.48px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1721px] w-[103.05px]" />
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[532.34px] rounded-[81px] top-[1778px] w-[119.375px]" />
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[653.75px] rounded-[81px] top-[1778px] w-[119.375px]" />
-      <div className="absolute bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid h-[31px] left-[775.17px] rounded-[81px] top-[1778px] w-[123.456px]" />
-      <div className="absolute bg-[#fffad2] h-[43px] left-[651.71px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1721px] w-[118.354px]" />
-      <div className="absolute bg-[#fff2fa] h-[43px] left-[779.25px] rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1721px] w-[118.354px]" />
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[573.15px] not-italic text-[12px] text-black top-[1728px] w-[34.69px]">{course?.batches?.[0]?.location ?? "Noida"}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[544.58px] not-italic text-[#09263f] text-[8px] top-[1788px] w-[92.847px]">
-        <span className="leading-[normal]">{course?.batches?.[0]?.schedule ? `${course.batches[0].schedule} -` : "Weekend -"}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{course?.batches?.[0]?.seatsLeft != null ? ` ${course.batches[0].seatsLeft} Seats left` : " 10 Seats left"}</span>
-      </p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[666px] not-italic text-[#09263f] text-[8px] top-[1788px] w-[93.867px]">
-        <span className="leading-[normal]">{course?.batches?.[1]?.schedule ? `${course.batches[1].schedule} -` : "Weekday -"}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{course?.batches?.[1]?.seatsLeft != null ? ` ${course.batches[1].seatsLeft} Seats left` : " 08 Seats left"}</span>
-      </p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[787.41px] not-italic text-[#09263f] text-[8px] top-[1788px] w-[102.03px]">
-        <span className="leading-[normal]">{course?.batches?.[2]?.schedule ? `${course.batches[2].schedule} -` : "Self-Placed -"}</span>
-        <span className="font-['Inter:Extra_Bold',sans-serif] font-extrabold leading-[normal]">{course?.batches?.[2]?.seatsLeft != null ? ` ${course.batches[2].seatsLeft} Seats left` : " 10 Seats left"}</span>
-      </p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[680.28px] not-italic text-[12px] text-black top-[1728px] w-[60.198px]">{course?.batches?.[1]?.location ?? "Bangalore"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[812.92px] not-italic text-[12px] text-black top-[1728px] w-[51.015px]">{course?.batches?.[2]?.location ?? "Gurgaon"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[571.11px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1744px] w-[38.771px]">{fmtDate(course?.batches?.[0]?.startDate) || "20 April"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[693.55px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1744px] w-[36.731px]">{fmtDate(course?.batches?.[1]?.startDate) || "13 April"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[820.06px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[1744px] w-[36.731px]">{fmtDate(course?.batches?.[2]?.startDate) || "04 May"}</p>
-      <Link href={course?.slug ? `/courses/${course.slug}` : "/courses"} className="contents"><div className="absolute bg-[#1de5b5] h-[56px] left-[532.34px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[1826px] w-[371.388px]" /></Link>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[717.52px] not-italic text-[#09263f] text-[16px] text-center top-[1844px] w-[121.415px]">Explore Course</p>
+    <div className={className} data-name="iconoir:arrow-up-right">
+      <svg className="block size-full" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24">
+        <path d="M7 17L17 7M17 7H7M17 7V17" />
+      </svg>
     </div>
   );
 }
@@ -450,68 +195,6 @@ function HeroiconsOutlineArrowUp() {
     </div>
   );
 }
-
-function HeroiconsOutlineArrowUp1() {
-  return (
-    <div className="relative size-[23.433px]" data-name="heroicons-outline:arrow-up">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 23.4331 23.4331">
-        <g id="heroicons-outline:arrow-up">
-          <path d={svgPaths.p3427c00} id="Vector" stroke="var(--stroke-0, #09263F)" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.5" strokeWidth="2" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function HeroiconsOutlineArrowUp2() {
-  return (
-    <div className="relative size-[23.433px]" data-name="heroicons-outline:arrow-up">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 23.4331 23.4331">
-        <g id="heroicons-outline:arrow-up">
-          <path d={svgPaths.p3427c00} id="Vector" stroke="var(--stroke-0, #09263F)" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.5" strokeWidth="2" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function PrimeBookmark() {
-  return (
-    <div className="absolute h-[24px] left-[406px] top-[2631px] w-[23px]" data-name="prime:bookmark">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 23 24">
-        <g id="prime:bookmark">
-          <path d={svgPaths.p379aa200} fill="var(--fill-0, #09263F)" fillOpacity="0.5" id="Vector" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function PrimeBookmark1() {
-  return (
-    <div className="absolute h-[24px] left-[854px] top-[2631px] w-[23px]" data-name="prime:bookmark">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 23 24">
-        <g id="prime:bookmark">
-          <path d={svgPaths.p379aa200} fill="var(--fill-0, #09263F)" fillOpacity="0.5" id="Vector" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function PrimeBookmark2() {
-  return (
-    <div className="absolute left-[1301px] size-[24px] top-[2631px]" data-name="prime:bookmark">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
-        <g id="prime:bookmark">
-          <path d={svgPaths.p1d85d780} fill="var(--fill-0, #09263F)" fillOpacity="0.5" id="Vector" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-
 
 function FamiconsCall() {
   return (
@@ -665,95 +348,95 @@ function Frame({ offices, footerLinks, footerCities, siteSettings }: {
             <circle cx="250" cy="250" fill="var(--fill-0, white)" id="Ellipse 117" r="250" />
           </svg>
         </div>
-      <div className="absolute h-[69px] left-[52px] top-[58px] w-[233px]" data-name="image 14">
-        <img alt="AnalytixLabs" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={siteSettings?.logoUrl ?? imgImage14.src} />
-      </div>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1094px] not-italic text-[16px] text-white top-[62px] whitespace-nowrap">Popular Searches</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[804px] not-italic text-[16px] text-white top-[62px] whitespace-nowrap">Etcetera</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[514px] not-italic text-[16px] text-white top-[62px] whitespace-nowrap">About Us</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[108px] not-italic text-[16px] text-white top-[562px] whitespace-nowrap">{o0?.city ?? "Noida"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[550px] not-italic text-[16px] text-white top-[562px] whitespace-nowrap">{o1?.city ?? "Gurgaon"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[992px] not-italic text-[16px] text-white top-[562px] whitespace-nowrap">{o2?.city ?? "Bangalore"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[261px] not-italic text-[16px] text-white top-[281px] whitespace-nowrap">Blog</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[92px] w-[242px]">{fcLabel(0, "Data Analyst Training Course In Delhi")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[92px] w-[143px]">{flLabel(6, "System Requirements")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[92px] w-[51px]">{flLabel(0, "Why Us")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[88px] not-italic text-[14px] text-white top-[593px] w-[363px]">{o0?.addressLine1 ?? "1st Floor, A78, A Block, Sector 2, Metro Gate 3, Noida, UP 201301."}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[66px] not-italic text-[14px] text-white top-[757px] w-[363px]">© 2026 AnalytixLabs. All Rights Reserved.</p>
-      <p className="-translate-x-full absolute font-['Inter:Light',sans-serif] font-light leading-[normal] left-[1370px] not-italic text-[14px] text-right text-white top-[758px] whitespace-pre">{`Privacy Policy       Terms and Conditions      Sitemap`}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[530px] not-italic text-[14px] text-white top-[593px] w-[402px]">{o1?.addressLine1 ?? "2nd Floor, Sidhartha House, Building No. 6, Sector 44, Gurugram, Haryana 122003, (600 meters from HUDA City Metro)."}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[972px] not-italic text-[14px] text-white top-[593px] w-[387px]">{o2?.addressLine1 ?? "Bldg 51/2, First floor 12th Main Road, Near BDA complex Sector 6, HSR Layout Back Gate of BDA Complex, Opp A2B (Adayar Ananda Bhavan) Bangalore, Karnataka 560102."}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[118px] w-[248px]">{fcLabel(1, "Data Analyst Training Course In Noida")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[118px] w-[102px]">{flLabel(7, "Free Resources")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[118px] w-[54px]">{flLabel(1, "Courses")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[143px] w-[265px]">{fcLabel(2, "Data Analyst Training Course In Gurgaon")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[143px] w-[105px]">{flLabel(8, "Success Stories")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[143px] w-[91px]">{flLabel(2, "About Faculty")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[169px] w-[275px]">{fcLabel(3, "Data Analyst Training Course In Bangalore")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[37px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[169px] w-[171px]">{flLabel(9, "Colleges Universities Training Courses")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[169px] w-[74px]">{flLabel(3, "Contact Us")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[194px] w-[190px]">{fcLabel(4, "Data Science Course in Delhi")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[194px] w-[163px]">{flLabel(4, "AnalytixLabs Placements")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[220px] w-[196px]">{fcLabel(5, "Data Science Course In Noida")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[220px] w-[143px]">{flLabel(5, "System Requirements")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[245px] w-[213px]">{fcLabel(6, "Data Science Course In Gurgaon")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[271px] w-[223px]">{fcLabel(7, "Data Science Course In Bangalore")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[296px] w-[247px]">{fcLabel(8, "Business Analyst Course In Bangalore")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[322px] w-[214px]">{fcLabel(9, "Business Analyst Course In Delhi")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[347px] w-[268px]">{fcLabel(10, "Artificial Intelligence Course in Bangalore")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[373px] w-[235px]">{fcLabel(11, "Artificial Intelligence Course in Delhi")}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[398px] w-[139px]">{fcLabel(12, "Generative AI Course")}</p>
+        <div className="absolute h-[69px] left-[52px] top-[58px] w-[233px]" data-name="image 14">
+          <img alt="AnalytixLabs" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={siteSettings?.logoUrl ?? imgImage14.src} />
+        </div>
+        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1094px] not-italic text-[16px] text-white top-[62px] whitespace-nowrap">Popular Searches</p>
+        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[804px] not-italic text-[16px] text-white top-[62px] whitespace-nowrap">Etcetera</p>
+        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[514px] not-italic text-[16px] text-white top-[62px] whitespace-nowrap">About Us</p>
+        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[108px] not-italic text-[16px] text-white top-[562px] whitespace-nowrap">{o0?.city ?? "Noida"}</p>
+        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[550px] not-italic text-[16px] text-white top-[562px] whitespace-nowrap">{o1?.city ?? "Gurgaon"}</p>
+        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[992px] not-italic text-[16px] text-white top-[562px] whitespace-nowrap">{o2?.city ?? "Bangalore"}</p>
+        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[261px] not-italic text-[16px] text-white top-[281px] whitespace-nowrap">Blog</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[92px] w-[242px]">{fcLabel(0, "Data Analyst Training Course In Delhi")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[92px] w-[143px]">{flLabel(6, "System Requirements")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[92px] w-[51px]">{flLabel(0, "Why Us")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[88px] not-italic text-[14px] text-white top-[593px] w-[363px]">{o0?.addressLine1 ?? "1st Floor, A78, A Block, Sector 2, Metro Gate 3, Noida, UP 201301."}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[66px] not-italic text-[14px] text-white top-[757px] w-[363px]">© 2026 AnalytixLabs. All Rights Reserved.</p>
+        <p className="-translate-x-full absolute font-['Inter:Light',sans-serif] font-light leading-[normal] left-[1370px] not-italic text-[14px] text-right text-white top-[758px] whitespace-pre">{`Privacy Policy       Terms and Conditions      Sitemap`}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[530px] not-italic text-[14px] text-white top-[593px] w-[402px]">{o1?.addressLine1 ?? "2nd Floor, Sidhartha House, Building No. 6, Sector 44, Gurugram, Haryana 122003, (600 meters from HUDA City Metro)."}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[972px] not-italic text-[14px] text-white top-[593px] w-[387px]">{o2?.addressLine1 ?? "Bldg 51/2, First floor 12th Main Road, Near BDA complex Sector 6, HSR Layout Back Gate of BDA Complex, Opp A2B (Adayar Ananda Bhavan) Bangalore, Karnataka 560102."}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[118px] w-[248px]">{fcLabel(1, "Data Analyst Training Course In Noida")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[118px] w-[102px]">{flLabel(7, "Free Resources")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[118px] w-[54px]">{flLabel(1, "Courses")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[143px] w-[265px]">{fcLabel(2, "Data Analyst Training Course In Gurgaon")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[143px] w-[105px]">{flLabel(8, "Success Stories")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[143px] w-[91px]">{flLabel(2, "About Faculty")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[169px] w-[275px]">{fcLabel(3, "Data Analyst Training Course In Bangalore")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[37px] leading-[normal] left-[804px] not-italic text-[14px] text-white top-[169px] w-[171px]">{flLabel(9, "Colleges Universities Training Courses")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[169px] w-[74px]">{flLabel(3, "Contact Us")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[194px] w-[190px]">{fcLabel(4, "Data Science Course in Delhi")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[194px] w-[163px]">{flLabel(4, "AnalytixLabs Placements")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[220px] w-[196px]">{fcLabel(5, "Data Science Course In Noida")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[514px] not-italic text-[14px] text-white top-[220px] w-[143px]">{flLabel(5, "System Requirements")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[245px] w-[213px]">{fcLabel(6, "Data Science Course In Gurgaon")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[271px] w-[223px]">{fcLabel(7, "Data Science Course In Bangalore")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[296px] w-[247px]">{fcLabel(8, "Business Analyst Course In Bangalore")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[322px] w-[214px]">{fcLabel(9, "Business Analyst Course In Delhi")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[347px] w-[268px]">{fcLabel(10, "Artificial Intelligence Course in Bangalore")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[18px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[373px] w-[235px]">{fcLabel(11, "Artificial Intelligence Course in Delhi")}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[1094px] not-italic text-[14px] text-white top-[398px] w-[139px]">{fcLabel(12, "Generative AI Course")}</p>
 
-      <div className="absolute border-[0.5px] border-[rgba(255,255,255,0.5)] border-solid h-[118px] left-[947px] rounded-[15px] top-[541px] w-[426px]" />
-      <div className="absolute border-[0.5px] border-[rgba(255,255,255,0.5)] border-solid h-[118px] left-[507px] rounded-[15px] top-[541px] w-[425px]" />
-      <div className="absolute border-[0.5px] border-[rgba(255,255,255,0.5)] border-solid h-[118px] left-[66px] rounded-[15px] top-[541px] w-[426px]" />
-      <div className="absolute border-[0.5px] border-[rgba(255,255,255,0.5)] border-solid h-[213px] left-[66px] rounded-[15px] top-[271px] w-[426px]" />
-      <div className="absolute bg-white h-[38px] left-[89px] rounded-[97px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[308px] w-[379px]" />
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[200px] not-italic text-[#09263f] text-[14px] top-[317px] whitespace-nowrap">{`Submit a Guest Post `}</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[89px] not-italic text-[14px] text-white top-[366px] w-[375px]">Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[89px] not-italic text-[14px] text-white top-[411px] w-[353px]">What is Agentic AI – A Technical Guide for Beginners</p>
-      <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[89px] not-italic text-[14px] text-white top-[440px] w-[379px]">List vs Tuple in Python: Understanding Key Differences</p>
-      <BoxiconsLocationFilled />
-      <BoxiconsLocationFilled1 />
-      <BoxiconsLocationFilled2 />
-      <div className="-translate-x-1/2 absolute flex h-[17.424px] items-center justify-center left-[415.03px] top-[560px] w-[108.066px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "18" } as React.CSSProperties}>
-        <div className="flex-none rotate-[0.22deg]">
-          <p className="font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[14px] text-center text-white whitespace-nowrap">Get Directions→</p>
+        <div className="absolute border-[0.5px] border-[rgba(255,255,255,0.5)] border-solid h-[118px] left-[947px] rounded-[15px] top-[541px] w-[426px]" />
+        <div className="absolute border-[0.5px] border-[rgba(255,255,255,0.5)] border-solid h-[118px] left-[507px] rounded-[15px] top-[541px] w-[425px]" />
+        <div className="absolute border-[0.5px] border-[rgba(255,255,255,0.5)] border-solid h-[118px] left-[66px] rounded-[15px] top-[541px] w-[426px]" />
+        <div className="absolute border-[0.5px] border-[rgba(255,255,255,0.5)] border-solid h-[213px] left-[66px] rounded-[15px] top-[271px] w-[426px]" />
+        <div className="absolute bg-white h-[38px] left-[89px] rounded-[97px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[308px] w-[379px]" />
+        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[200px] not-italic text-[#09263f] text-[14px] top-[317px] whitespace-nowrap">{`Submit a Guest Post `}</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[89px] not-italic text-[14px] text-white top-[366px] w-[375px]">Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[89px] not-italic text-[14px] text-white top-[411px] w-[353px]">What is Agentic AI – A Technical Guide for Beginners</p>
+        <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[89px] not-italic text-[14px] text-white top-[440px] w-[379px]">List vs Tuple in Python: Understanding Key Differences</p>
+        <BoxiconsLocationFilled />
+        <BoxiconsLocationFilled1 />
+        <BoxiconsLocationFilled2 />
+        <div className="-translate-x-1/2 absolute flex h-[17.424px] items-center justify-center left-[415.03px] top-[560px] w-[108.066px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "18" } as React.CSSProperties}>
+          <div className="flex-none rotate-[0.22deg]">
+            <p className="font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[14px] text-center text-white whitespace-nowrap">Get Directions→</p>
+          </div>
         </div>
-      </div>
-      <div className="-translate-x-1/2 absolute flex h-[17.424px] items-center justify-center left-[855.03px] top-[560px] w-[108.066px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "18" } as React.CSSProperties}>
-        <div className="flex-none rotate-[0.22deg]">
-          <p className="font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[14px] text-center text-white whitespace-nowrap">Get Directions→</p>
+        <div className="-translate-x-1/2 absolute flex h-[17.424px] items-center justify-center left-[855.03px] top-[560px] w-[108.066px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "18" } as React.CSSProperties}>
+          <div className="flex-none rotate-[0.22deg]">
+            <p className="font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[14px] text-center text-white whitespace-nowrap">Get Directions→</p>
+          </div>
         </div>
-      </div>
-      <div className="-translate-x-1/2 absolute flex h-[17.424px] items-center justify-center left-[1295.03px] top-[560px] w-[108.066px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "18" } as React.CSSProperties}>
-        <div className="flex-none rotate-[0.22deg]">
-          <p className="font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[14px] text-center text-white whitespace-nowrap">Get Directions→</p>
+        <div className="-translate-x-1/2 absolute flex h-[17.424px] items-center justify-center left-[1295.03px] top-[560px] w-[108.066px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "18" } as React.CSSProperties}>
+          <div className="flex-none rotate-[0.22deg]">
+            <p className="font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[14px] text-center text-white whitespace-nowrap">Get Directions→</p>
+          </div>
         </div>
-      </div>
-      <div className="absolute h-0 left-[67px] top-[738px] w-[1306px]">
-        <div className="absolute inset-[-0.5px_0_0_0]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1306 0.5">
-            <line id="Line 15" stroke="var(--stroke-0, white)" strokeOpacity="0.5" strokeWidth="0.5" x2="1306" y1="0.25" y2="0.25" />
+        <div className="absolute h-0 left-[67px] top-[738px] w-[1306px]">
+          <div className="absolute inset-[-0.5px_0_0_0]">
+            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1306 0.5">
+              <line id="Line 15" stroke="var(--stroke-0, white)" strokeOpacity="0.5" strokeWidth="0.5" x2="1306" y1="0.25" y2="0.25" />
+            </svg>
+          </div>
+        </div>
+        <RiInstagramFill />
+        <div className="absolute inset-[88.33%_19.24%_8.78%_79.17%]" data-name="Vector">
+          <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 23 23">
+            <path d={svgPaths.p22379000} fill="var(--fill-0, white)" id="insta" />
           </svg>
         </div>
-      </div>
-      <RiInstagramFill />
-      <div className="absolute inset-[88.33%_19.24%_8.78%_79.17%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 23 23">
-          <path d={svgPaths.p22379000} fill="var(--fill-0, white)" id="insta" />
-        </svg>
-      </div>
-      <IcRoundFacebook />
-      <MdiLinkedin />
-      <MdiYoutube />
-      <PrimeTwitter />
-      <AkarIconsMediumFill />
-      <div className="absolute inset-[88.58%_5.14%_9.16%_93.26%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 23 18">
-          <path d={svgPaths.p19230580} fill="var(--fill-0, white)" id="medium" />
-        </svg>
-      </div>
+        <IcRoundFacebook />
+        <MdiLinkedin />
+        <MdiYoutube />
+        <PrimeTwitter />
+        <AkarIconsMediumFill />
+        <div className="absolute inset-[88.58%_5.14%_9.16%_93.26%]" data-name="Vector">
+          <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 23 18">
+            <path d={svgPaths.p19230580} fill="var(--fill-0, white)" id="medium" />
+          </svg>
+        </div>
       </div>
     </footer>
   );
@@ -770,6 +453,17 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
     offices = [],
     siteSettings,
   } = props;
+
+  const categoryScrollRef = useRef<HTMLDivElement>(null);
+
+  const scrollCategories = (direction: "left" | "right") => {
+    if (categoryScrollRef.current) {
+      const { scrollLeft, clientWidth } = categoryScrollRef.current;
+      const scrollTo = direction === "left" ? scrollLeft - clientWidth / 2 : scrollLeft + clientWidth / 2;
+      categoryScrollRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="bg-white relative w-full overflow-x-hidden flex flex-col items-center" data-name="Explore courses">
 
@@ -822,33 +516,33 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
             const b1 = course?.batches?.[1];
             const b2 = course?.batches?.[2];
             return (
-              <div key={i} className="bg-white border border-[rgba(0,0,0,0.15)] rounded-2xl shadow-[0px_4px_20px_0px_rgba(0,0,0,0.1)] overflow-hidden">
-                <div className="h-44 w-full overflow-hidden">
+              <div key={i} className="bg-white border border-[rgba(0,0,0,0.15)] rounded-2xl shadow-[0px_4px_20px_0px_rgba(0,0,0,0.1)] flex flex-col">
+                <div className="h-52 w-full overflow-hidden">
                   <img src={course?.thumbnailUrl ?? imgs[i]?.src ?? imgPic.src} alt={course?.title ?? fb.title} className="w-full h-full object-cover" />
                 </div>
-                <div className="p-4">
-                  <div className="flex gap-2 justify-end mb-3">
+                <div className="p-5 flex flex-col flex-1">
+                  <div className="flex gap-2 justify-end mb-4">
                     {[
                       { label: course?.classesCount ? `${course.classesCount} Classes` : `${fb.classesCount} Classes`, bg: "#f0fbff" },
                       { label: course?.hoursCount ? `${course.hoursCount}+ Hrs` : `${fb.hoursCount}+ Hrs`, bg: "#fffad2" },
                     ].map((tag, ti) => (
-                      <div key={ti} className="px-2 py-1 rounded-full text-[10px] font-medium text-[#09263f]/50" style={{ backgroundColor: tag.bg }}>{tag.label}</div>
+                      <div key={ti} className="px-3 py-1 rounded-full text-[11px] font-medium text-[#09263f]/85" style={{ backgroundColor: tag.bg }}>{tag.label}</div>
                     ))}
                   </div>
-                  <h3 className="font-semibold text-lg text-black mb-3">{course?.title ?? fb.title}</h3>
-                  <div className="flex gap-2 mb-3">
+                  <h3 className="font-semibold text-xl text-black mb-4 leading-snug min-h-[50px]">{course?.title ?? fb.title}</h3>
+                  <div className="flex gap-2 mb-5">
                     {[
                       { loc: b0?.location ?? "Noida", date: fmtDate(b0?.startDate) || "20 April", bg: "#f0fbff" },
                       { loc: b1?.location ?? "Bangalore", date: fmtDate(b1?.startDate) || "13 April", bg: "#fffad2" },
                       { loc: b2?.location ?? "Gurgaon", date: fmtDate(b2?.startDate) || "04 May", bg: "#fff2fa" },
                     ].map((b, bi) => (
-                      <div key={bi} className="flex-1 flex flex-col items-center justify-center py-2 px-1 rounded-full min-h-[40px]" style={{ backgroundColor: b.bg }}>
-                        <span className="font-semibold text-[11px] text-black">{b.loc}</span>
-                        <span className="text-[9px] text-black/50">{b.date}</span>
+                      <div key={bi} className="flex-1 flex flex-col items-center justify-center py-2.5 px-1 rounded-xl shadow-sm" style={{ backgroundColor: b.bg }}>
+                        <span className="font-semibold text-[12px] text-black">{b.loc}</span>
+                        <span className="text-[10px] text-black/50">{b.date}</span>
                       </div>
                     ))}
                   </div>
-                  <Link href={course?.slug ? `/courses/${course.slug}` : "/courses"} className="flex items-center justify-center w-full bg-[#1de5b5] h-12 rounded-full font-semibold text-white text-sm mt-1">
+                  <Link href={course?.slug ? `/courses/${course.slug}` : "/courses"} className="mt-auto flex items-center justify-center w-full bg-[#1de5b5] h-14 rounded-full font-bold text-[#09263f] text-[16px] shadow-md active:scale-95 transition-all">
                     Explore Course
                   </Link>
                 </div>
@@ -889,144 +583,247 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
       </div>{/* /mobile layout */}
 
       {/* ═══ DESKTOP LAYOUT (hidden below lg) ═══ */}
-      <div className="hidden lg:flex w-full flex-col items-center">
-      {/* Full-width backgrounds */}
-      <div className="absolute bg-[#f4fafa] h-[335px] top-[64px] w-screen left-1/2 -translate-x-1/2" />
-      <div className="absolute bg-[#f4fafa] h-[872px] top-[2004px] w-screen left-1/2 -translate-x-1/2" />
+      <div className="hidden lg:flex w-full flex-col items-center bg-white">
 
-      {/* Main absolute canvas (locked to 1440px) */}
-      <div className="relative w-[1440px] h-[3452px] flex-shrink-0">
-        <Group9 />
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[0] left-[63px] not-italic text-[#09263f] text-[42px] top-[142px] w-[667px]">
-        <span className="leading-[normal]">{`Explore `}</span>
-        <span className="bg-clip-text bg-gradient-to-r from-[#1de5b5] from-[34.135%] leading-[normal] text-[transparent] to-[#07b3e7] to-[78.846%]">{`AI & Data Science`}</span>
-        <span className="leading-[normal] text-[#07b3e7]">{` `}</span>
-        <span className="leading-[normal]">Courses That Get You Job Ready</span>
-      </p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[94px] not-italic text-[#09263f] text-[36px] top-[484px] whitespace-nowrap">All Courses</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[63px] not-italic text-[14px] text-[rgba(9,38,63,0.5)] top-[267px] w-[467px]">Find the Course That Moves Your Career Forward</p>
-      <div className="absolute bg-white border-[0.5px] border-[rgba(9,38,63,0.5)] border-solid h-[59px] left-[796px] rounded-[15px] top-[484px] w-[565px]" />
-      <div className="absolute bg-[#ffd700] h-[38px] left-[1300px] rounded-[8px] top-[494px] w-[49px]" />
-      <IconoirSearch />
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[821px] not-italic text-[14px] text-[rgba(0,0,0,0.5)] top-[505px] whitespace-nowrap">Search</p>
-      <div className="absolute bg-gradient-to-r from-[#094c80] from-[13.037%] h-[112px] left-[63px] rounded-[91px] to-[#2096cb] top-[572px] w-[1307px]" data-name="gradient rect" />
-      <div className="absolute bg-white h-[47px] left-[138px] rounded-[124px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[604px] w-[81px]" />
-      <div className="absolute border-[0.5px] border-solid border-white h-[47px] left-[244px] rounded-[124px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[604px] w-[176px]" />
-      <div className="absolute border-[0.5px] border-solid border-white h-[47px] left-[445px] rounded-[124px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[604px] w-[176px]" />
-      <div className="absolute border-[0.5px] border-solid border-white h-[47px] left-[646px] rounded-[124px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[604px] w-[176px]" />
-      <div className="absolute border-[0.5px] border-solid border-white h-[47px] left-[847px] rounded-[124px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[604px] w-[176px]" />
-      <div className="absolute border-[0.5px] border-solid border-white h-[47px] left-[1048px] rounded-[124px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[604px] w-[247px]" />
-      <Link href={`/courses?category=${encodeURIComponent(categories?.[0]?.slug ?? "")}` } className="contents"><p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[332px] not-italic text-[16px] text-center text-white top-[618px] whitespace-nowrap">{categories?.[0]?.name ?? "Agentic AI Course"}</p></Link>
-      <Link href={`/courses?category=${encodeURIComponent(categories?.[1]?.slug ?? "")}` } className="contents"><p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[533px] not-italic text-[16px] text-center text-white top-[618px] whitespace-nowrap">{categories?.[1]?.name ?? "Data Science"}</p></Link>
-      <Link href={`/courses?category=${encodeURIComponent(categories?.[2]?.slug ?? "")}` } className="contents"><p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[734.5px] not-italic text-[16px] text-center text-white top-[618px] whitespace-nowrap">{categories?.[2]?.name ?? "Full Stack AI"}</p></Link>
-      <Link href={`/courses?category=${encodeURIComponent(categories?.[3]?.slug ?? "")}` } className="contents"><p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[935.5px] not-italic text-[16px] text-center text-white top-[618px] whitespace-nowrap">{categories?.[3]?.name ?? "Business Analytics"}</p></Link>
-      <Link href={`/courses?category=${encodeURIComponent(categories?.[4]?.slug ?? "")}`} className="contents"><p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1171.5px] not-italic text-[16px] text-center text-white top-[618px] whitespace-nowrap">{categories?.[4]?.name ?? "Data visualization & Analytics"}</p></Link>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[177px] not-italic text-[#09263f] text-[16px] text-center top-[618px] whitespace-nowrap">All</p>
-      <div className="absolute flex h-[25.421px] items-center justify-center left-[88px] top-[615px] w-[23px]">
-        <div className="-scale-y-100 flex-none rotate-180">
-          <Group2 />
-        </div>
-      </div>
-      <Group3 />
-      <Group4 course={courses[0]} />
-      <Group5 course={courses[3]} />
-      <Group6 course={courses[2]} />
-      <Group7 course={courses[5]} />
-      <Group8 course={courses[1]} />
-      <Group10 course={courses[4]} />
-      <div className="absolute bg-white h-[481px] left-[63px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[2201px] w-[414px]" />
-      <div className="absolute bg-white h-[481px] left-[509px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[2201px] w-[414px]" />
-      <div className="absolute bg-white h-[481px] left-[956px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[2201px] w-[414px]" />
-      <div className="absolute h-[246px] left-[63px] rounded-tl-[15px] rounded-tr-[15px] top-[2201px] w-[414px]" data-name="pic">
-        <img alt={posts?.[0]?.title ?? ""} className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[15px] rounded-tr-[15px] size-full" src={posts?.[0]?.coverUrl ?? imgPic6.src} />
-      </div>
-      <div className="absolute h-[246px] left-[509px] rounded-tl-[15px] rounded-tr-[15px] top-[2201px] w-[414px]" data-name="pic">
-        <img alt={posts?.[1]?.title ?? ""} className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[15px] rounded-tr-[15px] size-full" src={posts?.[1]?.coverUrl ?? imgPic7.src} />
-      </div>
-      <div className="absolute h-[246px] left-[956px] rounded-tl-[15px] rounded-tr-[15px] top-[2201px] w-[414px]" data-name="pic">
-        <img alt={posts?.[2]?.title ?? ""} className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[15px] rounded-tr-[15px] size-full" src={posts?.[2]?.coverUrl ?? imgPic8.src} />
-      </div>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[79px] not-italic text-[16px] text-black top-[2507px] w-[328px]">{posts?.[0]?.title ?? "Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[525px] not-italic text-[16px] text-black top-[2507px] w-[323px]">{posts?.[1]?.title ?? "Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[972px] not-italic text-[16px] text-black top-[2507px] w-[323px]">{posts?.[2]?.title ?? "Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[79px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[2559px] w-[364px]">{posts?.[0]?.excerpt ?? "Statistical tests form the backbone of data-driven decision-making. They allow analysts to move beyond intuition and evaluate claims in a measurable w..."}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[525px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[2559px] w-[365px]">{posts?.[1]?.excerpt ?? "Statistical tests form the backbone of data-driven decision-making. They allow analysts to move beyond intuition and evaluate claims in a measurable w..."}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[972px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[2559px] w-[365px]">{posts?.[2]?.excerpt ?? "Statistical tests form the backbone of data-driven decision-making. They allow analysts to move beyond intuition and evaluate claims in a measurable w..."}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[128px] not-italic text-[12px] text-black top-[2633px] whitespace-nowrap">{posts?.[0]?.authorName ?? "S. Dutta"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[574px] not-italic text-[12px] text-black top-[2633px] whitespace-nowrap">{posts?.[1]?.authorName ?? "S. Dutta"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1021px] not-italic text-[12px] text-black top-[2633px] whitespace-nowrap">{posts?.[2]?.authorName ?? "S. Dutta"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[401px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[2465px] whitespace-nowrap">9 min read</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[848px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[2465px] whitespace-nowrap">9 min read</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1295px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[2465px] whitespace-nowrap">9 min read</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[79px] not-italic text-[#4c7fd2] text-[16px] top-[2467px] whitespace-nowrap">Data Science</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[525px] not-italic text-[#ffd700] text-[16px] top-[2467px] whitespace-nowrap">Data Science</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[972px] not-italic text-[#1de5b5] text-[16px] top-[2467px] whitespace-nowrap">Data Science</p>
-      <div className="absolute h-[40px] left-[79px] top-[2622px] w-[39px]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 39 40">
-          <ellipse cx="19.5" cy="20" fill="var(--fill-0, #082962)" id="Ellipse 3" rx="19.5" ry="20" />
-        </svg>
-      </div>
-      <div className="absolute h-[40px] left-[525px] top-[2622px] w-[39px]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 39 40">
-          <ellipse cx="19.5" cy="20" fill="var(--fill-0, #082962)" id="Ellipse 3" rx="19.5" ry="20" />
-        </svg>
-      </div>
-      <div className="absolute h-[40px] left-[972px] top-[2622px] w-[39px]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 39 40">
-          <ellipse cx="19.5" cy="20" fill="var(--fill-0, #082962)" id="Ellipse 3" rx="19.5" ry="20" />
-        </svg>
-      </div>
-      <div className="absolute flex items-center justify-center left-[432.5px] size-[33.128px] top-[2625.4px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "1203" } as React.CSSProperties}>
-        <div className="flex-none rotate-[43.46deg]">
-          <HeroiconsOutlineArrowUp />
-        </div>
-      </div>
-      <div className="absolute flex items-center justify-center left-[880.56px] size-[33.128px] top-[2625.4px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "1203" } as React.CSSProperties}>
-        <div className="flex-none rotate-[43.46deg]">
-          <HeroiconsOutlineArrowUp1 />
-        </div>
-      </div>
-      <div className="absolute flex items-center justify-center left-[1327.66px] size-[33.128px] top-[2625.4px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "1203" } as React.CSSProperties}>
-        <div className="flex-none rotate-[43.46deg]">
-          <HeroiconsOutlineArrowUp2 />
-        </div>
-      </div>
-      <PrimeBookmark />
-      <PrimeBookmark1 />
-      <PrimeBookmark2 />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-1/2 not-italic text-[#09263f] text-[40px] text-center top-[2068px] whitespace-nowrap">Related Articles</p>
-      <div className="-translate-x-1/2 absolute bg-[#07b3e7] h-[350px] left-[calc(50%+5.5px)] rounded-[201px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[2994px] w-[1301px]" />
-      <div className="absolute left-[733px] size-[474px] top-[3107px]">
-        <div className="absolute bottom-1/2 left-0 right-0 top-0">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 474 237">
-            <path d={svgPaths.p22ecb680} fill="var(--fill-0, #7EDAFE)" id="Ellipse 76" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute left-[857px] size-[446px] top-[2898px]" data-name="image 31">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage31.src} />
-      </div>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-500px)] not-italic text-[36px] text-white top-[3058px] w-[535px]">{`"Unlock Insights. Enroll Now. Transform Tomorrow."`}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[220px] not-italic text-[18px] text-white top-[3168px] whitespace-nowrap">Change the course of your career now</p>
-      <div className="absolute bg-[#ffd700] h-[49px] left-[220px] rounded-[1000px] top-[3225px] w-[182px]" />
-      <div className="-translate-x-1/2 absolute bg-[#ffd700] h-[49px] left-1/2 rounded-[1000px] top-[2754px] w-[200px]" />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[311px] not-italic text-[#09263f] text-[18px] text-center top-[3238px] whitespace-nowrap">Contact Us</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-1/2 not-italic text-[#09263f] text-[18px] text-center top-[2767px] whitespace-nowrap">Explore Blogs→</p>
+        {/* 1. Hero Section */}
+        <section className="w-full bg-[#f4fafa] flex justify-center pt-20 pb-10 overflow-hidden relative">
+          <div className="w-[1440px] px-[66px] flex justify-between items-center relative">
+            <div className="max-w-[720px] flex flex-col gap-8 z-10">
+              <h1 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[48px] leading-[1.2]">
+                Explore <span className="bg-clip-text bg-gradient-to-r from-[#1de5b5] to-[#07b3e7] text-transparent">AI & Data Science</span> Courses That Get You Job Ready
+              </h1>
+              <p className="font-['Inter:Regular',sans-serif] font-normal text-[18px] text-[rgba(9,38,63,0.5)]">
+                Find the Course That Moves Your Career Forward
+              </p>
+            </div>
+            {/* Decorative Images */}
+            <div className="relative flex-1 h-[400px]">
+              <div className="absolute h-[331px] right-0 top-0 w-[315px] z-[1]">
+                <img alt="" className="size-full object-contain" src={imgAsset253X2.src} />
+              </div>
+              <div className="absolute h-[326px] right-[100px] top-[10px] w-[218px] z-[2]">
+                <img alt="" className="size-full object-contain" src={imgChatGptImageApr142026034518Pm3.src} />
+              </div>
+              <div className="absolute h-[308px] right-[240px] top-[40px] w-[267px] z-[0]">
+                <img alt="" className="size-full object-contain" src={imgImage40.src} />
+              </div>
+            </div>
+            <div className="absolute top-0 right-0">
+              <Group9 />
+            </div>
+          </div>
+        </section>
 
-      <div className="absolute h-[331px] left-[1060px] top-[68px] w-[315px]" data-name="Asset 25@3x 2">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgAsset253X2.src} />
+        {/* 2. Course Selection & Category Bar */}
+        <section className="w-full max-w-[1440px] px-[66px] pt-4 pb-12 flex flex-col gap-10">
+          <div className="flex justify-between items-center">
+            <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[36px]">All Courses</h2>
+            <div className="relative flex items-center">
+              <input
+                type="text"
+                placeholder="Search"
+                className="bg-white border-[0.5px] border-[rgba(9,38,63,0.3)] border-solid h-[54px] w-[565px] rounded-[15px] pl-6 pr-16 text-[16px] outline-none focus:border-[#1de5b5] transition-all"
+              />
+              <div className="absolute right-1.5 bg-[#ffd700] size-[46px] rounded-[10px] flex items-center justify-center hover:brightness-95 cursor-pointer transition-all">
+                <IconoirSearch />
+              </div>
+            </div>
+          </div>
+
+          <div className="relative w-full h-[112px] rounded-[91px] bg-gradient-to-r from-[#094c80] to-[#2096cb] overflow-hidden flex items-center px-12 group">
+            <div
+              ref={categoryScrollRef}
+              className="w-full flex items-center gap-6 overflow-x-auto hide-scrollbar scroll-smooth"
+            >
+              <Link href="/courses" className="shrink-0 bg-white px-10 py-3 rounded-full shadow-lg text-[#09263f] font-bold text-[18px] hover:brightness-95 transition-all">
+                All
+              </Link>
+              {categories.map((cat) => (
+                <Link
+                  key={cat.id}
+                  href={`/courses?category=${cat.slug}`}
+                  className="shrink-0 border border-white/30 px-10 py-3 rounded-full text-white font-bold text-[18px] hover:bg-white/10 transition-all whitespace-nowrap"
+                >
+                  {cat.name}
+                </Link>
+              ))}
+            </div>
+            {/* Scroll buttons */}
+            <div className="absolute left-4 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="-scale-y-100 rotate-180">
+                <Group2 onClick={() => scrollCategories("left")} />
+              </div>
+            </div>
+            <div className="absolute right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+              <Group3 onClick={() => scrollCategories("right")} />
+            </div>
+          </div>
+
+          {/* Course Grid */}
+          <div className="flex w-full gap-8 overflow-x-auto pb-12 snap-x snap-mandatory scroll-smooth hide-scrollbar px-4">
+            {(courses?.length ? courses : [undefined, undefined, undefined, undefined, undefined, undefined]).slice(0, 10).map((course, i) => {
+              const b0 = course?.batches?.[0];
+              const b1 = course?.batches?.[1];
+              const b2 = course?.batches?.[2];
+              return (
+                <div key={i} className="flex-shrink-0 w-[320px] md:w-[400px] snap-center bg-white border-[0.5px] border-[rgba(0,0,0,0.15)] border-solid h-[560px] rounded-[24px] shadow-[0px_4px_30px_0px_rgba(0,0,0,0.1)] flex flex-col p-5 hover:shadow-[0px_8px_40px_0px_rgba(0,0,0,0.2)] transition-all">
+                  <div className="aspect-video w-full rounded-[18px] overflow-hidden mb-5 shrink-0 bg-[#09263F] flex items-center justify-center relative group/thumb">
+                    <img
+                      alt={course?.title ?? ""}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover/thumb:scale-105"
+                      src={course?.thumbnailUrl?.includes('placehold.co') || !course?.thumbnailUrl
+                        ? `https://placehold.co/640x360/09263F/FFFFFF?text=${(course?.title || "AnalytixLabs").replace(/\+/g, ' ')}`
+                        : course.thumbnailUrl
+                      }
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#09263F]/40 to-transparent opacity-0 group-hover/thumb:opacity-100 transition-opacity" />
+                  </div>
+
+                  <div className="flex gap-2 justify-start mb-3 px-1">
+                    <div className="bg-[#f0fbff] h-[22px] px-3 rounded-full flex items-center justify-center border border-[#09263f]/10">
+                      <span className="font-['Inter:Medium',sans-serif] font-medium text-[10px] text-[#09263f]/80 uppercase tracking-wider">
+                        {course?.classesCount ? `${course.classesCount} Classes` : "46 Classes"}
+                      </span>
+                    </div>
+                    <div className="bg-[#fffad2] h-[22px] px-3 rounded-full flex items-center justify-center border border-[#09263f]/10">
+                      <span className="font-['Inter:Medium',sans-serif] font-medium text-[10px] text-[#09263f]/80 uppercase tracking-wider">
+                        {course?.hoursCount ? `${course.hoursCount}+ Hours` : "500+ Hours"}
+                      </span>
+                    </div>
+                  </div>
+
+                  <h3 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[18px] text-[#09263f] leading-tight mb-4 min-h-[54px] text-left px-1">
+                    {course?.title ?? ["Data Analytics", "Business Analytics", "Agentic AI", "Full Stack AI", "Data Science", "Machine Learning"][i % 6]}
+                  </h3>
+
+                  <div className="flex gap-2 mb-4">
+                    {[
+                      { batch: b0, mode: "Live Online", loc: "Global", date: fmtDate(b0?.startDate) || "11 May", bg: "#f0fbff", fallbackSched: "Weekends" },
+                      { batch: b1, mode: "Live Online", loc: "Global", date: fmtDate(b1?.startDate) || "15 Sept", bg: "#fffad2", fallbackSched: "Weekends" },
+                      { batch: b2, mode: "Classroom", loc: "Gurgaon", date: fmtDate(b2?.startDate) || "04 May", bg: "#fff2fa", fallbackSched: "Weekends" },
+                    ].map((b, bi) => {
+                      const seats = b.batch?.seatsLeft ?? (bi === 0 ? 0 : 20);
+                      const isSoldOut = seats === 0;
+                      return (
+                        <div key={bi} className={`flex-1 flex flex-col border border-[rgba(0,0,0,0.05)] rounded-[14px] overflow-hidden shadow-sm transition-all ${isSoldOut ? 'opacity-50 grayscale' : 'hover:border-[#1de5b5]/30'}`}>
+                          {/* Location & Mode Header */}
+                          <div className="py-2 flex flex-col items-center justify-center text-center px-1 h-[60px]" style={{ backgroundColor: b.bg }}>
+                            <span className="font-bold text-[9px] text-[#09263f]/60 uppercase tracking-tight">{b.mode}</span>
+                            <span className="font-bold text-[11px] text-[#09263f] leading-tight">{b.loc}</span>
+                            <span className="font-bold text-[10px] text-[#09263f]/80 mt-1">{b.date}</span>
+                          </div>
+                          {/* Schedule & Seats Footer */}
+                          <div className="py-1.5 text-center bg-white flex flex-col justify-center px-1 min-h-[38px] border-t border-[rgba(0,0,0,0.05)]">
+                            <div className="text-[#09263f] leading-tight">
+                              <span className="text-[9px] opacity-70 font-medium">{b.batch?.schedule || b.fallbackSched}</span>
+                              <br />
+                              <span className={`text-[10px] font-bold ${isSoldOut ? 'text-red-500' : 'text-green-600'}`}>
+                                {isSoldOut ? "SOLD OUT" : `${seats} Seats`}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <div className="mt-auto pt-4">
+                    <Link href={course?.slug ? `/courses/${course.slug}` : "/courses"} className="w-full bg-[#19cf9e] h-[48px] rounded-[14px] shadow-sm flex items-center justify-center font-bold text-white text-[15px] hover:brightness-105 active:scale-[0.98] transition-all">
+                      Explore Course
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* 3. Related Articles Section */}
+        <section className="w-full bg-[#f4fafa] flex justify-center py-12">
+          <div className="w-[1440px] px-[66px] flex flex-col items-center">
+            <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[40px] mb-16">Related Articles</h2>
+
+            <div className="w-full grid grid-cols-3 gap-10">
+              {(posts ?? [undefined, undefined, undefined]).slice(0, 3).map((post, i) => {
+                const covers = [imgPic6, imgPic7, imgPic8];
+                const categoryColor = post?.category?.color || "#4c7fd2";
+                const authorAvatar = `https://ui-avatars.com/api/?name=AnalytixLabs&background=09263F&color=fff`; return (
+                  <div key={i} className="bg-white rounded-[20px] shadow-[0px_4px_30px_0px_rgba(0,0,0,0.1)] flex flex-col h-full hover:shadow-[0px_8px_40px_0px_rgba(0,0,0,0.15)] transition-all group">
+                    {/* Article Cover */}
+                    <div className="h-[240px] bg-[#09263f] flex items-center justify-center overflow-hidden rounded-t-[20px]">
+                      <img
+                        alt={post?.title ?? ""}
+                        className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500"
+                        src={post?.coverImage ?? covers[i]?.src ?? `https://placehold.co/640x360/09263F/FFFFFF?text=${post?.title?.split(' ').slice(0, 3).join(' ') || "Related Article"}`}
+                      />
+                    </div>
+
+                    <div className="flex flex-col flex-1 p-8">
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="font-bold text-[14px]" style={{ color: categoryColor }}>
+                          {post?.category?.name ?? "Data Science"}
+                        </span>
+                        <span className="text-[12px] text-black/40 font-medium">9 min read</span>
+                      </div>
+
+                      <h3 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[20px] text-[#09263f] leading-tight mb-4 line-clamp-2">
+                        {post?.title ?? ["What is Agentic AI – A Technical Guide for Beginners", "List vs Tuple in Python: Understanding Key Differences", "Parametric vs. Non-Parametric Test: Which One to Use?"][i]}
+                      </h3>
+
+                      <p className="text-[14px] text-[#09263f]/60 leading-relaxed mb-6 line-clamp-3">
+                        {post?.excerpt ?? "Learn the fundamental concepts and practical applications in this comprehensive guide tailored for modern data professionals."}
+                      </p>
+
+                      <div className="mt-auto flex justify-between items-center pt-6 border-t border-black/5">
+                        <div className="flex items-center gap-3">
+                          <div className="size-[36px] rounded-full overflow-hidden bg-[#f0f0f0] border border-black/5">
+                            <img alt="" className="size-full object-cover" src={authorAvatar} />
+                          </div>
+                          <span className="font-bold text-[14px] text-[#09263f]">AnalytixLabs Editorial</span>
+                        </div>
+                        <div className="size-[36px] rounded-full flex items-center justify-center border border-black/10 group-hover:bg-[#09263f] group-hover:border-[#09263f] transition-all duration-300">
+                          <IconoirArrowUpRight className="size-5 text-black/40 group-hover:text-white transition-colors" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <Link href="/blog" className="mt-16 inline-flex items-center justify-center bg-[#ffd700] h-[56px] px-12 rounded-full font-bold text-[#09263f] text-[18px] shadow-lg hover:scale-[1.05] transition-all">
+              Explore Blogs →
+            </Link>
+          </div>
+        </section>
+
+        {/* 4. CTA Banner Section */}
+        <section className="w-full flex justify-center py-20 px-10">
+          <div className="w-[1300px] h-[400px] bg-[#07b3e7] rounded-[40px] shadow-2xl relative overflow-hidden flex items-center px-20">
+            {/* Background elements */}
+            <div className="absolute right-0 top-0 size-[500px] opacity-20 pointer-events-none">
+              <svg className="size-full" fill="none" viewBox="0 0 500 500">
+                <circle cx="250" cy="250" r="250" fill="white" />
+              </svg>
+            </div>
+            <div className="absolute right-[50px] top-[-50px] w-[500px] h-full pointer-events-none opacity-80">
+              <img src={imgImage31.src} className="size-full object-contain" alt="" />
+            </div>
+
+            <div className="max-w-[600px] flex flex-col gap-8 z-10">
+              <h2 className="font-bold text-white text-[42px] leading-tight">
+                "Unlock Insights. Enroll Now. Transform Tomorrow."
+              </h2>
+              <p className="text-white/80 text-[20px]">
+                Change the course of your career now
+              </p>
+              <Link href="/contact" className="bg-[#ffd700] h-[60px] w-[220px] rounded-full flex items-center justify-center font-bold text-[#09263f] text-[20px] shadow-xl hover:scale-[1.05] transition-all">
+                Contact Us
+              </Link>
+            </div>
+          </div>
+        </section>
       </div>
-      <div className="absolute h-[326px] left-[943px] top-[73px] w-[218px]" data-name="ChatGPT Image Apr 14, 2026, 03_45_18 PM 3">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgChatGptImageApr142026034518Pm3.src} />
-      </div>
-      <div className="absolute h-[308px] left-[742px] top-[91px] w-[267px]" data-name="image 40">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute h-[105.54%] left-[-6.5%] max-w-none top-[-2.95%] w-[121.47%]" src={imgImage40.src} />
-        </div>
-      </div>
-      <div className="absolute bg-gradient-to-b from-[rgba(255,255,255,0)] h-[46px] left-0 to-white top-[353px] w-[1395px]" />
-      </div>{/* /absolute canvas */}
-      </div>{/* /desktop layout */}
 
     </div>
   );

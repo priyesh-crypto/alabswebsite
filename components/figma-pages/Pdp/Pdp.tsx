@@ -1427,21 +1427,24 @@ export default function Pdp(props: PdpProps) {
           <img alt="" className="absolute inset-0 max-w-none object-cover opacity-44 pointer-events-none size-full" src={imgAsset253X2.src} />
         </div>
         <div className="absolute bg-gradient-to-b from-[rgba(255,255,255,0)] h-[46px] left-0 to-white top-[488px] w-[1395px]" />
-        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[63px] not-italic text-[#09263f] text-[42px] top-[142px] w-[667px]">{course?.title ?? "Data Science Course with Certification & Placement"}</p>
-        <div className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[63px] not-italic text-[14px] text-[rgba(9,38,63,0.5)] top-[262px] w-[467px]">
-        <p className="leading-[normal] mb-0">{course?.shortDesc ?? "An extensive industry-relevant Data Science course with 8 weeks of Placement Assistance. No coding background required — start from zero, finish job-ready."}</p>
-        <p className="leading-[normal]">​</p>
-      </div>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-[52px] not-italic text-[14px] text-[rgba(9,38,63,0.5)] top-[329px] whitespace-pre">
-        <span className="leading-[normal]">{`                             `}</span>
-        <span className="leading-[normal] text-[#09263f]">{`9.6 / 10  `}</span>
-        <span className="leading-[normal]">(20,000+ alumni)</span>
-      </p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[71px] not-italic text-[16px] text-black text-center top-[329px] whitespace-nowrap">{`⭐ `}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[90px] not-italic text-[16px] text-black text-center top-[329px] whitespace-nowrap">{`⭐ `}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[109px] not-italic text-[16px] text-black text-center top-[329px] whitespace-nowrap">{`⭐ `}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[128px] not-italic text-[16px] text-black text-center top-[329px] whitespace-nowrap">{`⭐ `}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[147px] not-italic text-[16px] text-black text-center top-[329px] whitespace-nowrap">{`⭐ `}</p>
+        <div className="absolute left-[63px] top-[142px] w-[667px] flex flex-col gap-6">
+          <h1 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[42px] leading-tight">
+            {course?.title ?? "Data Science Course with Certification & Placement"}
+          </h1>
+          <div className="font-['Inter:Regular',sans-serif] font-normal text-[14px] text-[rgba(9,38,63,0.5)] leading-relaxed">
+            {course?.shortDesc ?? "An extensive industry-relevant Data Science course with 8 weeks of Placement Assistance. No coding background required — start from zero, finish job-ready."}
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="flex items-center text-[16px]">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <span key={i} className="text-black">⭐</span>
+              ))}
+            </div>
+            <p className="font-['Inter:Regular',sans-serif] font-normal text-[14px] text-[rgba(9,38,63,0.5)]">
+              <span className="text-[#09263f] font-semibold">9.6 / 10</span> (20,000+ alumni)
+            </p>
+          </div>
+        </div>
       <div className="absolute bg-[#d2faf0] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[63px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[371px] w-[114px]" />
       <div className="absolute bg-[#d2faf0] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[143px] left-[49px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[886px] w-[295px]" />
       <div className="absolute bg-[#d2faf0] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[213px] left-[49px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[3972px] w-[295px]" />

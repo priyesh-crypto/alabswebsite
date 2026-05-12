@@ -99,7 +99,9 @@ export function GlobalNavbar({ topNav }: { topNav?: NavItem[] }) {
 
   return (
     <>
-      <header className="sticky top-0 z-[100] w-full bg-white shadow-[0px_4px_20px_0px_rgba(0,0,0,0.1)] h-[68px] flex items-center">
+      {/* Spacer so page content doesn't render under the fixed navbar */}
+      <div className="h-[68px] w-full shrink-0" aria-hidden />
+      <header className="fixed top-0 left-0 right-0 z-[100] w-full bg-white shadow-[0px_4px_20px_0px_rgba(0,0,0,0.1)] h-[68px] flex items-center">
         {/* ── Desktop layout (≥ 1024px) ── */}
         <div className="hidden lg:flex w-full max-w-[1440px] mx-auto px-[33px] h-full items-center">
           <Link href="/" className="relative h-[57px] w-[191px] shrink-0">
@@ -476,24 +478,24 @@ export function GlobalFooter({ offices, footerLinks, footerCities, posts }: Glob
               </div>
 
               <div className="grid grid-cols-3 gap-[40px] flex-1 justify-items-end">
-                <div className="flex flex-col gap-6 w-[180px]">
+                <div className="flex flex-col gap-8 w-[180px]">
                   <p className="font-semibold text-[16px]">About Us</p>
-                  <div className="flex flex-col gap-4 text-[14px] font-light">
+                  <div className="flex flex-col gap-5 text-[14px] font-light leading-relaxed">
                     {aboutLinks.map((l, i) => <Link key={i} href={l.url ?? "#"} className="hover:underline">{l.label}</Link>)}
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-6 w-[180px]">
+                <div className="flex flex-col gap-8 w-[180px]">
                   <p className="font-semibold text-[16px]">Etcetera</p>
-                  <div className="flex flex-col gap-4 text-[14px] font-light">
+                  <div className="flex flex-col gap-5 text-[14px] font-light leading-relaxed">
                     {etLinks.map((l, i) => <Link key={i} href={l.url ?? "#"} className="hover:underline">{l.label}</Link>)}
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-6 w-[280px]">
+                <div className="flex flex-col gap-8 w-[280px]">
                   <p className="font-semibold text-[16px]">Popular Searches</p>
-                  <div className="flex flex-col gap-3 text-[14px] font-light">
-                    {searchLinks.map((l, i) => <Link key={i} href={l.url ?? "#"} className="hover:underline whitespace-nowrap">{l.label}</Link>)}
+                  <div className="flex flex-col gap-[18px] text-[14px] font-light leading-tight">
+                    {searchLinks.map((l, i) => <Link key={i} href={l.url ?? "#"} className="hover:underline whitespace-normal block">{l.label}</Link>)}
                   </div>
                 </div>
               </div>

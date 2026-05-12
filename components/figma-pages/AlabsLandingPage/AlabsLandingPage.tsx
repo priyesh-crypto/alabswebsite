@@ -304,11 +304,12 @@ function Group3() {
 }
 
 function ModeTickIcon({ top, active }: { top: number; active: boolean }) {
+  if (!active) return null;
   return (
     <div className="absolute left-[161px] size-[36px] transition-all duration-300" style={{ top: `${top}px` }} data-name="mdi:tick-circle">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 36 36">
         <g id="mdi:tick-circle">
-          <path d={svgPaths.p13fc6d00} fill={active ? "white" : "#094C80"} id="Vector" />
+          <path d={svgPaths.p13fc6d00} fill="white" id="Vector" />
         </g>
       </svg>
     </div>
@@ -756,16 +757,9 @@ function MingcuteTimeFill1() {
 
 function FluentPresenceAvailable12Filled() {
   return (
-    <div className="absolute left-[716px] size-[15px] top-[2729px]" data-name="fluent:presence-available-12-filled">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 15 15">
-        <g clipPath="url(#clip0_1_634)" id="fluent:presence-available-12-filled">
-          <path d={svgPaths.p1566d700} fill="var(--fill-0, white)" id="Vector" />
-        </g>
-        <defs>
-          <clipPath id="clip0_1_634">
-            <rect fill="white" height="15" width="15" />
-          </clipPath>
-        </defs>
+    <div className="absolute left-[713px] size-[18px] top-[2729px]" data-name="fluent:presence-available-12-filled">
+      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
+        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="white" />
       </svg>
     </div>
   );
@@ -773,16 +767,9 @@ function FluentPresenceAvailable12Filled() {
 
 function FluentPresenceAvailable12Filled1() {
   return (
-    <div className="absolute left-[1056px] size-[15px] top-[2729px]" data-name="fluent:presence-available-12-filled">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 15 15">
-        <g clipPath="url(#clip0_1_634)" id="fluent:presence-available-12-filled">
-          <path d={svgPaths.p1566d700} fill="var(--fill-0, white)" id="Vector" />
-        </g>
-        <defs>
-          <clipPath id="clip0_1_634">
-            <rect fill="white" height="15" width="15" />
-          </clipPath>
-        </defs>
+    <div className="absolute left-[1053px] size-[18px] top-[2729px]" data-name="fluent:presence-available-12-filled">
+      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
+        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="white" />
       </svg>
     </div>
   );
@@ -1161,9 +1148,9 @@ function PrimeTwitter({ className }: { className?: string }) {
 function AkarIconsMediumFill({ className }: { className?: string }) {
   return (
     <div className={className} data-name="akar-icons:medium-fill">
-       <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 23 18">
-          <path d={svgPaths.p19230580} fill="currentColor" id="medium" />
-        </svg>
+      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 23 18">
+        <path d={svgPaths.p19230580} fill="currentColor" id="medium" />
+      </svg>
     </div>
   );
 }
@@ -1177,15 +1164,15 @@ function Frame({ offices, footerLinks, footerCities, siteSettings, posts }: {
 }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
-  
+
   const o0 = offices?.[0];
   const o1 = offices?.[1];
   const o2 = offices?.[2];
-  
+
   const fl = footerLinks ?? [];
   const aboutUsLinks = fl.filter(l => l.group === "FOOTER_COL_ABOUT").length > 0 ? fl.filter(l => l.group === "FOOTER_COL_ABOUT") : fl.slice(0, 5);
   const etcLinks = fl.filter(l => l.group === "FOOTER_COL_ETC").length > 0 ? fl.filter(l => l.group === "FOOTER_COL_ETC") : fl.slice(5, 10);
-  
+
   const popularSearches = footerCities ?? [];
   const copyYear = new Date().getFullYear();
 
@@ -1202,152 +1189,152 @@ function Frame({ offices, footerLinks, footerCities, siteSettings, posts }: {
         <div className="relative z-10 flex flex-col gap-[80px]">
           {/* Top Section: Logo, Blog, and Link Columns */}
           <div className="flex justify-between items-start">
-          {/* Brand & Blog Area */}
-          <div className="flex flex-col gap-10 w-[426px]">
-            <Link href="/" className="block w-[233px] h-[69px]">
-              <img alt="AnalytixLabs" className="w-full h-full object-contain" src={imgAlabsLogo.src} />
-            </Link>
-
-            <div className="bg-white/10 border border-white/20 rounded-[15px] p-8 backdrop-blur-sm">
-              <p className="font-semibold text-[16px] mb-6 text-center">Blog</p>
-              <Link href="/blog/submit-guest-post" className="block bg-white text-[#09263f] h-[44px] rounded-full flex items-center justify-center font-semibold text-[14px] mb-6 hover:bg-white/90 transition-all shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)]">
-                Submit a Guest Post
+            {/* Brand & Blog Area */}
+            <div className="flex flex-col gap-10 w-[426px]">
+              <Link href="/" className="block w-[233px] h-[69px]">
+                <img alt="AnalytixLabs" className="w-full h-full object-contain" src={imgAlabsLogo.src} />
               </Link>
-              <div className="flex flex-col gap-5 text-[14px] font-light">
-                {(posts && posts.length > 0
-                  ? posts.slice(0, 3)
-                  : [
+
+              <div className="bg-white/10 border border-white/20 rounded-[15px] p-8 backdrop-blur-sm">
+                <p className="font-semibold text-[16px] mb-6 text-center">Blog</p>
+                <Link href="/blog/submit-guest-post" className="block bg-white text-[#09263f] h-[44px] rounded-full flex items-center justify-center font-semibold text-[14px] mb-6 hover:bg-white/90 transition-all shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)]">
+                  Submit a Guest Post
+                </Link>
+                <div className="flex flex-col gap-5 text-[14px] font-light">
+                  {(posts && posts.length > 0
+                    ? posts.slice(0, 3)
+                    : [
                       { slug: "parametric-vs-non-parametric", title: "Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?" },
                       { slug: "what-is-agentic-ai", title: "What is Agentic AI – A Technical Guide for Beginners" },
                       { slug: "list-vs-tuple-python", title: "List vs Tuple in Python: Understanding Key Differences" },
                     ]
-                ).map((p) => (
-                  <Link key={p.slug} href={`/blog/${p.slug}`} className="hover:underline line-clamp-2">{p.title}</Link>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Nav Links Grid */}
-          <div className="grid grid-cols-3 gap-[40px] flex-1 justify-items-end">
-            {/* About Us */}
-            <div className="flex flex-col gap-6 w-[180px]">
-              <p className="font-semibold text-[16px]">About Us</p>
-              <div className="flex flex-col gap-4 text-[14px] font-light">
-                {(aboutUsLinks.length > 0 ? aboutUsLinks : [
-                  { label: "Why Us", url: "/why-us" },
-                  { label: "Courses", url: "/courses" },
-                  { label: "About Faculty", url: "/about" },
-                  { label: "Contact Us", url: "/contact" },
-                  { label: "AnalytixLabs Placements", url: "/placements" },
-                  { label: "System Requirements", url: "/requirements" },
-                ]).map((link, i) => (
-                  <Link key={i} href={link.url ?? "#"} className="hover:underline">{link.label}</Link>
-                ))}
-              </div>
-            </div>
-
-            {/* Etcetera */}
-            <div className="flex flex-col gap-6 w-[180px]">
-              <p className="font-semibold text-[16px]">Etcetera</p>
-              <div className="flex flex-col gap-4 text-[14px] font-light">
-                {(etcLinks.length > 0 ? etcLinks : [
-                  { label: "System Requirements", url: "/requirements" },
-                  { label: "About Faculty", url: "/about" },
-                  { label: "Free Resources", url: "/resources" },
-                  { label: "Success Stories", url: "/success-stories" },
-                  { label: "Colleges Universities Training Courses", url: "/colleges" },
-                ]).map((link, i) => (
-                  <Link key={i} href={link.url ?? "#"} className="hover:underline">{link.label}</Link>
-                ))}
-              </div>
-            </div>
-
-            {/* Popular Searches */}
-            <div className="flex flex-col gap-6 w-[280px]">
-              <p className="font-semibold text-[16px]">Popular Searches</p>
-              <div className="flex flex-col gap-3 text-[14px] font-light">
-                {(popularSearches.length > 0 ? popularSearches.slice(0, 13) : [
-                  { label: "Data Analyst Training Course In Delhi", url: "/courses" },
-                  { label: "Data Analyst Training Course In Noida", url: "/courses" },
-                  { label: "Data Analyst Training Course In Gurgaon", url: "/courses" },
-                  { label: "Data Analyst Training Course In Bengaluru", url: "/courses" },
-                  { label: "Data Science Course in Delhi", url: "/courses" },
-                  { label: "Data Science Course In Noida", url: "/courses" },
-                  { label: "Data Science Course In Gurgaon", url: "/courses" },
-                  { label: "Data Science Course In Bengaluru", url: "/courses" },
-                  { label: "Business Analyst Course In Bengaluru", url: "/courses" },
-                  { label: "Business Analyst Course In Delhi", url: "/courses" },
-                  { label: "Artificial Intelligence Course in Bengaluru", url: "/courses" },
-                  { label: "Artificial Intelligence Course in Delhi", url: "/courses" },
-                  { label: "Generative AI Course", url: "/courses" },
-                ]).map((link, i) => (
-                  <Link key={i} href={link.url ?? "#"} className="hover:underline whitespace-nowrap">{link.label}</Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Office Cards Section */}
-        <div className="flex justify-between gap-[30px]">
-          {[o0, o1, o2].map((office, idx) => (
-            <div key={idx} className="flex-1 border border-white/30 rounded-[15px] p-6 flex flex-col gap-4">
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                  <BoxiconsLocationFilled3 className="size-4" />
-                  <p className="font-semibold text-[16px]">{office?.city ?? (idx === 0 ? "Noida" : idx === 1 ? "Gurgaon" : "Bengaluru")}</p>
+                  ).map((p) => (
+                    <Link key={p.slug} href={`/blog/${p.slug}`} className="hover:underline line-clamp-2">{p.title}</Link>
+                  ))}
                 </div>
-                <Link href={office?.directionsUrl ?? "#"} target="_blank" className="text-[14px] hover:underline flex items-center">
-                  Get Directions <span className="ml-1">→</span>
-                </Link>
               </div>
-              <p className="text-[14px] font-light leading-relaxed">
-                {office?.addressLine1 ?? (idx === 0 
-                  ? "1st Floor, A78, A Block, Sector 2, Metro Gate 3, Noida, UP 201301." 
-                  : idx === 1 
-                    ? "2nd Floor, Sidhartha House, Building No. 6, Sector 44, Gurugram, Haryana 122003." 
-                    : "Bldg 51/2, First floor 12th Main Road, Near BDA complex Sector 6, HSR Layout, Bengaluru, Karnataka 560102.")}
+            </div>
+
+            {/* Nav Links Grid */}
+            <div className="grid grid-cols-3 gap-[40px] flex-1 justify-items-end">
+              {/* About Us */}
+              <div className="flex flex-col gap-6 w-[180px]">
+                <p className="font-semibold text-[16px]">About Us</p>
+                <div className="flex flex-col gap-4 text-[14px] font-light">
+                  {(aboutUsLinks.length > 0 ? aboutUsLinks : [
+                    { label: "Why Us", url: "/why-us" },
+                    { label: "Courses", url: "/courses" },
+                    { label: "About Faculty", url: "/about" },
+                    { label: "Contact Us", url: "/contact" },
+                    { label: "AnalytixLabs Placements", url: "/placements" },
+                    { label: "System Requirements", url: "/requirements" },
+                  ]).map((link, i) => (
+                    <Link key={i} href={link.url ?? "#"} className="hover:underline">{link.label}</Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Etcetera */}
+              <div className="flex flex-col gap-6 w-[180px]">
+                <p className="font-semibold text-[16px]">Etcetera</p>
+                <div className="flex flex-col gap-4 text-[14px] font-light">
+                  {(etcLinks.length > 0 ? etcLinks : [
+                    { label: "System Requirements", url: "/requirements" },
+                    { label: "About Faculty", url: "/about" },
+                    { label: "Free Resources", url: "/resources" },
+                    { label: "Success Stories", url: "/success-stories" },
+                    { label: "Colleges Universities Training Courses", url: "/colleges" },
+                  ]).map((link, i) => (
+                    <Link key={i} href={link.url ?? "#"} className="hover:underline">{link.label}</Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Popular Searches */}
+              <div className="flex flex-col gap-6 w-[280px]">
+                <p className="font-semibold text-[16px]">Popular Searches</p>
+                <div className="flex flex-col gap-3 text-[14px] font-light">
+                  {(popularSearches.length > 0 ? popularSearches.slice(0, 13) : [
+                    { label: "Data Analyst Training Course In Delhi", url: "/courses" },
+                    { label: "Data Analyst Training Course In Noida", url: "/courses" },
+                    { label: "Data Analyst Training Course In Gurgaon", url: "/courses" },
+                    { label: "Data Analyst Training Course In Bengaluru", url: "/courses" },
+                    { label: "Data Science Course in Delhi", url: "/courses" },
+                    { label: "Data Science Course In Noida", url: "/courses" },
+                    { label: "Data Science Course In Gurgaon", url: "/courses" },
+                    { label: "Data Science Course In Bengaluru", url: "/courses" },
+                    { label: "Business Analyst Course In Bengaluru", url: "/courses" },
+                    { label: "Business Analyst Course In Delhi", url: "/courses" },
+                    { label: "Artificial Intelligence Course in Bengaluru", url: "/courses" },
+                    { label: "Artificial Intelligence Course in Delhi", url: "/courses" },
+                    { label: "Generative AI Course", url: "/courses" },
+                  ]).map((link, i) => (
+                    <Link key={i} href={link.url ?? "#"} className="hover:underline whitespace-nowrap">{link.label}</Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Office Cards Section */}
+          <div className="flex justify-between gap-[30px]">
+            {[o0, o1, o2].map((office, idx) => (
+              <div key={idx} className="flex-1 border border-white/30 rounded-[15px] p-6 flex flex-col gap-4">
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <BoxiconsLocationFilled3 className="size-4" />
+                    <p className="font-semibold text-[16px]">{office?.city ?? (idx === 0 ? "Noida" : idx === 1 ? "Gurgaon" : "Bengaluru")}</p>
+                  </div>
+                  <Link href={office?.directionsUrl ?? "#"} target="_blank" className="text-[14px] hover:underline flex items-center">
+                    Get Directions <span className="ml-1">→</span>
+                  </Link>
+                </div>
+                <p className="text-[14px] font-light leading-relaxed">
+                  {office?.addressLine1 ?? (idx === 0
+                    ? "1st Floor, A78, A Block, Sector 2, Metro Gate 3, Noida, UP 201301."
+                    : idx === 1
+                      ? "2nd Floor, Sidhartha House, Building No. 6, Sector 44, Gurugram, Haryana 122003."
+                      : "Bldg 51/2, First floor 12th Main Road, Near BDA complex Sector 6, HSR Layout, Bengaluru, Karnataka 560102.")}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="flex flex-col gap-8 pt-10 border-t border-white/20">
+            <div className="flex justify-between items-center">
+              <p className="text-[14px] font-light">
+                © {mounted ? copyYear : "2024"} AnalytixLabs. All Rights Reserved.
               </p>
-            </div>
-          ))}
-        </div>
 
-        {/* Bottom Bar */}
-        <div className="flex flex-col gap-8 pt-10 border-t border-white/20">
-          <div className="flex justify-between items-center">
-            <p className="text-[14px] font-light">
-              © {mounted ? copyYear : "2024"} AnalytixLabs. All Rights Reserved.
-            </p>
-            
-            {/* Social Icons */}
-            <div className="flex items-center gap-6">
-              {(() => {
-                // siteSettings.socialLinks is a JSON blob shaped { instagram, facebook, youtube, linkedin, twitter, medium }.
-                const sl = (siteSettings?.socialLinks ?? {}) as Record<string, string | undefined>;
-                return [
-                  { icon: RiInstagramFill, url: sl.instagram, size: "size-[24px]" },
-                  { icon: IcRoundFacebook, url: sl.facebook, size: "size-[28px]" },
-                  { icon: MdiYoutube, url: sl.youtube, size: "size-[32px]" },
-                  { icon: MdiLinkedin, url: sl.linkedin, size: "size-[26px]" },
-                  { icon: PrimeTwitter, url: sl.twitter, size: "size-[22px]" },
-                  { icon: AkarIconsMediumFill, url: sl.medium, size: "size-[24px]" },
-                ];
-              })().map((social, i) => (
-                <a key={i} href={social.url ?? "#"} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center text-white hover:scale-110 transition-transform">
-                  <social.icon className={social.size} />
-                </a>
-              ))}
-            </div>
+              {/* Social Icons */}
+              <div className="flex items-center gap-6">
+                {(() => {
+                  // siteSettings.socialLinks is a JSON blob shaped { instagram, facebook, youtube, linkedin, twitter, medium }.
+                  const sl = (siteSettings?.socialLinks ?? {}) as Record<string, string | undefined>;
+                  return [
+                    { icon: RiInstagramFill, url: sl.instagram, size: "size-[24px]" },
+                    { icon: IcRoundFacebook, url: sl.facebook, size: "size-[28px]" },
+                    { icon: MdiYoutube, url: sl.youtube, size: "size-[32px]" },
+                    { icon: MdiLinkedin, url: sl.linkedin, size: "size-[26px]" },
+                    { icon: PrimeTwitter, url: sl.twitter, size: "size-[22px]" },
+                    { icon: AkarIconsMediumFill, url: sl.medium, size: "size-[24px]" },
+                  ];
+                })().map((social, i) => (
+                  <a key={i} href={social.url ?? "#"} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center text-white hover:scale-110 transition-transform">
+                    <social.icon className={social.size} />
+                  </a>
+                ))}
+              </div>
 
-            <div className="flex gap-8 text-[14px] font-light">
-              <Link href="/privacy-policy" className="hover:underline">Privacy Policy</Link>
-              <Link href="/terms-and-conditions" className="hover:underline">Terms and Conditions</Link>
-              <Link href="/sitemap" className="hover:underline">Sitemap</Link>
+              <div className="flex gap-8 text-[14px] font-light">
+                <Link href="/privacy-policy" className="hover:underline">Privacy Policy</Link>
+                <Link href="/terms-and-conditions" className="hover:underline">Terms and Conditions</Link>
+                <Link href="/sitemap" className="hover:underline">Sitemap</Link>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
     </footer>
   );
@@ -1459,11 +1446,11 @@ function fmtDate(d: Date | string | null | undefined): string {
 
 // Fallback card data — ensures the carousel always has enough cards to scroll.
 const FALLBACK_CARDS = [
-  { title: "Data Analytics",         classesCount: 46, hoursCount: 500, experienceLabel: "Beginner"     },
-  { title: "Business Analytics",     classesCount: 38, hoursCount: 420, experienceLabel: "Intermediate" },
-  { title: "Agentic AI",             classesCount: 32, hoursCount: 360, experienceLabel: "Advanced"     },
-  { title: "Full Stack AI",          classesCount: 40, hoursCount: 480, experienceLabel: "Intermediate" },
-  { title: "Specialization Modules", classesCount: 24, hoursCount: 280, experienceLabel: "All Levels"   },
+  { title: "Data Analytics", classesCount: 46, hoursCount: 500, experienceLabel: "Beginner" },
+  { title: "Business Analytics", classesCount: 38, hoursCount: 420, experienceLabel: "Intermediate" },
+  { title: "Agentic AI", classesCount: 32, hoursCount: 360, experienceLabel: "Advanced" },
+  { title: "Full Stack AI", classesCount: 40, hoursCount: 480, experienceLabel: "Intermediate" },
+  { title: "Specialization Modules", classesCount: 24, hoursCount: 280, experienceLabel: "All Levels" },
 ] as const;
 
 // Self-contained course card. Positions are expressed relative to the card's
@@ -1474,75 +1461,73 @@ function CourseCard({ course, idx, cardStyle }: { course?: Course; idx: number; 
   const b0 = course?.batches?.[0];
   const b1 = course?.batches?.[1];
   const b2 = course?.batches?.[2];
-  const imgSrc = course?.thumbnailUrl ?? (idx % 2 === 0 ? imgCourseImg.src : imgCourseImg1.src);
+  const imgSrc = course?.thumbnailUrl ?? `https://placehold.co/640x360/09263F/FFFFFF?text=AnalytixLabs`;
 
   return (
     <div
-      className="relative bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] flex-none cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[0px_8px_32px_0px_rgba(0,0,0,0.22)] flex flex-col overflow-hidden snap-start"
-      style={{ width: "400px", minHeight: "560px", ...cardStyle }}
+      className="relative bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid rounded-[24px] shadow-[0px_4px_30px_0px_rgba(0,0,0,0.1)] flex-none cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[0px_12px_40px_0px_rgba(0,0,0,0.2)] flex flex-col snap-start h-[560px]"
+      style={{ width: "400px", ...cardStyle }}
     >
       {/* Course thumbnail */}
-      <div className="p-[11px_11px_0_11px]">
-        <div className="relative h-[262px] w-full rounded-[15px] overflow-hidden">
-          <img alt={course?.title ?? fb.title} className="absolute inset-0 size-full object-cover" src={imgSrc} />
+      <div className="p-3">
+        <div className="relative aspect-video w-full rounded-[18px] overflow-hidden bg-[#09263F] flex items-center justify-center">
+          <img alt={course?.title ?? fb.title} className="w-full h-full object-cover opacity-80" src={imgSrc} />
         </div>
       </div>
 
       {/* Card body */}
-      <div className="flex flex-col flex-1 px-[19px] pt-[15px] pb-[35px]">
-        {/* Metadata chips — classes / hours / level */}
-        <div className="flex flex-wrap gap-2 justify-end mb-4">
+      <div className="flex flex-col flex-1 px-5 pt-0 pb-6">
+        {/* Metadata chips */}
+        <div className="flex gap-2 justify-start mb-3">
           {[
             { label: course?.classesCount ? `${course.classesCount} Classes` : `${fb.classesCount} Classes`, bg: "#f0fbff" },
             { label: course?.hoursCount ? `${course.hoursCount}+ Hours` : `${fb.hoursCount}+ Hours`, bg: "#fffad2" },
-            { label: course?.experienceLabel ?? fb.experienceLabel, bg: "#fff2fa" },
           ].map((tag, i) => (
-            <div key={i} className="flex items-center h-[23px] px-3 rounded-[58px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)]" style={{ backgroundColor: tag.bg }}>
-              <span className="font-['Inter:Medium',sans-serif] font-medium text-[10px] text-[rgba(9,38,63,0.5)] whitespace-nowrap">{tag.label}</span>
+            <div key={i} className="flex items-center h-[22px] px-3 rounded-full border border-[#09263f]/5" style={{ backgroundColor: tag.bg }}>
+              <span className="font-['Inter:Medium',sans-serif] font-medium text-[10px] text-[rgba(9,38,63,0.6)] uppercase tracking-wider">{tag.label}</span>
             </div>
           ))}
         </div>
 
         {/* Card title */}
-        <h3 className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-tight text-[24px] text-black mb-3 min-h-[1.5em]">
+        <h3 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[20px] text-[#09263f] leading-tight mb-4 min-h-[50px] text-left">
           {course?.title ?? fb.title}
         </h3>
 
-        {/* Location colored pills */}
-        <div className="flex flex-wrap gap-2 mb-3">
+        {/* Unified Cohort Blocks */}
+        <div className="flex gap-2 mb-6">
           {[
-            { loc: b0?.location ?? "Noida",     date: fmtDate(b0?.startDate) || "20 April", bg: "#f0fbff" },
-            { loc: b1?.location ?? "Bangalore", date: fmtDate(b1?.startDate) || "13 April", bg: "#fffad2" },
-            { loc: b2?.location ?? "Gurgaon",   date: fmtDate(b2?.startDate) || "04 May",   bg: "#fff2fa" },
-          ].map((b, i) => (
-            <div key={i} className="flex flex-col items-center justify-center min-h-[43px] px-4 py-1 rounded-[81px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] flex-1 min-w-[100px]" style={{ backgroundColor: b.bg }}>
-              <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[12px] text-black whitespace-nowrap">{b.loc}</span>
-              <span className="font-['Inter:Medium',sans-serif] font-medium text-[10px] text-[rgba(0,0,0,0.5)] whitespace-nowrap">{b.date}</span>
-            </div>
-          ))}
+            { batch: b0, mode: "Live Online", loc: "Global", date: fmtDate(b0?.startDate) || "11 May", bg: "#f0fbff", fallbackSched: "Weekends" },
+            { batch: b1, mode: "Live Online", loc: "Global", date: fmtDate(b1?.startDate) || "15 Sept", bg: "#fffad2", fallbackSched: "Weekends" },
+            { batch: b2, mode: "Classroom", loc: "Gurgaon", date: fmtDate(b2?.startDate) || "04 May", bg: "#fff2fa", fallbackSched: "Weekends" },
+          ].map((b, i) => {
+            const seats = b.batch?.seatsLeft ?? (i === 0 ? 0 : 20);
+            const isSoldOut = seats === 0;
+            return (
+              <div key={i} className={`flex-1 flex flex-col border border-[rgba(0,0,0,0.05)] rounded-[14px] overflow-hidden shadow-sm transition-all ${isSoldOut ? 'opacity-50 grayscale' : 'hover:border-[#1de5b5]/30 transition-colors'}`}>
+                <div className="py-2 flex flex-col items-center justify-center text-center px-1 h-[60px]" style={{ backgroundColor: b.bg }}>
+                  <span className="font-bold text-[10px] text-[#09263f]/60 uppercase tracking-tight">{b.mode}</span>
+                  <span className="font-bold text-[12px] text-[#09263f] leading-tight">{b.loc}</span>
+                  <span className="font-bold text-[11px] text-[#09263f]/80 mt-1">{b.date}</span>
+                </div>
+                <div className="py-1.5 text-center bg-white flex flex-col justify-center px-1 min-h-[38px] border-t border-[rgba(0,0,0,0.05)]">
+                  <div className="text-[#09263f] leading-tight">
+                    <span className="text-[9px] opacity-70 font-medium">{b.batch?.schedule || b.fallbackSched}</span>
+                    <br />
+                    <span className={`text-[10px] font-bold ${isSoldOut ? 'text-red-500' : 'text-green-600'}`}>
+                      {isSoldOut ? "SOLD OUT" : `${seats} Seats`}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
-        {/* Schedule + seats pills */}
-        <div className="flex flex-wrap gap-[6px] mb-4">
-          {[
-            { schedule: b0?.schedule ?? "Weekend",     seats: b0?.seatsLeft ?? 10 },
-            { schedule: b1?.schedule ?? "Weekday",     seats: b1?.seatsLeft ?? 8  },
-            { schedule: b2?.schedule ?? "Self-Placed", seats: b2?.seatsLeft ?? 10 },
-          ].map((b, i) => (
-            <div key={i} className="bg-white border-[0.5px] border-[rgba(0,0,0,0.3)] border-solid rounded-[81px] px-[10px] py-1.5 flex items-center justify-center flex-1 min-w-[110px] h-auto">
-              <span className="font-['Inter:Regular',sans-serif] text-[#09263f] text-[10px] leading-tight whitespace-normal text-center">
-                {b.schedule} – <strong className="font-['Inter:Extra_Bold',sans-serif] font-extrabold">{b.seats} Seats left</strong>
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA button — pushed to bottom with mt-auto */}
+        {/* CTA button */}
         <div className="mt-auto">
-          <Link href={course?.slug ? `/courses/${course.slug}` : "/courses"} className="block w-full transition-all duration-200 hover:shadow-[0px_6px_24px_0px_rgba(0,0,0,0.35)] rounded-[1000px]">
-            <div className="bg-[#1de5b5] h-[56px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] flex items-center justify-center hover:bg-[#17c9a0]">
-              <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-white text-[16px]">Explore Course</span>
-            </div>
+          <Link href={course?.slug ? `/courses/${course.slug}` : "/courses"} className="bg-[#19cf9e] h-[48px] rounded-[14px] shadow-sm flex items-center justify-center font-bold text-white text-[15px] hover:brightness-105 active:scale-[0.98] transition-all">
+            Explore Course
           </Link>
         </div>
       </div>
@@ -1576,76 +1561,75 @@ function FaqFlowSection({
   return (
     <section className="w-full bg-white flex justify-center py-[60px] lg:py-[100px]" data-section="faq">
       <div className="w-full max-w-[1440px] px-4 sm:px-8 lg:px-[66px] relative">
-      <h2 className="text-center font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[28px] lg:text-[40px]">
-        Frequently Asked Questions
-      </h2>
-      <p className="text-center font-['Inter:Regular',sans-serif] font-normal text-[16px] lg:text-[18px] text-[rgba(9,38,63,0.5)] mt-[16px] mb-[40px] lg:mb-[60px] mx-auto max-w-[988px]">
-        Have Questions on how you benefit from the course?
-      </p>
+        <h2 className="text-center font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[28px] lg:text-[40px]">
+          Frequently Asked Questions
+        </h2>
+        <p className="text-center font-['Inter:Regular',sans-serif] font-normal text-[16px] lg:text-[18px] text-[rgba(9,38,63,0.5)] mt-[16px] mb-[40px] lg:mb-[60px] mx-auto max-w-[988px]">
+          Have Questions on how you benefit from the course?
+        </p>
 
-      <div className="mx-auto w-full max-w-[1067px] flex flex-col gap-4">
-        {FAQ_FALLBACK.map((fb, idx) => {
-          const isOpen = openFaqId === idx;
-          const question = faqs[idx]?.question ?? fb.question;
-          const answer = faqs[idx]?.answer ?? fb.answer;
-          return (
-            <div
-              key={idx}
-              className={`rounded-[20px] border border-gray-200 transition-all duration-300 ${
-                isOpen
-                  ? "bg-gradient-to-b from-[#d7f7f6] to-[#f2fae4] shadow-[0px_10px_30px_0px_rgba(0,0,0,0.1)] border-[#19cf9e]/30"
-                  : "bg-[#f4fafa] shadow-[0px_4px_12px_0px_rgba(0,0,0,0.03)] hover:shadow-[0px_4px_20px_0px_rgba(0,0,0,0.06)]"
-              }`}
-            >
-              <button
-                type="button"
-                onClick={() => onToggle(idx)}
-                aria-expanded={isOpen}
-                className="w-full flex items-start justify-between gap-4 p-5 text-left cursor-pointer"
-              >
-                <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[20px]">
-                  {question}
-                </span>
-                <span
-                  className="shrink-0 size-[51px] rounded-full bg-white shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] flex items-center justify-center transition-transform duration-300"
-                  style={{ transform: isOpen ? "rotate(0deg)" : "rotate(-45deg)" }}
-                  aria-hidden="true"
-                >
-                  <svg className="size-[24px]" fill="none" viewBox="0 0 24 24">
-                    <path d="M20 20L4 4M20 4L4 20" stroke="black" strokeLinecap="round" strokeWidth="2" />
-                  </svg>
-                </span>
-              </button>
+        <div className="mx-auto w-full max-w-[1067px] flex flex-col gap-4">
+          {FAQ_FALLBACK.map((fb, idx) => {
+            const isOpen = openFaqId === idx;
+            const question = faqs[idx]?.question ?? fb.question;
+            const answer = faqs[idx]?.answer ?? fb.answer;
+            return (
               <div
-                className="grid transition-[grid-template-rows] duration-300 ease-in-out"
-                style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+                key={idx}
+                className={`rounded-[20px] border border-gray-200 transition-all duration-300 ${isOpen
+                    ? "bg-gradient-to-b from-[#d7f7f6] to-[#f2fae4] shadow-[0px_10px_30px_0px_rgba(0,0,0,0.1)] border-[#19cf9e]/30"
+                    : "bg-[#f4fafa] shadow-[0px_4px_12px_0px_rgba(0,0,0,0.03)] hover:shadow-[0px_4px_20px_0px_rgba(0,0,0,0.06)]"
+                  }`}
               >
-                <div className="overflow-hidden">
-                  <p className="px-5 pb-5 font-['Inter:Regular',sans-serif] font-normal text-[16px] text-[rgba(9,38,63,0.7)] leading-[1.6]">
-                    {answer}
-                  </p>
+                <button
+                  type="button"
+                  onClick={() => onToggle(idx)}
+                  aria-expanded={isOpen}
+                  className="w-full flex items-start justify-between gap-4 p-5 text-left cursor-pointer"
+                >
+                  <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[20px]">
+                    {question}
+                  </span>
+                  <span
+                    className="shrink-0 size-[51px] rounded-full bg-white shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] flex items-center justify-center transition-transform duration-300"
+                    style={{ transform: isOpen ? "rotate(0deg)" : "rotate(-45deg)" }}
+                    aria-hidden="true"
+                  >
+                    <svg className="size-[24px]" fill="none" viewBox="0 0 24 24">
+                      <path d="M20 20L4 4M20 4L4 20" stroke="black" strokeLinecap="round" strokeWidth="2" />
+                    </svg>
+                  </span>
+                </button>
+                <div
+                  className="grid transition-[grid-template-rows] duration-300 ease-in-out"
+                  style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+                >
+                  <div className="overflow-hidden">
+                    <p className="px-5 pb-5 font-['Inter:Regular',sans-serif] font-normal text-[16px] text-[rgba(9,38,63,0.7)] leading-[1.6]">
+                      {answer}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
 
-        {/* Still have questions card */}
-        <div className="rounded-[20px] border border-gray-200 shadow-[0px_4px_12px_0px_rgba(0,0,0,0.03)] p-6 mt-2 flex items-start justify-between gap-6">
-          <div className="flex-1">
-            <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[20px]">Still have questions?</p>
-            <p className="mt-2 font-['Inter:Regular',sans-serif] font-normal text-[#09263f] text-[16px] w-[749px]">
-              Not sure which course is right for you? Talk to our program advisors and get personalized guidance on curriculum, career outcomes, and the best learning path based on your goals.
-            </p>
-            <p className="hidden lg:block" aria-hidden="true" style={{ height: 0 }} />
+          {/* Still have questions card */}
+          <div className="rounded-[20px] border border-gray-200 shadow-[0px_4px_12px_0px_rgba(0,0,0,0.03)] p-6 mt-2 flex items-start justify-between gap-6">
+            <div className="flex-1">
+              <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[20px]">Still have questions?</p>
+              <p className="mt-2 font-['Inter:Regular',sans-serif] font-normal text-[#09263f] text-[16px] w-[749px]">
+                Not sure which course is right for you? Talk to our program advisors and get personalized guidance on curriculum, career outcomes, and the best learning path based on your goals.
+              </p>
+              <p className="hidden lg:block" aria-hidden="true" style={{ height: 0 }} />
+            </div>
+            <a
+              href={contactPhone ? `tel:${contactPhone}` : "/contact"}
+              className="shrink-0 self-center bg-[#19cf9e] rounded-full h-[49px] w-[182px] flex items-center justify-center font-['Inter:Semi_Bold',sans-serif] font-semibold text-white text-[18px] hover:brightness-95 transition"
+            >
+              Call Us
+            </a>
           </div>
-          <a
-            href={contactPhone ? `tel:${contactPhone}` : "/contact"}
-            className="shrink-0 self-center bg-[#19cf9e] rounded-full h-[49px] w-[182px] flex items-center justify-center font-['Inter:Semi_Bold',sans-serif] font-semibold text-white text-[18px] hover:brightness-95 transition"
-          >
-            Call Us
-          </a>
-        </div>
         </div>
       </div>
     </section>
@@ -1768,7 +1752,7 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
   const filteredCourses = featuredCourses.filter(c => {
     const catMatch = !categories[activeCategory] || c.categoryId === categories[activeCategory].id;
     // Check if any batch matches the active learning mode schedule
-    const modeMatch = c.batches?.some(b => 
+    const modeMatch = c.batches?.some(b =>
       b.schedule?.toLowerCase().includes(MODE_MAP[activeLearningMode].toLowerCase())
     ) ?? true; // If no batches, don't filter by mode for now
     return catMatch && modeMatch;
@@ -1784,19 +1768,19 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
   const carouselCourses: (Course | { id: string; title: string; batches: any[] } | undefined)[] = filteredCourses.length >= MIN_CARDS
     ? filteredCourses
     : [
-        ...filteredCourses,
-        ...Array.from({ length: MIN_CARDS - filteredCourses.length }, (_, i) => ({
-          id: `fallback-${activeCategory}-${i}`,
-          title: getFallbackTitle(activeCategory, i),
-          batches: [
-            { location: "Online", startDate: new Date(), schedule: MODE_MAP[activeLearningMode], seatsLeft: 10 },
-            { location: "Noida", startDate: new Date(), schedule: MODE_MAP[activeLearningMode], seatsLeft: 8 }
-          ],
-          classesCount: 30,
-          hoursCount: 400,
-          experienceLabel: "Beginner"
-        }))
-      ];
+      ...filteredCourses,
+      ...Array.from({ length: MIN_CARDS - filteredCourses.length }, (_, i) => ({
+        id: `fallback-${activeCategory}-${i}`,
+        title: getFallbackTitle(activeCategory, i),
+        batches: [
+          { location: "Online", startDate: new Date(), schedule: MODE_MAP[activeLearningMode], seatsLeft: 10 },
+          { location: "Noida", startDate: new Date(), schedule: MODE_MAP[activeLearningMode], seatsLeft: 8 }
+        ],
+        classesCount: 30,
+        hoursCount: 400,
+        experienceLabel: "Beginner"
+      }))
+    ];
 
   const handleCarouselScroll = () => {
     const el = carouselRef.current;
@@ -1926,14 +1910,14 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
           <div className="flex items-center mb-3" style={{ overflow: "hidden", height: "44px" }}>
             <div className="flex gap-4 items-center flex-none" style={{ width: "max-content", animation: "alp-marquee-left 20s linear infinite", willChange: "transform" }}>
               {[
-                { text: pill(0,"Agentic AI"), color: categories[0]?.color ?? "#d2faf0" },
-                { text: pill(2,"Data Science"), color: categories[2]?.color ?? "#fffad2" },
-                { text: pill(4,"Data Analytics"), color: categories[4]?.color ?? "#f0fbff" },
-                { text: pill(6,"Business Analytics"), color: categories[6]?.color ?? "#fff2fa" },
-                { text: pill(0,"Agentic AI"), color: categories[0]?.color ?? "#d2faf0" },
-                { text: pill(2,"Data Science"), color: categories[2]?.color ?? "#fffad2" },
-                { text: pill(4,"Data Analytics"), color: categories[4]?.color ?? "#f0fbff" },
-                { text: pill(6,"Business Analytics"), color: categories[6]?.color ?? "#fff2fa" },
+                { text: pill(0, "Agentic AI"), color: categories[0]?.color ?? "#d2faf0" },
+                { text: pill(2, "Data Science"), color: categories[2]?.color ?? "#fffad2" },
+                { text: pill(4, "Data Analytics"), color: categories[4]?.color ?? "#f0fbff" },
+                { text: pill(6, "Business Analytics"), color: categories[6]?.color ?? "#fff2fa" },
+                { text: pill(0, "Agentic AI"), color: categories[0]?.color ?? "#d2faf0" },
+                { text: pill(2, "Data Science"), color: categories[2]?.color ?? "#fffad2" },
+                { text: pill(4, "Data Analytics"), color: categories[4]?.color ?? "#f0fbff" },
+                { text: pill(6, "Business Analytics"), color: categories[6]?.color ?? "#fff2fa" },
               ].map((p, i) => (
                 <div key={i} className="flex-none px-5 py-2 rounded-full font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-sm whitespace-nowrap" style={{ background: p.color }}>{p.text}</div>
               ))}
@@ -1942,14 +1926,14 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
           <div className="flex items-center" style={{ overflow: "hidden", height: "44px" }}>
             <div className="flex gap-4 items-center flex-none" style={{ width: "max-content", animation: "alp-marquee-right 24s linear infinite", willChange: "transform" }}>
               {[
-                { text: pill(1,"Full Stack AI"), color: categories[1]?.color ?? "#fffad2" },
-                { text: pill(3,"Data Visualization"), color: categories[3]?.color ?? "#d2faf0" },
-                { text: pill(5,"Bootcamp"), color: categories[5]?.color ?? "#fff2fa" },
-                { text: pill(7 % Math.max(categories.length,1),"Business Analytics"), color: categories[7 % Math.max(categories.length,1)]?.color ?? "#f0fbff" },
-                { text: pill(1,"Full Stack AI"), color: categories[1]?.color ?? "#fffad2" },
-                { text: pill(3,"Data Visualization"), color: categories[3]?.color ?? "#d2faf0" },
-                { text: pill(5,"Bootcamp"), color: categories[5]?.color ?? "#fff2fa" },
-                { text: pill(7 % Math.max(categories.length,1),"Business Analytics"), color: categories[7 % Math.max(categories.length,1)]?.color ?? "#f0fbff" },
+                { text: pill(1, "Full Stack AI"), color: categories[1]?.color ?? "#fffad2" },
+                { text: pill(3, "Data Visualization"), color: categories[3]?.color ?? "#d2faf0" },
+                { text: pill(5, "Bootcamp"), color: categories[5]?.color ?? "#fff2fa" },
+                { text: pill(7 % Math.max(categories.length, 1), "Business Analytics"), color: categories[7 % Math.max(categories.length, 1)]?.color ?? "#f0fbff" },
+                { text: pill(1, "Full Stack AI"), color: categories[1]?.color ?? "#fffad2" },
+                { text: pill(3, "Data Visualization"), color: categories[3]?.color ?? "#d2faf0" },
+                { text: pill(5, "Bootcamp"), color: categories[5]?.color ?? "#fff2fa" },
+                { text: pill(7 % Math.max(categories.length, 1), "Business Analytics"), color: categories[7 % Math.max(categories.length, 1)]?.color ?? "#f0fbff" },
               ].map((p, i) => (
                 <div key={i} className="flex-none px-5 py-2 rounded-full font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-sm whitespace-nowrap" style={{ background: p.color }}>{p.text}</div>
               ))}
@@ -2045,7 +2029,7 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
             {(blockList(props, "about.cityHighlights") ?? ["One to one mentorship", "Industry driven curriculum curated", "Experiential learning", "Extensive post-class sessions"]).map((item, i) => (
               <li key={i} className="flex items-start gap-2.5 text-sm text-[#09263f]">
                 <svg className="size-4 shrink-0 mt-0.5 text-[#19cf9e]" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd"/>
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
                 </svg>
                 <span>{item}</span>
               </li>
@@ -2139,663 +2123,673 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
           Locked to h-[6177px] so the FAQ + footer that follow can flow naturally.
       ═══════════════════════════════════════════════════════════════════ */}
       <div className="hidden lg:block">
-      <div className="relative w-[1440px] h-[6177px] self-center" data-section="absolute-canvas">
-      {/* Legacy city pills removed — replaced by premium buttons below */}
-      {/* Hero title — three slots with locked structure (prefix / brand-gradient / suffix).
+        <div className="relative w-[1440px] h-[6177px] self-center" data-section="absolute-canvas">
+          {/* Legacy city pills removed — replaced by premium buttons below */}
+          {/* Hero title — three slots with locked structure (prefix / brand-gradient / suffix).
           Admin-editable via Page("home").blocks: hero.title.prefix | hero.title.brand | hero.title.suffix.
           Locking the structure prevents admins from breaking the gradient styling. */}
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[0] left-[63px] not-italic text-[42px] text-black top-[168px] w-[568px]">
-        <span className="leading-[normal]">{`${block(props, "hero.title.prefix") ?? "Become a"} `}</span>
-        <span className="bg-clip-text bg-gradient-to-r from-[#1de5b5] from-[34.135%] leading-[normal] text-[transparent] to-[#07b3e7] to-[78.846%]">{block(props, "hero.title.brand") ?? "Data Scientist"}</span>
-        <span className="leading-[normal] text-[#07b3e7]">{` `}</span>
-        <span className="leading-[normal]">{block(props, "hero.title.suffix") ?? "with Real Industry Projects & Placement Support"}</span>
-      </p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[63px] not-italic text-[14px] text-[rgba(0,0,0,0.5)] top-[351px] w-[467px]">{block(props, "hero.subheading") ?? block(props, "hero.heading") ?? "Learn Data Science, AI and Data Analytics with 600+ learning hours and industry projects."}</p>
-      {/* Hero CTAs — labels + URLs come from Page blocks: hero.cta1 / hero.cta2 ({ label, url }). */}
-      <Link href={blockCta(props, "hero.cta1").url ?? "/courses"} className="contents"><div className="absolute bg-[#1de5b5] h-[46px] left-[63px] rounded-[1000px] top-[423px] w-[170px]" /></Link>
-      <Link href={blockCta(props, "hero.cta2").url ?? "/contact"} className="contents"><div className="absolute bg-[#ffd700] h-[46px] left-[246px] rounded-[1000px] top-[423px] w-[268px]" /></Link>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[148.5px] not-italic text-white text-[14px] text-center top-[437px] whitespace-nowrap">{blockCta(props, "hero.cta1").label ?? "Explore Courses"}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium leading-[0] left-[275.5px] not-italic text-[10px] text-black text-center top-[541px] whitespace-nowrap">
-        <span className="leading-[normal]">{`Rated by `}</span>
-        <span className="font-['Inter:Bold',sans-serif] font-bold leading-[normal]">{stats.ratedBy ?? block(props, "hero.ratedBy") ?? "5000+"}</span>
-        <span className="leading-[normal]">{` learners`}</span>
-      </p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[325px] not-italic text-[8px] text-black text-center top-[525px] whitespace-nowrap">{`(${stats.rating ?? block(props, "hero.rating") ?? "4.8"})`}</p>
-      {/* Hero star rating — N filled stars derived from rounded(rating). Positions match
-          the original Figma 5-slot grid at left 225/244/263/282/301 (19px stride). */}
-      {Array.from({ length: Math.round(Math.min(5, Math.max(0, Number(stats.rating ?? block(props, "hero.rating") ?? "5") || 5))) }, (_, i) => (
-        <p
-          key={`hero-star-${i}`}
-          className="-translate-x-1/2 absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] not-italic text-[16px] text-black text-center top-[518px] whitespace-nowrap"
-          style={{ left: `${225 + i * 19}px` }}
-        >{`⭐ `}</p>
-      ))}
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[381px] not-italic text-[#09263f] text-[14px] text-center top-[437px] whitespace-nowrap">{blockCta(props, "hero.cta2").label ?? "Book Free Career Consultation"}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[110px] not-italic text-[#09263f] text-[18px] text-center top-[127px] whitespace-nowrap">{block(props, "hero.tagline") ?? sinceTagline ?? "Since 2011"}</p>
-      <div className="absolute left-[63px] size-[42px] top-[514px]" data-name="students">
-        <div className="absolute inset-[-38.1%_-47.62%_-57.14%_-47.62%]">
-          <img alt="" className="block max-w-none size-full" height="82" src={imgStudents.src} width="82" />
-        </div>
-      </div>
-      <div className="absolute left-[82px] size-[42px] top-[514px]" data-name="students">
-        <div className="absolute inset-[-38.1%_-47.62%_-57.14%_-47.62%]">
-          <img alt="" className="block max-w-none size-full" height="82" src={imgStudents1.src} width="82" />
-        </div>
-      </div>
-      <div className="absolute left-[102px] size-[42px] top-[514px]" data-name="students">
-        <div className="absolute inset-[-38.1%_-47.62%_-57.14%_-47.62%]">
-          <img alt="" className="block max-w-none size-full" height="82" src={imgStudents2.src} width="82" />
-        </div>
-      </div>
-      <div className="absolute left-[122px] size-[42px] top-[514px]" data-name="students">
-        <div className="absolute inset-[-38.1%_-47.62%_-57.14%_-47.62%]">
-          <img alt="" className="block max-w-none size-full" height="82" src={imgStudents3.src} width="82" />
-        </div>
-      </div>
-      <div className="absolute left-[142px] size-[42px] top-[514px]" data-name="students">
-        <div className="absolute inset-[-38.1%_-47.62%_-57.14%_-47.62%]">
-          <img alt="" className="block max-w-none size-full" height="82" src={imgStudents4.src} width="82" />
-        </div>
-      </div>
-      <div className="absolute left-[162px] size-[42px] top-[514px]" data-name="STUDENT">
-        <div className="absolute inset-[-38.1%_-47.62%_-57.14%_-47.62%]">
-          <img alt="" className="block max-w-none size-full" height="82" src={imgStudent.src} width="82" />
-        </div>
-      </div>
-      <div className="absolute h-[447px] left-[801px] top-[68px] w-[425px]" data-name="Asset 25@3x 1">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgAsset253X1.src} />
-      </div>
-      <div className="absolute bg-white h-[91px] top-[828px] w-screen left-1/2 -translate-x-1/2" />
-      {/* Course category pill rows — animated marquee strips.
+          <div className="absolute left-[63px] top-[168px] w-[568px] flex flex-col gap-6">
+            <h1 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[42px] text-black leading-tight">
+              <span>{`${block(props, "hero.title.prefix") ?? "Become a"} `}</span>
+              <span className="bg-clip-text bg-gradient-to-r from-[#1de5b5] to-[#07b3e7] text-transparent">{block(props, "hero.title.brand") ?? "Data Scientist"}</span>
+              <span className="text-[#07b3e7]">{` `}</span>
+              <span>{block(props, "hero.title.suffix") ?? "with Real Industry Projects & Placement Support"}</span>
+            </h1>
+            <p className="font-['Inter:Regular',sans-serif] font-normal text-[14px] text-[rgba(0,0,0,0.5)] leading-relaxed">
+              {block(props, "hero.subheading") ?? block(props, "hero.heading") ?? "Learn Data Science, AI and Data Analytics with 600+ learning hours and industry projects."}
+            </p>
+
+            <div className="flex flex-row items-center gap-4">
+              <Link href={blockCta(props, "hero.cta1").url ?? "/courses"} className="inline-flex items-center justify-center bg-[#1de5b5] h-[46px] px-8 rounded-full font-['Inter:Semi_Bold',sans-serif] font-semibold text-white text-[14px] whitespace-nowrap shadow-sm hover:brightness-95 transition-all">
+                {blockCta(props, "hero.cta1").label ?? "Explore Courses"}
+              </Link>
+              <Link href={blockCta(props, "hero.cta2").url ?? "/contact"} className="inline-flex items-center justify-center bg-[#ffd700] h-[46px] px-8 rounded-full font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[14px] whitespace-nowrap shadow-sm hover:brightness-95 transition-all">
+                {blockCta(props, "hero.cta2").label ?? "Book Free Career Consultation"}
+              </Link>
+            </div>
+
+            <div className="flex items-center gap-3 mt-2">
+              <div className="flex items-center text-[16px]">
+                {Array.from({ length: Math.round(Math.min(5, Math.max(0, Number(stats.rating ?? block(props, "hero.rating") ?? "5") || 5))) }, (_, i) => (
+                  <span key={i}>⭐</span>
+                ))}
+              </div>
+              <div className="flex flex-col">
+                <p className="font-['Inter:Medium',sans-serif] font-medium text-[10px] text-black leading-none">
+                  Rated by <span className="font-bold">{stats.ratedBy ?? block(props, "hero.ratedBy") ?? "5000+"}</span> learners
+                </p>
+                <p className="font-['Inter:Regular',sans-serif] font-normal text-[8px] text-black">
+                  ({stats.rating ?? block(props, "hero.rating") ?? "4.8"})
+                </p>
+              </div>
+            </div>
+          </div>
+          <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[110px] not-italic text-[#09263f] text-[18px] text-center top-[127px] whitespace-nowrap">{block(props, "hero.tagline") ?? sinceTagline ?? "Since 2011"}</p>
+          <div className="absolute left-[63px] size-[42px] top-[514px]" data-name="students">
+            <div className="absolute inset-[-38.1%_-47.62%_-57.14%_-47.62%]">
+              <img alt="" className="block max-w-none size-full" height="82" src={imgStudents.src} width="82" />
+            </div>
+          </div>
+          <div className="absolute left-[82px] size-[42px] top-[514px]" data-name="students">
+            <div className="absolute inset-[-38.1%_-47.62%_-57.14%_-47.62%]">
+              <img alt="" className="block max-w-none size-full" height="82" src={imgStudents1.src} width="82" />
+            </div>
+          </div>
+          <div className="absolute left-[102px] size-[42px] top-[514px]" data-name="students">
+            <div className="absolute inset-[-38.1%_-47.62%_-57.14%_-47.62%]">
+              <img alt="" className="block max-w-none size-full" height="82" src={imgStudents2.src} width="82" />
+            </div>
+          </div>
+          <div className="absolute left-[122px] size-[42px] top-[514px]" data-name="students">
+            <div className="absolute inset-[-38.1%_-47.62%_-57.14%_-47.62%]">
+              <img alt="" className="block max-w-none size-full" height="82" src={imgStudents3.src} width="82" />
+            </div>
+          </div>
+          <div className="absolute left-[142px] size-[42px] top-[514px]" data-name="students">
+            <div className="absolute inset-[-38.1%_-47.62%_-57.14%_-47.62%]">
+              <img alt="" className="block max-w-none size-full" height="82" src={imgStudents4.src} width="82" />
+            </div>
+          </div>
+          <div className="absolute left-[162px] size-[42px] top-[514px]" data-name="STUDENT">
+            <div className="absolute inset-[-38.1%_-47.62%_-57.14%_-47.62%]">
+              <img alt="" className="block max-w-none size-full" height="82" src={imgStudent.src} width="82" />
+            </div>
+          </div>
+          <div className="absolute h-[447px] left-[801px] top-[68px] w-[425px]" data-name="Asset 25@3x 1">
+            <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgAsset253X1.src} />
+          </div>
+          <div className="absolute bg-white h-[91px] top-[828px] w-screen left-1/2 -translate-x-1/2" />
+          {/* Course category pill rows — animated marquee strips.
           Layout uses inline Tailwind utilities (flex-row + whitespace-nowrap + w-max)
           rather than the .marquee-track class, because that class was being suppressed
           in some build configurations. Animation still uses the marquee-left/right
           @keyframes from globals.css applied via inline style. */}
-      <div className="absolute top-[960px] h-[76px] w-screen left-1/2 -translate-x-1/2 overflow-hidden flex flex-row items-center">
-        <div
-          className="alp-marquee-pause flex flex-row flex-nowrap items-center w-max gap-[28px] whitespace-nowrap shrink-0"
-          style={{ animation: "alp-marquee-left 28s linear infinite" }}
-        >
-          {[
-            { text: pill(0,"Agentic AI"),         color: categories[0]?.color ?? "#d2faf0" },
-            { text: pill(2,"Data Science"),       color: categories[2]?.color ?? "#fffad2" },
-            { text: pill(4,"Data Analytics"),     color: categories[4]?.color ?? "#f0fbff" },
-            { text: pill(6,"Business Analytics"), color: categories[6]?.color ?? "#fff2fa" },
-            { text: pill(0,"Agentic AI"),         color: categories[0]?.color ?? "#d2faf0" },
-            { text: pill(2,"Data Science"),       color: categories[2]?.color ?? "#fffad2" },
-            { text: pill(4,"Data Analytics"),     color: categories[4]?.color ?? "#f0fbff" },
-            { text: pill(6,"Business Analytics"), color: categories[6]?.color ?? "#fff2fa" },
-          ].map((p, i) => (
-            <div key={i} aria-hidden="true" className="flex-none pointer-events-none select-none h-[56px] rounded-[351px] px-[40px] inline-flex flex-row items-center justify-center shadow-[0px_4px_20px_0px_rgba(0,0,0,0.1)] min-w-[240px]" style={{ background: p.color }}>
-              <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[16px] whitespace-nowrap">{p.text}</span>
+          <div className="absolute top-[960px] h-[76px] w-screen left-1/2 -translate-x-1/2 overflow-hidden flex flex-row items-center">
+            <div
+              className="alp-marquee-pause flex flex-row flex-nowrap items-center w-max gap-[28px] whitespace-nowrap shrink-0"
+              style={{ animation: "alp-marquee-left 28s linear infinite" }}
+            >
+              {[
+                { text: pill(0, "Agentic AI"), color: categories[0]?.color ?? "#d2faf0" },
+                { text: pill(2, "Data Science"), color: categories[2]?.color ?? "#fffad2" },
+                { text: pill(4, "Data Analytics"), color: categories[4]?.color ?? "#f0fbff" },
+                { text: pill(6, "Business Analytics"), color: categories[6]?.color ?? "#fff2fa" },
+                { text: pill(0, "Agentic AI"), color: categories[0]?.color ?? "#d2faf0" },
+                { text: pill(2, "Data Science"), color: categories[2]?.color ?? "#fffad2" },
+                { text: pill(4, "Data Analytics"), color: categories[4]?.color ?? "#f0fbff" },
+                { text: pill(6, "Business Analytics"), color: categories[6]?.color ?? "#fff2fa" },
+              ].map((p, i) => (
+                <div key={i} aria-hidden="true" className="flex-none pointer-events-none select-none h-[56px] rounded-[351px] px-[40px] inline-flex flex-row items-center justify-center shadow-[0px_4px_20px_0px_rgba(0,0,0,0.1)] min-w-[240px]" style={{ background: p.color }}>
+                  <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[16px] whitespace-nowrap">{p.text}</span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
-      <div className="absolute top-[1047px] h-[76px] w-screen left-1/2 -translate-x-1/2 overflow-hidden flex flex-row items-center">
-        <div
-          className="alp-marquee-pause flex flex-row flex-nowrap items-center w-max gap-[28px] whitespace-nowrap shrink-0"
-          style={{ animation: "alp-marquee-right 28s linear infinite" }}
-        >
-          {[
-            { text: pill(1,"Full Stack AI"),      color: categories[1]?.color ?? "#fffad2" },
-            { text: pill(3,"Data Visualization"), color: categories[3]?.color ?? "#d2faf0" },
-            { text: pill(5,"Bootcamp"),           color: categories[5]?.color ?? "#fff2fa" },
-            { text: pill(7 % Math.max(categories.length,1),"Agentic AI"), color: categories[7 % Math.max(categories.length,1)]?.color ?? "#f0fbff" },
-            { text: pill(1,"Full Stack AI"),      color: categories[1]?.color ?? "#fffad2" },
-            { text: pill(3,"Data Visualization"), color: categories[3]?.color ?? "#d2faf0" },
-            { text: pill(5,"Bootcamp"),           color: categories[5]?.color ?? "#fff2fa" },
-            { text: pill(7 % Math.max(categories.length,1),"Agentic AI"), color: categories[7 % Math.max(categories.length,1)]?.color ?? "#f0fbff" },
-          ].map((p, i) => (
-            <div key={i} aria-hidden="true" className="flex-none pointer-events-none select-none h-[56px] rounded-[351px] px-[40px] inline-flex flex-row items-center justify-center shadow-[0px_4px_20px_0px_rgba(0,0,0,0.1)] min-w-[240px]" style={{ background: p.color }}>
-              <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[16px] whitespace-nowrap">{p.text}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-      {/* Icon circles for pill rows removed — replaced by animated marquee strips above */}
-      <div className="absolute bg-[#f4fafa] h-[808px] top-[1212px] w-screen left-1/2 -translate-x-1/2" />
-      <div className="absolute bg-[#f4fafa] h-[805px] top-[2945px] w-screen left-1/2 -translate-x-1/2" />
-      {/* Category tab backgrounds — active = green, inactive = white */}
-      {([
-        [1434, 1452, categories[0]?.name ?? "Data Science & Analytics"],
-        [1506, 1524, categories[1]?.name ?? "Artificial intelligence (AI)"],
-        [1578, 1596, categories[2]?.name ?? "Full Stack AI"],
-        [1650, 1668, categories[3]?.name ?? "Agentic AI Course"],
-      ] as [number, number, string][]).map(([bgTop, textTop, label], idx) => (
-        <div key={idx}>
-          <div
-            className={`-translate-x-1/2 absolute h-[58px] left-[calc(50%-450px)] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.1)] w-[408px] cursor-pointer ${activeCategory === idx ? "bg-[#19cf9e]" : "bg-white"}`}
-            style={{ top: `${bgTop}px` }}
-            onClick={() => handleCategoryClick(idx)}
-          />
-          <p
-            className={`absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[122px] not-italic text-[20px] whitespace-nowrap cursor-pointer ${activeCategory === idx ? "text-white" : "text-[#09263f]"}`}
-            style={{ top: `${textTop}px` }}
-            onClick={() => handleCategoryClick(idx)}
-          >{label}</p>
-          {/* tick icon — fill white when active, #19CF9E when inactive */}
-          <div
-            className="absolute left-[86px] size-[28px] cursor-pointer"
-            style={{ top: `${bgTop + 15}px` }}
-            onClick={() => handleCategoryClick(idx)}
-          >
-            <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 28 28">
-              <g id="mdi:tick-circle">
-                <path d={svgPaths.p3c3d0980} fill={activeCategory === idx ? "white" : "#19CF9E"} id="Vector" />
-              </g>
-            </svg>
           </div>
-        </div>
-      ))}
-      <Group1 />
-      <div className="-translate-x-1/2 absolute bg-[#07b3e7] h-[350px] left-[calc(50%+5.5px)] rounded-[201px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[3904px] w-[1301px]" />
-      <Group3 />
-      <div className="-translate-x-1/2 absolute h-[380px] left-[calc(50%+0.5px)] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[5562px] w-[565px]" style={{ backgroundImage: "linear-gradient(203.749457deg, rgb(215, 247, 246) 3.8424%, rgb(242, 250, 228) 97.744%)" }} />
-      <div className="-translate-x-1/2 absolute flex h-[350px] items-center justify-center left-[calc(50%+478px)] top-[5578px] w-[348px]">
-        <div className="-scale-y-100 flex-none rotate-180">
-          <div className="bg-[#07b3e7] h-[350px] relative rounded-bl-[201px] rounded-br-[20px] rounded-tl-[201px] rounded-tr-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] w-[348px]" />
-        </div>
-      </div>
-      <div className="absolute left-[733px] size-[474px] top-[4017px]">
-        <div className="absolute bottom-1/2 left-0 right-0 top-0">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 474 237">
-            <path d={svgPaths.p22ecb680} fill="var(--fill-0, #7EDAFE)" id="Ellipse 76" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute left-[857px] size-[446px] top-[3808px]" data-name="man with bag">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgManWithBag.src} />
-      </div>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-196px)] not-italic text-[#09263f] text-[40px] top-[1306px] w-[600px]">Our Courses - 6 Months Job Challenge</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+0.5px)] not-italic text-[#09263f] text-[40px] text-center top-[2184px] whitespace-nowrap">Learning Modes</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+0.5px)] not-italic text-[#09263f] text-[40px] text-center top-[5402px] whitespace-nowrap">What Students Say About Us?</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-43px)] not-italic text-[#09263f] text-[40px] top-[3013px] w-[711px]">{block(props, "about.heading") ?? "AnalytixLabs is a top-ranked Data Science Institute"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-500px)] not-italic text-[36px] text-white top-[3968px] w-[535px]">{`"Unlock Insights. Enroll Now. Transform Tomorrow."`}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[220px] not-italic text-[18px] text-white top-[4078px] whitespace-nowrap">Change the course of your career now</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-1/2 not-italic text-[18px] text-[rgba(9,38,63,0.5)] text-center top-[2255px] w-[988px]">Explore Personalized learning modes to match your style! Whether you’re a working professional or student or want to upskill, we’ve got you covered. Our approach ensures effective learning, making it enjoyable and rewarding.</p>
-      {/* Learning Modes subtitle — driven by the active LearningMode row's `subtitle` field.
+          <div className="absolute top-[1047px] h-[76px] w-screen left-1/2 -translate-x-1/2 overflow-hidden flex flex-row items-center">
+            <div
+              className="alp-marquee-pause flex flex-row flex-nowrap items-center w-max gap-[28px] whitespace-nowrap shrink-0"
+              style={{ animation: "alp-marquee-right 28s linear infinite" }}
+            >
+              {[
+                { text: pill(1, "Full Stack AI"), color: categories[1]?.color ?? "#fffad2" },
+                { text: pill(3, "Data Visualization"), color: categories[3]?.color ?? "#d2faf0" },
+                { text: pill(5, "Bootcamp"), color: categories[5]?.color ?? "#fff2fa" },
+                { text: pill(7 % Math.max(categories.length, 1), "Agentic AI"), color: categories[7 % Math.max(categories.length, 1)]?.color ?? "#f0fbff" },
+                { text: pill(1, "Full Stack AI"), color: categories[1]?.color ?? "#fffad2" },
+                { text: pill(3, "Data Visualization"), color: categories[3]?.color ?? "#d2faf0" },
+                { text: pill(5, "Bootcamp"), color: categories[5]?.color ?? "#fff2fa" },
+                { text: pill(7 % Math.max(categories.length, 1), "Agentic AI"), color: categories[7 % Math.max(categories.length, 1)]?.color ?? "#f0fbff" },
+              ].map((p, i) => (
+                <div key={i} aria-hidden="true" className="flex-none pointer-events-none select-none h-[56px] rounded-[351px] px-[40px] inline-flex flex-row items-center justify-center shadow-[0px_4px_20px_0px_rgba(0,0,0,0.1)] min-w-[240px]" style={{ background: p.color }}>
+                  <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[16px] whitespace-nowrap">{p.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Icon circles for pill rows removed — replaced by animated marquee strips above */}
+          <div className="absolute bg-[#f4fafa] h-[808px] top-[1212px] w-screen left-1/2 -translate-x-1/2" />
+          <div className="absolute bg-[#f4fafa] h-[805px] top-[2945px] w-screen left-1/2 -translate-x-1/2" />
+          {/* Category tab backgrounds — active = green, inactive = white */}
+          {([
+            [1434, 1452, categories[0]?.name ?? "Data Science & Analytics"],
+            [1506, 1524, categories[1]?.name ?? "Artificial intelligence (AI)"],
+            [1578, 1596, categories[2]?.name ?? "Full Stack AI"],
+            [1650, 1668, categories[3]?.name ?? "Agentic AI Course"],
+          ] as [number, number, string][]).map(([bgTop, textTop, label], idx) => (
+            <div key={idx}>
+              <div
+                className={`-translate-x-1/2 absolute h-[58px] left-[calc(50%-450px)] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.1)] w-[408px] cursor-pointer ${activeCategory === idx ? "bg-[#19cf9e]" : "bg-white"}`}
+                style={{ top: `${bgTop}px` }}
+                onClick={() => handleCategoryClick(idx)}
+              />
+              <p
+                className={`absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[122px] not-italic text-[20px] whitespace-nowrap cursor-pointer ${activeCategory === idx ? "text-white" : "text-[#09263f]"}`}
+                style={{ top: `${textTop}px` }}
+                onClick={() => handleCategoryClick(idx)}
+              >{label}</p>
+              {/* tick icon — fill white when active, #19CF9E when inactive */}
+              {activeCategory === idx && (
+                <div
+                  className="absolute left-[86px] size-[28px] cursor-pointer"
+                  style={{ top: `${bgTop + 15}px` }}
+                  onClick={() => handleCategoryClick(idx)}
+                >
+                  <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 28 28">
+                    <g id="mdi:tick-circle">
+                      <path d={svgPaths.p3c3d0980} fill="white" id="Vector" />
+                    </g>
+                  </svg>
+                </div>
+              )}
+            </div>
+          ))}
+          <Group1 />
+          <div className="-translate-x-1/2 absolute bg-[#07b3e7] h-[350px] left-[calc(50%+5.5px)] rounded-[201px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[3904px] w-[1301px]" />
+          <Group3 />
+          <div className="-translate-x-1/2 absolute h-[380px] left-[calc(50%+0.5px)] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[5562px] w-[565px]" style={{ backgroundImage: "linear-gradient(203.749457deg, rgb(215, 247, 246) 3.8424%, rgb(242, 250, 228) 97.744%)" }} />
+          <div className="-translate-x-1/2 absolute flex h-[350px] items-center justify-center left-[calc(50%+478px)] top-[5578px] w-[348px]">
+            <div className="-scale-y-100 flex-none rotate-180">
+              <div className="bg-[#07b3e7] h-[350px] relative rounded-bl-[201px] rounded-br-[20px] rounded-tl-[201px] rounded-tr-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] w-[348px]" />
+            </div>
+          </div>
+          <div className="absolute left-[733px] size-[474px] top-[4017px]">
+            <div className="absolute bottom-1/2 left-0 right-0 top-0">
+              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 474 237">
+                <path d={svgPaths.p22ecb680} fill="var(--fill-0, #7EDAFE)" id="Ellipse 76" />
+              </svg>
+            </div>
+          </div>
+          <div className="absolute left-[857px] size-[446px] top-[3808px]" data-name="man with bag">
+            <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgManWithBag.src} />
+          </div>
+          <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-196px)] not-italic text-[#09263f] text-[40px] top-[1306px] w-[600px]">Our Courses - 6 Months Job Challenge</p>
+          <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+0.5px)] not-italic text-[#09263f] text-[40px] text-center top-[2184px] whitespace-nowrap">Learning Modes</p>
+          <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+0.5px)] not-italic text-[#09263f] text-[40px] text-center top-[5402px] whitespace-nowrap">What Students Say About Us?</p>
+          <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-43px)] not-italic text-[#09263f] text-[40px] top-[3013px] w-[711px]">{block(props, "about.heading") ?? "AnalytixLabs is a top-ranked Data Science Institute"}</p>
+          <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-500px)] not-italic text-[36px] text-white top-[3968px] w-[535px]">{`"Unlock Insights. Enroll Now. Transform Tomorrow."`}</p>
+          <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[220px] not-italic text-[18px] text-white top-[4078px] whitespace-nowrap">Change the course of your career now</p>
+          <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-1/2 not-italic text-[18px] text-[rgba(9,38,63,0.5)] text-center top-[2255px] w-[988px]">Explore Personalized learning modes to match your style! Whether you’re a working professional or student or want to upskill, we’ve got you covered. Our approach ensures effective learning, making it enjoyable and rewarding.</p>
+          {/* Learning Modes subtitle — driven by the active LearningMode row's `subtitle` field.
           Falls back to per-tab strings if the DB hasn't been seeded yet. */}
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%-30px)] not-italic text-[18px] text-[rgba(9,38,63,0.5)] top-[2430px] whitespace-nowrap">{
-        learningModes[activeLearningMode]?.subtitle
-          ?? (activeLearningMode === 0
-            ? "Intensive full-day sessions for rapid upskilling."
-            : activeLearningMode === 1
-            ? "Experiential learning with in-person mentorship!"
-            : "Learn at your own speed with weekend doubt sessions.")
-      }</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-1/2 not-italic text-[18px] text-[rgba(9,38,63,0.5)] text-center top-[5473px] w-[988px]">True Stories, Transformative Career Experience</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%-34px)] not-italic text-[18px] text-[rgba(9,38,63,0.5)] top-[3133px] w-[657px]">{block(props, "about.body") ?? "When it comes to industry-relevant data analytics courses and certifications. Offering a wide array of meticulously curated curriculums for students from various backgrounds, AnalytixLabs has led thousands of aspirants to desired job roles in data engineering, data science, artificial intelligence, and business analytics since 2011."}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%-34px)] not-italic text-[#09263f] text-[18px] top-[3274px] whitespace-nowrap">{block(props, "about.cityIntro") ?? "You can pick a data science course in :"}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-2px)] not-italic text-[#09263f] text-[18px] top-[3324px] whitespace-nowrap">Online</p>
-      {/* About → city-mode bullets. Editable via Page("home").blocks.cityHighlights (string[4]).
+          <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%-30px)] not-italic text-[18px] text-[rgba(9,38,63,0.5)] top-[2430px] whitespace-nowrap">{
+            learningModes[activeLearningMode]?.subtitle
+            ?? (activeLearningMode === 0
+              ? "Intensive full-day sessions for rapid upskilling."
+              : activeLearningMode === 1
+                ? "Experiential learning with in-person mentorship!"
+                : "Learn at your own speed with weekend doubt sessions.")
+          }</p>
+          <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-1/2 not-italic text-[18px] text-[rgba(9,38,63,0.5)] text-center top-[5473px] w-[988px]">True Stories, Transformative Career Experience</p>
+          <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%-34px)] not-italic text-[18px] text-[rgba(9,38,63,0.5)] top-[3133px] w-[657px]">{block(props, "about.body") ?? "When it comes to industry-relevant data analytics courses and certifications. Offering a wide array of meticulously curated curriculums for students from various backgrounds, AnalytixLabs has led thousands of aspirants to desired job roles in data engineering, data science, artificial intelligence, and business analytics since 2011."}</p>
+          <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%-34px)] not-italic text-[#09263f] text-[18px] top-[3274px] whitespace-nowrap">{block(props, "about.cityIntro") ?? "You can pick a data science course in :"}</p>
+          <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-2px)] not-italic text-[#09263f] text-[18px] top-[3324px] whitespace-nowrap">Online</p>
+          {/* About → city-mode bullets. Editable via Page("home").blocks.cityHighlights (string[4]).
           Positions are fixed (Figma 4-slot column at left calc(50%+6px), tops 3404/3456/3507/3559). */}
-      {(() => {
-        const fallback = [
-          "One to one mentorship",
-          "Industry driven curriculum curated",
-          "Experiential learning",
-          "Extensive post-class sessions",
-        ];
-        const items = blockList(props, "about.cityHighlights") ?? fallback;
-        const tops = [3404, 3456, 3507, 3559];
-        return tops.map((top, i) => (
-          <p
-            key={`city-bullet-${i}`}
-            className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[calc(50%+6px)] not-italic text-[#09263f] text-[16px] w-[265px]"
-            style={{ top: `${top}px` }}
-          >
-            {items[i] ?? fallback[i]}
-          </p>
-        ));
-      })()}
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+148px)] not-italic text-[#09263f] text-[18px] top-[3324px] whitespace-nowrap">Bangalore</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+341px)] not-italic text-[#09263f] text-[18px] top-[3324px] whitespace-nowrap">Gurgaon</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+525px)] not-italic text-[#09263f] text-[18px] top-[3324px] whitespace-nowrap">Noida</p>
-      <Link href="/contact" className="contents"><div className="absolute bg-[#ffd700] h-[49px] left-[220px] rounded-[1000px] top-[4135px] w-[182px] cursor-pointer hover:brightness-95 transition" /></Link>
-      <button type="button" onClick={handleFormSubmit} aria-label="Send form" className="absolute bg-[#ffd700] h-[49px] left-[786px] rounded-[1000px] top-[5114px] w-[182px] cursor-pointer hover:brightness-95 transition" />
-      <a href={`tel:${siteSettings?.contactPhone ?? ""}`} className="contents"><div className="absolute bg-[#19cf9e] h-[49px] left-[66px] rounded-[1000px] top-[4663px] w-[182px] cursor-pointer hover:brightness-95 transition" /></a>
-      <Link href="/about" className="contents"><div className="absolute bg-[#19cf9e] h-[49px] left-[685px] rounded-[1000px] top-[3620px] w-[223px] cursor-pointer hover:brightness-95 transition" /></Link>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[311px] not-italic text-[#09263f] text-[18px] text-center top-[4148px] whitespace-nowrap">Contact Us</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[875.5px] not-italic text-[#09263f] text-[18px] text-center top-[5127px] whitespace-nowrap">Send</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[155.5px] not-italic text-white text-[18px] text-center top-[4676px] whitespace-nowrap">Call Us</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[795.5px] not-italic text-white text-[18px] text-center top-[3633px] whitespace-nowrap">Value Proposition</p>
-      <div className={`absolute h-[116px] left-[66px] rounded-[20px] top-[2378px] w-[562px] cursor-pointer ${activeLearningMode === 0 ? "bg-gradient-to-r from-[#094c80] from-[13.037%] to-[#2096cb]" : "border border-[#094c80] border-solid shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)]"}`} onClick={() => setActiveLearningMode(0)} />
-      <div className={`absolute h-[117px] left-[66px] rounded-[20px] top-[2522px] w-[562px] cursor-pointer ${activeLearningMode === 1 ? "bg-gradient-to-r from-[#094c80] from-[13.037%] to-[#2096cb]" : "border border-[#094c80] border-solid shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)]"}`} onClick={() => setActiveLearningMode(1)} />
-      <div className={`absolute h-[116px] left-[66px] rounded-[20px] top-[2667px] w-[562px] cursor-pointer ${activeLearningMode === 2 ? "bg-gradient-to-r from-[#094c80] from-[13.037%] to-[#2096cb]" : "border border-[#094c80] border-solid shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)]"}`} onClick={() => setActiveLearningMode(2)} />
-      {/* Learning-mode tab labels — read from learningModes[i].name, fallback to legacy strings.
+          {(() => {
+            const fallback = [
+              "One to one mentorship",
+              "Industry driven curriculum curated",
+              "Experiential learning",
+              "Extensive post-class sessions",
+            ];
+            const items = blockList(props, "about.cityHighlights") ?? fallback;
+            const tops = [3404, 3456, 3507, 3559];
+            return tops.map((top, i) => (
+              <p
+                key={`city-bullet-${i}`}
+                className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[calc(50%+6px)] not-italic text-[#09263f] text-[16px] w-[265px]"
+                style={{ top: `${top}px` }}
+              >
+                {items[i] ?? fallback[i]}
+              </p>
+            ));
+          })()}
+          <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+148px)] not-italic text-[#09263f] text-[18px] top-[3324px] whitespace-nowrap">Bangalore</p>
+          <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+341px)] not-italic text-[#09263f] text-[18px] top-[3324px] whitespace-nowrap">Gurgaon</p>
+          <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+525px)] not-italic text-[#09263f] text-[18px] top-[3324px] whitespace-nowrap">Noida</p>
+          <Link href="/contact" className="contents"><div className="absolute bg-[#ffd700] h-[49px] left-[220px] rounded-[1000px] top-[4135px] w-[182px] cursor-pointer hover:brightness-95 transition" /></Link>
+          <button type="button" onClick={handleFormSubmit} aria-label="Send form" className="absolute bg-[#ffd700] h-[49px] left-[786px] rounded-[1000px] top-[5114px] w-[182px] cursor-pointer hover:brightness-95 transition" />
+          <a href={`tel:${siteSettings?.contactPhone ?? ""}`} className="contents"><div className="absolute bg-[#19cf9e] h-[49px] left-[66px] rounded-[1000px] top-[4663px] w-[182px] cursor-pointer hover:brightness-95 transition" /></a>
+          <Link href="/about" className="contents"><div className="absolute bg-[#19cf9e] h-[49px] left-[685px] rounded-[1000px] top-[3620px] w-[223px] cursor-pointer hover:brightness-95 transition" /></Link>
+          <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[311px] not-italic text-[#09263f] text-[18px] text-center top-[4148px] whitespace-nowrap">Contact Us</p>
+          <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[875.5px] not-italic text-[#09263f] text-[18px] text-center top-[5127px] whitespace-nowrap">Send</p>
+          <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[155.5px] not-italic text-white text-[18px] text-center top-[4676px] whitespace-nowrap">Call Us</p>
+          <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[795.5px] not-italic text-white text-[18px] text-center top-[3633px] whitespace-nowrap">Value Proposition</p>
+          <div className={`absolute h-[116px] left-[66px] rounded-[20px] top-[2378px] w-[562px] cursor-pointer ${activeLearningMode === 0 ? "bg-gradient-to-r from-[#094c80] from-[13.037%] to-[#2096cb]" : "border border-[#094c80] border-solid shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)]"}`} onClick={() => setActiveLearningMode(0)} />
+          <div className={`absolute h-[117px] left-[66px] rounded-[20px] top-[2522px] w-[562px] cursor-pointer ${activeLearningMode === 1 ? "bg-gradient-to-r from-[#094c80] from-[13.037%] to-[#2096cb]" : "border border-[#094c80] border-solid shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)]"}`} onClick={() => setActiveLearningMode(1)} />
+          <div className={`absolute h-[116px] left-[66px] rounded-[20px] top-[2667px] w-[562px] cursor-pointer ${activeLearningMode === 2 ? "bg-gradient-to-r from-[#094c80] from-[13.037%] to-[#2096cb]" : "border border-[#094c80] border-solid shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)]"}`} onClick={() => setActiveLearningMode(2)} />
+          {/* Learning-mode tab labels — read from learningModes[i].name, fallback to legacy strings.
           The 3 tab slots are at fixed Figma tops (2422 / 2562 / 2708). */}
-      {(() => {
-        const fallback = ["Weekday Bootcamp", "Weekday Batches", "Self-paced Blended"];
-        const tabTops = [2422, 2562, 2708];
-        const leftOffsets = [509, 508, 508];
-        return tabTops.map((top, i) => (
-          <p
-            key={`mode-tab-${i}`}
-            className={`absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] not-italic text-[26px] whitespace-nowrap cursor-pointer ${activeLearningMode === i ? "text-white" : "text-[#09263f]"}`}
-            style={{ left: `calc(50% - ${leftOffsets[i]}px)`, top: `${top}px` }}
-            onClick={() => setActiveLearningMode(i)}
-          >
-            {learningModes[i]?.name ?? fallback[i]}
-          </p>
-        ));
-      })()}
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-28px)] not-italic text-[#094c80] text-[28px] top-[2384px] whitespace-nowrap">{learningModes[activeLearningMode]?.name ?? (activeLearningMode === 0 ? "Weekday Bootcamp" : activeLearningMode === 1 ? "Weekday Batches" : "Self-paced Blended")}</p>
-      <ModeTickIcon top={2417} active={activeLearningMode === 0} />
-      <ModeTickIcon top={2559} active={activeLearningMode === 1} />
-      <ModeTickIcon top={2707} active={activeLearningMode === 2} />
-      <div className="absolute border border-[rgba(9,38,63,0.5)] border-solid h-[319px] left-[656px] rounded-[20px] top-[2348px] w-[705px]" />
-      <div className="absolute bg-[#094c80] h-[319px] left-[1021px] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[2494px] w-[326px]" />
-      <div className="absolute bg-[#094c80] h-[319px] left-[681px] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[2494px] w-[328px]" />
-      <div className="absolute left-[64px] size-[540px] top-[3052px]" style={{ animation: "alp-pulse-fade 8s ease-in-out infinite" }}>
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 540 540">
-          <path d={svgPaths.p312e4440} fill="var(--fill-0, #07B3E7)" fillOpacity="0.2" id="Ellipse 93" />
-        </svg>
-      </div>
-      <div className="absolute left-[175px] size-[320px] top-[3161px]" style={{ animation: "alp-pulse-fade 10s ease-in-out infinite 1s" }}>
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 320 320">
-          <path d={svgPaths.p322b2c00} fill="var(--fill-0, #07B3E7)" fillOpacity="0.2" id="Ellipse 94" />
-        </svg>
-      </div>
-      <div className="absolute left-[135px] size-[400px] top-[3121px]" style={{ animation: "alp-pulse-fade 9s ease-in-out infinite 0.5s" }}>
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 400 400">
-          <path d={svgPaths.p22c14680} fill="var(--fill-0, #07B3E7)" fillOpacity="0.2" id="Ellipse 96" />
-        </svg>
-      </div>
-      <div className="absolute left-[99px] size-[470px] top-[3087px]" style={{ animation: "alp-pulse-fade 11s ease-in-out infinite 1.5s" }}>
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 470 470">
-          <path d={svgPaths.p32075c00} fill="var(--fill-0, #07B3E7)" fillOpacity="0.2" id="Ellipse 95" />
-        </svg>
-      </div>
-      <div className="absolute h-[421px] left-[62px] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.1)] top-[3031px] w-[264px]" data-name="img" style={{ animation: "alp-float 6s ease-in-out infinite" }}>
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgImg.src} />
-      </div>
-      <div className="absolute h-[421px] left-[341px] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.1)] top-[3195px] w-[264px]" data-name="img" style={{ animation: "alp-float 6s ease-in-out infinite 3s" }}>
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgImg1.src} />
-      </div>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+37px)] not-italic text-[#09263f] text-[36px] top-[4482px] whitespace-nowrap">Request a Call back</p>
-      <div className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[0] left-[calc(50%-654px)] not-italic text-[#09263f] text-[36px] top-[4476px] whitespace-nowrap">
-        <p className="leading-[128.33999633789062%] mb-0 whitespace-pre">{`Excited? `}</p>
-        <p className="leading-[128.33999633789062%] whitespace-pre">Talk to Expert Counselor</p>
-      </div>
-      <div className="absolute bg-white border-[#09263f] border-[0.5px] border-solid h-[62px] left-[786px] rounded-[178px] top-[4599px] w-[494px]" />
-      <div className="absolute bg-white border-[#09263f] border-[0.5px] border-solid h-[62px] left-[786px] rounded-[178px] top-[4825px] w-[494px]" />
-      <div className="absolute bg-white border-[#09263f] border-[0.5px] border-solid h-[62px] left-[786px] rounded-[178px] top-[4937px] w-[494px]" />
-      <div className="absolute bg-white border-[#09263f] border-[0.5px] border-solid h-[62px] left-[786px] rounded-[178px] top-[4712px] w-[197px]" />
-      <div className="absolute bg-white border-[#09263f] border-[0.5px] border-solid h-[62px] left-[1017px] rounded-[178px] top-[4712px] w-[263px]" />
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[786px] not-italic text-[16px] text-black top-[4567px] whitespace-nowrap">Name</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[66px] not-italic text-[16px] text-black top-[4601px] whitespace-nowrap">To gain insights into your profile and strategize your next career move!</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[786px] not-italic text-[16px] text-black top-[4793px] whitespace-nowrap">Email</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[786px] not-italic text-[16px] text-black top-[4905px] whitespace-nowrap">Select City</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[786px] not-italic text-[16px] text-black top-[4680px] whitespace-nowrap">Code</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1017px] not-italic text-[16px] text-black top-[4680px] whitespace-nowrap">Mobile</p>
-      {/* ── Request a Call back: real form controls overlaid on the decorative borders. */}
-      <input
-        value={formData.name}
-        onChange={handleFormChange("name")}
-        placeholder="Your Name"
-        required
-        className="absolute left-[816px] top-[4615px] w-[434px] h-[32px] bg-transparent outline-none font-['Inter:Light',sans-serif] font-light text-[16px] text-black placeholder:text-[rgba(0,0,0,0.5)]"
-      />
-      <select
-        value={formData.code}
-        onChange={handleFormChange("code")}
-        className="absolute left-[816px] top-[4728px] w-[140px] h-[32px] bg-transparent outline-none font-['Inter:Light',sans-serif] font-light text-[16px] text-black appearance-none cursor-pointer"
-      >
-        {COUNTRY_CODES.map(c => (
-          <option key={`${c.country}-${c.code}`} value={c.code}>{`${c.country} (${c.code})`}</option>
-        ))}
-      </select>
-      <input
-        value={formData.mobile}
-        onChange={handleFormChange("mobile")}
-        placeholder="Mobile"
-        inputMode="tel"
-        required
-        className="absolute left-[1047px] top-[4728px] w-[206px] h-[32px] bg-transparent outline-none font-['Inter:Light',sans-serif] font-light text-[16px] text-black placeholder:text-[rgba(0,0,0,0.5)]"
-      />
-      <input
-        value={formData.email}
-        onChange={handleFormChange("email")}
-        placeholder="Your Email"
-        type="email"
-        required
-        className="absolute left-[816px] top-[4841px] w-[434px] h-[32px] bg-transparent outline-none font-['Inter:Light',sans-serif] font-light text-[16px] text-black placeholder:text-[rgba(0,0,0,0.5)]"
-      />
-      <select
-        value={formData.city}
-        onChange={handleFormChange("city")}
-        className="absolute left-[816px] top-[4953px] w-[434px] h-[32px] bg-transparent outline-none font-['Inter:Light',sans-serif] font-light text-[16px] text-black appearance-none cursor-pointer"
-      >
-        {CITY_LABELS.map(c => (
-          <option key={c} value={c}>{c}</option>
-        ))}
-      </select>
-      <div className="absolute left-[786px] top-[5022px] w-[302px] h-[74px] bg-[#f9f9f9] border border-[#d3d3d3] rounded-[3px] flex items-center px-[12px] gap-[14px] shadow-sm select-none">
-        <div 
-          className={`size-[28px] border-2 rounded-[2px] cursor-pointer flex items-center justify-center transition-all ${isNotRobot ? "bg-[#19cf9e] border-[#19cf9e]" : "bg-white border-[#c1c1c1] hover:border-[#b2b2b2]"}`}
-          onClick={() => setIsNotRobot(!isNotRobot)}
-        >
-          {isNotRobot && (
-            <svg viewBox="0 0 24 24" className="size-5 text-white fill-current">
-              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+          {(() => {
+            const fallback = ["Weekday Bootcamp", "Weekday Batches", "Self-paced Blended"];
+            const tabTops = [2422, 2562, 2708];
+            const leftOffsets = [509, 508, 508];
+            return tabTops.map((top, i) => (
+              <p
+                key={`mode-tab-${i}`}
+                className={`absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] not-italic text-[26px] whitespace-nowrap cursor-pointer ${activeLearningMode === i ? "text-white" : "text-[#09263f]"}`}
+                style={{ left: `calc(50% - ${leftOffsets[i]}px)`, top: `${top}px` }}
+                onClick={() => setActiveLearningMode(i)}
+              >
+                {learningModes[i]?.name ?? fallback[i]}
+              </p>
+            ));
+          })()}
+          <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-28px)] not-italic text-[#094c80] text-[28px] top-[2384px] whitespace-nowrap">{learningModes[activeLearningMode]?.name ?? (activeLearningMode === 0 ? "Weekday Bootcamp" : activeLearningMode === 1 ? "Weekday Batches" : "Self-paced Blended")}</p>
+          <ModeTickIcon top={2417} active={activeLearningMode === 0} />
+          <ModeTickIcon top={2559} active={activeLearningMode === 1} />
+          <ModeTickIcon top={2707} active={activeLearningMode === 2} />
+          <div className="absolute border border-[rgba(9,38,63,0.5)] border-solid h-[530px] left-[656px] rounded-[20px] top-[2348px] w-[705px]" />
+          <div className="absolute bg-[#094c80] h-[319px] left-[1021px] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[2494px] w-[326px]" />
+          <div className="absolute bg-[#094c80] h-[319px] left-[681px] rounded-[20px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[2494px] w-[328px]" />
+          <div className="absolute left-[64px] size-[540px] top-[3052px]" style={{ animation: "alp-pulse-fade 8s ease-in-out infinite" }}>
+            <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 540 540">
+              <path d={svgPaths.p312e4440} fill="var(--fill-0, #07B3E7)" fillOpacity="0.2" id="Ellipse 93" />
             </svg>
+          </div>
+          <div className="absolute left-[175px] size-[320px] top-[3161px]" style={{ animation: "alp-pulse-fade 10s ease-in-out infinite 1s" }}>
+            <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 320 320">
+              <path d={svgPaths.p322b2c00} fill="var(--fill-0, #07B3E7)" fillOpacity="0.2" id="Ellipse 94" />
+            </svg>
+          </div>
+          <div className="absolute left-[135px] size-[400px] top-[3121px]" style={{ animation: "alp-pulse-fade 9s ease-in-out infinite 0.5s" }}>
+            <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 400 400">
+              <path d={svgPaths.p22c14680} fill="var(--fill-0, #07B3E7)" fillOpacity="0.2" id="Ellipse 96" />
+            </svg>
+          </div>
+          <div className="absolute left-[99px] size-[470px] top-[3087px]" style={{ animation: "alp-pulse-fade 11s ease-in-out infinite 1.5s" }}>
+            <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 470 470">
+              <path d={svgPaths.p32075c00} fill="var(--fill-0, #07B3E7)" fillOpacity="0.2" id="Ellipse 95" />
+            </svg>
+          </div>
+          <div className="absolute h-[421px] left-[62px] rounded-[20px] shadow-[0px_20px_50px_rgba(0,0,0,0.2)] top-[3031px] w-[264px] overflow-hidden bg-white" data-name="img" style={{ animation: "alp-float 6s ease-in-out infinite" }}>
+            <img alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none z-10" src={imgImg.src} />
+          </div>
+          <div className="absolute h-[421px] left-[341px] rounded-[20px] shadow-[0px_20px_50px_rgba(0,0,0,0.2)] top-[3195px] w-[264px] overflow-hidden bg-white" data-name="img" style={{ animation: "alp-float 6s ease-in-out infinite 3s" }}>
+            <img alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none z-10" src={imgImg1.src} />
+          </div>
+          <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+37px)] not-italic text-[#09263f] text-[36px] top-[4482px] whitespace-nowrap">Request a Call back</p>
+          <div className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[0] left-[calc(50%-654px)] not-italic text-[#09263f] text-[36px] top-[4476px] whitespace-nowrap">
+            <p className="leading-[128.33999633789062%] mb-0 whitespace-pre">{`Excited? `}</p>
+            <p className="leading-[128.33999633789062%] whitespace-pre">Talk to Expert Counselor</p>
+          </div>
+          <div className="absolute bg-white border-[#09263f] border-[0.5px] border-solid h-[62px] left-[786px] rounded-[178px] top-[4599px] w-[494px]" />
+          <div className="absolute bg-white border-[#09263f] border-[0.5px] border-solid h-[62px] left-[786px] rounded-[178px] top-[4825px] w-[494px]" />
+          <div className="absolute bg-white border-[#09263f] border-[0.5px] border-solid h-[62px] left-[786px] rounded-[178px] top-[4937px] w-[494px]" />
+          <div className="absolute bg-white border-[#09263f] border-[0.5px] border-solid h-[62px] left-[786px] rounded-[178px] top-[4712px] w-[197px]" />
+          <div className="absolute bg-white border-[#09263f] border-[0.5px] border-solid h-[62px] left-[1017px] rounded-[178px] top-[4712px] w-[263px]" />
+          <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[786px] not-italic text-[16px] text-black top-[4567px] whitespace-nowrap">Name</p>
+          <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[66px] not-italic text-[16px] text-black top-[4601px] whitespace-nowrap">To gain insights into your profile and strategize your next career move!</p>
+          <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[786px] not-italic text-[16px] text-black top-[4793px] whitespace-nowrap">Email</p>
+          <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[786px] not-italic text-[16px] text-black top-[4905px] whitespace-nowrap">Select City</p>
+          <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[786px] not-italic text-[16px] text-black top-[4680px] whitespace-nowrap">Code</p>
+          <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1017px] not-italic text-[16px] text-black top-[4680px] whitespace-nowrap">Mobile</p>
+          {/* ── Request a Call back: real form controls overlaid on the decorative borders. */}
+          <input
+            value={formData.name}
+            onChange={handleFormChange("name")}
+            placeholder="Your Name"
+            required
+            className="absolute left-[816px] top-[4615px] w-[434px] h-[32px] bg-transparent outline-none font-['Inter:Light',sans-serif] font-light text-[16px] text-black placeholder:text-[rgba(0,0,0,0.5)]"
+          />
+          <select
+            value={formData.code}
+            onChange={handleFormChange("code")}
+            className="absolute left-[816px] top-[4728px] w-[140px] h-[32px] bg-transparent outline-none font-['Inter:Light',sans-serif] font-light text-[16px] text-black appearance-none cursor-pointer"
+          >
+            {COUNTRY_CODES.map(c => (
+              <option key={`${c.country}-${c.code}`} value={c.code}>{`${c.country} (${c.code})`}</option>
+            ))}
+          </select>
+          <input
+            value={formData.mobile}
+            onChange={handleFormChange("mobile")}
+            placeholder="Mobile"
+            inputMode="tel"
+            required
+            className="absolute left-[1047px] top-[4728px] w-[206px] h-[32px] bg-transparent outline-none font-['Inter:Light',sans-serif] font-light text-[16px] text-black placeholder:text-[rgba(0,0,0,0.5)]"
+          />
+          <input
+            value={formData.email}
+            onChange={handleFormChange("email")}
+            placeholder="Your Email"
+            type="email"
+            required
+            className="absolute left-[816px] top-[4841px] w-[434px] h-[32px] bg-transparent outline-none font-['Inter:Light',sans-serif] font-light text-[16px] text-black placeholder:text-[rgba(0,0,0,0.5)]"
+          />
+          <select
+            value={formData.city}
+            onChange={handleFormChange("city")}
+            className="absolute left-[816px] top-[4953px] w-[434px] h-[32px] bg-transparent outline-none font-['Inter:Light',sans-serif] font-light text-[16px] text-black appearance-none cursor-pointer"
+          >
+            {CITY_LABELS.map(c => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+          <div className="absolute left-[786px] top-[5022px] w-[302px] h-[74px] bg-[#f9f9f9] border border-[#d3d3d3] rounded-[3px] flex items-center px-[12px] gap-[14px] shadow-sm select-none">
+            <div
+              className={`size-[28px] border-2 rounded-[2px] cursor-pointer flex items-center justify-center transition-all ${isNotRobot ? "bg-[#19cf9e] border-[#19cf9e]" : "bg-white border-[#c1c1c1] hover:border-[#b2b2b2]"}`}
+              onClick={() => setIsNotRobot(!isNotRobot)}
+            >
+              {isNotRobot && (
+                <svg viewBox="0 0 24 24" className="size-5 text-white fill-current">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+              )}
+            </div>
+            <label className="font-['Inter',sans-serif] text-[14px] text-[#555] cursor-pointer flex-1" onClick={() => setIsNotRobot(!isNotRobot)}>
+              I'm not a robot
+            </label>
+            <div className="flex flex-col items-center justify-center gap-1 opacity-80">
+              <svg className="size-[32px]" viewBox="0 0 24 24" fill="#4c8bf5">
+                <path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12,20c-4.41,0-8-3.59-8-8s3.59-8,8-8s8,3.59,8,8 S16.41,20,12,20z M11,12.17l-2.59-2.59L7,11l4,4l8-8l-1.41-1.41L11,12.17z" />
+              </svg>
+              <div className="flex flex-col items-center leading-none">
+                <span className="text-[9px] font-bold text-[#555]">reCAPTCHA</span>
+                <span className="text-[7px] text-[#777]">Privacy - Terms</span>
+              </div>
+            </div>
+          </div>
+          {formSubmitted && (
+            <p className="absolute left-[786px] top-[5085px] text-[12px] font-['Inter:Medium',sans-serif] font-medium text-[#19cf9e]">Thanks! We&rsquo;ll be in touch shortly.</p>
           )}
-        </div>
-        <label className="font-['Inter',sans-serif] text-[14px] text-[#555] cursor-pointer flex-1" onClick={() => setIsNotRobot(!isNotRobot)}>
-          I'm not a robot
-        </label>
-        <div className="flex flex-col items-center justify-center gap-1 opacity-80">
-          <svg className="size-[32px]" viewBox="0 0 24 24" fill="#4c8bf5">
-            <path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12,20c-4.41,0-8-3.59-8-8s3.59-8,8-8s8,3.59,8,8 S16.41,20,12,20z M11,12.17l-2.59-2.59L7,11l4,4l8-8l-1.41-1.41L11,12.17z" />
-          </svg>
-          <div className="flex flex-col items-center leading-none">
-            <span className="text-[9px] font-bold text-[#555]">reCAPTCHA</span>
-            <span className="text-[7px] text-[#777]">Privacy - Terms</span>
-          </div>
-        </div>
-      </div>
-      {formSubmitted && (
-        <p className="absolute left-[786px] top-[5085px] text-[12px] font-['Inter:Medium',sans-serif] font-medium text-[#19cf9e]">Thanks! We&rsquo;ll be in touch shortly.</p>
-      )}
-      {formError && (
-        <p className="absolute left-[786px] top-[5085px] text-[12px] font-['Inter:Medium',sans-serif] font-medium text-[#d4183d] w-[494px]">{formError}</p>
-      )}
-      <div className="absolute h-0 left-[691px] top-[3374px] w-[652px]">
-        <div className="absolute inset-[-0.5px_0_0_0]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 652 0.5">
-            <line id="Line 2" stroke="var(--stroke-0, black)" strokeOpacity="0.3" strokeWidth="0.5" x2="652" y1="0.25" y2="0.25" />
-          </svg>
-        </div>
-      </div>
-      <WpfOnline />
-      <StreamlineGroupMeetingCallRemix />
-      <Icons8Student />
-      <StreamlinePlumpGlobalLearning />
-      <CarbonMachineLearningModel />
-      {[640, 664, 688, 712, 736, 760, 784].map((left, idx) => (
-        <div key={left} className="absolute size-[15px] top-[5978px] cursor-pointer" style={{ left: `${left}px` }} onClick={() => handleTestimonialDot(idx)}>
-          <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 15 15">
-            {activeTestimonialIdx === idx
-              ? <circle cx="7.5" cy="7.5" fill="var(--fill-0, #09263F)" r="7" stroke="var(--stroke-0, #09263F)" />
-              : <circle cx="7.5" cy="7.5" r="7" stroke="var(--stroke-0, #09263F)" />}
-          </svg>
-        </div>
-      ))}
-      {/* FAQ section moved out of absolute canvas — see <FaqFlowSection /> rendered below. */}
-      <div key={`${testimonialKey}-img`} className="testimonial-fade -translate-x-1/2 absolute left-1/2 size-[150px] top-[5585px] rounded-full border-[6px] border-white shadow-[0px_10px_30px_0px_rgba(0,0,0,0.15)] overflow-hidden bg-white">
-        <img alt="" className="absolute block inset-0 max-w-none size-full object-cover" height="150" src={t0?.photoUrl ?? imgEllipse92.src} width="150" />
-      </div>
-      <div key={`${testimonialKey}-name`} className="testimonial-fade -translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-1/2 not-italic text-[#09263f] text-[0px] text-center top-[5745px] whitespace-nowrap">
-        <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[116.02999877929688%] mb-0 text-[16px] whitespace-pre">{t0?.name ?? "Piyush Ganar"}</p>
-        <p className="leading-[116.02999877929688%] text-[14px] whitespace-pre">{t0?.role ? ` ${t0.role}` : ` Class of 2012 IIM Ahmedabad`}</p>
-      </div>
-      <p key={`${testimonialKey}-co`} className="testimonial-fade -translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[116.02999877929688%] left-1/2 not-italic text-[#09263f] text-[14px] text-center top-[5789px] whitespace-nowrap">{t0?.company ? `(${t0.company})` : "(Assistant General Manager Sales Marketing, Findability Sciences)"}</p>
-      <p key={`${testimonialKey}-quote`} className="testimonial-fade -translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[1.404] left-[calc(50%+6.5px)] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[5835px] w-[525px]">{t0?.quote ?? "The course material is very easy to understand and the case studies were based on real time business problems. What I love the most about Sumeet and his team is that they never operated the institute like a typical commercial enterprise but more like a temple for learning. The gates of Alabs are always open for students for any kind of help and guidance. I would recommend ALabs to all."}</p>
-      <LineMdStarFilled />
-      <LineMdStarFilled1 />
-      <LineMdStarFilled2 />
-      <LineMdStarFilled3 />
-      <LineMdStarFilled4 />
-      <div className="absolute left-[93px] rounded-bl-[140px] size-[424px] top-[5504px]" data-name="man red">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-bl-[140px] size-full" src={imgManRed.src} />
-      </div>
-      <div className="absolute h-[418px] left-[1022px] rounded-br-[185px] top-[5512px] w-[354px]" data-name="girl smiling">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-br-[185px]">
-          <img alt="" className="absolute h-[102.87%] left-[-6.5%] max-w-none top-[-2.87%] w-[121.47%]" src={imgGirlSmiling.src} />
-        </div>
-      </div>
-      <div className="absolute flex h-[234.485px] items-center justify-center left-[1186px] top-[410px] w-[237.664px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "549" } as React.CSSProperties}>
-        <div className="flex-none rotate-30">
-          <div className="h-[168.476px] relative w-[177.161px]">
-            <div className="absolute inset-[53.58%_0_-2.37%_-1.85%]">
-              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 180.614 82.2049">
-                <g filter="url(#filter0_f_1_665)" id="Ellipse 20">
-                  <path d={svgPaths.p30f5e880} fill="url(#paint0_linear_1_665)" />
-                </g>
-                <defs>
-                  <filter colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse" height="82.2049" id="filter0_f_1_665" width="180.614" x="-1.19209e-07" y="0">
-                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                    <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
-                    <feGaussianBlur result="effect1_foregroundBlur_1_665" stdDeviation="2" />
-                  </filter>
-                  <linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_1_665" x1="91.8588" x2="91.8588" y1="-90.2716" y2="78.2048">
-                    <stop stopColor="#19CF9E" />
-                    <stop offset="1" stopColor="#07B3E7" />
-                  </linearGradient>
-                </defs>
+          {formError && (
+            <p className="absolute left-[786px] top-[5085px] text-[12px] font-['Inter:Medium',sans-serif] font-medium text-[#d4183d] w-[494px]">{formError}</p>
+          )}
+          <div className="absolute h-0 left-[691px] top-[3374px] w-[652px]">
+            <div className="absolute inset-[-0.5px_0_0_0]">
+              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 652 0.5">
+                <line id="Line 2" stroke="var(--stroke-0, black)" strokeOpacity="0.3" strokeWidth="0.5" x2="652" y1="0.25" y2="0.25" />
               </svg>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="absolute bg-[#f4fafa] border-[#19cf9e] border-[1.5px] border-solid h-[214px] left-[628px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[490px] w-[356px] cursor-pointer hover:scale-[1.02] transition-transform" onClick={() => { setLeadModalType("fresher"); setShowLeadModal(true); }} />
-      <div className="absolute bg-[#f4fafa] border-[#07b3e7] border-[1.5px] border-solid h-[214px] left-[1015px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[490px] w-[356px] cursor-pointer hover:scale-[1.02] transition-transform" onClick={() => { setLeadModalType("experienced"); setShowLeadModal(true); }} />
-      {/* Lead-capture card #1 (Fresher / Student). Copy editable via Page("home").blocks: leadCard1.{title,subtitle,bestFor}. */}
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold h-[25px] leading-[normal] left-[663px] not-italic text-[20px] text-black top-[573px] w-[203px] pointer-events-none">{block(props, "leadCard1.title") ?? "Fresher / Student"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium h-[29px] leading-[normal] left-[663px] not-italic text-[14px] text-[rgba(0,0,0,0.5)] top-[616px] w-[217px] pointer-events-none">{block(props, "leadCard1.subtitle") ?? "Starting or preparing to start your carrer"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium h-[15px] leading-[normal] left-[663px] not-italic text-[#19cf9e] text-[14px] top-[545px] w-[53px] pointer-events-none">{block(props, "leadCard1.bestFor") ?? "Best for"}</p>
-      <div className="absolute flex h-[234.485px] items-center justify-center left-[800px] top-[410px] w-[237.664px] pointer-events-none" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "549" } as React.CSSProperties}>
-        <div className="flex-none rotate-30">
-          <div className="h-[168.476px] relative w-[177.161px]">
-            <div className="absolute inset-[53.58%_0_-2.37%_-1.85%]">
-              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 180.614 82.2049">
-                <g filter="url(#filter0_f_1_663)" id="Ellipse 19">
-                  <path d={svgPaths.p30f5e880} fill="var(--fill-0, #19CF9E)" />
-                </g>
-                <defs>
-                  <filter colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse" height="82.2049" id="filter0_f_1_663" width="180.614" x="-1.19209e-07" y="0">
-                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                    <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
-                    <feGaussianBlur result="effect1_foregroundBlur_1_663" stdDeviation="2" />
-                  </filter>
-                </defs>
+          <WpfOnline />
+          <StreamlineGroupMeetingCallRemix />
+          <Icons8Student />
+          <StreamlinePlumpGlobalLearning />
+          <CarbonMachineLearningModel />
+          {[640, 664, 688, 712, 736, 760, 784].map((left, idx) => (
+            <div key={left} className="absolute size-[15px] top-[5978px] cursor-pointer" style={{ left: `${left}px` }} onClick={() => handleTestimonialDot(idx)}>
+              <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 15 15">
+                {activeTestimonialIdx === idx
+                  ? <circle cx="7.5" cy="7.5" fill="var(--fill-0, #09263F)" r="7" stroke="var(--stroke-0, #09263F)" />
+                  : <circle cx="7.5" cy="7.5" r="7" stroke="var(--stroke-0, #09263F)" />}
+              </svg>
+            </div>
+          ))}
+          {/* FAQ section moved out of absolute canvas — see <FaqFlowSection /> rendered below. */}
+          <div key={`${testimonialKey}-img`} className="testimonial-fade -translate-x-1/2 absolute left-1/2 size-[150px] top-[5585px] rounded-full border-[6px] border-white shadow-[0px_10px_30px_0px_rgba(0,0,0,0.15)] overflow-hidden bg-white">
+            <img alt="" className="absolute block inset-0 max-w-none size-full object-cover" height="150" src={t0?.photoUrl ?? imgEllipse92.src} width="150" />
+          </div>
+          <div key={`${testimonialKey}-name`} className="testimonial-fade -translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[0] left-1/2 not-italic text-[#09263f] text-[0px] text-center top-[5745px] whitespace-nowrap">
+            <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[116.02999877929688%] mb-0 text-[16px] whitespace-pre">{t0?.name ?? "Piyush Ganar"}</p>
+            <p className="leading-[116.02999877929688%] text-[14px] whitespace-pre">{t0?.role ? ` ${t0.role}` : ` Class of 2012 IIM Ahmedabad`}</p>
+          </div>
+          <p key={`${testimonialKey}-co`} className="testimonial-fade -translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[116.02999877929688%] left-1/2 not-italic text-[#09263f] text-[14px] text-center top-[5789px] whitespace-nowrap">{t0?.company ? `(${t0.company})` : "(Assistant General Manager Sales Marketing, Findability Sciences)"}</p>
+          <p key={`${testimonialKey}-quote`} className="testimonial-fade -translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[1.404] left-[calc(50%+6.5px)] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[5835px] w-[525px]">{t0?.quote ?? "The course material is very easy to understand and the case studies were based on real time business problems. What I love the most about Sumeet and his team is that they never operated the institute like a typical commercial enterprise but more like a temple for learning. The gates of Alabs are always open for students for any kind of help and guidance. I would recommend ALabs to all."}</p>
+          <LineMdStarFilled />
+          <LineMdStarFilled1 />
+          <LineMdStarFilled2 />
+          <LineMdStarFilled3 />
+          <LineMdStarFilled4 />
+          <div className="absolute left-[93px] rounded-bl-[140px] size-[424px] top-[5504px]" data-name="man red">
+            <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-bl-[140px] size-full" src={imgManRed.src} />
+          </div>
+          <div className="absolute h-[418px] left-[1022px] rounded-br-[185px] top-[5512px] w-[354px]" data-name="girl smiling">
+            <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-br-[185px]">
+              <img alt="" className="absolute h-[102.87%] left-[-6.5%] max-w-none top-[-2.87%] w-[121.47%]" src={imgGirlSmiling.src} />
+            </div>
+          </div>
+          <div className="absolute flex h-[234.485px] items-center justify-center left-[1186px] top-[410px] w-[237.664px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "549" } as React.CSSProperties}>
+            <div className="flex-none rotate-30">
+              <div className="h-[168.476px] relative w-[177.161px]">
+                <div className="absolute inset-[53.58%_0_-2.37%_-1.85%]">
+                  <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 180.614 82.2049">
+                    <g filter="url(#filter0_f_1_665)" id="Ellipse 20">
+                      <path d={svgPaths.p30f5e880} fill="url(#paint0_linear_1_665)" />
+                    </g>
+                    <defs>
+                      <filter colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse" height="82.2049" id="filter0_f_1_665" width="180.614" x="-1.19209e-07" y="0">
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                        <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
+                        <feGaussianBlur result="effect1_foregroundBlur_1_665" stdDeviation="2" />
+                      </filter>
+                      <linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_1_665" x1="91.8588" x2="91.8588" y1="-90.2716" y2="78.2048">
+                        <stop stopColor="#19CF9E" />
+                        <stop offset="1" stopColor="#07B3E7" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="absolute bg-[#f4fafa] border-[#19cf9e] border-[1.5px] border-solid h-[214px] left-[628px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[490px] w-[356px] cursor-pointer hover:scale-[1.02] transition-transform" onClick={() => { setLeadModalType("fresher"); setShowLeadModal(true); }} />
+          <div className="absolute bg-[#f4fafa] border-[#07b3e7] border-[1.5px] border-solid h-[214px] left-[1015px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[490px] w-[356px] cursor-pointer hover:scale-[1.02] transition-transform" onClick={() => { setLeadModalType("experienced"); setShowLeadModal(true); }} />
+          {/* Lead-capture card #1 (Fresher / Student). Copy editable via Page("home").blocks: leadCard1.{title,subtitle,bestFor}. */}
+          <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold h-[25px] leading-[normal] left-[663px] not-italic text-[20px] text-black top-[573px] w-[203px] pointer-events-none">{block(props, "leadCard1.title") ?? "Fresher / Student"}</p>
+          <p className="absolute font-['Inter:Medium',sans-serif] font-medium h-[29px] leading-[normal] left-[663px] not-italic text-[14px] text-[rgba(0,0,0,0.5)] top-[616px] w-[217px] pointer-events-none">{block(props, "leadCard1.subtitle") ?? "Starting or preparing to start your carrer"}</p>
+          <p className="absolute font-['Inter:Medium',sans-serif] font-medium h-[15px] leading-[normal] left-[663px] not-italic text-[#19cf9e] text-[14px] top-[545px] w-[53px] pointer-events-none">{block(props, "leadCard1.bestFor") ?? "Best for"}</p>
+          <div className="absolute flex h-[234.485px] items-center justify-center left-[800px] top-[410px] w-[237.664px] pointer-events-none" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "549" } as React.CSSProperties}>
+            <div className="flex-none rotate-30">
+              <div className="h-[168.476px] relative w-[177.161px]">
+                <div className="absolute inset-[53.58%_0_-2.37%_-1.85%]">
+                  <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 180.614 82.2049">
+                    <g filter="url(#filter0_f_1_663)" id="Ellipse 19">
+                      <path d={svgPaths.p30f5e880} fill="var(--fill-0, #19CF9E)" />
+                    </g>
+                    <defs>
+                      <filter colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse" height="82.2049" id="filter0_f_1_663" width="180.614" x="-1.19209e-07" y="0">
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                        <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
+                        <feGaussianBlur result="effect1_foregroundBlur_1_663" stdDeviation="2" />
+                      </filter>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="absolute left-[596px] size-[385px] top-[106px]" data-name="GIRL">
+            <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgGirl.src} />
+          </div>
+          <div className="pointer-events-none">
+            <MdiAccountStudent />
+          </div>
+          <div className="absolute h-[408px] left-[1048px] top-[83px] w-[272px]" data-name="MAN">
+            <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgMan.src} />
+          </div>
+          <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[818px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[772px] w-[194px]">{`Secure & Private`}</p>
+          <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1002.5px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] text-center top-[772px] w-[173px]">No Spam, ever</p>
+          <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1143.5px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] text-center top-[772px] w-[207px]">Takes only 2 mins</p>
+          <MaterialSymbolsLightLockOutline />
+          <HealthiconsNoOutline />
+          <MdiLightClock />
+          <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[0] left-[999px] not-italic text-[0px] text-black text-center top-[733px] whitespace-nowrap">
+            <span className="leading-[normal] text-[16px]">Find Your Perfect Learning</span>
+            <span className="leading-[normal] text-[#4c7fd2] text-[16px]">{` `}</span>
+            <span className="leading-[normal] text-[16px]">Path!</span>
+          </p>
+          <div className="absolute bg-[rgba(255,255,255,0.1)] h-[169px] left-[695px] rounded-[15px] top-[2596px] w-[299px]" />
+          <div className="absolute bg-[rgba(255,255,255,0.1)] h-[169px] left-[1035px] rounded-[15px] top-[2596px] w-[299px]" />
+          {(() => {
+            const MODE_MOCKS = [
+              {
+                c1: { title: "Data Science Bootcamp", loc: "Noida", date: "14 May", time: "9:30 AM", seats: "08 Seats" },
+                c2: { title: "AI Engineering", loc: "Gurgaon", date: "21 May", time: "10:00 AM", seats: "12 Seats" }
+              },
+              {
+                c1: { title: "Business Analytics", loc: "Bengaluru", date: "15 May", time: "6:30 PM", seats: "10 Seats" },
+                c2: { title: "Data Visualization", loc: "Online", date: "22 May", time: "7:00 PM", seats: "05 Seats" }
+              },
+              {
+                c1: { title: "Machine Learning", loc: "Online", date: "Self-Paced", time: "Anytime", seats: "15 Seats" },
+                c2: { title: "Deep Learning", loc: "Online", date: "Self-Paced", time: "Anytime", seats: "20 Seats" }
+              }
+            ];
+            const cur = MODE_MOCKS[activeLearningMode] || MODE_MOCKS[0];
+            return (
+              <>
+                <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-4px)] not-italic text-[24px] text-white top-[2531px] whitespace-nowrap">{cur.c1.title}</p>
+                <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+16px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2612px] whitespace-nowrap">{`Location: `}</p>
+                <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+356px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2612px] whitespace-nowrap">{`Location: `}</p>
+                <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+16px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2652px] whitespace-nowrap">{`Date: `}</p>
+                <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+356px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2652px] whitespace-nowrap">{`Date: `}</p>
+                <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+16px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2690px] whitespace-nowrap">Time:</p>
+                <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+356px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2690px] whitespace-nowrap">Time:</p>
+                <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+16px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2728px] whitespace-nowrap">{`Available seats: `}</p>
+                <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+356px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2728px] whitespace-nowrap">{`Available seats: `}</p>
+                <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+253px)] not-italic text-[14px] text-right text-white top-[2612px] whitespace-nowrap">{cur.c1.loc}</p>
+                <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+593px)] not-italic text-[14px] text-right text-white top-[2612px] whitespace-nowrap">{cur.c2.loc}</p>
+                <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+253px)] not-italic text-[14px] text-right text-white top-[2652px] whitespace-nowrap">{cur.c1.date}</p>
+                <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+593px)] not-italic text-[14px] text-right text-white top-[2652px] whitespace-nowrap">{cur.c2.date}</p>
+                <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+253px)] not-italic text-[14px] text-right text-white top-[2690px] whitespace-nowrap">{cur.c1.time}</p>
+                <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+593px)] not-italic text-[14px] text-right text-white top-[2690px] whitespace-nowrap">{cur.c2.time}</p>
+                <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+253px)] not-italic text-[14px] text-right text-white top-[2728px] whitespace-nowrap">{cur.c1.seats}</p>
+                <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+593px)] not-italic text-[14px] text-right text-white top-[2728px] whitespace-nowrap">{cur.c2.seats}</p>
+                <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+335px)] not-italic text-[24px] text-white top-[2531px] w-[246px]">{cur.c2.title}</p>
+              </>
+            );
+          })()}
+          <div className="absolute h-0 left-[713px] top-[2640px] w-[264px]">
+            <div className="absolute inset-[-0.5px_0_0_0]">
+              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 264 0.5">
+                <line id="Line 3" stroke="var(--stroke-0, white)" strokeOpacity="0.2" strokeWidth="0.5" x2="264" y1="0.25" y2="0.25" />
               </svg>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="absolute left-[596px] size-[385px] top-[106px]" data-name="GIRL">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgGirl.src} />
-      </div>
-      <div className="pointer-events-none">
-        <MdiAccountStudent />
-      </div>
-      <div className="absolute h-[408px] left-[1048px] top-[83px] w-[272px]" data-name="MAN">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgMan.src} />
-      </div>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[818px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[772px] w-[194px]">{`Secure & Private`}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1002.5px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] text-center top-[772px] w-[173px]">No Spam, ever</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1143.5px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] text-center top-[772px] w-[207px]">Takes only 2 mins</p>
-      <MaterialSymbolsLightLockOutline />
-      <HealthiconsNoOutline />
-      <MdiLightClock />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[0] left-[999px] not-italic text-[0px] text-black text-center top-[733px] whitespace-nowrap">
-        <span className="leading-[normal] text-[16px]">Find Your Perfect Learning</span>
-        <span className="leading-[normal] text-[#4c7fd2] text-[16px]">{` `}</span>
-        <span className="leading-[normal] text-[16px]">Path!</span>
-      </p>
-      <div className="absolute bg-[rgba(255,255,255,0.1)] h-[169px] left-[695px] rounded-[15px] top-[2596px] w-[299px]" />
-      <div className="absolute bg-[rgba(255,255,255,0.1)] h-[169px] left-[1035px] rounded-[15px] top-[2596px] w-[299px]" />
-      {(() => {
-        const MODE_MOCKS = [
-          {
-            c1: { title: "Data Science Bootcamp", loc: "Noida", date: "14 May", time: "9:30 AM", seats: "08 Seats" },
-            c2: { title: "AI Engineering", loc: "Gurgaon", date: "21 May", time: "10:00 AM", seats: "12 Seats" }
-          },
-          {
-            c1: { title: "Business Analytics", loc: "Bengaluru", date: "15 May", time: "6:30 PM", seats: "10 Seats" },
-            c2: { title: "Data Visualization", loc: "Online", date: "22 May", time: "7:00 PM", seats: "05 Seats" }
-          },
-          {
-            c1: { title: "Machine Learning", loc: "Online", date: "Self-Paced", time: "Anytime", seats: "15 Seats" },
-            c2: { title: "Deep Learning", loc: "Online", date: "Self-Paced", time: "Anytime", seats: "20 Seats" }
-          }
-        ];
-        const cur = MODE_MOCKS[activeLearningMode] || MODE_MOCKS[0];
-        return (
-          <>
-            <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-4px)] not-italic text-[24px] text-white top-[2531px] whitespace-nowrap">{cur.c1.title}</p>
-            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+16px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2612px] whitespace-nowrap">{`Location - `}</p>
-            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+356px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2612px] whitespace-nowrap">{`Location - `}</p>
-            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+16px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2652px] whitespace-nowrap">{`Date - `}</p>
-            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+356px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2652px] whitespace-nowrap">{`Date - `}</p>
-            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+16px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2690px] whitespace-nowrap">Time -</p>
-            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+356px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2690px] whitespace-nowrap">Time -</p>
-            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+16px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2728px] whitespace-nowrap">{`Available seats - `}</p>
-            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+356px)] not-italic text-[14px] text-[rgba(255,255,255,0.5)] top-[2728px] whitespace-nowrap">{`Available seats - `}</p>
-            <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+253px)] not-italic text-[14px] text-right text-white top-[2612px] whitespace-nowrap">{cur.c1.loc}</p>
-            <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+593px)] not-italic text-[14px] text-right text-white top-[2612px] whitespace-nowrap">{cur.c2.loc}</p>
-            <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+253px)] not-italic text-[14px] text-right text-white top-[2652px] whitespace-nowrap">{cur.c1.date}</p>
-            <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+593px)] not-italic text-[14px] text-right text-white top-[2652px] whitespace-nowrap">{cur.c2.date}</p>
-            <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+253px)] not-italic text-[14px] text-right text-white top-[2690px] whitespace-nowrap">{cur.c1.time}</p>
-            <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+593px)] not-italic text-[14px] text-right text-white top-[2690px] whitespace-nowrap">{cur.c2.time}</p>
-            <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+253px)] not-italic text-[14px] text-right text-white top-[2728px] whitespace-nowrap">{cur.c1.seats}</p>
-            <p className="-translate-x-full absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+593px)] not-italic text-[14px] text-right text-white top-[2728px] whitespace-nowrap">{cur.c2.seats}</p>
-            <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+335px)] not-italic text-[24px] text-white top-[2531px] w-[246px]">{cur.c2.title}</p>
-          </>
-        );
-      })()}
-      <div className="absolute h-0 left-[713px] top-[2640px] w-[264px]">
-        <div className="absolute inset-[-0.5px_0_0_0]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 264 0.5">
-            <line id="Line 3" stroke="var(--stroke-0, white)" strokeOpacity="0.2" strokeWidth="0.5" x2="264" y1="0.25" y2="0.25" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute h-0 left-[713px] top-[2680px] w-[264px]">
-        <div className="absolute inset-[-0.5px_0_0_0]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 264 0.5">
-            <line id="Line 3" stroke="var(--stroke-0, white)" strokeOpacity="0.2" strokeWidth="0.5" x2="264" y1="0.25" y2="0.25" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute h-0 left-[713px] top-[2720px] w-[264px]">
-        <div className="absolute inset-[-0.5px_0_0_0]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 264 0.5">
-            <line id="Line 3" stroke="var(--stroke-0, white)" strokeOpacity="0.2" strokeWidth="0.5" x2="264" y1="0.25" y2="0.25" />
-          </svg>
-        </div>
-      </div>
-      <MdiLocation3 />
-      <MdiLocation4 />
-      <LetsIconsDateFill />
-      <LetsIconsDateFill1 />
-      <MingcuteTimeFill />
-      <MingcuteTimeFill1 />
-      <FluentPresenceAvailable12Filled />
-      <FluentPresenceAvailable12Filled1 />
-      {/* Lead-capture card #2 (Experienced Professional). Copy editable via Page("home").blocks: leadCard2.{title,subtitle,bestFor}. */}
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1048px] not-italic text-[20px] text-black top-[575px] whitespace-nowrap pointer-events-none">{block(props, "leadCard2.title") ?? "Experienced Professional"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium h-[29px] leading-[normal] left-[1048px] not-italic text-[14px] text-[rgba(0,0,0,0.5)] top-[618px] w-[217px] pointer-events-none">{block(props, "leadCard2.subtitle") ?? "Working, switching roles, or restarting your career"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium h-[15px] leading-[normal] left-[1048px] not-italic text-[#07b3e7] text-[14px] top-[547px] w-[53px] pointer-events-none">{block(props, "leadCard2.bestFor") ?? "Best for"}</p>
-      <div className="absolute flex h-[234.485px] items-center justify-center left-[1189px] top-[410px] w-[237.664px] pointer-events-none" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "549" } as React.CSSProperties}>
-        <div className="flex-none rotate-30">
-          <div className="h-[168.476px] relative w-[177.161px]">
-            <div className="absolute inset-[53.58%_0_-2.37%_-1.85%]">
-              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 180.614 82.2049">
-                <g filter="url(#filter0_f_1_632)" id="Ellipse 97">
-                  <path d={svgPaths.p30f5e880} fill="var(--fill-0, #07B3E7)" />
-                </g>
-                <defs>
-                  <filter colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse" height="82.2049" id="filter0_f_1_632" width="180.614" x="-1.19209e-07" y="0">
-                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                    <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
-                    <feGaussianBlur result="effect1_foregroundBlur_1_632" stdDeviation="2" />
-                  </filter>
-                </defs>
+          <div className="absolute h-0 left-[713px] top-[2680px] w-[264px]">
+            <div className="absolute inset-[-0.5px_0_0_0]">
+              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 264 0.5">
+                <line id="Line 3" stroke="var(--stroke-0, white)" strokeOpacity="0.2" strokeWidth="0.5" x2="264" y1="0.25" y2="0.25" />
               </svg>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="pointer-events-none">
-        <Icon5 />
-      </div>
-      {/* ── Course card carousel ──────────────────────────────────────────────
+          <div className="absolute h-0 left-[713px] top-[2720px] w-[264px]">
+            <div className="absolute inset-[-0.5px_0_0_0]">
+              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 264 0.5">
+                <line id="Line 3" stroke="var(--stroke-0, white)" strokeOpacity="0.2" strokeWidth="0.5" x2="264" y1="0.25" y2="0.25" />
+              </svg>
+            </div>
+          </div>
+          <MdiLocation3 />
+          <MdiLocation4 />
+          <LetsIconsDateFill />
+          <LetsIconsDateFill1 />
+          <MingcuteTimeFill />
+          <MingcuteTimeFill1 />
+          <FluentPresenceAvailable12Filled />
+          <FluentPresenceAvailable12Filled1 />
+          {/* Lead-capture card #2 (Experienced Professional). Copy editable via Page("home").blocks: leadCard2.{title,subtitle,bestFor}. */}
+          <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1048px] not-italic text-[20px] text-black top-[575px] whitespace-nowrap pointer-events-none">{block(props, "leadCard2.title") ?? "Experienced Professional"}</p>
+          <p className="absolute font-['Inter:Medium',sans-serif] font-medium h-[29px] leading-[normal] left-[1048px] not-italic text-[14px] text-[rgba(0,0,0,0.5)] top-[618px] w-[217px] pointer-events-none">{block(props, "leadCard2.subtitle") ?? "Working, switching roles, or restarting your career"}</p>
+          <p className="absolute font-['Inter:Medium',sans-serif] font-medium h-[15px] leading-[normal] left-[1048px] not-italic text-[#07b3e7] text-[14px] top-[547px] w-[53px] pointer-events-none">{block(props, "leadCard2.bestFor") ?? "Best for"}</p>
+          <div className="absolute flex h-[234.485px] items-center justify-center left-[1189px] top-[410px] w-[237.664px] pointer-events-none" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "549" } as React.CSSProperties}>
+            <div className="flex-none rotate-30">
+              <div className="h-[168.476px] relative w-[177.161px]">
+                <div className="absolute inset-[53.58%_0_-2.37%_-1.85%]">
+                  <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 180.614 82.2049">
+                    <g filter="url(#filter0_f_1_632)" id="Ellipse 97">
+                      <path d={svgPaths.p30f5e880} fill="var(--fill-0, #07B3E7)" />
+                    </g>
+                    <defs>
+                      <filter colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse" height="82.2049" id="filter0_f_1_632" width="180.614" x="-1.19209e-07" y="0">
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                        <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape" />
+                        <feGaussianBlur result="effect1_foregroundBlur_1_632" stdDeviation="2" />
+                      </filter>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="pointer-events-none">
+            <Icon5 />
+          </div>
+          {/* ── Course card carousel ──────────────────────────────────────────────
            Container sits at the same absolute position as the original two cards.
            width = 2 × 400px card + 41px gap = 841px (matches original Group9/10 span).
            overflow-x: auto + scroll-behavior: smooth + hide-scrollbar = clean scroll.
            The arrow button (Group11) calls handleNextCourse → scrollLeft += 441.   */}
-      <div
-        ref={carouselRef}
-        onScroll={handleCarouselScroll}
-        className={`absolute left-[520px] top-[1427px] w-[841px] h-[620px] flex gap-[41px] overflow-x-auto scroll-smooth hide-scrollbar transition-opacity duration-150 snap-x snap-mandatory pt-2 pb-14 ${carouselFading ? "opacity-0" : "opacity-100"}`}
-      >
-        {carouselCourses.map((course, idx) => (
-          // Carousel may include partial fallback objects (id/title/batches only) when the DB
-          // doesn't yet have MIN_CARDS courses for the active category. CourseCard reads only
-          // the fields it needs and tolerates undefined siblings, so the cast is safe.
-          <CourseCard key={course?.id ?? `fb-${idx}`} course={course as Course | undefined} idx={idx} />
-        ))}
-      </div>
+          <div
+            ref={carouselRef}
+            onScroll={handleCarouselScroll}
+            className={`absolute left-[520px] top-[1427px] w-[841px] h-[580px] flex gap-[41px] overflow-x-auto scroll-smooth hide-scrollbar transition-opacity duration-150 snap-x snap-mandatory pt-2 pb-14 ${carouselFading ? "opacity-0" : "opacity-100"}`}
+          >
+            {carouselCourses.map((course, idx) => (
+              // Carousel may include partial fallback objects (id/title/batches only) when the DB
+              // doesn't yet have MIN_CARDS courses for the active category. CourseCard reads only
+              // the fields it needs and tolerates undefined siblings, so the cast is safe.
+              <CourseCard key={course?.id ?? `fb-${idx}`} course={course as Course | undefined} idx={idx} />
+            ))}
+          </div>
 
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold h-[73px] leading-[0] left-[195px] not-italic text-[#09263f] text-[0px] text-center top-[848px] w-[284px]">
-        <span className="leading-[normal] text-[40px]">{stats.candidates ?? "15,000+"}</span>
-        <span className="leading-[normal] text-[32px]">{` `}</span>
-        <span className="leading-[normal] text-[20px]">Candidates</span>
-      </p>
-      {/* Hiring partner logos — infinite marquee. Uses original Figma PNG assets.
+          <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold h-[73px] leading-[0] left-[195px] not-italic text-[#09263f] text-[0px] text-center top-[848px] w-[284px]">
+            <span className="leading-[normal] text-[40px]">{stats.candidates ?? "15,000+"}</span>
+            <span className="leading-[normal] text-[32px]">{` `}</span>
+            <span className="leading-[normal] text-[20px]">Candidates</span>
+          </p>
+          {/* Hiring partner logos — infinite marquee. Uses original Figma PNG assets.
           Admin can replace via /admin/hiring-partners once white-background logos are uploaded. */}
-      <div className="absolute left-[370px] top-[828px] w-[1070px] h-[91px] overflow-hidden bg-white flex flex-row items-center">
-        <div
-          className="alp-marquee-pause flex flex-row flex-nowrap items-center w-max gap-[60px] whitespace-nowrap shrink-0"
-          style={{ animation: "alp-marquee-left 28s linear infinite" }}
-        >
-          {[
-            { src: imgBrand.src,   alt: hiringPartners[0]?.name ?? "", h: 53, w: 196 },
-            { src: imgBrand1.src,  alt: hiringPartners[1]?.name ?? "", h: 64, w: 186 },
-            { src: imgImage41.src, alt: hiringPartners[2]?.name ?? "", h: 68, w: 183 },
-            { src: imgBrand2.src,  alt: hiringPartners[3]?.name ?? "", h: 55, w: 197 },
-            { src: imgBrand3.src,  alt: hiringPartners[4]?.name ?? "", h: 61, w: 195 },
-            { src: imgBrand.src,   alt: hiringPartners[0]?.name ?? "", h: 53, w: 196 },
-            { src: imgBrand1.src,  alt: hiringPartners[1]?.name ?? "", h: 64, w: 186 },
-            { src: imgImage41.src, alt: hiringPartners[2]?.name ?? "", h: 68, w: 183 },
-            { src: imgBrand2.src,  alt: hiringPartners[3]?.name ?? "", h: 55, w: 197 },
-            { src: imgBrand3.src,  alt: hiringPartners[4]?.name ?? "", h: 61, w: 195 },
-          ].map((s, i) => (
-            <img key={i} alt={s.alt} src={s.src} className="object-contain pointer-events-none flex-none" style={{ height: s.h, width: s.w }} />
+          <div className="absolute left-[370px] top-[828px] w-[1070px] h-[91px] overflow-hidden bg-white flex flex-row items-center">
+            <div
+              className="alp-marquee-pause flex flex-row flex-nowrap items-center w-max gap-[60px] whitespace-nowrap shrink-0"
+              style={{ animation: "alp-marquee-left 28s linear infinite" }}
+            >
+              {[
+                { src: imgBrand.src, alt: hiringPartners[0]?.name ?? "", h: 53, w: 196 },
+                { src: imgBrand1.src, alt: hiringPartners[1]?.name ?? "", h: 64, w: 186 },
+                { src: imgImage41.src, alt: hiringPartners[2]?.name ?? "", h: 68, w: 183 },
+                { src: imgBrand2.src, alt: hiringPartners[3]?.name ?? "", h: 55, w: 197 },
+                { src: imgBrand3.src, alt: hiringPartners[4]?.name ?? "", h: 61, w: 195 },
+                { src: imgBrand.src, alt: hiringPartners[0]?.name ?? "", h: 53, w: 196 },
+                { src: imgBrand1.src, alt: hiringPartners[1]?.name ?? "", h: 64, w: 186 },
+                { src: imgImage41.src, alt: hiringPartners[2]?.name ?? "", h: 68, w: 183 },
+                { src: imgBrand2.src, alt: hiringPartners[3]?.name ?? "", h: 55, w: 197 },
+                { src: imgBrand3.src, alt: hiringPartners[4]?.name ?? "", h: 61, w: 195 },
+              ].map((s, i) => (
+                <img key={i} alt={s.alt} src={s.src} className="object-contain pointer-events-none flex-none" style={{ height: s.h, width: s.w }} />
+              ))}
+            </div>
+          </div>
+          <div className="absolute h-[347px] left-[66px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[4751px] w-[603px] overflow-hidden">
+            <iframe
+              key={`map-${activeLocation}`}
+              title={`${CITY_LABELS[activeLocation]} office map`}
+              src={mapEmbedUrl(CITY_LABELS[activeLocation])}
+              className="absolute inset-0 size-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+          {/* Premium City Selection Buttons */}
+          {([
+            [139.54, 0],
+            [374.54, 1],
+            [598.54, 2],
+          ] as [number, 0 | 1 | 2][]).map(([leftPx, idx]) => (
+            <button
+              type="button"
+              key={`select-${idx}`}
+              onClick={() => setActiveLocation(idx)}
+              className={`-translate-x-1/2 absolute flex h-[48px] items-center justify-center px-6 rounded-full font-['Inter',sans-serif] font-semibold text-[15px] transition-all duration-300 shadow-md gap-2 ${activeLocation === idx
+                  ? "bg-[#19cf9e] text-white shadow-[#19cf9e]/30 shadow-xl scale-105 translate-y-[-2px]"
+                  : "bg-white text-[#09263f] border border-[#09263f]/10 hover:border-[#19cf9e]/50 hover:shadow-lg"
+                }`}
+              style={{ left: `${leftPx}px`, top: "5140px" }}
+            >
+              <BoxiconsLocationFilled3 className="size-4" />
+              {`Select ${idx === 2 ? "Bengaluru" : CITY_LABELS[idx]}`}
+            </button>
           ))}
-        </div>
-      </div>
-      <div className="absolute h-[347px] left-[66px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[4751px] w-[603px] overflow-hidden">
-        <iframe
-          key={`map-${activeLocation}`}
-          title={`${CITY_LABELS[activeLocation]} office map`}
-          src={mapEmbedUrl(CITY_LABELS[activeLocation])}
-          className="absolute inset-0 size-full border-0"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
-      </div>
-      {/* Premium City Selection Buttons */}
-      {([
-        [139.54, 0],
-        [374.54, 1],
-        [598.54, 2],
-      ] as [number, 0 | 1 | 2][]).map(([leftPx, idx]) => (
-        <button
-          type="button"
-          key={`select-${idx}`}
-          onClick={() => setActiveLocation(idx)}
-          className={`-translate-x-1/2 absolute flex h-[48px] items-center justify-center px-6 rounded-full font-['Inter',sans-serif] font-semibold text-[15px] transition-all duration-300 shadow-md gap-2 ${
-            activeLocation === idx 
-              ? "bg-[#19cf9e] text-white shadow-[#19cf9e]/30 shadow-xl scale-105 translate-y-[-2px]" 
-              : "bg-white text-[#09263f] border border-[#09263f]/10 hover:border-[#19cf9e]/50 hover:shadow-lg"
-          }`}
-          style={{ left: `${leftPx}px`, top: "5140px" }}
-        >
-          <BoxiconsLocationFilled3 className="size-4" />
-          {`Select ${idx === 2 ? "Bengaluru" : CITY_LABELS[idx]}`}
-        </button>
-      ))}
-      <LeftArrowButton onClick={handlePrevCourse} disabled={carouselScrollLeft <= 0} />
-      <Group11 onClick={handleNextCourse} disabled={carouselMaxScroll > 0 && carouselScrollLeft >= carouselMaxScroll - 1} />
+          <LeftArrowButton onClick={handlePrevCourse} disabled={carouselScrollLeft <= 0} />
+          <Group11 onClick={handleNextCourse} disabled={carouselMaxScroll > 0 && carouselScrollLeft >= carouselMaxScroll - 1} />
 
-      <div className="absolute h-[151px] left-[43px] top-[578px] w-[579px]" data-name="SPONSER">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgSponser.src} />
-      </div>
-      </div>{/* /absolute canvas */}
+          <div className="absolute h-[151px] left-[43px] top-[578px] w-[579px]" data-name="SPONSER">
+            <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgSponser.src} />
+          </div>
+        </div>{/* /absolute canvas */}
       </div>{/* /desktop layout */}
 
       {/* ── FAQ section (flow-based) ────────────────────────────────────────────

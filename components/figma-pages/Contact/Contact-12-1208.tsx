@@ -7,6 +7,22 @@ import imgImage31 from "./996a7650d39df9f9d0c4aaa0e42c2b485c8b991a.png";
 import { imgGroup } from "./svg-dr74c";
 import Link from "next/link";
 import type { NavItem, Office, SiteSettings } from "@/lib/api-client";
+import {
+  ContactCallbackFormDesktop,
+  ContactCallbackFormMobile,
+} from "./ContactCallbackForm";
+
+function mapsUrl(office: Office | undefined, fallbackCity: string) {
+  if (office?.directionsUrl) return office.directionsUrl;
+  const query = office
+    ? [office.addressLine1, office.addressLine2, office.city].filter(Boolean).join(", ")
+    : fallbackCity;
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query || fallbackCity)}`;
+}
+
+function telHref(phone: string | null | undefined) {
+  return `tel:${(phone ?? "").replace(/[^\d+]/g, "")}`;
+}
 
 type ContactProps = {
   topNav?: NavItem[];
@@ -409,11 +425,13 @@ function FamiconsCall() {
 }
 
 function Group9({ siteSettings }: { siteSettings?: SiteSettings | null }) {
+  const phone = siteSettings?.contactPhone ?? "+91 9555219007";
   return (
     <div className="absolute contents left-[66px] top-[138px]">
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[116px] not-italic text-[#09263f] text-[16px] top-[150px] whitespace-nowrap">{siteSettings?.contactPhone ?? "+91 9555219007"}</p>
+      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[116px] not-italic text-[#09263f] text-[16px] top-[150px] whitespace-nowrap">{phone}</p>
       <div className="absolute border border-[rgba(9,38,63,0.3)] border-solid h-[40px] left-[66px] rounded-[56px] top-[138px] w-[206px]" />
       <FamiconsCall />
+      <a href={`tel:${phone.replace(/[^\d+]/g, "")}`} aria-label="Call us" className="absolute left-[66px] top-[138px] h-[40px] w-[206px] rounded-[56px]" />
     </div>
   );
 }
@@ -597,6 +615,7 @@ function Frame({ offices, footerLinks, footerCities, siteSettings }: { offices?:
       <div className="absolute border-[0.5px] border-[rgba(255,255,255,0.5)] border-solid h-[213px] left-[66px] rounded-[15px] top-[271px] w-[426px]" />
       <div className="absolute bg-white h-[38px] left-[89px] rounded-[97px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[308px] w-[379px]" />
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[200px] not-italic text-[#09263f] text-[14px] top-[317px] whitespace-nowrap">{`Submit a Guest Post `}</p>
+      <Link href="/submit-guest-post" aria-label="Submit a Guest Post" className="absolute left-[89px] top-[308px] h-[38px] w-[379px] rounded-[97px] z-10" />
       <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[89px] not-italic text-[14px] text-white top-[366px] w-[375px]">Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?</p>
       <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[89px] not-italic text-[14px] text-white top-[411px] w-[353px]">What is Agentic AI – A Technical Guide for Beginners</p>
       <p className="absolute font-['Inter:Light',sans-serif] font-light h-[19px] leading-[normal] left-[89px] not-italic text-[14px] text-white top-[440px] w-[379px]">List vs Tuple in Python: Understanding Key Differences</p>
@@ -685,35 +704,7 @@ export default function Contact({ topNav, footerLinks, footerCities, offices, si
         {/* Request callback form */}
         <section className="bg-white px-5 py-8">
           <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-xl mb-6">Request a Call back</h2>
-          <form className="flex flex-col gap-4">
-            <div>
-              <label className="block text-sm font-medium text-black mb-1">Name</label>
-              <input placeholder="Your Name" className="w-full border border-[#09263f]/30 rounded-full h-14 px-5 text-base outline-none focus:border-[#1de5b5]" />
-            </div>
-            <div className="flex gap-2">
-              <div className="w-24">
-                <label className="block text-sm font-medium text-black mb-1">Code</label>
-                <select className="w-full border border-[#09263f]/30 rounded-full h-14 px-3 text-sm bg-white outline-none focus:border-[#1de5b5]">
-                  <option>+91</option><option>+1</option><option>+44</option>
-                </select>
-              </div>
-              <div className="flex-1">
-                <label className="block text-sm font-medium text-black mb-1">Mobile</label>
-                <input placeholder="Mobile" className="w-full border border-[#09263f]/30 rounded-full h-14 px-5 text-base outline-none focus:border-[#1de5b5]" />
-              </div>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-black mb-1">Email</label>
-              <input type="email" placeholder="Your Email" className="w-full border border-[#09263f]/30 rounded-full h-14 px-5 text-base outline-none focus:border-[#1de5b5]" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-black mb-1">Select City</label>
-              <select className="w-full border border-[#09263f]/30 rounded-full h-14 px-5 text-base bg-white outline-none focus:border-[#1de5b5]">
-                <option>Noida</option><option>Gurgaon</option><option>Bangalore</option>
-              </select>
-            </div>
-            <button type="submit" className="w-full bg-[#ffd700] h-14 rounded-full font-semibold text-[#09263f] text-base mt-1">Send</button>
-          </form>
+          <ContactCallbackFormMobile />
         </section>
 
         {/* Office map cards */}
@@ -754,6 +745,7 @@ export default function Contact({ topNav, footerLinks, footerCities, offices, si
 
       {/* Main absolute canvas (locked to 1440px) */}
       <div className="relative w-[1440px] h-[2328px] flex-shrink-0">
+        <ContactCallbackFormDesktop />
         <Group7 />
         <Group8 />
         <div className="-translate-x-1/2 absolute bg-white h-[717px] left-1/2 rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[319px] w-[1134px]" />
@@ -763,12 +755,13 @@ export default function Contact({ topNav, footerLinks, footerCities, offices, si
       <div className="absolute bg-[#1de5b5] h-[49px] left-[197px] rounded-[1000px] top-[926px] w-[182px]" />
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[961.5px] not-italic text-[#09263f] text-[18px] text-center top-[929px] whitespace-nowrap">Send</p>
       <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[286.5px] not-italic text-white text-[18px] text-center top-[939px] whitespace-nowrap">Sign up→</p>
+      <Link href="/courses" aria-label="Sign up for demo" className="absolute left-[197px] top-[926px] h-[49px] w-[182px] rounded-[1000px] z-20" />
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-6px)] not-italic text-[#09263f] text-[28px] top-[373px] whitespace-nowrap">Request a Call back</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-523px)] not-italic text-[28px] text-white top-[360px] whitespace-nowrap">Get in touch</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-523px)] not-italic text-[28px] text-white top-[870px] whitespace-nowrap">Sign up for demo</p>
       <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[197px] not-italic text-[16px] text-white top-[421px] w-[424px]">Get in touch with our team to explore solutions, training, or partnerships—we’re here to help.</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[291px] not-italic text-[16px] text-white top-[542px] whitespace-nowrap">{siteSettings?.contactEmail ?? "info@analytixlabs.co.in"}</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[291px] not-italic text-[16px] text-white top-[667px] whitespace-nowrap">{siteSettings?.contactPhone ?? "+91 95552 19007"}</p>
+      <a href={`mailto:${siteSettings?.contactEmail ?? "info@analytixlabs.co.in"}`} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[291px] not-italic text-[16px] text-white top-[542px] whitespace-nowrap hover:underline">{siteSettings?.contactEmail ?? "info@analytixlabs.co.in"}</p></a>
+      <a href={`tel:${(siteSettings?.contactPhone ?? "+91 95552 19007").replace(/\s+/g, "")}`} className="contents"><p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[291px] not-italic text-[16px] text-white top-[667px] whitespace-nowrap hover:underline">{siteSettings?.contactPhone ?? "+91 95552 19007"}</p></a>
       <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[291px] not-italic text-[16px] text-white top-[792px] whitespace-nowrap">10:00 AM TO 07:00 PM</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[291px] not-italic text-[20px] text-white top-[511px] whitespace-nowrap">Email</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[291px] not-italic text-[20px] text-white top-[636px] whitespace-nowrap">Phone no.</p>
@@ -861,9 +854,9 @@ export default function Contact({ topNav, footerLinks, footerCities, offices, si
         <p className="leading-[normal] mb-0">Backgate, BDA Complex, Bldg 51/2, 1st floor, 12th Main Rd, opp. A2B, Sector 6, HSR Layout, Bengaluru, Karnataka 560102</p>
         <p className="leading-[normal]">​</p>
       </div>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[164px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1347px] w-[289px]">{o[0]?.phone ?? "+91 95552 19007"}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[604px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1347px] w-[289px]">{o[1]?.phone ?? "+91 95552 19007"}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1044px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1347px] w-[289px]">{o[2]?.phone ?? "+91 95552 19007"}</p>
+      <a href={telHref(o[0]?.phone ?? "+91 95552 19007")} className="contents"><p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[164px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1347px] w-[289px] hover:underline">{o[0]?.phone ?? "+91 95552 19007"}</p></a>
+      <a href={telHref(o[1]?.phone ?? "+91 95552 19007")} className="contents"><p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[604px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1347px] w-[289px] hover:underline">{o[1]?.phone ?? "+91 95552 19007"}</p></a>
+      <a href={telHref(o[2]?.phone ?? "+91 95552 19007")} className="contents"><p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1044px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1347px] w-[289px] hover:underline">{o[2]?.phone ?? "+91 95552 19007"}</p></a>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[164px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1424px] w-[289px]">{o[0]?.hours ?? "10:00 AM to 07:00 PM"}</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[604px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1424px] w-[289px]">{o[1]?.hours ?? "10:00 AM to 07:00 PM"}</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1044px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1424px] w-[289px]">{o[2]?.hours ?? "10:00 AM to 07:00 PM"}</p>
@@ -1056,21 +1049,27 @@ export default function Contact({ topNav, footerLinks, footerCities, offices, si
           </svg>
         </div>
       </div>
-      <div className="-translate-x-1/2 absolute flex h-[19.495px] items-center justify-center left-[390.04px] top-[1211px] w-[126.074px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "18" } as React.CSSProperties}>
-        <div className="flex-none rotate-[0.22deg]">
-          <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] not-italic relative text-[#09263f] text-[16px] text-center whitespace-nowrap">Get Directions→</p>
+      <a href={mapsUrl(o[0], "Noida")} target="_blank" rel="noopener noreferrer" className="contents">
+        <div className="-translate-x-1/2 absolute flex h-[19.495px] items-center justify-center left-[390.04px] top-[1211px] w-[126.074px] cursor-pointer" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "18" } as React.CSSProperties}>
+          <div className="flex-none rotate-[0.22deg]">
+            <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] not-italic relative text-[#09263f] text-[16px] text-center whitespace-nowrap hover:underline">Get Directions→</p>
+          </div>
         </div>
-      </div>
-      <div className="-translate-x-1/2 absolute flex h-[19.495px] items-center justify-center left-[830.04px] top-[1211px] w-[126.074px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "18" } as React.CSSProperties}>
-        <div className="flex-none rotate-[0.22deg]">
-          <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] not-italic relative text-[#09263f] text-[16px] text-center whitespace-nowrap">Get Directions→</p>
+      </a>
+      <a href={mapsUrl(o[1], "Gurgaon")} target="_blank" rel="noopener noreferrer" className="contents">
+        <div className="-translate-x-1/2 absolute flex h-[19.495px] items-center justify-center left-[830.04px] top-[1211px] w-[126.074px] cursor-pointer" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "18" } as React.CSSProperties}>
+          <div className="flex-none rotate-[0.22deg]">
+            <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] not-italic relative text-[#09263f] text-[16px] text-center whitespace-nowrap hover:underline">Get Directions→</p>
+          </div>
         </div>
-      </div>
-      <div className="-translate-x-1/2 absolute flex h-[19.495px] items-center justify-center left-[1270.04px] top-[1211px] w-[126.074px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "18" } as React.CSSProperties}>
-        <div className="flex-none rotate-[0.22deg]">
-          <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] not-italic relative text-[#09263f] text-[16px] text-center whitespace-nowrap">Get Directions→</p>
+      </a>
+      <a href={mapsUrl(o[2], "Bengaluru")} target="_blank" rel="noopener noreferrer" className="contents">
+        <div className="-translate-x-1/2 absolute flex h-[19.495px] items-center justify-center left-[1270.04px] top-[1211px] w-[126.074px] cursor-pointer" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "18" } as React.CSSProperties}>
+          <div className="flex-none rotate-[0.22deg]">
+            <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] not-italic relative text-[#09263f] text-[16px] text-center whitespace-nowrap hover:underline">Get Directions→</p>
+          </div>
         </div>
-      </div>
+      </a>
       <BoxiconsLocationFilled />
       <BoxiconsLocationFilled1 />
       <BoxiconsLocationFilled2 />

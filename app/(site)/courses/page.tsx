@@ -9,8 +9,6 @@ import {
   getSiteSettings,
 } from "@/lib/api-client";
 
-const COURSES_HEIGHT_PX = 4249;
-
 export default async function CoursesPage() {
   const [
     siteSettings,
@@ -34,19 +32,16 @@ export default async function CoursesPage() {
 
   return (
     <FigmaScaleWrapper>
-      <div
-        className="relative mx-auto"
-        style={{ width: "1440px", height: `${COURSES_HEIGHT_PX}px` }}
-      >
+      <div className="relative mx-auto" style={{ width: "1440px", height: "3600px" }}>
         <ExploreCourses
-        siteSettings={siteSettings}
-        topNav={topNav}
-        footerLinks={footerLinks}
-        footerCities={footerCities}
-        categories={categories}
-        courses={courses}
-        posts={posts}
-        offices={offices}
+          siteSettings={siteSettings}
+          topNav={topNav}
+          footerLinks={footerLinks}
+          footerCities={footerCities}
+          categories={categories}
+          courses={courses}
+          posts={posts}
+          offices={offices}
         />
       </div>
     </FigmaScaleWrapper>

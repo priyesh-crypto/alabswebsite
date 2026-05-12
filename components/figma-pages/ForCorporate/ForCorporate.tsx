@@ -860,330 +860,373 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
         </section>
       </div>{/* /mobile layout */}
 
-      {/* ═══ DESKTOP LAYOUT (hidden below lg) ═══ */}
-      <div className="hidden lg:flex w-full flex-col items-center">
-      {/* Full-width backgrounds */}
-      <div className="absolute bg-[#f4fafa] h-[335px] top-[64px] w-screen left-1/2 -translate-x-1/2" />
+      {/* ═══ DESKTOP LAYOUT (Refactored to Responsive Flow) ═══ */}
+      <div className="hidden lg:flex w-full flex-col items-center bg-white">
+        
+        {/* Section 1: Hero */}
+        <section className="relative w-full bg-[#f4fafa] py-20 overflow-hidden">
+          <div className="max-w-[1280px] mx-auto px-10 relative flex items-center justify-between min-h-[400px]">
+            <div className="z-10 flex flex-col gap-6 max-w-[600px]">
+              <h1 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[48px] text-[#09263f] leading-[1.1] tracking-tight">
+                <span>{`For `}</span>
+                <span className="bg-clip-text bg-gradient-to-r from-[#1de5b5] to-[#07b3e7] text-transparent">{`Corporates & Enterprises`}</span>
+              </h1>
+              <p className="font-['Inter:Regular',sans-serif] font-normal text-[15px] text-[#09263f]/60 leading-relaxed max-w-[440px]">
+                Build data-driven managers or upskill teams—AnalytixLabs trains in Data Science, AI, and ML through customized enterprise solutions.
+              </p>
+            </div>
+            
+            {/* Hero Visuals */}
+            <div className="relative w-[500px] h-[350px] flex items-center justify-center">
+              <div className="absolute right-0 top-0 w-[300px] h-[320px] z-[1]">
+                <img alt="" className="w-full h-full object-contain" src={imgAsset253X2.src} />
+              </div>
+              <div className="absolute right-[120px] top-[20px] w-[200px] h-[300px] z-[2]">
+                <img alt="" className="w-full h-full object-contain" src={imgChatGptImageApr142026034518Pm3.src} />
+              </div>
+              <div className="absolute right-[240px] top-[40px] w-[180px] h-[280px] z-[3]">
+                <img alt="" className="w-full h-full object-contain" src={imgChatGptImageApr212026035233Pm1.src} />
+              </div>
+            </div>
+            
+            {/* Decorative Dots */}
+            <div className="absolute left-[45%] top-[10%] opacity-20">
+               <Group4 />
+            </div>
+          </div>
+          {/* Bottom fade */}
+          <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-white to-transparent" />
+        </section>
 
-      {/* Main absolute canvas (locked to 1440px) */}
-      <div className="relative w-[1440px] h-[4317px] flex-shrink-0">
-        <Group4 />
-        <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[0] left-[63px] not-italic text-[#09263f] text-[42px] top-[142px] w-[667px]">
-          <span className="leading-[normal]">{`For `}</span>
-          <span className="bg-clip-text bg-gradient-to-r from-[#1de5b5] from-[34.135%] leading-[normal] text-[transparent] to-[#07b3e7] to-[78.846%]">{`Corporates & Enterprises`}</span>
-          <span className="leading-[normal] text-[#07b3e7]">{` `}</span>
-        </p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[63px] not-italic text-[14px] text-[rgba(9,38,63,0.5)] top-[225px] w-[422px]">Build data-driven managers or upskill teams—AnalytixLabs trains in Data Science, AI, and ML.</p>
-      <div className="absolute h-[342px] left-[1055px] top-[57px] w-[325px]" data-name="Asset 25@3x 2">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgAsset253X2.src} />
-      </div>
-      <div className="absolute h-[326px] left-[936px] top-[73px] w-[218px]" data-name="ChatGPT Image Apr 14, 2026, 03_45_18 PM 3">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgChatGptImageApr142026034518Pm3.src} />
-      </div>
-      <div className="absolute h-[303px] left-[766px] top-[95px] w-[202px]" data-name="ChatGPT Image Apr 21, 2026, 03_52_33 PM 1">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgChatGptImageApr212026035233Pm1.src} />
-      </div>
-      <div className="absolute bg-gradient-to-b from-[rgba(255,255,255,0)] h-[46px] left-0 to-white top-[353px] w-[1395px]" />
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-657px)] not-italic text-[#09263f] text-[40px] top-[499px] w-[711px]">End-to-End Analytics Solutions</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-632px)] not-italic text-[#09263f] text-[40px] top-[1283px] w-[711px]">{`Wide Array of Courses Crafted for Beginners & Working Professionals`}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%-648px)] not-italic text-[#09263f] text-[18px] top-[559px] whitespace-nowrap">Consulting, training, and staffing for data-driven growth.</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[calc(50%+122px)] not-italic text-[#09263f] text-[18px] top-[1264px] w-[552px]">Explore industry-relevant programs across technical, domain, and leadership tracks designed to build practical analytics expertise at every level.</p>
-      <div className="absolute bg-[#d2faf0] h-[432px] left-[74px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[652px] w-[412px]" />
-      <div className="absolute bg-[#fffad2] h-[432px] left-[514px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[652px] w-[412px]" />
-      <div className="absolute bg-[#fff2fa] h-[432px] left-[954px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[652px] w-[412px]" />
-      <div className="absolute h-[219px] left-[74px] rounded-bl-[15px] rounded-br-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[865px] w-[412px]" data-name="img">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-bl-[15px] rounded-br-[15px] size-full" src={imgImg.src} />
-      </div>
-      <div className="absolute h-[219px] left-[514px] rounded-bl-[15px] rounded-br-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[865px] w-[412px]" data-name="img">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-bl-[15px] rounded-br-[15px] size-full" src={imgImg1.src} />
-      </div>
-      <div className="absolute h-[219px] left-[954px] rounded-bl-[15px] rounded-br-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[865px] w-[412px]" data-name="img">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-bl-[15px] rounded-br-[15px] size-full" src={imgImg2.src} />
-      </div>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[114px] not-italic text-[#09263f] text-[24px] top-[686px] w-[342px]">{`Analytics Consulting & Solutions`}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[554px] not-italic text-[#09263f] text-[24px] top-[686px] w-[302px]">Analytics Capability Building</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[994px] not-italic text-[#09263f] text-[24px] top-[686px] w-[342px]">{`Staffing & Recrutiment`}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[114px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[758px] w-[324px]">A trusted provider since 2017, offering data analytics services including tool development, maintenance, and advanced statistical analysis.</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[554px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[758px] w-[324px]">Expert-led, customized programs designed to help organizations fully leverage data through practical training and tailored case studies.</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[994px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[758px] w-[324px]">Supplying skilled, pre-screened analytics professionals for project-based roles, internships, and full-time positions.</p>
-      <TeenyiconsTickCircleSolid />
-      <TeenyiconsTickCircleSolid1 />
-      <TeenyiconsTickCircleSolid2 />
-      <div className="absolute bg-[#f0fbff] h-[366px] left-[412px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1537px] w-[290px]" />
-      <div className="absolute h-[370px] left-[88px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1533px] w-[295px]" data-name="img">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[15px] size-full" src={imgImg3.src} />
-      </div>
-      <div className="absolute bg-[#d2faf0] h-[370px] left-[1052px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1533px] w-[295px]" />
-      <div className="absolute bg-[#fff2fa] h-[366px] left-[732px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.2)] top-[1537px] w-[290px]" />
-      <div className="absolute h-[72px] left-[523px] top-[1561px] w-[71px]">
-        <div className="absolute inset-[-22.22%_-28.17%_-33.33%_-28.17%]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 111 112">
-            <g filter="url(#filter0_d_8_820)" id="Ellipse 105">
-              <ellipse cx="55.5" cy="52" fill="var(--fill-0, white)" rx="35.5" ry="36" />
-            </g>
-            <defs>
-              <filter colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse" height="112" id="filter0_d_8_820" width="111" x="0" y="0">
-                <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                <feColorMatrix in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-                <feOffset dy="4" />
-                <feGaussianBlur stdDeviation="10" />
-                <feComposite in2="hardAlpha" operator="out" />
-                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0" />
-                <feBlend in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_8_820" />
-                <feBlend in="SourceGraphic" in2="effect1_dropShadow_8_820" mode="normal" result="shape" />
-              </filter>
-            </defs>
-          </svg>
-        </div>
-      </div>
-      <div className="absolute h-[72px] left-[844px] top-[1566px] w-[71px]">
-        <div className="absolute inset-[-22.22%_-28.17%_-33.33%_-28.17%]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 111 112">
-            <g filter="url(#filter0_d_8_820)" id="Ellipse 105">
-              <ellipse cx="55.5" cy="52" fill="var(--fill-0, white)" rx="35.5" ry="36" />
-            </g>
-            <defs>
-              <filter colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse" height="112" id="filter0_d_8_820" width="111" x="0" y="0">
-                <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                <feColorMatrix in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-                <feOffset dy="4" />
-                <feGaussianBlur stdDeviation="10" />
-                <feComposite in2="hardAlpha" operator="out" />
-                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0" />
-                <feBlend in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_8_820" />
-                <feBlend in="SourceGraphic" in2="effect1_dropShadow_8_820" mode="normal" result="shape" />
-              </filter>
-            </defs>
-          </svg>
-        </div>
-      </div>
-      <div className="absolute h-[72px] left-[1165px] top-[1558px] w-[71px]">
-        <div className="absolute inset-[-22.22%_-28.17%_-33.33%_-28.17%]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 111 112">
-            <g filter="url(#filter0_d_8_820)" id="Ellipse 105">
-              <ellipse cx="55.5" cy="52" fill="var(--fill-0, white)" rx="35.5" ry="36" />
-            </g>
-            <defs>
-              <filter colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse" height="112" id="filter0_d_8_820" width="111" x="0" y="0">
-                <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                <feColorMatrix in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-                <feOffset dy="4" />
-                <feGaussianBlur stdDeviation="10" />
-                <feComposite in2="hardAlpha" operator="out" />
-                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0" />
-                <feBlend in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_8_820" />
-                <feBlend in="SourceGraphic" in2="effect1_dropShadow_8_820" mode="normal" result="shape" />
-              </filter>
-            </defs>
-          </svg>
-        </div>
-      </div>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[557px] not-italic text-[#09263f] text-[24px] text-center top-[1653px] whitespace-nowrap">Technical</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[879.5px] not-italic text-[#09263f] text-[24px] text-center top-[1653px] whitespace-nowrap">Function / Domain</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1197.5px] not-italic text-[#09263f] text-[24px] text-center top-[1653px] whitespace-nowrap">Management</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[495px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1696px] w-[224px]">{`Analytics Reporting & Visualization`}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[817px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1704px] w-[224px]">{`Banking & Finance`}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1135px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1704px] w-[224px]">Analytics 101</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[495px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1746px] w-[201px]">Machine Learning Predictive Modeling</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[817px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1754px] w-[201px]">{`Marketing & Sales`}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1135px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1754px] w-[201px]">Analytics for Leaders</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[495px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1795px] w-[197px]">{`Applied AI & Deep Learning`}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[817px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1803px] w-[197px]">Retail Analytics</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1135px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1803px] w-[197px]">Analytics Consulting</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[10px] leading-[normal] left-[495px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1843px] w-[205px]">{`Big Data & Cloud Computing`}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[41px] leading-[normal] left-[817px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1851px] w-[205px]">Digital Analytics</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal h-[34px] leading-[normal] left-[1135px] not-italic text-[16px] text-[rgba(9,38,63,0.5)] top-[1851px] w-[205px]">Digital Transformation</p>
-      <div className="-translate-x-1/2 absolute bg-[#ffd700] h-[49px] left-[calc(50%+225.5px)] rounded-[1000px] top-[1349px] w-[211px]" />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+226px)] not-italic text-[#09263f] text-[18px] text-center top-[1362px] whitespace-nowrap">Explore Courses→</p>
-      <TeenyiconsTickCircleSolid3 />
-      <TeenyiconsTickCircleSolid4 />
-      <TeenyiconsTickCircleSolid5 />
-      <TeenyiconsTickCircleSolid6 />
-      <TeenyiconsTickCircleSolid7 />
-      <TeenyiconsTickCircleSolid8 />
-      <TeenyiconsTickCircleSolid9 />
-      <TeenyiconsTickCircleSolid10 />
-      <TeenyiconsTickCircleSolid11 />
-      <TeenyiconsTickCircleSolid12 />
-      <TeenyiconsTickCircleSolid13 />
-      <TeenyiconsTickCircleSolid14 />
-      <div className="absolute h-0 left-[435px] top-[1739px] w-[244px]">
-        <div className="absolute inset-[-0.5px_0_0_0]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 244 0.5">
-            <line id="Line 6" stroke="var(--stroke-0, #09263F)" strokeOpacity="0.2" strokeWidth="0.5" x2="244" y1="0.25" y2="0.25" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute h-0 left-[757px] top-[1739px] w-[244px]">
-        <div className="absolute inset-[-0.5px_0_0_0]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 244 0.5">
-            <line id="Line 6" stroke="var(--stroke-0, #09263F)" strokeOpacity="0.2" strokeWidth="0.5" x2="244" y1="0.25" y2="0.25" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute h-0 left-[1075px] top-[1739px] w-[244px]">
-        <div className="absolute inset-[-0.5px_0_0_0]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 244 0.5">
-            <line id="Line 6" stroke="var(--stroke-0, #09263F)" strokeOpacity="0.2" strokeWidth="0.5" x2="244" y1="0.25" y2="0.25" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute h-0 left-[435px] top-[1790px] w-[244px]">
-        <div className="absolute inset-[-0.5px_0_0_0]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 244 0.5">
-            <line id="Line 6" stroke="var(--stroke-0, #09263F)" strokeOpacity="0.2" strokeWidth="0.5" x2="244" y1="0.25" y2="0.25" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute h-0 left-[757px] top-[1790px] w-[244px]">
-        <div className="absolute inset-[-0.5px_0_0_0]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 244 0.5">
-            <line id="Line 6" stroke="var(--stroke-0, #09263F)" strokeOpacity="0.2" strokeWidth="0.5" x2="244" y1="0.25" y2="0.25" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute h-0 left-[1075px] top-[1790px] w-[244px]">
-        <div className="absolute inset-[-0.5px_0_0_0]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 244 0.5">
-            <line id="Line 6" stroke="var(--stroke-0, #09263F)" strokeOpacity="0.2" strokeWidth="0.5" x2="244" y1="0.25" y2="0.25" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute h-0 left-[435px] top-[1838px] w-[244px]">
-        <div className="absolute inset-[-0.5px_0_0_0]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 244 0.5">
-            <line id="Line 6" stroke="var(--stroke-0, #09263F)" strokeOpacity="0.2" strokeWidth="0.5" x2="244" y1="0.25" y2="0.25" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute h-0 left-[757px] top-[1838px] w-[244px]">
-        <div className="absolute inset-[-0.5px_0_0_0]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 244 0.5">
-            <line id="Line 6" stroke="var(--stroke-0, #09263F)" strokeOpacity="0.2" strokeWidth="0.5" x2="244" y1="0.25" y2="0.25" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute h-0 left-[1075px] top-[1838px] w-[244px]">
-        <div className="absolute inset-[-0.5px_0_0_0]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 244 0.5">
-            <line id="Line 6" stroke="var(--stroke-0, #09263F)" strokeOpacity="0.2" strokeWidth="0.5" x2="244" y1="0.25" y2="0.25" />
-          </svg>
-        </div>
-      </div>
-      <LetsIconsSettingFill />
-      <IconParkOutlineSettingComputer />
-      <MaterialSymbolsManageAccountsRounded />
-      <div className="absolute bg-[#f4fafa] h-[872px] top-[2874px] w-screen left-1/2 -translate-x-1/2" />
-      <div className="absolute bg-white h-[481px] left-[63px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[3071px] w-[414px]" />
-      <div className="absolute bg-white h-[481px] left-[509px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[3071px] w-[414px]" />
-      <div className="absolute bg-white h-[481px] left-[956px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[3071px] w-[414px]" />
-      <div className="absolute h-[246px] left-[63px] rounded-tl-[15px] rounded-tr-[15px] top-[3071px] w-[414px]">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[15px] rounded-tr-[15px] size-full" src={imgRectangle51.src} />
-      </div>
-      <div className="absolute h-[246px] left-[509px] rounded-tl-[15px] rounded-tr-[15px] top-[3071px] w-[414px]">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[15px] rounded-tr-[15px] size-full" src={imgRectangle53.src} />
-      </div>
-      <div className="absolute h-[246px] left-[956px] rounded-tl-[15px] rounded-tr-[15px] top-[3071px] w-[414px]">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[15px] rounded-tr-[15px] size-full" src={imgRectangle107.src} />
-      </div>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[79px] not-italic text-[16px] text-black top-[3377px] w-[328px]">Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[525px] not-italic text-[16px] text-black top-[3377px] w-[323px]">Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[972px] not-italic text-[16px] text-black top-[3377px] w-[323px]">Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[79px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[3429px] w-[364px]">Statistical tests form the backbone of data-driven decision-making. They allow analysts to move beyond intuition and evaluate claims in a measurable w...</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[525px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[3429px] w-[365px]">Statistical tests form the backbone of data-driven decision-making. They allow analysts to move beyond intuition and evaluate claims in a measurable w...</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[972px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[3429px] w-[365px]">Statistical tests form the backbone of data-driven decision-making. They allow analysts to move beyond intuition and evaluate claims in a measurable w...</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[128px] not-italic text-[12px] text-black top-[3413px] whitespace-nowrap">S. Dutta</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[574px] not-italic text-[12px] text-black top-[3503px] whitespace-nowrap">S. Dutta</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1021px] not-italic text-[12px] text-black top-[3503px] whitespace-nowrap">S. Dutta</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[401px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[3335px] whitespace-nowrap">9 min read</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[848px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[3335px] whitespace-nowrap">9 min read</p>
-      <p className="absolute font-['Inter:Medium',sans-serif] font-medium leading-[normal] left-[1295px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[3335px] whitespace-nowrap">9 min read</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[79px] not-italic text-[#4c7fd2] text-[16px] top-[3247px] whitespace-nowrap">Data Science</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[525px] not-italic text-[#ffd700] text-[16px] top-[3337px] whitespace-nowrap">Data Science</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[972px] not-italic text-[#1de5b5] text-[16px] top-[3337px] whitespace-nowrap">Data Science</p>
-      <div className="absolute h-[40px] left-[79px] top-[3402px] w-[39px]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 39 40">
-          <ellipse cx="19.5" cy="20" fill="var(--fill-0, #082962)" id="Ellipse 3" rx="19.5" ry="20" />
-        </svg>
-      </div>
-      <div className="absolute h-[40px] left-[525px] top-[3492px] w-[39px]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 39 40">
-          <ellipse cx="19.5" cy="20" fill="var(--fill-0, #082962)" id="Ellipse 3" rx="19.5" ry="20" />
-        </svg>
-      </div>
-      <div className="absolute h-[40px] left-[972px] top-[3492px] w-[39px]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 39 40">
-          <ellipse cx="19.5" cy="20" fill="var(--fill-0, #082962)" id="Ellipse 3" rx="19.5" ry="20" />
-        </svg>
-      </div>
-      <div className="absolute flex items-center justify-center left-[432.5px] size-[33.128px] top-[3495.4px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "1203" } as React.CSSProperties}>
-        <div className="flex-none rotate-[43.46deg]">
-          <HeroiconsOutlineArrowUp />
-        </div>
-      </div>
-      <div className="absolute flex items-center justify-center left-[880.56px] size-[33.128px] top-[3495.4px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "1203" } as React.CSSProperties}>
-        <div className="flex-none rotate-[43.46deg]">
-          <HeroiconsOutlineArrowUp1 />
-        </div>
-      </div>
-      <div className="absolute flex items-center justify-center left-[1327.66px] size-[33.128px] top-[3495.4px]" style={{ "--transform-inner-width": "1200", "--transform-inner-height": "1203" } as React.CSSProperties}>
-        <div className="flex-none rotate-[43.46deg]">
-          <HeroiconsOutlineArrowUp2 />
-        </div>
-      </div>
-      <PrimeBookmark />
-      <PrimeBookmark1 />
-      <PrimeBookmark2 />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-1/2 not-italic text-[#09263f] text-[40px] text-center top-[2938px] whitespace-nowrap">Related Articles</p>
-      <div className="-translate-x-1/2 absolute bg-[#07b3e7] h-[350px] left-[calc(50%+5.5px)] rounded-[201px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[3864px] w-[1301px]" />
-      <div className="absolute left-[733px] size-[474px] top-[3977px]">
-        <div className="absolute bottom-1/2 left-0 right-0 top-0">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 474 237">
-            <path d={svgPaths.p22ecb680} fill="var(--fill-0, #7EDAFE)" id="Ellipse 76" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute left-[857px] size-[446px] top-[3768px]" data-name="image 31">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage31.src} />
-      </div>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-500px)] not-italic text-[36px] text-white top-[3928px] w-[535px]">{`"Unlock Insights. Enroll Now. Transform Tomorrow."`}</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[220px] not-italic text-[18px] text-white top-[4038px] whitespace-nowrap">Change the course of your career now</p>
-      <div className="absolute bg-[#ffd700] h-[49px] left-[220px] rounded-[1000px] top-[4095px] w-[182px]" />
-      <div className="-translate-x-1/2 absolute bg-[#ffd700] h-[49px] left-1/2 rounded-[1000px] top-[3624px] w-[200px]" />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[311px] not-italic text-[#09263f] text-[18px] text-center top-[4108px] whitespace-nowrap">Contact Us</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-1/2 not-italic text-[#09263f] text-[18px] text-center top-[3637px] whitespace-nowrap">Explore Blogs→</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-1/2 not-italic text-[#09263f] text-[40px] text-center top-[2040px] whitespace-nowrap">Free Industry Reports</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-1/2 not-italic text-[18px] text-[rgba(9,38,63,0.5)] text-center top-[2111px] w-[988px]">
-        Access valuable insights and trends with our free industry reports.
-        <br aria-hidden="true" />
-        Stay informed and make smarter career decisions.
-      </p>
-      <div className="absolute bg-white border border-[rgba(9,38,63,0.2)] border-solid h-[481px] left-[63px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[2235px] w-[414px]" />
-      <div className="absolute h-[294px] left-[71px] rounded-tl-[8px] rounded-tr-[8px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[2244px] w-[397px]">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle52.src} />
-      </div>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[283px] not-italic text-[20px] text-black text-center top-[2562px] w-[328px]">Skill Gap 2025-26: Mapping India’s AI Talent</p>
-      <div className="absolute bg-[#1de5b5] h-[56px] left-[88px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[2634px] w-[364px]" />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[269px] not-italic text-white text-[16px] text-center top-[2652px] whitespace-nowrap">Download</p>
-      <div className="absolute bg-white border border-[rgba(9,38,63,0.2)] border-solid h-[481px] left-[513px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[2235px] w-[414px]" />
-      <div className="absolute h-[294px] left-[521px] rounded-tl-[8px] rounded-tr-[8px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[2244px] w-[397px]">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-tl-[8px] rounded-tr-[8px] size-full" src={imgRectangle54.src} />
-      </div>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[733px] not-italic text-[20px] text-black text-center top-[2562px] w-[328px]">AI Skills in Demand - A Complete Playbook For 2026</p>
-      <div className="absolute bg-[#1de5b5] h-[56px] left-[538px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[2634px] w-[364px]" />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[719px] not-italic text-white text-[16px] text-center top-[2652px] whitespace-nowrap">Download</p>
-      <div className="absolute bg-white border border-[rgba(9,38,63,0.2)] border-solid h-[481px] left-[963px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[2235px] w-[414px]" />
-      <div className="absolute h-[294px] left-[971px] rounded-tl-[8px] rounded-tr-[8px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[2244px] w-[397px]">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-tl-[8px] rounded-tr-[8px]">
-          <img alt="" className="absolute h-[100.13%] left-[-6.64%] max-w-none top-[-0.13%] w-[123.52%]" src={imgRectangle55.src} />
-        </div>
-      </div>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1183px] not-italic text-[20px] text-black text-center top-[2574px] w-[328px]">Data Science and AI Job Outlook</p>
-      <div className="absolute bg-[#1de5b5] h-[56px] left-[988px] rounded-[1000px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[2634px] w-[364px]" />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1169px] not-italic text-white text-[16px] text-center top-[2652px] whitespace-nowrap">Download</p>
-      <div className="absolute bg-[#ffd700] h-[30px] left-[513px] rounded-br-[70px] rounded-tl-[23px] rounded-tr-[70px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[2223px] w-[120px]" />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[574.5px] not-italic text-[#09263f] text-[14px] text-center top-[2229px] whitespace-nowrap">Latest</p>
-      </div>{/* /absolute canvas */}
+        {/* Section 2: End-to-End Solutions */}
+        <section className="w-full py-24 bg-white">
+          <div className="max-w-[1280px] mx-auto px-10">
+            <div className="mb-16">
+              <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[36px] tracking-tight mb-4">End-to-End Analytics Solutions</h2>
+              <p className="font-['Inter:Regular',sans-serif] font-normal text-[16px] text-[#09263f]/50">Consulting, training, and staffing for data-driven growth.</p>
+            </div>
+            
+            <div className="grid grid-cols-3 gap-8">
+              {[
+                { title: "Analytics Consulting & Solutions", bg: "#d2faf0", img: imgImg.src, desc: "A trusted provider since 2017, offering data analytics services including tool development, maintenance, and advanced statistical analysis." },
+                { title: "Analytics Capability Building", bg: "#fffad2", img: imgImg1.src, desc: "Expert-led, customized programs designed to help organizations fully leverage data through practical training and tailored case studies." },
+                { title: "Staffing & Recruitment", bg: "#fff2fa", img: imgImg2.src, desc: "Supplying skilled, pre-screened analytics professionals for project-based roles, internships, and full-time positions." }
+              ].map((item, i) => (
+                <div key={i} className="flex flex-col rounded-[24px] overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.05)] border border-black/5 hover:shadow-[0px_20px_50px_rgba(0,0,0,0.1)] transition-all duration-300">
+                  <div className="p-8 flex-1" style={{ backgroundColor: item.bg }}>
+                    <div className="flex justify-between items-start mb-6">
+                      <h3 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[20px] leading-tight max-w-[200px] tracking-tight">{item.title}</h3>
+                      <div className="size-8 bg-[#09263f] rounded-full flex items-center justify-center text-white">
+                        <svg className="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" /></svg>
+                      </div>
+                    </div>
+                    <p className="text-[13px] text-[#09263f]/60 leading-relaxed">{item.desc}</p>
+                  </div>
+                  <div className="h-[220px] w-full overflow-hidden">
+                    <img src={item.img} alt={item.title} className="w-full h-full object-cover" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Section 3: Wide Array of Courses */}
+        <section className="w-full py-24 bg-white border-t border-black/5">
+          <div className="max-w-[1280px] mx-auto px-10">
+            <div className="flex items-end justify-between mb-16">
+              <div className="max-w-[600px]">
+                <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[32px] tracking-tight mb-4">Wide Array of Courses</h2>
+                <p className="font-['Inter:Regular',sans-serif] font-normal text-[15px] text-[#09263f]/60 leading-relaxed">Industry-relevant programs across technical, domain, and leadership tracks designed to build practical analytics expertise at every level.</p>
+              </div>
+              <Link href="/courses" className="bg-[#ffd700] px-8 py-3.5 rounded-full font-semibold text-[#09263f] text-[15px] hover:brightness-105 transition-all shadow-sm">
+                Explore Courses →
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-4 gap-6">
+              {/* Featured Card */}
+              <div className="relative rounded-[20px] overflow-hidden shadow-lg h-[400px]">
+                <img src={imgImg3.src} alt="" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#09263f]/80 to-transparent" />
+                <div className="absolute bottom-6 left-6 text-white">
+                  <h3 className="text-xl font-bold mb-2">Build Your Path</h3>
+                  <p className="text-sm opacity-80">Customized learning journeys for teams.</p>
+                </div>
+              </div>
+
+              {/* Tracks */}
+              {[
+                { 
+                  title: "Technical", 
+                  bg: "#f0fbff", 
+                  icon: <LetsIconsSettingFill />, 
+                  items: ["Analytics Reporting & Visualization", "Machine Learning Predictive Modeling", "Applied AI & Deep Learning", "Big Data & Cloud Computing"] 
+                },
+                { 
+                  title: "Function / Domain", 
+                  bg: "#fff2fa", 
+                  icon: <IconParkOutlineSettingComputer />, 
+                  items: ["Banking & Finance", "Marketing & Sales", "Retail Analytics", "Digital Analytics"] 
+                },
+                { 
+                  title: "Management", 
+                  bg: "#d2faf0", 
+                  icon: <MaterialSymbolsManageAccountsRounded />, 
+                  items: ["Analytics 101", "Analytics for Leaders", "Analytics Consulting", "Digital Transformation"] 
+                }
+              ].map((track, i) => (
+                <div key={i} className="flex flex-col rounded-[20px] overflow-hidden h-[400px] shadow-sm border border-black/5" style={{ backgroundColor: track.bg }}>
+                  <div className="p-8 flex flex-col items-center text-center">
+                    <div className="size-16 bg-white rounded-full shadow-md flex items-center justify-center mb-6 relative overflow-visible">
+                       {/* This is a hack to use the absolute-positioned icons from the Figma export */}
+                       <div className="scale-125">
+                         {i === 0 && <LetsIconsSettingFill />}
+                         {i === 1 && <IconParkOutlineSettingComputer />}
+                         {i === 2 && <MaterialSymbolsManageAccountsRounded />}
+                       </div>
+                    </div>
+                    <h3 className="font-semibold text-[#09263f] text-[20px] mb-8">{track.title}</h3>
+                    <ul className="flex flex-col gap-4 w-full">
+                      {track.items.map((item, j) => (
+                        <li key={j} className="flex items-center gap-3 text-left">
+                          <div className="size-5 shrink-0 rounded-full bg-[#09263f] flex items-center justify-center text-white">
+                            <svg className="size-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" /></svg>
+                          </div>
+                          <span className="text-[13px] text-[#09263f]/70 font-medium">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Section 4: Industry Reports */}
+        <section className="w-full py-24 bg-white">
+          <div className="max-w-[1280px] mx-auto px-10">
+            <div className="text-center mb-16">
+              <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[36px] tracking-tight mb-4">Free Industry Reports</h2>
+              <p className="font-['Inter:Regular',sans-serif] font-normal text-[16px] text-[#09263f]/50 max-w-[700px] mx-auto">
+                Access valuable insights and trends with our free industry reports. Stay informed and make smarter career decisions.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-3 gap-8">
+              {[
+                { title: "Skill Gap 2025-26: Mapping India’s AI Talent", img: imgRectangle52.src, tag: "Latest" },
+                { title: "AI Skills in Demand - A Complete Playbook For 2026", img: imgRectangle54.src },
+                { title: "Data Science and AI Job Outlook", img: imgRectangle55.src }
+              ].map((report, i) => (
+                <div key={i} className="group flex flex-col bg-white border border-black/10 rounded-[20px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
+                  <div className="relative h-[280px] overflow-hidden">
+                    {report.tag && (
+                      <div className="absolute top-4 left-4 z-10 bg-[#ffd700] px-4 py-1.5 rounded-full text-[12px] font-bold text-[#09263f] shadow-md uppercase tracking-wider">
+                        {report.tag}
+                      </div>
+                    )}
+                    <img src={report.img} alt={report.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <div className="p-8 flex flex-col flex-1">
+                    <h3 className="font-semibold text-[18px] text-black text-center mb-8 leading-tight flex-1">{report.title}</h3>
+                    <button className="w-full bg-[#1de5b5] h-[48px] rounded-full flex items-center justify-center font-bold text-white text-[14px] uppercase tracking-widest hover:brightness-105 active:scale-[0.98] transition-all">
+                      Download
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Section 5: Related Articles */}
+        <section className="w-full py-24 bg-[#f4fafa]">
+          <div className="max-w-[1280px] mx-auto px-10">
+            <div className="text-center mb-16">
+              <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[36px] tracking-tight mb-4">Related Articles</h2>
+            </div>
+            
+            <div className="grid grid-cols-3 gap-8 mb-16">
+              {[
+                { img: imgRectangle51.src, title: "Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?", category: "Data Science", read: "9 min read" },
+                { img: imgRectangle53.src, title: "Statistical tests form the backbone of data-driven decision-making.", category: "Data Science", read: "9 min read" },
+                { img: imgRectangle107.src, title: "Exploring the Generative AI Revolution in India's Job Market 2025", category: "Data Science", read: "9 min read" }
+              ].map((post, i) => (
+                <div key={i} className="bg-white rounded-[20px] overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all duration-300 flex flex-col h-full">
+                  <div className="h-[240px] overflow-hidden relative">
+                    <img src={post.img} alt="" className="w-full h-full object-cover" />
+                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[11px] font-medium text-black/60">{post.read}</div>
+                  </div>
+                  <div className="p-8 flex flex-col flex-1">
+                    <span className="text-[#4c7fd2] text-[13px] font-bold uppercase tracking-wider mb-3">{post.category}</span>
+                    <h3 className="font-medium text-[17px] text-black mb-6 leading-snug flex-1">{post.title}</h3>
+                    <div className="flex items-center justify-between pt-6 border-t border-black/5">
+                      <div className="flex items-center gap-3">
+                        <div className="size-8 rounded-full bg-[#082962]" />
+                        <span className="text-[13px] font-medium text-black/80">S. Dutta</span>
+                      </div>
+                      <div className="flex gap-2">
+                         <div className="size-8 rounded-full border border-black/10 flex items-center justify-center text-black/40 hover:text-[#09263f] hover:border-[#09263f] cursor-pointer transition-colors">
+                           <svg className="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" /></svg>
+                         </div>
+                         <div className="size-8 rounded-full border border-black/10 flex items-center justify-center text-black/40 hover:text-[#09263f] hover:border-[#09263f] cursor-pointer transition-colors">
+                           <svg className="size-4 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="text-center">
+              <Link href="/blog" className="inline-flex items-center justify-center bg-[#ffd700] px-10 h-[52px] rounded-full font-bold text-[#09263f] text-[16px] shadow-md hover:brightness-105 active:scale-[0.98] transition-all">
+                Explore Blogs →
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 6: Contact & Support */}
+        <section className="w-full py-24 bg-[#f8fbff]">
+          <div className="max-w-[1280px] mx-auto px-10">
+            <div className="flex bg-white rounded-[32px] overflow-hidden shadow-[0px_20px_60px_rgba(0,0,0,0.08)] border border-black/5">
+              
+              {/* Left Panel: Get in Touch */}
+              <div className="w-[40%] bg-[#07b3e7] p-16 text-white relative overflow-hidden">
+                {/* Decorative Pattern */}
+                <div className="absolute top-0 right-0 size-64 opacity-10 translate-x-1/2 -translate-y-1/2">
+                   <Group4 />
+                </div>
+                
+                <h2 className="text-[36px] font-bold mb-4 tracking-tight">Get in touch</h2>
+                <p className="text-white/80 text-[15px] leading-relaxed mb-12">
+                  Get in touch with our team to explore solutions, training, or partnerships—we're here to help.
+                </p>
+                
+                <div className="flex flex-col gap-10">
+                  <div className="flex items-center gap-6">
+                    <div className="size-14 bg-white rounded-full flex items-center justify-center text-[#07b3e7] shadow-lg shrink-0">
+                      <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                    </div>
+                    <div>
+                      <p className="text-[12px] font-bold text-white/50 uppercase tracking-[0.2em] mb-1">Email</p>
+                      <p className="text-[16px] font-medium">{siteSettings?.contactEmail ?? "info@analytixlabs.co.in"}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-6">
+                    <div className="size-14 bg-white rounded-full flex items-center justify-center text-[#07b3e7] shadow-lg shrink-0">
+                      <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                    </div>
+                    <div>
+                      <p className="text-[12px] font-bold text-white/50 uppercase tracking-[0.2em] mb-1">Phone no.</p>
+                      <p className="text-[16px] font-medium">{siteSettings?.contactPhone ?? "+91 9555219007"}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-6">
+                    <div className="size-14 bg-white rounded-full flex items-center justify-center text-[#07b3e7] shadow-lg shrink-0">
+                      <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <div>
+                      <p className="text-[12px] font-bold text-white/50 uppercase tracking-[0.2em] mb-1">Timing</p>
+                      <p className="text-[16px] font-medium">10:00 AM TO 07:00 PM</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="mt-16 pt-10 border-t border-white/10">
+                  <p className="text-xl font-semibold mb-6">Sign up for demo</p>
+                  <button className="bg-[#1de5b5] text-white px-10 h-[52px] rounded-full font-bold uppercase tracking-widest text-[13px] hover:brightness-105 active:scale-[0.98] transition-all shadow-md">
+                    Sign up →
+                  </button>
+                </div>
+              </div>
+              
+              {/* Right Panel: Form */}
+              <div className="w-[60%] p-16">
+                <h2 className="text-[32px] font-bold text-[#09263f] mb-10 tracking-tight">Request a Call back</h2>
+                
+                <form className="flex flex-col gap-8">
+                  <div className="flex flex-col gap-2">
+                    <label className="text-[13px] font-semibold text-[#09263f]/60 uppercase tracking-wider ml-1">Name</label>
+                    <input type="text" placeholder="Your Name" className="w-full h-[56px] px-6 rounded-full border border-black/10 bg-[#fcfdfe] focus:border-[#07b3e7] focus:bg-white focus:ring-1 focus:ring-[#07b3e7] outline-none transition-all placeholder:text-black/20" />
+                  </div>
+                  
+                  <div className="grid grid-cols-[140px_1fr] gap-4">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[13px] font-semibold text-[#09263f]/60 uppercase tracking-wider ml-1">Code</label>
+                      <div className="relative">
+                        <select className="w-full h-[56px] pl-6 pr-10 rounded-full border border-black/10 bg-[#fcfdfe] appearance-none focus:border-[#07b3e7] focus:bg-white outline-none transition-all">
+                          <option>+91 (IND)</option>
+                          <option>+1 (USA)</option>
+                          <option>+44 (UK)</option>
+                        </select>
+                        <svg className="absolute right-4 top-1/2 -translate-y-1/2 size-4 text-black/40 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[13px] font-semibold text-[#09263f]/60 uppercase tracking-wider ml-1">Mobile</label>
+                      <input type="tel" placeholder="Mobile Number" className="w-full h-[56px] px-6 rounded-full border border-black/10 bg-[#fcfdfe] focus:border-[#07b3e7] focus:bg-white outline-none transition-all placeholder:text-black/20" />
+                    </div>
+                  </div>
+                  
+                  <div className="flex flex-col gap-2">
+                    <label className="text-[13px] font-semibold text-[#09263f]/60 uppercase tracking-wider ml-1">Email</label>
+                    <input type="email" placeholder="Your Email Address" className="w-full h-[56px] px-6 rounded-full border border-black/10 bg-[#fcfdfe] focus:border-[#07b3e7] focus:bg-white outline-none transition-all placeholder:text-black/20" />
+                  </div>
+                  
+                  <div className="flex flex-col gap-2">
+                    <label className="text-[13px] font-semibold text-[#09263f]/60 uppercase tracking-wider ml-1">Select City</label>
+                    <div className="relative">
+                      <select className="w-full h-[56px] pl-6 pr-10 rounded-full border border-black/10 bg-[#fcfdfe] appearance-none focus:border-[#07b3e7] focus:bg-white outline-none transition-all">
+                        <option>Noida</option>
+                        <option>Gurgaon</option>
+                        <option>Bangalore</option>
+                        <option>Delhi</option>
+                        <option>Other</option>
+                      </select>
+                      <svg className="absolute right-4 top-1/2 -translate-y-1/2 size-4 text-black/40 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+                    </div>
+                  </div>
+                  
+                  <button type="submit" className="w-full bg-[#ffd700] h-[64px] rounded-full font-bold text-[#09263f] text-[16px] uppercase tracking-widest shadow-lg hover:brightness-105 active:scale-[0.98] transition-all mt-6">
+                    Send Request
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 7: CTA Banner */}
+        <section className="w-full py-20 bg-white">
+          <div className="max-w-[1280px] mx-auto px-10">
+            <div className="relative bg-[#07b3e7] rounded-[40px] p-16 overflow-hidden flex items-center justify-between">
+              {/* Background Decorative */}
+              <div className="absolute right-0 bottom-0 size-[400px] opacity-20 translate-x-1/4 translate-y-1/4">
+                <svg className="size-full" fill="none" viewBox="0 0 400 400"><circle cx="200" cy="200" r="200" fill="white" /></svg>
+              </div>
+              
+              <div className="z-10 max-w-[600px]">
+                <h2 className="text-white text-[36px] font-semibold leading-tight mb-4">{`"Unlock Insights. Enroll Now. Transform Tomorrow."`}</h2>
+                <p className="text-white/80 text-[18px] mb-10">Change the course of your career now with industry-led training.</p>
+                <Link href="/contact" className="bg-[#ffd700] px-12 h-[56px] rounded-full flex items-center justify-center font-bold text-[#09263f] text-[16px] w-fit shadow-lg hover:brightness-105 active:scale-[0.95] transition-all">
+                  Contact Us
+                </Link>
+              </div>
+              
+              <div className="relative z-10 w-[400px] h-[350px]">
+                <img src={imgImage31.src} alt="" className="w-full h-full object-contain" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Frame offices={offices} footerLinks={footerLinks} footerCities={footerCities} siteSettings={siteSettings} />
       </div>{/* /desktop layout */}
     </div>
   );
