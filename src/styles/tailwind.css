@@ -1,4 +1,6 @@
-@import 'tailwindcss' source(none);
+@import "tailwindcss" theme(reference);
+@import "tailwindcss/preflight" layer(base);
+@import "tailwindcss/utilities" layer(utilities);
 @source '../**/*.{js,ts,jsx,tsx}';
 
 @import 'tw-animate-css';
