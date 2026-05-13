@@ -3,9 +3,9 @@
  * (components/figma-pages/AlabsLandingPage). Per CLAUDE.md §8 step
  * 8: gather every data source in parallel, pass as props.
  */
-import AlabsLandingPage from "@/components/figma-pages/AlabsLandingPage/AlabsLandingPage";
-import FigmaScaleWrapper from "@/components/figma-pages/shared/FigmaScaleWrapper";
-import MobileLandingPage from "@/components/mobile/MobileLandingPage";
+import { Metadata } from "next";
+import AlabsLandingPage from "@/features/landing-page/AlabsLandingPage";
+import FigmaScaleWrapper from "@/components/layout/FigmaScaleWrapper";
 import {
   getActiveMasterclass,
   getCategories,
@@ -22,6 +22,15 @@ import {
 } from "@/lib/api-client";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPage("home");
+  if (!page) return {};
+  return {
+    title: page.metaTitle || "Home",
+    description: page.metaDesc || undefined,
+  };
+}
 
 export default async function HomePage() {
   const [
@@ -77,15 +86,8 @@ export default async function HomePage() {
   };
 
   return (
-    <>
-      <div className="lg:hidden">
-        <MobileLandingPage {...sharedProps} />
-      </div>
-      <div className="hidden lg:block">
-        <FigmaScaleWrapper>
-          <AlabsLandingPage {...sharedProps} />
-        </FigmaScaleWrapper>
-      </div>
-    </>
+    <FigmaScaleWrapper>
+      <AlabsLandingPage {...sharedProps} />
+    </FigmaScaleWrapper>
   );
 }

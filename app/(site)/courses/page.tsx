@@ -1,10 +1,11 @@
-import ExploreCourses from "@/components/figma-pages/ExploreCourses/ExploreCourses";
-import FigmaScaleWrapper from "@/components/figma-pages/shared/FigmaScaleWrapper";
+import ExploreCourses from "@/features/explore-courses/ExploreCourses";
+import FigmaScaleWrapper from "@/components/layout/FigmaScaleWrapper";
 import {
   getCategories,
   getCourses,
   getNav,
   getOffices,
+  getPage,
   getPosts,
   getSiteSettings,
 } from "@/lib/api-client";
@@ -21,6 +22,7 @@ export default async function CoursesPage() {
     courses,
     posts,
     offices,
+    pageBlocks,
   ] = await Promise.all([
     getSiteSettings(),
     getNav("TOP_NAV"),
@@ -30,22 +32,22 @@ export default async function CoursesPage() {
     getCourses({ limit: 6 }),
     getPosts({ limit: 3 }),
     getOffices(),
+    getPage("courses"),
   ]);
 
   return (
     <FigmaScaleWrapper>
-      <div className="relative mx-auto" style={{ width: "1440px", height: "3600px" }}>
-        <ExploreCourses
-          siteSettings={siteSettings}
-          topNav={topNav}
-          footerLinks={footerLinks}
-          footerCities={footerCities}
-          categories={categories}
-          courses={courses}
-          posts={posts}
-          offices={offices}
-        />
-      </div>
+      <ExploreCourses
+        siteSettings={siteSettings}
+        topNav={topNav}
+        footerLinks={footerLinks}
+        footerCities={footerCities}
+        categories={categories}
+        courses={courses}
+        posts={posts}
+        offices={offices}
+        pageBlocks={pageBlocks}
+      />
     </FigmaScaleWrapper>
   );
 }

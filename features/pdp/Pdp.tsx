@@ -1,5 +1,5 @@
 import svgPaths from "./svg-y2pnleu7yt";
-import imgImage14 from "./3bf553a15ed8e3b04af9c46289180fc24b35c112.png";
+
 import imgAsset253X2 from "./1d246294d3b2d1241d32b8ee0187da67083422b9.png";
 import imgTools from "./d11a8aa3ab5c427b280eb2360c8ac690041f1014.png";
 import imgCertificate from "./78c146474d419f14468f31d6b051a8eec770800f.png";
@@ -18,6 +18,7 @@ import imgRectangle155 from "./25a03a243bd49a9890bd34393cee8cef2fcf0e8e.png";
 import img197 from "./0effb68a268a8b7912b8aae4d984808edb6a835d.png";
 import { imgGroup } from "./svg-n3yhl";
 import Link from "next/link";
+import { GlobalFooter } from "@/components/layout/GlobalLayout";
 import type { CourseDetail, NavItem, Office, SiteSettings } from "@/lib/api-client";
 
 type PdpProps = {
@@ -1011,7 +1012,7 @@ function Frame({ offices, footerLinks, footerCities, siteSettings }: {
           </svg>
         </div>
       <div className="absolute h-[69px] left-[52px] top-[58px] w-[233px]" data-name="image 14">
-        <img alt="AnalytixLabs" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={siteSettings?.logoUrl ?? imgImage14.src} />
+        <img alt="AnalytixLabs" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src="/Asset_logo.png" />
       </div>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1094px] not-italic text-[16px] text-white top-[62px] whitespace-nowrap">Popular Searches</p>
       <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[804px] not-italic text-[16px] text-white top-[62px] whitespace-nowrap">Etcetera</p>
@@ -1191,25 +1192,74 @@ export default function Pdp(props: PdpProps) {
           <p className="text-sm text-white/60 leading-relaxed mb-5">
             {course?.shortDesc ?? "An extensive industry-relevant Data Science course with 8 weeks of Placement Assistance."}
           </p>
-          {/* Stat pills */}
-          <div className="flex gap-2 flex-wrap mb-6">
+          <div className="grid grid-cols-2 gap-2 mb-4">
             {[
-              { label: String(course?.hoursCount ?? 675), sub: "Total Hours", bg: "#d2faf0" },
-              { label: String(course?.classesCount ?? 65), sub: "Live Classes", bg: "#fffad2" },
-              { label: String(course?.modules?.length ?? 11), sub: "Modules", bg: "#f0fbff" },
+              { label: "₹48k", sub: "Starting price", bg: "#d2faf0" },
+              { label: "8 mo", sub: "Program duration", bg: "#fffad2" },
+              { label: "9.6", sub: "Avg rating", bg: "#f0fbff" },
               { label: "20K+", sub: "Alumni", bg: "#fff2fa" },
             ].map((s, i) => (
-              <div key={i} className="flex flex-col items-center justify-center rounded-2xl px-4 py-2 min-w-[70px]" style={{ background: s.bg }}>
-                <span className="font-semibold text-[#09263f] text-lg leading-none">{s.label}</span>
-                <span className="text-[10px] text-[#09263f]/60 mt-0.5 whitespace-nowrap">{s.sub}</span>
+              <div key={i} className="flex flex-col items-center justify-center rounded-2xl px-4 py-4 shadow-sm" style={{ background: s.bg }}>
+                <span className="font-bold text-[#09263f] text-[22px] leading-tight">{s.label}</span>
+                <span className="text-[11px] text-[#09263f]/50 mt-1 font-medium">{s.sub}</span>
               </div>
             ))}
           </div>
-          <Link href="#enroll" className="flex items-center justify-center bg-[#ffd700] h-12 rounded-full font-semibold text-[#09263f] text-base mb-3">
-            Sign up for Free Demo
-          </Link>
-          <div className="relative rounded-2xl overflow-hidden max-h-[180px]">
-            <img src={img197.src} alt="" className="w-full object-cover" style={{ maxHeight: "180px" }} />
+        </section>
+
+        {/* Includes & CTA Card (Mobile) */}
+        <section className="px-5 mb-8">
+          <div className="bg-white rounded-[24px] p-6 shadow-[0_12px_40px_rgba(0,0,0,0.1)] border border-[#09263f]/5">
+            <h3 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-lg mb-4">Includes</h3>
+            <div className="flex flex-col gap-3 mb-8">
+              {[
+                { icon: <LineMdPlay />, text: "417 hrs on-demand video" },
+                { icon: <MaterialSymbolsDownloadRounded />, text: "49 downloadable resources" },
+                { icon: <IcBaselineTv />, text: "Access on mobile & TV" },
+                { icon: <MingcuteTimeLine />, text: "6 capstone projects" },
+                { icon: <MaterialSymbolsStarOutlineRounded />, text: "Certificate of completion" },
+                { icon: <IxSupport />, text: "8 weeks placement support" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <div className="text-[#09263f]/70 shrink-0">{item.icon}</div>
+                  <span className="text-sm text-[#09263f]/80 font-medium">{item.text}</span>
+                </div>
+              ))}
+            </div>
+            
+            <div className="flex flex-col gap-3">
+              <Link href="#syllabus" className="flex items-center justify-center bg-[#ffd700] h-[52px] rounded-full font-bold text-[#09263f] text-[15px] shadow-sm">
+                Download Syllabus
+              </Link>
+              <button className="flex items-center justify-center bg-white h-[52px] rounded-full font-bold text-[#09263f] text-[15px] border border-[#09263f]/20 shadow-sm">
+                Add to Wishlist
+              </button>
+              <Link href="#demo" className="flex items-center justify-center bg-[#19cf9e] h-[52px] rounded-full font-bold text-white text-[15px] shadow-sm">
+                Sign up for Free Demo
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonial (Mobile) */}
+        <section className="px-5 mb-10">
+          <div className="bg-white rounded-[24px] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.08)] relative overflow-hidden">
+            <div className="text-[#09263f] opacity-20 mb-4">
+              <svg className="size-10" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11.5H16.517C17.0693 11.5 17.517 11.9477 17.517 12.5V13.5H16.017C13.8079 13.5 12.017 15.2909 12.017 17.5V21H14.017ZM6.017 21L6.017 18C6.017 16.8954 6.91243 16 8.017 16H11.017C11.5693 16 12.017 15.5523 12.017 15V9C12.017 8.44772 11.5693 8 11.017 8H7.017C6.46472 8 6.017 8.44772 6.017 9V11.5H8.517C9.06929 11.5 9.517 11.9477 9.517 12.5V13.5H8.017C5.80786 13.5 4.017 15.2909 4.017 17.5V21H6.017Z"/></svg>
+            </div>
+            <p className="text-[#09263f]/80 text-sm leading-relaxed mb-6 font-medium italic">
+              "The structure was exactly what I needed. I went from zero Python to deploying an ML model within 8 months. The placement support helped me crack my first data scientist role."
+            </p>
+            <div className="flex items-center gap-4">
+              <div className="size-12 rounded-full bg-[#19cf9e] flex items-center justify-center text-white font-bold text-lg">RK</div>
+              <div>
+                <p className="font-bold text-[#09263f] text-sm">Rahul Kapoor</p>
+                <p className="text-[11px] text-[#09263f]/50">Data Scientist @ Flipkart</p>
+                <div className="flex gap-0.5 mt-1">
+                  {"⭐⭐⭐⭐⭐".split("").map((s, i) => <span key={i} className="text-[#ffd700] text-[10px]">{s}</span>)}
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -1445,81 +1495,22 @@ export default function Pdp(props: PdpProps) {
             </p>
           </div>
         </div>
-      <div className="absolute bg-[#d2faf0] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[63px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[371px] w-[114px]" />
-      <div className="absolute bg-[#d2faf0] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[143px] left-[49px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[886px] w-[295px]" />
-      <div className="absolute bg-[#d2faf0] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[213px] left-[49px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[3972px] w-[295px]" />
-      <div className="absolute border-[0.5px] border-[rgba(9,38,63,0.5)] border-solid h-[349px] left-[49px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[4338px] w-[295px]" />
-      <div className="absolute bg-[#d2faf0] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[1031px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[672px] w-[172px]" />
-      <div className="absolute bg-[#fffad2] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[177px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[371px] w-[114px]" />
-      <div className="absolute bg-[#fffad2] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[1203px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[672px] w-[171px]" />
-      <div className="absolute bg-[#f0fbff] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[291px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[371px] w-[113px]" />
-      <div className="absolute bg-[#f0fbff] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[143px] left-[357px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[886px] w-[293px]" />
-      <div className="absolute bg-[#f0fbff] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[213px] left-[357px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[3972px] w-[293px]" />
-      <div className="absolute border-[0.5px] border-[rgba(9,38,63,0.5)] border-solid h-[349px] left-[364px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[4338px] w-[293px]" />
-      <div className="absolute bg-[#f0fbff] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[1031px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[748px] w-[170px]" />
-      <div className="absolute bg-[#fff2fa] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[404px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[371px] w-[114px]" />
-      <div className="absolute bg-[#fff2fa] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[143px] left-[662px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[886px] w-[294px]" />
-      <div className="absolute bg-[#fff2fa] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[213px] left-[662px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[3972px] w-[294px]" />
-      <div className="absolute border-[0.5px] border-[rgba(9,38,63,0.5)] border-solid h-[349px] left-[677px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[4338px] w-[294px]" />
-      <div className="absolute bg-[#fff2fa] border-[0.5px] border-[rgba(0,0,0,0.2)] border-solid h-[76px] left-[1201px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.15)] top-[748px] w-[171px]" />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[119.5px] not-italic text-[#09263f] text-[20px] text-center top-[387px] w-[43px]">{course?.hoursCount ?? 675}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[75px] not-italic text-[#09263f] text-[20px] top-[925px] w-[74px]">195 hrs</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[197px] not-italic text-[#09263f] text-[14px] text-center top-[4016px] whitespace-nowrap">{`Classroom & Bootcamp`}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[223px] not-italic text-[#09263f] text-[16px] text-center top-[4365px] whitespace-nowrap">{`Classroom & Bootcamp`}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[0] left-[197.5px] not-italic text-[#09263f] text-[0px] text-center top-[4415px] whitespace-nowrap">
-        <span className="leading-[normal] text-[24px]">₹ 68,440/-</span>
-        <span className="leading-[normal] text-[16px]">&nbsp;</span>
-        <span className="leading-[normal] text-[13px]">including taxes</span>
-      </p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[0] left-[510px] not-italic text-[#09263f] text-[0px] text-center top-[4415px] whitespace-nowrap">
-        <span className="leading-[normal] text-[24px]">₹ 59,000/-</span>
-        <span className="leading-[normal] text-[16px]">&nbsp;</span>
-        <span className="leading-[normal] text-[13px]">including taxes</span>
-      </p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[0] left-[827px] not-italic text-[#09263f] text-[0px] text-center top-[4415px] whitespace-nowrap">
-        <span className="leading-[normal] text-[24px]">₹ 53,100/-</span>
-        <span className="leading-[normal] text-[16px]">&nbsp;</span>
-        <span className="leading-[normal] text-[13px]">including taxes</span>
-      </p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1116px] not-italic text-[20px] text-[#09263f] text-center top-[691px] w-[64px]">₹48k</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[233px] not-italic text-[#09263f] text-[20px] text-center top-[387px] w-[30px]">{course?.classesCount ?? 65}</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1286px] not-italic text-[#09263f] text-[20px] text-center top-[688px] whitespace-nowrap">8 mo</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[347px] not-italic text-[#09263f] text-[20px] text-center top-[387px] w-[22px]">{course?.modules?.length ?? 11}</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[383px] not-italic text-[#09263f] text-[20px] top-[925px] w-[77px]">422 hrs</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[504.5px] not-italic text-[#09263f] text-[14px] text-center top-[4016px] whitespace-nowrap">Interactive Live Online</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[533.5px] not-italic text-[#09263f] text-[16px] text-center top-[4365px] whitespace-nowrap">Interactive Live Online</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1115.5px] not-italic text-[#09263f] text-[20px] text-center top-[774px] w-[33px]">9.6</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[460.5px] not-italic text-[#09263f] text-[20px] text-center top-[387px] w-[59px]">20K+</p>
-      <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[690px] not-italic text-[#09263f] text-[20px] top-[925px] w-[85px]">8 Weeks</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[809.5px] not-italic text-[#09263f] text-[14px] text-center top-[4016px] whitespace-nowrap">Blended eLearning</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[832.5px] not-italic text-[#09263f] text-[16px] text-center top-[4365px] whitespace-nowrap">Blended eLearning</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[1286px] not-italic text-[#09263f] text-[20px] text-center top-[764px] w-[88px]">20K+</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[119px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[413px] w-[74px]">Total Hours</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[75px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] top-[954px] w-[89px]">Live instruction</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[75px] not-italic text-[#09263f] text-[13px] top-[977px] w-[237px]">65 classes × 3 hrs + 20 hrs eLearning</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[197px] not-italic text-[13px] text-[rgba(9,38,63,0.5)] text-center top-[4041px] w-[280px]">An immersive, in-person learning experience designed to accelerate skill development through intensive, hands-on training and expert mentorship. It bridges the gap between theory and real-world application, equipping learners with the expertise and skills needed to succeed in today’s dynamic professional landscape.</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[95px] not-italic text-[#09263f] text-[13px] top-[4486px] whitespace-nowrap">Fees payable in up to 3 installment​s</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[408px] not-italic text-[#09263f] text-[13px] top-[4486px] whitespace-nowrap">Fees payable in up to 3 installment​s</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[721px] not-italic text-[#09263f] text-[13px] top-[4486px] whitespace-nowrap">Fees payable in up to 3 installment​s</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[95px] not-italic text-[#09263f] text-[13px] top-[4511px] w-[249px]">0% Interest EMI – Pay in Easy Installments (though education financing partners)</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[408px] not-italic text-[#09263f] text-[13px] top-[4511px] w-[249px]">0% Interest EMI – Pay in Easy Installments (though education financing partners)</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[721px] not-italic text-[#09263f] text-[13px] top-[4511px] w-[249px]">0% Interest EMI – Pay in Easy Installments (though education financing partners)</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[95px] not-italic text-[#09263f] text-[13px] top-[4567px] whitespace-nowrap">Fees payable in up to 3 installment​s</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[408px] not-italic text-[#09263f] text-[13px] top-[4567px] whitespace-nowrap">Fees payable in up to 3 installment​s</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[721px] not-italic text-[#09263f] text-[13px] top-[4567px] whitespace-nowrap">Fees payable in up to 3 installment​s</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1115.5px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[714px] w-[111px]">Starting price</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[233.5px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[413px] w-[77px]">Live classes</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1287.5px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[714px] w-[115px]">Program duration</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[347.5px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[413px] w-[55px]">Modules</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[383px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] top-[954px] w-[60px]">Self-study</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[383px] not-italic text-[#09263f] text-[13px] top-[977px] w-[228px]">8–10 hrs/week · 38 hrs assessments</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[504px] not-italic text-[13px] text-[rgba(9,38,63,0.5)] text-center top-[4041px] w-[244px]">Blend the dynamic experience of traditional classroom with engaging, real-time interactive sessions, carefully tailored to meet the demand of busy schedules. This innovative approach ensures effective learning, fostering a deeper understanding and retention of knowledge.</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1116px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[800px] w-[82px]">Avg rating</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[461px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[413px] w-[44px]">Alumni</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[690px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] top-[954px] w-[120px]">Placement readiness</p>
-      <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[690px] not-italic text-[#09263f] text-[13px] top-[977px] w-[163px]">Post certification program</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[809.5px] not-italic text-[13px] text-[rgba(9,38,63,0.5)] text-center top-[4041px] w-[267px]">Fuse the rich atmosphere of classroom instruction with the flexibility and accessibility of eLearning modules, meticulously integrated to accommodate learning preferences. This unique blend ensures an optimal learning experience, empowering participants to delve into subjects deeply.</p>
-      <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1287px] not-italic text-[12px] text-[rgba(9,38,63,0.5)] text-center top-[790px] w-[66px]">Alumni</p>
+        {/* Horizontal Stats Bar (Desktop) */}
+        <div className="absolute left-[63px] top-[371px] w-[1314px] flex gap-4 z-10">
+          {[
+            { label: "₹48k", sub: "Starting price", bg: "#d2faf0" },
+            { label: "8 mo", sub: "Program duration", bg: "#fffad2" },
+            { label: "9.6", sub: "Avg rating", bg: "#f0fbff" },
+            { label: "20K+", sub: "Alumni", bg: "#fff2fa" },
+          ].map((s, i) => (
+            <div key={i} className="flex-1 flex flex-col items-center justify-center rounded-[20px] py-6 shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-[#09263f]/5" style={{ background: s.bg }}>
+              <span className="font-bold text-[#09263f] text-[28px] leading-tight">{s.label}</span>
+              <span className="text-[14px] text-[#09263f]/50 mt-1 font-semibold uppercase tracking-wider">{s.sub}</span>
+            </div>
+          ))}
+        </div>
+
+
       <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[195px] not-italic text-[14px] text-[rgba(9,38,63,0.5)] text-center top-[761px] whitespace-nowrap">Curriculum</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[54px] not-italic text-[14px] text-[rgba(9,38,63,0.5)] top-[1512px] whitespace-nowrap">11 modules · 600+ hours · no prior coding experience needed</p>
       <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[54px] not-italic text-[14px] text-[rgba(9,38,63,0.5)] top-[1950px] whitespace-nowrap">6 capstone projects and 20+ graded assignments modelled on real business problems from banking, e-commerce, telecom, and retail.</p>
@@ -2208,63 +2199,42 @@ export default function Pdp(props: PdpProps) {
         </div>
       </div>
 
-      {/* Sticky Sidebar Container */}
-      <div className="absolute left-[967px] pointer-events-none top-[143px] w-[407px] z-20" style={{ height: "calc(6504px - 143px)" }}>
-        <div className="sticky pointer-events-auto top-[100px]">
-          <Group10 course={course} />
-          
-          {/* Includes Section */}
-          <div className="absolute contents left-0 top-0">
-            <div className="absolute bg-white h-[382px] left-[64px] rounded-[15px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] top-[687px] w-[343px]" />
-            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[86px] not-italic text-[10px] text-[rgba(0,0,0,0.5)] top-[719px] whitespace-nowrap">Includes</p>
-            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[111px] not-italic text-[#09263f] text-[11px] top-[733px] whitespace-nowrap">65 hrs on-demand video</p>
-            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[111px] not-italic text-[#09263f] text-[11px] top-[757px] whitespace-nowrap">49 downloadable resources</p>
-            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[111px] not-italic text-[#09263f] text-[11px] top-[781px] whitespace-nowrap">{`Access on mobile & TV`}</p>
-            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[111px] not-italic text-[#09263f] text-[11px] top-[805px] whitespace-nowrap">6 capstone projects</p>
-            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[111px] not-italic text-[#09263f] text-[11px] top-[829px] whitespace-nowrap">Certificate of completion</p>
-            <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[111px] not-italic text-[#09263f] text-[11px] top-[853px] whitespace-nowrap">8 weeks placement support</p>
-            
-            <div className="absolute h-0 left-[87px] top-[784px] w-[298px]">
-              <div className="absolute inset-[-1px_0_0_0]">
-                <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 298 1">
-                  <line id="Line 18" stroke="var(--stroke-0, #09263F)" strokeOpacity="0.2" x2="298" y1="0.5" y2="0.5" />
-                </svg>
-              </div>
+        {/* Course Info Banner (Desktop) */}
+        <div className="absolute left-[63px] top-[550px] w-[1314px] bg-white rounded-[24px] p-8 shadow-[0_12px_40px_rgba(0,0,0,0.1)] flex items-center justify-between border border-[#09263f]/5 z-10">
+          <div>
+            <h3 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[20px] mb-6">Includes</h3>
+            <div className="grid grid-cols-2 gap-x-12 gap-y-4">
+              {[
+                { icon: <LineMdPlay />, text: "417 hrs on-demand video" },
+                { icon: <MaterialSymbolsDownloadRounded />, text: "49 downloadable resources" },
+                { icon: <IcBaselineTv />, text: "Access on mobile & TV" },
+                { icon: <MingcuteTimeLine />, text: "6 capstone projects" },
+                { icon: <MaterialSymbolsStarOutlineRounded />, text: "Certificate of completion" },
+                { icon: <IxSupport />, text: "8 weeks placement support" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <div className="text-[#09263f]/70 shrink-0">{item.icon}</div>
+                  <span className="text-[15px] text-[#09263f]/80 font-medium">{item.text}</span>
+                </div>
+              ))}
             </div>
-
-            <div className="absolute bg-[#ffd700] h-[40px] left-[86px] rounded-[109px] top-[899px] w-[299px]" />
-            <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[235.5px] not-italic text-[#09263f] text-[12px] text-center top-[911px] w-[187px]">Download Syllabus</p>
-            
-            <div className="absolute border border-[rgba(9,38,63,0.5)] border-solid h-[40px] left-[86px] rounded-[109px] top-[949px] w-[299px]" />
-            <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[235.5px] not-italic text-[#09263f] text-[12px] text-center top-[961px] w-[187px]">Add to Wishlist</p>
-
-            <div className="absolute bg-[#ffd700] h-[40px] left-[86px] rounded-[109px] top-[999px] w-[299px]" />
-            <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[235.5px] not-italic text-[#09263f] text-[12px] text-center top-[1011px] w-[187px]">Sign up for Free Demo</p>
-
-            {/* Icons adjusted for relative container */}
-            <div className="absolute left-[80px] size-[22px] top-[733px]"><LineMdPlay /></div>
-            <div className="absolute left-[86px] size-[19px] top-[757px]"><MaterialSymbolsDownloadRounded /></div>
-            <div className="absolute left-[88px] size-[15px] top-[781px]"><IcBaselineTv /></div>
-            <div className="absolute left-[88px] size-[16px] top-[805px]"><MingcuteTimeLine /></div>
-            <div className="absolute left-[86px] size-[20px] top-[829px]"><MaterialSymbolsStarOutlineRounded /></div>
-            <div className="absolute left-[88px] size-[16px] top-[853px]"><IxSupport /></div>
           </div>
 
-          <div className="absolute left-0 top-[1085px]">
-            <Group9 />
+          <div className="flex flex-col gap-3 w-[300px]">
+            <Link href="#syllabus" className="flex items-center justify-center bg-[#ffd700] h-[52px] rounded-full font-bold text-[#09263f] text-[15px] shadow-sm">
+              Download Syllabus
+            </Link>
+            <button className="flex items-center justify-center bg-white h-[52px] rounded-full font-bold text-[#09263f] text-[15px] border border-[#09263f]/20 shadow-sm">
+              Add to Wishlist
+            </button>
+            <Link href="#demo" className="flex items-center justify-center bg-[#19cf9e] h-[52px] rounded-full font-bold text-white text-[15px] shadow-sm">
+              Sign up for Free Demo
+            </Link>
           </div>
         </div>
-      </div>
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[81.5px] not-italic text-[#09263f] text-[14px] text-center top-[761px] whitespace-nowrap">Overview</p>
-      <div className="absolute bg-[#09263f] h-[3px] left-[48px] rounded-[21px] top-[781px] w-[66px]" />
-      <div className="absolute h-[157px] left-[47px] top-[552px] w-[601px]" data-name="1 97">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={img197.src} />
-      </div>
-      <div className="absolute bg-[#ffd700] h-[44px] left-[63px] rounded-[109px] top-[497px] w-[193px]" />
-      <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[164.5px] not-italic text-[#09263f] text-[14px] text-center top-[511px] whitespace-nowrap">Sign up for Demo</p>
       </div>{/* /absolute canvas */}
       <div className="w-full">
-        <Frame offices={offices} footerLinks={footerLinks} footerCities={footerCities} siteSettings={siteSettings} />
+        <GlobalFooter offices={offices} footerLinks={footerLinks} footerCities={footerCities} siteSettings={siteSettings} />
       </div>
       </div>{/* /desktop layout */}
     </div>

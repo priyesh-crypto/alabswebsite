@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import UpcomingBatches from "@/components/figma-pages/UpcomingBatches/UpcomingBatches";
+import UpcomingBatches from "@/features/upcoming-batches/UpcomingBatches";
 import {
   getBatches,
   getCategories,

@@ -134,6 +134,20 @@ export const relatedArticlesSchema = z.object({
   viewAllHref: z.string().default("/blog"),
 });
 
+// ---- About page section schemas ---------------------------------------------
+
+export const aboutHeroSchema = z.object({
+  headline: richString,
+  subtitle: z.string().default(""),
+});
+
+// ---- Contact page section schemas -------------------------------------------
+
+export const contactHeroSchema = z.object({
+  headline: richString,
+  subtitle: z.string().default(""),
+});
+
 // ---- PDP section schemas ----------------------------------------------------
 
 export const pdpOverviewSchema = z.object({
@@ -184,6 +198,10 @@ export type SectionTypeId =
   | "hero_simple"
   | "courses_grid"
   | "related_articles"
+  // About
+  | "about_hero"
+  // Contact
+  | "contact_hero"
   // PDP
   | "pdp_hero"
   | "pdp_overview"
@@ -304,6 +322,22 @@ export const SECTION_REGISTRY: SectionDef[] = [
     schema: relatedArticlesSchema,
     defaultContent: relatedArticlesSchema.parse({}),
     pageScope: ["courses", "course/"],
+  },
+  // About
+  {
+    type: "about_hero",
+    label: "About Hero",
+    schema: aboutHeroSchema,
+    defaultContent: aboutHeroSchema.parse({}),
+    pageScope: ["about"],
+  },
+  // Contact
+  {
+    type: "contact_hero",
+    label: "Contact Hero",
+    schema: contactHeroSchema,
+    defaultContent: contactHeroSchema.parse({}),
+    pageScope: ["contact"],
   },
   // PDP
   {

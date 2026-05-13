@@ -7,6 +7,16 @@ export function ok<T>(data: T, init?: ResponseInit): NextResponse<T> {
   return NextResponse.json(data, init);
 }
 
+export function withCache(init: ResponseInit = {}, seconds = 60): ResponseInit {
+  return {
+    ...init,
+    headers: {
+      ...init.headers,
+      "Cache-Control": `public, s-maxage=${seconds}, stale-while-revalidate=${seconds * 2}`,
+    },
+  };
+}
+
 export function fail(
   status: number,
   code: string,

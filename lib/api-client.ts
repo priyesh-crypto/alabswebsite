@@ -23,7 +23,9 @@ async function get<T>(path: string, opts: FetchOpts = {}): Promise<T | null> {
   const url = `${baseUrl()}${path}`;
   try {
     const res = await fetch(url, {
-      next: opts.noStore ? { revalidate: 0 } : { revalidate: opts.revalidate ?? 60 },
+      next: opts.noStore
+        ? { revalidate: 0 }
+        : { revalidate: opts.revalidate ?? 60, tags: ["public-data"] },
     });
     if (res.status === 404) return null;
     if (!res.ok) {

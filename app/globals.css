@@ -125,7 +125,27 @@ li {
   --sidebar-ring: oklch(0.439 0 0);
 }
 
+:root {
+  --alabs-primary: #19CF9E;
+  --alabs-primary-light: #1DE5B5;
+  --alabs-navy: #09263F;
+  --alabs-yellow: #FFD700;
+  --alabs-blue: #07B3E7;
+  --alabs-darkblue: #094C80;
+  --alabs-lightblue: #2096CB;
+  --alabs-bg-light: #F4FAFA;
+}
+
 @theme inline {
+  --color-alabs-primary: var(--alabs-primary);
+  --color-alabs-primary-light: var(--alabs-primary-light);
+  --color-alabs-navy: var(--alabs-navy);
+  --color-alabs-yellow: var(--alabs-yellow);
+  --color-alabs-blue: var(--alabs-blue);
+  --color-alabs-darkblue: var(--alabs-darkblue);
+  --color-alabs-lightblue: var(--alabs-lightblue);
+  --color-alabs-bg-light: var(--alabs-bg-light);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

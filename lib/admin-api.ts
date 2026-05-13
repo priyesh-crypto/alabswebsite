@@ -6,7 +6,7 @@
  * any of them is a silent security/cache bug. Centralizing keeps it boring.
  */
 import { NextRequest, NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { ZodError, type ZodType } from "zod";
 import { handleError, forbidden, unauthorized, ok } from "@/lib/api";
 import { readSession, type AdminClaims } from "@/lib/auth";
@@ -84,6 +84,8 @@ export function parseListQuery(req: NextRequest): ListQuery {
 const DEFAULT_REVALIDATE_PATHS = ["/", "/courses", "/about", "/contact", "/for-corporates"];
 
 export function revalidatePublic(extra: string[] = []): void {
+  console.log(`[cache] Revalidating public data (tag: public-data) and paths: ${DEFAULT_REVALIDATE_PATHS.concat(extra).join(", ")}`);
+  revalidateTag("public-data", "max");
   const seen = new Set<string>();
   [...DEFAULT_REVALIDATE_PATHS, ...extra].forEach(p => {
     if (!seen.has(p)) {

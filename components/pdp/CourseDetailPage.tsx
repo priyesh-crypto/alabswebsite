@@ -1,6 +1,20 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { 
+  Play, 
+  FileDown, 
+  Tv, 
+  Briefcase, 
+  Award, 
+  Headset, 
+  Star,
+  Download,
+  Heart,
+  ExternalLink,
+  Quote
+} from "lucide-react";
+import imgRahul from "@/features/pdp/0effb68a268a8b7912b8aae4d984808edb6a835d.png";
 import type {
   Batch,
   Certification,
@@ -125,6 +139,10 @@ function obj<T extends object>(v: unknown, fallback: T): T {
   return v && typeof v === "object" && !Array.isArray(v) ? (v as T) : fallback;
 }
 
+function resolvePath(obj: any, path: string) {
+  return path.split('.').reduce((o, p) => (o ? o[p] : undefined), obj);
+}
+
 function inr(paise: number | null | undefined): string {
   if (paise == null) return "—";
   const r = paise / 100;
@@ -158,14 +176,19 @@ function Check() {
   );
 }
 
-const SECTION_CONTAINER = "max-w-[1200px] mx-auto px-4 lg:px-8";
-const SECTION_PAD = "py-16 lg:py-24";
+const SECTION_CONTAINER = "max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8";
+const SECTION_PAD = "py-10 sm:py-12 lg:py-20";
 
 // ============================================================
 // Main component
 // ============================================================
 
-export default function CourseDetailPage({ course }: { course: PdpCourse }) {
+export default function CourseDetailPage({ course, pageBlocks }: { course: PdpCourse; pageBlocks?: any }) {
+  function block(key: string): any | undefined {
+    const blocks = pageBlocks?.blocks as Record<string, unknown> | undefined;
+    if (!blocks) return undefined;
+    return resolvePath(blocks, key) ?? blocks[key];
+  }
   const modules = course.modules ?? [];
   const pricing = course.pricing ?? [];
   const projects = course.projects ?? [];
@@ -178,9 +201,10 @@ export default function CourseDetailPage({ course }: { course: PdpCourse }) {
     safeArray<StatTile>(course.pdpStatTiles).length > 0
       ? safeArray<StatTile>(course.pdpStatTiles)
       : [
-          { label: "Total Hours", value: String(course.hoursCount ?? "—") },
-          { label: "Live Classes", value: String(course.classesCount ?? "—") },
-          { label: "Modules", value: String(modules.length) },
+          { label: "Total hours", value: String(course.hoursCount ?? "—") },
+          { label: "Live classes", value: String(course.classesCount ?? "—") },
+          { label: "Modules", value: String(modules.length || "—") },
+          { label: "Alumni", value: course.pdpAlumniText ?? (course.alumniCount ? `${Math.round(course.alumniCount / 1000)}K+` : "20K+") },
         ];
 
   const cities = (course.pdpCities ?? []).length
@@ -221,62 +245,76 @@ export default function CourseDetailPage({ course }: { course: PdpCourse }) {
       : (course.keySkills ?? []);
 
   const rating = course.rating ? Number(course.rating) : 9.6;
-  const ratingScale = course.pdpRatingScale ?? 10;
   const alumniText = course.pdpAlumniText ?? (course.alumniCount ? `${course.alumniCount.toLocaleString()}+` : "20,000+");
-  const starsTotal = course.pdpStarsTotal ?? 675;
 
   return (
-    <div className="bg-white text-[#09263f] font-sans">
-      <HeroSection
-        course={course}
-        pricing={pricing}
-        statTiles={statTiles}
-        cities={cities}
-        rating={rating}
-        ratingScale={ratingScale}
-        alumniText={alumniText}
-        starsTotal={starsTotal}
-      />
+    <div className="bg-white text-[#09263f] font-sans pb-24 lg:pb-0">
+      {/* 2-col area — wraps just the top of the page (Hero + StickyAnchorNav +
+          Overview + Curriculum). Sticky sidebar runs alongside this section.
+          Capstone and everything below break out to full width since the
+          sidebar's natural height ends around the Curriculum. */}
+      <div className="max-w-[1280px] mx-auto px-4 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 lg:gap-12">
+          <main className="min-w-0">
+            <HeroSection
+              course={course}
+              statTiles={statTiles}
+              rating={rating}
+              alumniText={alumniText}
+            />
 
-      <StickyAnchorNav />
+            {/* Mobile/tablet: sidebar reflows here, right after the hero text */}
+            <div className="lg:hidden mb-8">
+              <PdpSidebar
+                course={course}
+                pricing={pricing}
+                cities={cities}
+                rating={rating}
+                alumniText={alumniText}
+                testimonialStrip={testimonialStrip}
+              />
+            </div>
 
-      <OverviewSection course={course} pricing={pricing} highlights={overviewHighlights} rating={rating} alumniText={alumniText} />
+            <StickyAnchorNav />
 
-      <CurriculumSection modules={modules} course={course} summary={curriculumSummary} />
+            <OverviewSection course={course} highlights={overviewHighlights} pageBlocks={pageBlocks} />
+            <CurriculumSection modules={modules} course={course} summary={curriculumSummary} pageBlocks={pageBlocks} />
+          </main>
 
-      <TestimonialStrip items={testimonialStrip} />
+          {/* Desktop sticky sidebar */}
+          <aside className="hidden lg:block lg:sticky lg:top-24 lg:self-start lg:pt-6">
+            <PdpSidebar
+              course={course}
+              pricing={pricing}
+              cities={cities}
+              rating={rating}
+              alumniText={alumniText}
+              testimonialStrip={testimonialStrip}
+            />
+          </aside>
+        </div>
+      </div>
 
+      {/* Full-width sections — Capstone onwards extend across the whole page */}
       <CapstoneProjects items={projectDomains} fallback={projects} />
-
       <ToolsGrid tools={tools} />
-
       <WhoShouldJoinSection items={whoShouldJoin} />
-
       <JobRolesSection roles={jobRoles} />
-
       <KeySkillsSection skills={keySkills} />
-
       <LearningModesSection modes={learningModes} />
-
       <CourseFeesSection pricing={pricing} />
-
       <CertificationSection data={certData} certifications={certifications} />
-
       <CareerSupportSection data={careerSupport} />
-
       <HowToApplySection steps={howToApply} />
-
+      <TestimonialStrip items={testimonialStrip} />
       <StudentStoriesSection stories={studentStories} />
-
       <RelatedArticlesSection articles={relatedArticles} />
-
       <CtaBannerSection data={ctaBanner} />
-
       <ContactSection data={contactBlock} courseId={course.id} />
-
       <FaqSection items={faqsData} />
-
       <BatchesTable batches={batches} />
+
+      <MobileStickyCta />
     </div>
   );
 }
@@ -285,185 +323,341 @@ export default function CourseDetailPage({ course }: { course: PdpCourse }) {
 // Section 1 — Hero
 // ============================================================
 
-function HeroSection({
+/**
+ * Sidebar stack with 4 cards (Pricing / Stats / Includes / Testimonial).
+ * Rendered ONCE — inside the desktop aside (sticky) or inside the mobile
+ * inline block below the hero text. Owns its own pricing-tab state.
+ */
+function PdpSidebar({
   course,
   pricing,
-  statTiles,
   cities,
   rating,
-  ratingScale,
   alumniText,
-  starsTotal,
+  testimonialStrip,
 }: {
   course: PdpCourse;
   pricing: CoursePricing[];
-  statTiles: StatTile[];
   cities: string[];
   rating: number;
-  ratingScale: number;
   alumniText: string;
-  starsTotal: number;
+  testimonialStrip: TestimonialStripItem[];
 }) {
-  const [mode, setMode] = useState<"classroom" | "online" | "elearning">("online");
-  const activePricing =
-    pricing.find((p) => p.mode === mode) ?? pricing[0];
+  const [mode, setMode] = useState<"classroom" | "online" | "elearning">("classroom");
+  const activePricing = pricing.find((p) => p.mode === mode) ?? pricing[0];
+  const modeLabels: Record<"classroom" | "online" | "elearning", string> = {
+    classroom: "Classroom",
+    online: "Online",
+    elearning: "eLearning",
+  };
+  const allModes: Array<"classroom" | "online" | "elearning"> = ["classroom", "online", "elearning"];
+
+  const featured = testimonialStrip[0] ?? {
+    quote: "The structure was exactly what I needed. I went from zero Python to deploying an ML model within 8 months. The placement support helped me crack my first data scientist role.",
+    name: "Rahul Kapoor",
+    role: "Data Scientist",
+    company: "Flipkart",
+    stars: 5,
+    photoUrl: undefined,
+  };
+
+  const sidebarStats: Array<{ label: string; value: string; bg: string; color: string }> = [
+    { label: "Starting price", value: pricing[0]?.price ? `₹${Math.round(pricing[0].price / 100 / 1000)}k` : "₹48k", bg: "#E8F8F1", color: "#19cf9e" },
+    { label: "Program duration", value: course.durationMonths ? `${course.durationMonths} mo` : "8 mo", bg: "#FFF5DA", color: "#D89A00" },
+    { label: "Avg rating", value: `${Math.min(10, rating).toFixed(1)}`, bg: "#E6F4FB", color: "#07b3e7" },
+    { label: "Alumni", value: alumniText, bg: "#FCE7F3", color: "#DB2777" },
+  ];
+
+  const sidebarIncludes: Array<{ icon: React.ReactNode; label: string }> = [
+    { icon: <Play className="size-5 text-[#09263f]/60" />, label: `${course.hoursCount ?? 65} hrs on-demand video` },
+    { icon: <FileDown className="size-5 text-[#09263f]/60" />, label: "49 downloadable resources" },
+    { icon: <Tv className="size-5 text-[#09263f]/60" />, label: "Access on mobile & TV" },
+    { icon: <Briefcase className="size-5 text-[#09263f]/60" />, label: `${course.modules?.length ?? 6} capstone projects` },
+    { icon: <Award className="size-5 text-[#09263f]/60" />, label: "Certificate of completion" },
+    { icon: <Headset className="size-5 text-[#09263f]/60" />, label: "8 weeks placement support" },
+  ];
 
   return (
-    <>
-    <section className="bg-gradient-to-br from-[#F7F8FA] to-white border-b border-[#E5E7EB]">
-      <div className={`${SECTION_CONTAINER} ${SECTION_PAD}`}>
-        {/* pb-24 on mobile to leave room for sticky CTA */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-10 pb-20 lg:pb-0">
-          {/* Left */}
-          <div>
-            <p className="text-sm font-semibold text-[#07b3e7] uppercase tracking-wide mb-3">
-              {course.category.name}
-            </p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#09263f] mb-4">
-              {course.title}
-            </h1>
-            <p className="text-base md:text-lg text-[#475569] mb-6 max-w-2xl">
-              {course.shortDesc}
-            </p>
-
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mb-8">
-              <div className="flex items-center gap-2">
-                <Stars value={Math.min(5, rating / 2)} />
-                <span className="font-semibold">
-                  {rating}/{ratingScale}
-                </span>
-              </div>
-              <div className="text-sm text-[#475569]">
-                <span className="font-semibold text-[#09263f]">{starsTotal}</span> Reviews
-              </div>
-              <div className="text-sm text-[#475569]">
-                <span className="font-semibold text-[#09263f]">{alumniText}</span> Alumni
-              </div>
+    <div className="flex flex-col gap-5 lg:gap-6">
+      {/* 1. PRICING CARD */}
+      <div className="bg-white rounded-[24px] border border-[#09263f]/10 shadow-[0_12px_40px_rgba(0,0,0,0.08)] overflow-hidden">
+        {/* Course image */}
+        <div className="aspect-[16/10] bg-[#09263f] relative">
+          {course.heroImageUrl || course.thumbnailUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={course.heroImageUrl ?? course.thumbnailUrl}
+              alt={course.title}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center text-white/40 font-semibold text-sm">
+              Course Preview
             </div>
+          )}
+        </div>
 
-            <div className="grid grid-cols-3 gap-3 max-w-md">
-              {statTiles.slice(0, 3).map((tile, i) => (
-                <div
-                  key={i}
-                  className="bg-white border border-[#E5E7EB] rounded-2xl p-4 text-center shadow-sm"
-                >
-                  <div className="text-2xl font-bold text-[#09263f]">{tile.value}</div>
-                  <div className="text-xs text-[#475569] mt-1">{tile.label}</div>
-                </div>
-              ))}
+        <div className="p-5 sm:p-6">
+          {/* Price */}
+          {activePricing ? (
+            <div className="mb-4">
+              <div className="flex items-baseline gap-2 flex-wrap">
+                <span className="text-2xl sm:text-3xl font-bold text-[#09263f]">{inr(activePricing.price)}</span>
+                {activePricing.priceStruck ? (
+                  <span className="text-sm sm:text-base text-[#94A3B8] line-through">{inr(activePricing.priceStruck)}</span>
+                ) : null}
+              </div>
+              <p className="text-xs text-[#475569] mt-1">
+                {course.pdpTaxNote ?? "Inclusive of all taxes• Easy EMI available"}
+              </p>
             </div>
-          </div>
+          ) : (
+            <div className="mb-4 text-sm text-[#475569]">Contact us for pricing</div>
+          )}
 
-          {/* Right — pricing card */}
-          <aside className="bg-white rounded-2xl border border-[#E5E7EB] shadow-md p-6 h-fit">
-            <div className="flex gap-2 mb-5 bg-[#F7F8FA] p-1 rounded-xl">
-              {(["classroom", "online", "elearning"] as const).map((m) => (
+          {/* Mode tabs with inactive-EMI badges underneath */}
+          <div className="grid grid-cols-3 gap-2 mb-4">
+            {allModes.map((m) => {
+              const isActive = mode === m;
+              const p = pricing.find((pr) => pr.mode === m);
+              return (
                 <button
                   key={m}
                   type="button"
                   onClick={() => setMode(m)}
-                  className={`flex-1 text-xs font-semibold py-2 rounded-lg capitalize transition ${
-                    mode === m
-                      ? "bg-[#09263f] text-white"
-                      : "text-[#475569] hover:text-[#09263f]"
+                  className={`flex flex-col items-center justify-center rounded-xl px-2 py-2.5 transition ${
+                    isActive
+                      ? "bg-[#19cf9e] text-white font-semibold shadow-sm"
+                      : "bg-white text-[#09263f] border border-[#E5E7EB] hover:border-[#19cf9e]/50"
                   }`}
                 >
-                  {m === "elearning" ? "E-learning" : m}
-                </button>
-              ))}
-            </div>
-
-            {activePricing ? (
-              <div className="mb-5">
-                <div className="flex items-baseline gap-3">
-                  <span className="text-3xl font-bold text-[#09263f]">
-                    {inr(activePricing.price)}
+                  <span className="text-xs sm:text-[13px] font-semibold leading-tight">
+                    {modeLabels[m]}
                   </span>
-                  {activePricing.priceStruck ? (
-                    <span className="text-base text-[#94A3B8] line-through">
-                      {inr(activePricing.priceStruck)}
+                  {!isActive && p?.price ? (
+                    <span className="block w-full mt-1.5 bg-[#F7F8FA] text-[#475569] text-[9px] font-medium rounded-md px-1 py-0.5 leading-tight truncate">
+                      @{inr(p.price)}/- <span className="text-[#94A3B8]">easy EMI</span>
                     </span>
                   ) : null}
-                </div>
-                {course.pdpTaxNote && (
-                  <p className="text-xs text-[#475569] mt-1">{course.pdpTaxNote}</p>
-                )}
-                {course.pdpEmiNote && (
-                  <p className="text-xs text-[#07b3e7] font-semibold mt-1">
-                    {course.pdpEmiNote}
-                  </p>
-                )}
-              </div>
-            ) : (
-              <div className="mb-5 text-sm text-[#475569]">Contact us for pricing</div>
-            )}
+                </button>
+              );
+            })}
+          </div>
 
-            {cities.length > 0 && (
-              <div className="mb-5">
-                <p className="text-xs uppercase tracking-wide text-[#94A3B8] font-semibold mb-2">
-                  Available in
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {cities.map((c) => (
-                    <span
-                      key={c}
-                      className="text-xs font-medium bg-[#F7F8FA] text-[#09263f] px-2.5 py-1 rounded-full border border-[#E5E7EB]"
-                    >
-                      {c}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
+          {/* Cities */}
+          {cities.length > 0 && (
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-4 text-xs text-[#09263f] font-medium">
+              {cities.map((c) => (
+                <span key={c}>{c}</span>
+              ))}
+            </div>
+          )}
 
+          {/* CTAs */}
+          {course.brochureUrl ? (
+            <a
+              href={course.brochureUrl}
+              className="block w-full text-center bg-[#ffd700] text-[#09263f] font-bold py-3 rounded-full hover:brightness-95 transition mb-2"
+            >
+              Download Syllabus
+            </a>
+          ) : (
             <button
               type="button"
-              className="w-full bg-[#ffd700] text-[#09263f] font-bold py-3 rounded-xl hover:brightness-95 transition mb-2"
+              className="block w-full text-center bg-[#ffd700] text-[#09263f] font-bold py-3 rounded-full hover:brightness-95 transition mb-2"
             >
-              Sign up for Demo
+              Download Syllabus
             </button>
-            <div className="grid grid-cols-2 gap-2">
-              {course.brochureUrl ? (
-                <a
-                  href={course.brochureUrl}
-                  className="text-center text-sm font-semibold border border-[#09263f] text-[#09263f] py-2.5 rounded-xl hover:bg-[#F7F8FA] transition"
-                >
-                  Download Syllabus
-                </a>
-              ) : (
-                <button
-                  type="button"
-                  className="text-sm font-semibold border border-[#09263f] text-[#09263f] py-2.5 rounded-xl hover:bg-[#F7F8FA] transition"
-                >
-                  Download Syllabus
-                </button>
-              )}
-              <button
-                type="button"
-                className="text-sm font-semibold border border-[#09263f] text-[#09263f] py-2.5 rounded-xl hover:bg-[#F7F8FA] transition"
-              >
-                Contact Us
-              </button>
-            </div>
-          </aside>
+          )}
+          <button
+            type="button"
+            className="block w-full text-center border border-[#09263f] text-[#09263f] font-semibold py-3 rounded-full hover:bg-[#F7F8FA] transition"
+            onClick={() => {
+              const el = document.getElementById("contact");
+              el?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Contact Us
+          </button>
         </div>
       </div>
-    </section>
 
-    {/* Mobile sticky CTA — hidden on lg+ where the pricing card is visible */}
-    <div className="fixed bottom-0 inset-x-0 z-50 p-3 bg-white border-t border-[#E5E7EB] shadow-lg lg:hidden">
+      {/* 2. STATS CARD — pastel 2×2 grid */}
+      <div className="grid grid-cols-2 gap-3 sm:gap-4">
+        {sidebarStats.map((s, i) => (
+          <div key={i} className="rounded-2xl p-4 sm:p-5 text-center" style={{ backgroundColor: s.bg }}>
+            <div className="text-2xl sm:text-3xl font-bold leading-tight" style={{ color: s.color }}>
+              {s.value}
+            </div>
+            <div className="text-xs text-[#475569] mt-1.5">{s.label}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* 3. INCLUDES CARD */}
+      <div className="bg-white rounded-[24px] border border-[#09263f]/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-5 sm:p-6">
+        <h3 className="text-xs uppercase tracking-wider text-[#475569] font-semibold mb-4">Includes</h3>
+        <ul className="flex flex-col gap-3.5 mb-6 pb-6 border-b border-[#E5E7EB]">
+          {sidebarIncludes.map((it, i) => (
+            <li key={i} className="flex items-center gap-3">
+              {it.icon}
+              <span className="text-sm text-[#09263f]/85 font-medium">{it.label}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="flex flex-col gap-2.5">
+          {course.brochureUrl ? (
+            <a href={course.brochureUrl} className="flex items-center justify-center bg-[#ffd700] h-[48px] rounded-full font-bold text-[#09263f] text-sm">
+              Download Syllabus
+            </a>
+          ) : (
+            <button type="button" className="flex items-center justify-center bg-[#ffd700] h-[48px] rounded-full font-bold text-[#09263f] text-sm">
+              Download Syllabus
+            </button>
+          )}
+          <button type="button" className="flex items-center justify-center bg-white h-[48px] rounded-full font-bold text-[#09263f] text-sm border border-[#09263f]/15">
+            Add to Wishlist
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              const el = document.getElementById("contact");
+              el?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="flex items-center justify-center bg-[#19cf9e] h-[48px] rounded-full font-bold text-white text-sm"
+          >
+            Sign up for Free Demo
+          </button>
+        </div>
+      </div>
+
+      {/* 4. TESTIMONIAL CARD */}
+      <div className="bg-white rounded-[24px] border border-[#09263f]/10 shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-5 sm:p-6 relative">
+        <Quote className="size-7 text-[#09263f]/30 mb-2" />
+        <p className="text-[#09263f]/85 text-sm leading-relaxed mb-5">
+          {featured.quote}
+        </p>
+        <div className="flex items-center gap-3">
+          <div className="size-11 rounded-full overflow-hidden border-2 border-white shadow-sm bg-[#19cf9e]">
+            {featured.photoUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={featured.photoUrl} alt={featured.name} className="size-full object-cover" />
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={imgRahul.src} alt={featured.name} className="size-full object-cover" />
+            )}
+          </div>
+          <div className="min-w-0">
+            <p className="text-sm font-bold text-[#09263f] truncate">{featured.name}</p>
+            <p className="text-[11px] text-[#09263f]/55 truncate">
+              {[featured.role, featured.company].filter(Boolean).join(" @ ")}
+            </p>
+            <div className="flex gap-0.5 mt-1">
+              {Array.from({ length: featured.stars ?? 5 }).map((_, i) => (
+                <Star key={i} className="size-3 fill-[#ffd700] text-[#ffd700]" />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+}
+
+// ============================================================
+// Hero — text content only (title / sub / rating / 4-stat row / CTA).
+// The sidebar (Pricing/Stats/Includes/Testimonial) lives in the outer
+// 2-col grid, rendered by CourseDetailPage; this keeps a single source
+// of truth and removes duplication.
+// ============================================================
+
+function HeroSection({
+  course,
+  statTiles,
+  rating,
+  alumniText,
+}: {
+  course: PdpCourse;
+  statTiles: StatTile[];
+  rating: number;
+  alumniText: string;
+}) {
+  const leftStats: Array<{ label: string; value: string; bg: string }> = (statTiles.length >= 4 ? statTiles : [
+    { label: "Total hours", value: String(course.hoursCount ?? "—") },
+    { label: "Live classes", value: String(course.classesCount ?? "—") },
+    { label: "Modules", value: String(course.modules?.length || "—") },
+    { label: "Alumni", value: alumniText },
+  ]).slice(0, 4).map((s, i) => ({
+    label: String(s.label),
+    value: String(s.value),
+    bg: ["#d2faf0", "#fffad2", "#f0fbff", "#fff2fa"][i % 4]!,
+  }));
+
+  return (
+    <section className="bg-white pt-6 lg:pt-4 pb-8 lg:pb-10">
+      <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold leading-tight text-[#09263f] mb-3">
+        {course.title}
+      </h1>
+      <p className="text-sm sm:text-base lg:text-lg text-[#475569] mb-5 leading-relaxed max-w-2xl">
+        {course.shortDesc}
+      </p>
+
+      {/* Rating */}
+      <div className="flex flex-wrap items-center gap-2 mb-6">
+        <Stars value={Math.min(5, rating / 2)} size={14} />
+        <span className="text-sm font-semibold text-[#09263f]">
+          {Math.min(5, rating / 2).toFixed(1)}/5
+        </span>
+        <span className="text-sm text-[#475569]">({alumniText} alumni)</span>
+      </div>
+
+      {/* Course-capability stat row */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 lg:gap-4 mb-8 max-w-2xl">
+        {leftStats.map((s, i) => (
+          <div
+            key={i}
+            className="flex flex-col items-center justify-center rounded-[20px] py-4 px-3 shadow-sm border border-[#09263f]/5"
+            style={{ background: s.bg }}
+          >
+            <span className="font-bold text-[#09263f] text-lg lg:text-xl leading-tight">{s.value}</span>
+            <span className="text-[10px] lg:text-[11px] text-[#09263f]/50 mt-1 font-semibold uppercase tracking-wider text-center">{s.label}</span>
+          </div>
+        ))}
+      </div>
+
       <button
         type="button"
-        className="w-full bg-[#ffd700] text-[#09263f] font-bold py-3.5 rounded-xl hover:brightness-95 transition text-base"
+        className="hidden lg:inline-flex items-center justify-center bg-[#19cf9e] text-white font-bold px-8 py-3.5 rounded-full hover:brightness-95 transition text-base shadow-sm"
         onClick={() => {
           const el = document.getElementById("contact");
           el?.scrollIntoView({ behavior: "smooth" });
         }}
       >
-        Sign up for Demo
+        Sign Up for Demo
+      </button>
+    </section>
+  );
+}
+
+// ============================================================
+// Mobile sticky CTA bar — visible <lg only.
+// ============================================================
+
+function MobileStickyCta() {
+  return (
+    <div className="fixed bottom-0 inset-x-0 z-50 p-3 bg-white border-t border-[#E5E7EB] shadow-lg lg:hidden">
+      <button
+        type="button"
+        className="w-full bg-[#19cf9e] text-white font-bold py-3.5 rounded-full hover:brightness-95 transition text-base"
+        onClick={() => {
+          const el = document.getElementById("contact");
+          el?.scrollIntoView({ behavior: "smooth" });
+        }}
+      >
+        Sign Up for Demo
       </button>
     </div>
-    </>
   );
 }
 
@@ -504,75 +698,67 @@ function StickyAnchorNav() {
 
 function OverviewSection({
   course,
-  pricing,
   highlights,
-  rating,
-  alumniText,
+  pageBlocks,
 }: {
   course: PdpCourse;
-  pricing: CoursePricing[];
   highlights: Highlight[];
-  rating: number;
-  alumniText: string;
+  pageBlocks?: any;
 }) {
   const [expanded, setExpanded] = useState(false);
-  const startingPrice = pricing[0]?.price;
-  const stats = [
-    { label: "Starting Price", value: startingPrice ? inr(startingPrice) : "—" },
-    { label: "Avg Rating", value: `${rating}/10` },
-    { label: "Duration", value: course.durationMonths ? `${course.durationMonths} months` : "—" },
-    { label: "Alumni", value: alumniText },
-  ];
+
+  function blockStr(key: string): string | undefined {
+    const blocks = pageBlocks?.blocks as Record<string, unknown> | undefined;
+    if (!blocks) return undefined;
+    const v = resolvePath(blocks, key) ?? blocks[key];
+    return typeof v === "string" ? v : undefined;
+  }
+
+  const desc = blockStr("pdp_overview.body") || course.longDesc;
+
+  if (!desc && highlights.length === 0) return null;
 
   return (
-    <section id="overview" className={`bg-white ${SECTION_PAD}`}>
-      <div className={SECTION_CONTAINER}>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8">Course Overview</h2>
+    <section id="overview" className="bg-white pt-8 lg:pt-10 pb-6 lg:pb-8">
+      {/* Course longDesc — collapsed by default */}
+      {desc && (
+        <div>
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 text-[#09263f]">Overview</h2>
+          <div
+            className={`prose prose-slate max-w-none text-sm sm:text-base text-[#475569] leading-relaxed ${
+              expanded ? "" : "max-h-48 overflow-hidden relative"
+            }`}
+            dangerouslySetInnerHTML={blockStr("pdp_overview.body") ? { __html: blockStr("pdp_overview.body")! } : undefined}
+          >
+            {!blockStr("pdp_overview.body") && <p className="whitespace-pre-line">{desc}</p>}
+            {!expanded && (
+              <div className="absolute bottom-0 inset-x-0 h-14 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+            )}
+          </div>
+          <button
+            type="button"
+            onClick={() => setExpanded((e) => !e)}
+            className="text-xs font-semibold text-[#07b3e7] hover:underline mt-2"
+          >
+            {expanded ? "Show less" : "Read more"}
+          </button>
+        </div>
+      )}
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-10">
-          {stats.map((s, i) => (
-            <div
-              key={i}
-              className="bg-[#F7F8FA] border border-[#E5E7EB] rounded-2xl p-5 text-center"
-            >
-              <div className="text-xl md:text-2xl font-bold text-[#09263f]">{s.value}</div>
-              <div className="text-xs text-[#475569] mt-1 uppercase tracking-wide">{s.label}</div>
+      {/* Optional highlights grid */}
+      {highlights.length > 0 && (
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+          {highlights.map((h, i) => (
+            <div key={i} className="flex gap-3 bg-[#F7F8FA] rounded-2xl p-4 sm:p-5">
+              <Check />
+              <div>
+                <h3 className="font-bold text-[#09263f] mb-1">{h.title}</h3>
+                <p className="text-sm text-[#475569]">{h.description}</p>
+              </div>
             </div>
           ))}
         </div>
-
-        <div
-          className={`prose prose-slate max-w-none text-[#475569] leading-relaxed ${
-            expanded ? "" : "max-h-48 overflow-hidden relative"
-          }`}
-        >
-          <p className="whitespace-pre-line">{course.longDesc}</p>
-          {!expanded && (
-            <div className="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-t from-white to-transparent pointer-events-none" />
-          )}
-        </div>
-        <button
-          type="button"
-          onClick={() => setExpanded((e) => !e)}
-          className="text-sm font-semibold text-[#07b3e7] hover:underline mt-3"
-        >
-          {expanded ? "Show less" : "Read more"}
-        </button>
-
-        {highlights.length > 0 && (
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
-            {highlights.map((h, i) => (
-              <div key={i} className="flex gap-3 bg-[#F7F8FA] rounded-2xl p-5">
-                <Check />
-                <div>
-                  <h3 className="font-bold text-[#09263f] mb-1">{h.title}</h3>
-                  <p className="text-sm text-[#475569]">{h.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+      )}
     </section>
   );
 }
@@ -585,111 +771,100 @@ function CurriculumSection({
   modules,
   course,
   summary,
+  pageBlocks,
 }: {
   modules: ModuleWithLessons[];
   course: PdpCourse;
   summary: CurriculumSummary;
+  pageBlocks?: any;
 }) {
   const [open, setOpen] = useState<string | null>(modules[0]?.id ?? null);
   const sortedModules = useMemo(
     () => [...modules].sort((a, b) => a.order - b.order),
     [modules]
   );
-  const heading = course.pdpCurriculumHeading ?? "Course Curriculum";
+  const heading = course.pdpCurriculumHeading ?? "Data Science Course Curriculum";
   const subheading =
     course.pdpCurriculumSubheading ??
-    "Industry-aligned curriculum designed by experts.";
+    "Industry-aligned curriculum, designed by working data professionals — built so you can finish job-ready.";
 
   return (
-    <section id="curriculum" className={`bg-[#F7F8FA] ${SECTION_PAD}`}>
+    <section id="curriculum" className="bg-white py-10 lg:py-16">
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">{heading}</h2>
-        <p className="text-[#475569] mb-8 max-w-3xl">{subheading}</p>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 text-[#09263f]">{heading}</h2>
+        <p className="text-sm sm:text-base text-[#475569] mb-6 max-w-3xl">{subheading}</p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
-          <div className="flex flex-col gap-3">
-            {sortedModules.map((m, idx) => {
-              const isOpen = open === m.id;
-              return (
-                <div key={m.id} className="bg-white rounded-2xl border border-[#E5E7EB] overflow-hidden">
-                  <button
-                    type="button"
-                    onClick={() => setOpen(isOpen ? null : m.id)}
-                    className="w-full flex items-center justify-between gap-4 p-5 text-left hover:bg-[#F7F8FA]"
+        <div className="flex flex-col gap-2.5">
+          {sortedModules.map((m, idx) => {
+            const isOpen = open === m.id;
+            return (
+              <div
+                key={m.id}
+                className={`rounded-2xl border transition ${
+                  isOpen
+                    ? "bg-white border-[#1de5b5] shadow-[0_4px_24px_0_rgba(29,229,181,0.10)]"
+                    : "bg-[#F7F8FA] border-[#E5E7EB] hover:border-[#1de5b5]/40"
+                }`}
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpen(isOpen ? null : m.id)}
+                  className="w-full flex items-center justify-between gap-4 p-4 sm:p-5 text-left"
+                  aria-expanded={isOpen}
+                >
+                  <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                    <span
+                      className={`shrink-0 size-9 sm:size-10 rounded-xl font-bold flex items-center justify-center text-sm transition ${
+                        isOpen
+                          ? "bg-[#1de5b5] text-white"
+                          : "bg-white text-[#09263f] border border-[#E5E7EB]"
+                      }`}
+                    >
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="font-semibold text-[#09263f] text-sm sm:text-base lg:text-lg truncate">
+                      {m.title}
+                    </h3>
+                  </div>
+                  <span
+                    className={`shrink-0 inline-flex items-center justify-center size-7 sm:size-8 rounded-full text-sm transition ${
+                      isOpen ? "bg-[#1de5b5]/10 text-[#1de5b5] rotate-180" : "text-[#94A3B8]"
+                    }`}
+                    aria-hidden="true"
                   >
-                    <div className="flex items-center gap-4">
-                      <span className="w-10 h-10 rounded-full bg-[#ffd700] text-[#09263f] font-bold flex items-center justify-center text-sm shrink-0">
-                        {String(idx + 1).padStart(2, "0")}
-                      </span>
-                      <h3 className="font-bold text-[#09263f] text-base md:text-lg">{m.title}</h3>
-                    </div>
-                    <span className="text-2xl text-[#07b3e7] leading-none">{isOpen ? "−" : "+"}</span>
-                  </button>
-                  {isOpen && (
-                    <div className="px-5 pb-5 pt-0 border-t border-[#E5E7EB]">
-                      {m.summary && (
-                        <p className="text-sm text-[#475569] mt-4 mb-3">{m.summary}</p>
-                      )}
-                      {m.lessons.length > 0 && (
-                        <ul className="flex flex-col gap-2">
-                          {m.lessons.map((l) => (
-                            <li key={l.id} className="flex items-center justify-between text-sm">
-                              <span className="text-[#09263f] flex items-center gap-2">
-                                <Check />
-                                {l.title}
-                              </span>
-                              {l.duration && (
-                                <span className="text-[#94A3B8] text-xs">{l.duration}</span>
-                              )}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          <aside className="bg-[#09263f] text-white rounded-2xl p-6 h-fit">
-            <h3 className="font-bold text-lg mb-4">Program Summary</h3>
-            <ul className="flex flex-col gap-3 text-sm mb-6">
-              {summary.liveHours && (
-                <li className="flex justify-between border-b border-white/10 pb-2">
-                  <span className="text-white/70">Live hours</span>
-                  <span className="font-semibold">{summary.liveHours}</span>
-                </li>
-              )}
-              {summary.selfStudyHours && (
-                <li className="flex justify-between border-b border-white/10 pb-2">
-                  <span className="text-white/70">Self-study hours</span>
-                  <span className="font-semibold">{summary.selfStudyHours}</span>
-                </li>
-              )}
-              {summary.placementWeeks && (
-                <li className="flex justify-between border-b border-white/10 pb-2">
-                  <span className="text-white/70">Placement weeks</span>
-                  <span className="font-semibold">{summary.placementWeeks}</span>
-                </li>
-              )}
-            </ul>
-            {summary.includes && summary.includes.length > 0 && (
-              <>
-                <p className="text-xs uppercase tracking-wide text-[#ffd700] font-semibold mb-3">
-                  What&apos;s included
-                </p>
-                <ul className="flex flex-col gap-2 text-sm">
-                  {summary.includes.map((it, i) => (
-                    <li key={i} className="flex gap-2 items-start">
-                      <span className="text-[#ffd700]">✓</span>
-                      <span>{it}</span>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
-          </aside>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </span>
+                </button>
+                {isOpen && (
+                  <div className="px-4 sm:px-5 pb-5 pt-0">
+                    {m.summary && (
+                      <p className="text-sm text-[#475569] mt-1 mb-4 pl-12 sm:pl-14">{m.summary}</p>
+                    )}
+                    {m.lessons.length > 0 && (
+                      <ul className="flex flex-col gap-2 pl-12 sm:pl-14">
+                        {m.lessons.map((l) => (
+                          <li
+                            key={l.id}
+                            className="flex items-center justify-between gap-3 text-sm border-b border-[#E5E7EB] last:border-b-0 pb-2 last:pb-0"
+                          >
+                            <span className="text-[#09263f] flex items-center gap-2">
+                              <Check />
+                              {l.title}
+                            </span>
+                            {l.duration && (
+                              <span className="text-[#94A3B8] text-xs shrink-0">{l.duration}</span>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -705,7 +880,7 @@ function TestimonialStrip({ items }: { items: TestimonialStripItem[] }) {
   return (
     <section className={`bg-[#09263f] text-white ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-center">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8 text-center">
           What Our Learners Say
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -757,31 +932,58 @@ function CapstoneProjects({
       ? items
       : fallback.map((p) => ({ domain: "Project", title: p.title, description: p.desc }));
   if (!list.length) return null;
+
+  // Pastel palette rotated per card — matches Figma's varied capstone tiles
+  const palette = [
+    { bg: "#E6F4FB", icon: "#07b3e7" }, // sky
+    { bg: "#FFF5DA", icon: "#D89A00" }, // amber
+    { bg: "#E8F8F1", icon: "#19cf9e" }, // mint
+    { bg: "#FCE7F3", icon: "#DB2777" }, // pink
+    { bg: "#EDE9FE", icon: "#7C3AED" }, // violet
+    { bg: "#FFE4E6", icon: "#E11D48" }, // rose
+  ];
+
   return (
-    <section id="projects" className={`bg-white ${SECTION_PAD}`}>
+    <section id="projects" className="bg-[#F7F8FA] py-10 lg:py-16">
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3">Capstone Projects</h2>
-        <p className="text-[#475569] mb-8 max-w-2xl">
-          Build a portfolio that showcases real industry problem-solving.
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 text-[#09263f] text-center">
+          Data Science Capstone Projects &amp; Assignments
+        </h2>
+        <p className="text-sm sm:text-base text-[#475569] mb-6 max-w-2xl mx-auto text-center">
+          Build a portfolio of real-world projects across banking, retail, telecom, healthcare and more.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {list.map((p, i) => (
-            <div
-              key={i}
-              className="bg-[#F7F8FA] border border-[#E5E7EB] rounded-2xl p-5 hover:shadow-md transition"
-            >
-              {p.icon && (
-                <div className="w-12 h-12 rounded-xl bg-[#ffd700] flex items-center justify-center mb-3 text-xl">
-                  {p.icon}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+          {list.map((p, i) => {
+            const c = palette[i % palette.length]!;
+            return (
+              <div
+                key={i}
+                className="bg-white rounded-2xl border border-[#E5E7EB] p-4 sm:p-5 hover:shadow-[0_8px_24px_0_rgba(9,38,63,0.08)] transition flex flex-col gap-3"
+              >
+                <div
+                  className="size-11 rounded-xl flex items-center justify-center text-lg"
+                  style={{ backgroundColor: c.bg, color: c.icon }}
+                >
+                  {p.icon ?? "✦"}
                 </div>
-              )}
-              <span className="inline-block text-xs font-semibold text-[#07b3e7] uppercase tracking-wide mb-2">
-                {p.domain}
-              </span>
-              <h3 className="font-bold text-[#09263f] mb-2">{p.title}</h3>
-              <p className="text-sm text-[#475569]">{p.description}</p>
-            </div>
-          ))}
+                <div>
+                  {p.domain && (
+                    <span className="block text-[10px] font-semibold uppercase tracking-wider mb-1.5" style={{ color: c.icon }}>
+                      {p.domain}
+                    </span>
+                  )}
+                  <h3 className="font-semibold text-[#09263f] text-sm sm:text-base leading-snug mb-1.5">
+                    {p.title}
+                  </h3>
+                  {p.description && (
+                    <p className="text-xs sm:text-sm text-[#475569] leading-relaxed line-clamp-3">
+                      {p.description}
+                    </p>
+                  )}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -795,29 +997,36 @@ function CapstoneProjects({
 function ToolsGrid({ tools }: { tools: ToolLite[] }) {
   if (!tools.length) return null;
   return (
-    <section id="tools" className={`bg-[#F7F8FA] ${SECTION_PAD}`}>
+    <section id="tools" className="bg-white py-10 lg:py-16">
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3">Tools & Technologies</h2>
-        <p className="text-[#475569] mb-8 max-w-2xl">
-          Master the most in-demand tools used by industry professionals.
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 text-[#09263f] text-center">
+          Data Science Tools &amp; Technologies
+        </h2>
+        <p className="text-sm sm:text-base text-[#475569] mb-6 max-w-2xl mx-auto text-center">
+          Hands-on with the most in-demand tools used by working data professionals.
         </p>
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
-          {tools.map((t) => (
-            <div
-              key={t.id}
-              className="bg-white rounded-2xl border border-[#E5E7EB] p-4 flex flex-col items-center justify-center aspect-square hover:shadow-md transition"
-            >
-              {t.iconUrl ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={t.iconUrl} alt={t.name} className="w-10 h-10 object-contain mb-2" />
-              ) : (
-                <div className="w-10 h-10 rounded-lg bg-[#07b3e7]/10 text-[#07b3e7] font-bold flex items-center justify-center mb-2">
-                  {t.name.charAt(0)}
-                </div>
-              )}
-              <span className="text-xs font-medium text-[#09263f] text-center">{t.name}</span>
-            </div>
-          ))}
+        {/* Horizontal scroll on mobile, wrap grid on tablet+, single line on desktop */}
+        <div className="-mx-4 lg:mx-0 overflow-x-auto scrollbar-none">
+          <div className="px-4 lg:px-0 grid grid-flow-col auto-cols-[88px] sm:auto-cols-[100px] md:grid-flow-row md:auto-cols-auto md:grid-cols-6 lg:grid-cols-8 gap-2 sm:gap-3 lg:gap-4">
+            {tools.map((t) => (
+              <div
+                key={t.id}
+                className="bg-white rounded-2xl border border-[#E5E7EB] p-3 sm:p-4 flex flex-col items-center justify-center text-center hover:shadow-[0_4px_16px_0_rgba(9,38,63,0.08)] transition aspect-square"
+              >
+                {t.iconUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={t.iconUrl} alt={t.name} className="size-8 sm:size-10 object-contain mb-1.5 sm:mb-2" />
+                ) : (
+                  <div className="size-8 sm:size-10 rounded-lg bg-[#07b3e7]/10 text-[#07b3e7] font-bold flex items-center justify-center mb-1.5 sm:mb-2 text-sm sm:text-base">
+                    {t.name.charAt(0)}
+                  </div>
+                )}
+                <span className="text-[11px] sm:text-xs font-medium text-[#09263f] leading-tight">
+                  {t.name}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -833,7 +1042,7 @@ function WhoShouldJoinSection({ items }: { items: WhoShouldJoinItem[] }) {
   return (
     <section id="audience" className={`bg-white ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8">Who Should Join</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8 text-center">Who Should Join</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {items.map((w, i) => (
             <div
@@ -860,11 +1069,11 @@ function JobRolesSection({ roles }: { roles: string[] }) {
   return (
     <section className={`bg-[#F7F8FA] ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3">Job Roles You Can Pursue</h2>
-        <p className="text-[#475569] mb-6 max-w-2xl">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 text-center">Job Roles You Can Pursue</h2>
+        <p className="text-[#475569] mb-6 max-w-2xl mx-auto text-center">
           Career paths our alumni have built across leading companies.
         </p>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 justify-center">
           {roles.map((r, i) => (
             <span
               key={i}
@@ -888,8 +1097,8 @@ function KeySkillsSection({ skills }: { skills: string[] }) {
   return (
     <section className={`bg-white ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8">Key Skills You&apos;ll Gain</h2>
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 max-w-3xl">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8 text-center">Key Skills You&apos;ll Gain</h2>
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 max-w-3xl mx-auto">
           {skills.map((s, i) => (
             <li key={i} className="flex items-center gap-3 text-[#09263f]">
               <Check />
@@ -911,7 +1120,7 @@ function LearningModesSection({ modes }: { modes: LearningModeItem[] }) {
   return (
     <section id="modes" className={`bg-[#F7F8FA] ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8">Learning Modes</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8 text-center">Learning Modes</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {modes.map((m, i) => (
             <div
@@ -942,8 +1151,8 @@ function CourseFeesSection({ pricing }: { pricing: CoursePricing[] }) {
   return (
     <section className={`bg-white ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3">Course Fees</h2>
-        <p className="text-[#475569] mb-8 max-w-2xl">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 text-center">Course Fees</h2>
+        <p className="text-[#475569] mb-8 max-w-2xl mx-auto text-center">
           Choose a learning mode that fits your schedule and budget.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -995,11 +1204,11 @@ function CertificationSection({
   return (
     <section className={`bg-[#F7F8FA] ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 text-center">
+          {data.heading ?? "Industry-Recognized Certification"}
+        </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <div>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
-              {data.heading ?? "Industry-Recognized Certification"}
-            </h2>
+          <div className="text-center lg:text-left">
             <p className="text-[#475569] mb-6">
               {data.body ??
                 "Earn a certificate that's recognized by 500+ hiring partners across the industry."}
@@ -1048,8 +1257,8 @@ function CareerSupportSection({ data }: { data: CareerSupport }) {
   return (
     <section className={`bg-white ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3">Career Support</h2>
-        {data.intro && <p className="text-[#475569] mb-8 max-w-2xl">{data.intro}</p>}
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 text-center">Career Support</h2>
+        {data.intro && <p className="text-[#475569] mb-8 max-w-2xl mx-auto text-center">{data.intro}</p>}
 
         {data.features && data.features.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
@@ -1070,7 +1279,7 @@ function CareerSupportSection({ data }: { data: CareerSupport }) {
 
         {data.partnerLogos && data.partnerLogos.length > 0 && (
           <div>
-            <p className="text-xs uppercase tracking-wide font-semibold text-[#07b3e7] mb-4">
+            <p className="text-xs uppercase tracking-wide font-semibold text-[#07b3e7] mb-4 text-center">
               Our hiring partners
             </p>
             <div className="grid grid-cols-3 md:grid-cols-6 gap-3 items-center">
@@ -1108,7 +1317,7 @@ function HowToApplySection({ steps }: { steps: HowToApplyStep[] }) {
   return (
     <section className={`bg-[#09263f] text-white ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8">How to Apply</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8 text-center">How to Apply</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {steps.map((s, i) => (
             <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-5">
@@ -1134,7 +1343,7 @@ function StudentStoriesSection({ stories }: { stories: StudentStory[] }) {
   return (
     <section className={`bg-white ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8">Student Success Stories</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8">Student Success Stories</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {stories.map((s, i) => (
             <div
@@ -1180,7 +1389,7 @@ function RelatedArticlesSection({ articles }: { articles: RelatedArticle[] }) {
   return (
     <section className={`bg-[#F7F8FA] ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8">Related Articles</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8">Related Articles</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {articles.map((a, i) => (
             <a
@@ -1228,16 +1437,16 @@ function RelatedArticlesSection({ articles }: { articles: RelatedArticle[] }) {
 function CtaBannerSection({ data }: { data: CtaBanner }) {
   const bg = data.bgColor ?? "#09263f";
   return (
-    <section className="py-12 lg:py-16" style={{ backgroundColor: bg }}>
-      <div className={`${SECTION_CONTAINER} flex flex-col md:flex-row items-center justify-between gap-6 text-white`}>
+    <section className="py-10 sm:py-12 lg:py-16" style={{ backgroundColor: bg }}>
+      <div className={`${SECTION_CONTAINER} flex flex-col md:flex-row items-center text-center md:text-left justify-between gap-5 md:gap-6 text-white`}>
         <div>
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">{data.headline}</h2>
-          {data.subheadline && <p className="text-white/80">{data.subheadline}</p>}
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 leading-tight">{data.headline}</h2>
+          {data.subheadline && <p className="text-sm sm:text-base text-white/80">{data.subheadline}</p>}
         </div>
         {data.ctaText && (
           <a
             href={data.ctaUrl ?? "#contact"}
-            className="bg-[#ffd700] text-[#09263f] font-bold px-8 py-3.5 rounded-xl hover:brightness-95 transition whitespace-nowrap"
+            className="w-full md:w-auto text-center bg-[#ffd700] text-[#09263f] font-bold px-8 py-3.5 rounded-xl hover:brightness-95 transition whitespace-nowrap"
           >
             {data.ctaText}
           </a>
@@ -1292,12 +1501,12 @@ function ContactSection({
   return (
     <section id="contact" className={`bg-white ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
           <div>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">{data.heading}</h2>
-            {data.description && <p className="text-[#475569] mb-8">{data.description}</p>}
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4">{data.heading}</h2>
+            {data.description && <p className="text-sm sm:text-base text-[#475569] mb-4 lg:mb-8">{data.description}</p>}
           </div>
-          <div className="bg-[#F7F8FA] border border-[#E5E7EB] rounded-2xl p-6">
+          <div className="bg-[#F7F8FA] border border-[#E5E7EB] rounded-2xl p-4 sm:p-6">
             {done ? (
               <div className="text-center py-8">
                 <div className="w-16 h-16 rounded-full bg-[#ffd700] mx-auto mb-4 flex items-center justify-center">
@@ -1373,7 +1582,7 @@ function FaqSection({ items }: { items: FaqItem[] }) {
   return (
     <section className={`bg-[#F7F8FA] ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8">Frequently Asked Questions</h2>
+        <h2 className="text-base sm:text-xl lg:text-3xl font-bold mb-5 sm:mb-8">Frequently Asked Questions</h2>
         <div className="max-w-3xl flex flex-col gap-3">
           {items.map((f, i) => (
             <div
@@ -1383,15 +1592,17 @@ function FaqSection({ items }: { items: FaqItem[] }) {
               <button
                 type="button"
                 onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between gap-4 p-5 text-left hover:bg-[#F7F8FA]"
+                className="w-full flex items-center justify-between gap-3 p-4 sm:p-5 text-left hover:bg-[#F7F8FA]"
               >
-                <h3 className="font-semibold text-[#09263f]">{f.question}</h3>
-                <span className="text-2xl text-[#07b3e7] leading-none">
+                <h3 className="font-semibold text-[#09263f] text-xs sm:text-sm lg:text-base leading-snug">
+                  {f.question}
+                </h3>
+                <span className="text-xl sm:text-2xl text-[#07b3e7] leading-none shrink-0">
                   {open === i ? "−" : "+"}
                 </span>
               </button>
               {open === i && (
-                <div className="px-5 pb-5 text-sm text-[#475569] border-t border-[#E5E7EB] pt-4">
+                <div className="px-4 sm:px-5 pb-4 sm:pb-5 text-xs sm:text-sm text-[#475569] border-t border-[#E5E7EB] pt-3 sm:pt-4 leading-relaxed">
                   <p className="whitespace-pre-line">{f.answer}</p>
                 </div>
               )}
@@ -1412,7 +1623,7 @@ function BatchesTable({ batches }: { batches: Batch[] }) {
   return (
     <section id="batches" className={`bg-white ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8">Upcoming Batches</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8">Upcoming Batches</h2>
         <div className="overflow-x-auto border border-[#E5E7EB] rounded-2xl">
           <table className="w-full text-sm">
             <thead className="bg-[#F7F8FA] text-[#09263f]">

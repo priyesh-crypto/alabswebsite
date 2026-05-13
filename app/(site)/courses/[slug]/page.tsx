@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CourseDetailPage, { type PdpCourse } from "@/components/pdp/CourseDetailPage";
 import { prisma } from "@/lib/prisma";
+import { getPage } from "@/lib/api-client";
 
 export const dynamic = "force-dynamic";
 
@@ -45,10 +46,13 @@ export default async function CourseDetailRoute({
     },
   });
   if (!course) notFound();
+
+  const pageBlocks = await getPage(`course/${slug}`).catch(() => null);
+
   // Prisma Decimal isn't serializable into client components — cast rating to number.
   const safe: PdpCourse = {
     ...course,
     rating: course.rating ? Number(course.rating) : null,
   } as PdpCourse;
-  return <CourseDetailPage course={safe} />;
+  return <CourseDetailPage course={safe} pageBlocks={pageBlocks} />;
 }

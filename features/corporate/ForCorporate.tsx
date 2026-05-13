@@ -2,7 +2,7 @@ import svgPaths from "./svg-78ttpjtiat";
 import imgAsset253X2 from "./1d246294d3b2d1241d32b8ee0187da67083422b9.png";
 import imgChatGptImageApr142026034518Pm3 from "./ca246bc8f4ab32f503e63c4a3ddc2ee3aff91329.png";
 import imgChatGptImageApr212026035233Pm1 from "./a5ec9ce5f967268be7caa7168c527a7e6e276417.png";
-import imgImage14 from "./3bf553a15ed8e3b04af9c46289180fc24b35c112.png";
+
 import imgImg from "./edd735d0a89f0da0860640486db79237cc0e06b3.png";
 import imgImg1 from "./a01acb174415a7de8d292d129df11d1b9799fd2d.png";
 import imgImg2 from "./fb6124d349d596a65bdbf37b595d4b5d6aaecfb6.png";
@@ -144,7 +144,7 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
       <div className="block lg:hidden w-full">
 
         {/* Hero */}
-        <section className="bg-[#f4fafa] px-5 pt-8 pb-10">
+        <section className="bg-[#f4fafa] px-5 pt-8 pb-10 overflow-hidden relative">
           <h1 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[28px] sm:text-[34px] text-[#09263f] leading-[1.2] mb-3">
             For{" "}
             <span className="bg-clip-text bg-gradient-to-r from-[#1de5b5] from-[34%] to-[#07b3e7] to-[79%] text-transparent">
@@ -154,10 +154,25 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
           <p className="text-sm text-[#09263f]/50 mb-6 leading-relaxed">
             Build data-driven managers or upskill teams — AnalytixLabs trains in Data Science, AI, and ML.
           </p>
-          <div className="relative max-w-[260px] mx-auto mb-6">
-            <img src={imgChatGptImageApr142026034518Pm3.src} alt="" className="w-full h-auto object-contain" />
+          <div className="relative max-w-[280px] mx-auto -mb-8">
+            {/* X Backdrop (Logo Themed Gradient) - Repositioned and lower opacity */}
+            <div 
+              className="absolute left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 w-[150%] aspect-[97/102] opacity-[0.08] pointer-events-none z-0"
+              style={{
+                background: 'linear-gradient(135deg, #1de5b5 0%, #07b3e7 100%)',
+                maskImage: `url(${imgAsset253X2.src})`,
+                maskSize: 'contain',
+                maskRepeat: 'no-repeat',
+                maskPosition: 'center',
+                WebkitMaskImage: `url(${imgAsset253X2.src})`,
+                WebkitMaskSize: 'contain',
+                WebkitMaskRepeat: 'no-repeat',
+                WebkitMaskPosition: 'center',
+              }}
+            />
+            <img src={imgChatGptImageApr142026034518Pm3.src} alt="" className="relative z-10 w-full h-auto object-contain" />
           </div>
-          <Link href="/contact" className="flex items-center justify-center bg-[#ffd700] h-12 rounded-full font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-base">
+          <Link href="/contact" className="relative z-20 flex items-center justify-center bg-[#ffd700] h-12 rounded-full font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-base shadow-lg transition-transform active:scale-[0.98]">
             Get a Free Consultation
           </Link>
         </section>

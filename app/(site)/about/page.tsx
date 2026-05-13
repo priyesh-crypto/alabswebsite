@@ -1,19 +1,18 @@
-import AboutUs from "@/components/figma-pages/AboutUs/AboutUs";
-import FigmaScaleWrapper from "@/components/figma-pages/shared/FigmaScaleWrapper";
+import AboutUs from "@/features/about-us/AboutUs";
+import FigmaScaleWrapper from "@/components/layout/FigmaScaleWrapper";
 import {
   getFaqs,
   getNav,
   getOffices,
+  getPage,
   getSiteSettings,
   getTestimonials,
 } from "@/lib/api-client";
 
 export const dynamic = "force-dynamic";
 
-const ABOUT_HEIGHT_PX = 6400;
-
 export default async function AboutPage() {
-  const [siteSettings, topNav, footerLinks, footerCities, offices, testimonials, faqs] =
+  const [siteSettings, topNav, footerLinks, footerCities, offices, testimonials, faqs, pageBlocks] =
     await Promise.all([
       getSiteSettings(),
       getNav("TOP_NAV"),
@@ -22,15 +21,12 @@ export default async function AboutPage() {
       getOffices(),
       getTestimonials(),
       getFaqs({ scope: "GLOBAL" }),
+      getPage("about"),
     ]);
 
   return (
     <FigmaScaleWrapper>
-      <div
-        className="relative mx-auto"
-        style={{ width: "1440px", height: `${ABOUT_HEIGHT_PX}px` }}
-      >
-        <AboutUs
+      <AboutUs
         siteSettings={siteSettings}
         topNav={topNav}
         footerLinks={footerLinks}
@@ -38,8 +34,8 @@ export default async function AboutPage() {
         offices={offices}
         testimonials={testimonials}
         faqs={faqs}
-        />
-      </div>
+        pageBlocks={pageBlocks}
+      />
     </FigmaScaleWrapper>
   );
 }

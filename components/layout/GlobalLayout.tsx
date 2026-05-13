@@ -5,8 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { NavItem, Office, SiteSettings, BlogPost } from "@/lib/api-client";
 
-import svgPaths from "../AlabsLandingPage/svg-5my3vzmwxc";
-import imgAlabsLogo from "../AlabsLandingPage/3bf553a15ed8e3b04af9c46289180fc24b35c112.png";
+import svgPaths from "@/features/landing-page/svg-5my3vzmwxc";
+
 
 export type GlobalLayoutProps = {
   topNav?: NavItem[];
@@ -59,7 +59,7 @@ const MEGA_MENU_CATEGORIES = [
   },
 ];
 
-export function GlobalNavbar({ topNav }: { topNav?: NavItem[] }) {
+export function GlobalNavbar({ topNav, siteSettings }: { topNav?: NavItem[]; siteSettings?: SiteSettings | null }) {
   const pathname = usePathname();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
@@ -105,7 +105,7 @@ export function GlobalNavbar({ topNav }: { topNav?: NavItem[] }) {
         {/* ── Desktop layout (≥ 1024px) ── */}
         <div className="hidden lg:flex w-full max-w-[1440px] mx-auto px-[33px] h-full items-center">
           <Link href="/" className="relative h-[57px] w-[191px] shrink-0">
-            <img alt="AnalytixLabs" className="absolute inset-0 max-w-none object-cover size-full pointer-events-none" src={imgAlabsLogo.src} />
+            <img alt="AnalytixLabs" className="absolute inset-0 max-w-none object-cover size-full pointer-events-none" src="/Asset_logo.png" />
           </Link>
 
           <nav className="flex items-center ml-[60px] xl:ml-[120px] gap-[25px] xl:gap-[35px] overflow-x-auto scrollbar-none">
@@ -168,7 +168,7 @@ export function GlobalNavbar({ topNav }: { topNav?: NavItem[] }) {
         {/* ── Mobile layout (< 1024px) ── */}
         <div className="flex lg:hidden w-full items-center justify-between px-4 h-full">
           <Link href="/" className="relative h-10 w-32 shrink-0">
-            <img alt="AnalytixLabs" className="h-full w-auto object-contain" src={imgAlabsLogo.src} />
+            <img alt="AnalytixLabs" className="h-full w-auto object-contain" src="/Asset_logo.png" />
           </Link>
 
           <button
@@ -250,7 +250,7 @@ export function GlobalNavbar({ topNav }: { topNav?: NavItem[] }) {
             {/* Drawer header */}
             <div className="flex items-center justify-between px-4 py-4 border-b border-gray-100">
               <Link href="/" className="h-9 w-28">
-                <img alt="AnalytixLabs" className="h-full w-auto object-contain" src={imgAlabsLogo.src} />
+                <img alt="AnalytixLabs" className="h-full w-auto object-contain" src="/Asset_logo.png" />
               </Link>
               <button
                 type="button"
@@ -366,7 +366,7 @@ export function GlobalNavbar({ topNav }: { topNav?: NavItem[] }) {
 
 // ─── Footer ──────────────────────────────────────────────────────────────────
 
-export function GlobalFooter({ offices, footerLinks, footerCities, posts }: GlobalLayoutProps) {
+export function GlobalFooter({ offices, footerLinks, footerCities, posts, siteSettings }: GlobalLayoutProps) {
   const [mounted, setMounted] = useState(false);
   const [openSection, setOpenSection] = useState<string | null>(null);
   useEffect(() => { setMounted(true); }, []);
@@ -457,7 +457,7 @@ export function GlobalFooter({ offices, footerLinks, footerCities, posts }: Glob
             <div className="flex justify-between items-start">
               <div className="flex flex-col gap-10 w-[426px]">
                 <Link href="/" className="block w-[233px] h-[69px]">
-                  <img alt="AnalytixLabs" className="w-full h-full object-contain" src={imgAlabsLogo.src} />
+                  <img alt="AnalytixLabs" className="w-full h-full object-contain" src="/Asset_logo.png" />
                 </Link>
 
                 <div className="bg-white/10 border border-white/20 rounded-[15px] p-8 backdrop-blur-sm">
@@ -546,7 +546,7 @@ export function GlobalFooter({ offices, footerLinks, footerCities, posts }: Glob
       <div className="lg:hidden px-5 py-10 flex flex-col gap-8">
         {/* Logo */}
         <Link href="/" className="block w-40 h-12">
-          <img alt="AnalytixLabs" className="w-full h-full object-contain" src={imgAlabsLogo.src} />
+          <img alt="AnalytixLabs" className="w-full h-full object-contain" src="/Asset_logo.png" />
         </Link>
 
         {/* Blog box */}

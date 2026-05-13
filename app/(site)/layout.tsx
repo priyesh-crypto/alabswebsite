@@ -1,5 +1,24 @@
-import { GlobalNavbar, GlobalFooter } from "@/components/figma-pages/shared/GlobalLayout";
+import { Metadata } from "next";
+import { GlobalNavbar, GlobalFooter } from "@/components/layout/GlobalLayout";
 import { getNav, getOffices, getSiteSettings, getPosts } from "@/lib/api-client";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings();
+  if (!settings) return { title: "AnalytixLabs" };
+
+  return {
+    title: {
+      template: "%s | AnalytixLabs",
+      default: "AnalytixLabs | India's Top Data Science & AI Institute",
+    },
+    description: settings.defaultMetaDesc || "Premier data science training institute in India offering courses in Data Science, AI, Business Analytics, and more.",
+    openGraph: {
+      title: "AnalytixLabs",
+      description: settings.defaultMetaDesc || "India's leading data science institute.",
+      images: settings.ogImageUrl ? [{ url: settings.ogImageUrl }] : [],
+    },
+  };
+}
 
 /**
  * Public site layout. Hosts every route under app/(site)/.
@@ -19,7 +38,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
 
   return (
     <div className="w-full bg-white flex flex-col">
-      <GlobalNavbar topNav={topNav} />
+      <GlobalNavbar topNav={topNav} siteSettings={siteSettings} />
       <main className="w-full flex-grow overflow-x-hidden">
         {children}
       </main>

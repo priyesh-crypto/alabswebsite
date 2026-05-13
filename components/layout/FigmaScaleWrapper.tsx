@@ -3,9 +3,12 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Scales the fixed-1440px Figma page content down to fit the current viewport.
- * Uses CSS `zoom` so layout height adjusts automatically (no JS height hacks).
- * On viewports ≥ 1440px the element renders at natural size (zoom = 1).
+ * Each Figma page component owns an internal `block xl:hidden` mobile/tablet
+ * layout that renders natively below 1280px (xl). Above xl, the page's
+ * fixed-1440px absolute canvas takes over. This wrapper only scales that
+ * desktop canvas — and only when the viewport is narrower than 1440. Below xl,
+ * the wrapper is a no-op so the on-brand mobile/tablet layout reaches the user
+ * at native size.
  */
 export default function FigmaScaleWrapper({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -14,10 +17,15 @@ export default function FigmaScaleWrapper({ children }: { children: React.ReactN
     function apply() {
       if (!ref.current) return;
       const vw = window.innerWidth;
-      // Figma exports are a fixed 1440px canvas. Scale them down to fit any
-      // viewport narrower than 1440 — including phones and tablets — since
-      // there are no dedicated mobile layouts to take over below lg.
-      const scale = vw >= 1440 ? 1 : vw / 1440;
+      const LG = 1024; // Tablet threshold
+      const DESIGN_WIDTH = 1440;
+      let scale = 1;
+
+      // Use the ratio to scale desktop layout for anything above LG (1024px)
+      if (vw >= LG && vw < DESIGN_WIDTH) {
+        scale = vw / DESIGN_WIDTH;
+      }
+
       // `zoom` is supported in all modern browsers (incl. iOS Safari 18+).
       // It reflows the layout box so the document height auto-adjusts.
       ref.current.style.zoom = String(scale);

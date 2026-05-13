@@ -3,7 +3,6 @@ import { prisma } from "@/lib/prisma";
 import { handleError, notFound, ok } from "@/lib/api";
 
 export const runtime = "nodejs";
-export const revalidate = 60;
 
 type Ctx = { params: Promise<{ slug: string }> };
 

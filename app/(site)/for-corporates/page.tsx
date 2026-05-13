@@ -1,5 +1,5 @@
-import ForCorporate from "@/components/figma-pages/ForCorporate/ForCorporate";
-import FigmaScaleWrapper from "@/components/figma-pages/shared/FigmaScaleWrapper";
+import ForCorporate from "@/features/corporate/ForCorporate";
+import FigmaScaleWrapper from "@/components/layout/FigmaScaleWrapper";
 import {
   getNav,
   getOffices,
@@ -7,8 +7,6 @@ import {
 } from "@/lib/api-client";
 
 export const dynamic = "force-dynamic";
-
-const FOR_CORPORATE_HEIGHT_PX = 5200;
 
 export default async function ForCorporatesPage() {
   const [siteSettings, topNav, footerLinks, footerCities, offices] =
@@ -22,18 +20,13 @@ export default async function ForCorporatesPage() {
 
   return (
     <FigmaScaleWrapper>
-      <div
-        className="relative mx-auto"
-        style={{ width: "1440px", height: `${FOR_CORPORATE_HEIGHT_PX}px` }}
-      >
-        <ForCorporate
+      <ForCorporate
         siteSettings={siteSettings}
         topNav={topNav}
         footerLinks={footerLinks}
         footerCities={footerCities}
         offices={offices}
-        />
-      </div>
+      />
     </FigmaScaleWrapper>
   );
 }

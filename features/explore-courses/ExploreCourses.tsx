@@ -12,7 +12,7 @@ import imgPic6 from "./69ce520546d02f059131a6b6c9d51c8b01b5c39e.png";
 import imgPic7 from "./1445ffb19c22bd26825bee14c83f139f7486d75f.png";
 import imgPic8 from "./147c0ee7cdcd2b00ebdac44dedd4ce59f4f5d3cc.png";
 import imgImage31 from "./996a7650d39df9f9d0c4aaa0e42c2b485c8b991a.png";
-import imgImage14 from "./3bf553a15ed8e3b04af9c46289180fc24b35c112.png";
+
 import imgAsset253X2 from "./1d246294d3b2d1241d32b8ee0187da67083422b9.png";
 import imgChatGptImageApr142026034518Pm3 from "./ca246bc8f4ab32f503e63c4a3ddc2ee3aff91329.png";
 import imgImage40 from "./499548fee627c1d39da43fe9633451763856bdab.png";
@@ -29,7 +29,18 @@ type ExploreCoursesProps = {
   footerCities?: NavItem[];
   offices?: Office[];
   siteSettings?: SiteSettings | null;
+  pageBlocks?: any;
 };
+
+function resolvePath(obj: any, path: string) {
+  return path.split('.').reduce((o, p) => (o ? o[p] : undefined), obj);
+}
+function block(p: ExploreCoursesProps, key: string): string | undefined {
+  const blocks = p.pageBlocks?.blocks as Record<string, unknown> | undefined;
+  if (!blocks) return undefined;
+  const v = resolvePath(blocks, key) ?? blocks[key];
+  return typeof v === "string" ? v : undefined;
+}
 
 function fmtDate(d: Date | string | null | undefined): string {
   if (!d) return "";
@@ -243,12 +254,11 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
       <div className="block lg:hidden w-full">
         {/* Hero */}
         <section className="bg-[#f4fafa] px-5 pt-6 pb-8">
-          <h1 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[28px] sm:text-[32px] leading-[1.2] mb-3">
-            <span>Explore </span>
-            <span className="bg-clip-text bg-gradient-to-r from-[#1de5b5] from-[34%] to-[#07b3e7] to-[79%] text-transparent">AI &amp; Data Science</span>
-            <span> Courses That Get You Job Ready</span>
-          </h1>
-          <p className="text-sm text-[#09263f]/50 mb-4">Find the Course That Moves Your Career Forward</p>
+          <h1 
+            className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[28px] sm:text-[32px] leading-[1.2] mb-3"
+            dangerouslySetInnerHTML={{ __html: block(props, "hero_simple.headline_html") ?? "Explore <span class=\"bg-clip-text bg-gradient-to-r from-[#1de5b5] from-[34%] to-[#07b3e7] to-[79%] text-transparent\">AI &amp; Data Science</span> Courses That Get You Job Ready" }}
+          />
+          <p className="text-sm text-[#09263f]/50 mb-4">{block(props, "hero_simple.subtitle") ?? "Find the Course That Moves Your Career Forward"}</p>
           <div className="relative max-w-[260px] mx-auto">
             <img src={imgAsset253X2.src} alt="" className="w-full h-auto object-contain" />
           </div>
@@ -362,11 +372,12 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
         <section className="w-full bg-[#f4fafa] flex justify-center pt-20 pb-10 overflow-hidden relative">
           <div className="w-[1440px] px-[66px] flex justify-between items-center relative">
             <div className="max-w-[720px] flex flex-col gap-8 z-10">
-              <h1 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[48px] leading-[1.2]">
-                Explore <span className="bg-clip-text bg-gradient-to-r from-[#1de5b5] to-[#07b3e7] text-transparent">AI & Data Science</span> Courses That Get You Job Ready
-              </h1>
+              <h1 
+                className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[48px] leading-[1.2]"
+                dangerouslySetInnerHTML={{ __html: block(props, "hero_simple.headline_html") ?? "Explore <span class=\"bg-clip-text bg-gradient-to-r from-[#1de5b5] to-[#07b3e7] text-transparent\">AI &amp; Data Science</span> Courses That Get You Job Ready" }}
+              />
               <p className="font-['Inter:Regular',sans-serif] font-normal text-[18px] text-[rgba(9,38,63,0.5)]">
-                Find the Course That Moves Your Career Forward
+                {block(props, "hero_simple.subtitle") ?? "Find the Course That Moves Your Career Forward"}
               </p>
             </div>
             {/* Decorative Images */}

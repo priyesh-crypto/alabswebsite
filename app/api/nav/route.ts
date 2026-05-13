@@ -3,7 +3,6 @@ import { prisma } from "@/lib/prisma";
 import { badRequest, handleError, ok } from "@/lib/api";
 
 export const runtime = "nodejs";
-export const revalidate = 60;
 
 const ALLOWED_GROUPS = ["TOP_NAV", "MEGA_MENU", "FOOTER_LINKS", "FOOTER_CITIES"] as const;
 type NavGroupName = (typeof ALLOWED_GROUPS)[number];

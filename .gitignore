@@ -46,3 +46,4 @@ prisma/migrations/dev.db*
 /uploads/
 /public/uploads/
 .env.example
+claude-skills/
