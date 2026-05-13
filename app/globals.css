@@ -1,6 +1,6 @@
-@import "tailwindcss" theme(reference);
-@import "tailwindcss/preflight" layer(base);
-@import "tailwindcss/utilities" layer(utilities);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* ── Global responsive reset ──────────────────────────────────────────────── */
 
