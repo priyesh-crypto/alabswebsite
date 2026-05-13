@@ -47,3 +47,4 @@ prisma/migrations/dev.db*
 /public/uploads/
 .env.example
 claude-skills/
+.vercel
