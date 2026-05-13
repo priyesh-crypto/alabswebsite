@@ -1,5 +1,6 @@
 import ExploreCourses from "@/features/explore-courses/ExploreCourses";
 import FigmaScaleWrapper from "@/components/layout/FigmaScaleWrapper";
+import { deepSerialize } from "@/lib/prisma";
 import {
   getCategories,
   getCourses,
@@ -38,15 +39,17 @@ export default async function CoursesPage() {
   return (
     <FigmaScaleWrapper>
       <ExploreCourses
-        siteSettings={siteSettings}
-        topNav={topNav}
-        footerLinks={footerLinks}
-        footerCities={footerCities}
-        categories={categories}
-        courses={courses}
-        posts={posts}
-        offices={offices}
-        pageBlocks={pageBlocks}
+        {...deepSerialize({
+          siteSettings,
+          topNav,
+          footerLinks,
+          footerCities,
+          categories,
+          courses,
+          posts,
+          offices,
+          pageBlocks,
+        })}
       />
     </FigmaScaleWrapper>
   );

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CourseDetailPage, { type PdpCourse } from "@/components/pdp/CourseDetailPage";
-import { prisma } from "@/lib/prisma";
+import { prisma, deepSerialize } from "@/lib/prisma";
 import { getPage } from "@/lib/api-client";
+import FigmaScaleWrapper from "@/components/layout/FigmaScaleWrapper";
 
 export const dynamic = "force-dynamic";
-
+// ... (generateMetadata remains same)
 export async function generateMetadata({
   params,
 }: {
@@ -49,10 +50,16 @@ export default async function CourseDetailRoute({
 
   const pageBlocks = await getPage(`course/${slug}`).catch(() => null);
 
-  // Prisma Decimal isn't serializable into client components — cast rating to number.
-  const safe: PdpCourse = {
+  // Prisma Decimal isn't serializable into client components — cast rating to number
+  // and deep-serialize the whole graph.
+  const safe = deepSerialize({
     ...course,
     rating: course.rating ? Number(course.rating) : null,
-  } as PdpCourse;
-  return <CourseDetailPage course={safe} pageBlocks={pageBlocks} />;
+  }) as PdpCourse;
+
+  return (
+    <FigmaScaleWrapper>
+      <CourseDetailPage course={safe} pageBlocks={pageBlocks} />
+    </FigmaScaleWrapper>
+  );
 }
