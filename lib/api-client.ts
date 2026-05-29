@@ -76,6 +76,22 @@ export async function getNav(group: NavGroup): Promise<NavItem[]> {
   }
 }
 
+/**
+ * Global content blocks (header, footer, cta_banner, call_back) edited under
+ * /admin/global/*. Returns the block's `data` JSON, or null if absent — callers
+ * keep their hardcoded design defaults as the fallback so the layout never breaks.
+ */
+export type GlobalBlockData = Record<string, unknown>;
+
+export async function getGlobalBlock(key: string): Promise<GlobalBlockData | null> {
+  try {
+    const block = await prisma.globalBlock.findUnique({ where: { key } });
+    return (block?.data as GlobalBlockData) ?? null;
+  } catch {
+    return null;
+  }
+}
+
 export async function getCategories(): Promise<Category[]> {
   try {
     return await prisma.category.findMany({ orderBy: { order: "asc" } });
@@ -147,9 +163,53 @@ export async function getHiringPartners(): Promise<HiringPartner[]> {
   }
 }
 
-export async function getTeam(): Promise<TeamMember[]> {
+export async function getTeam(group?: string): Promise<TeamMember[]> {
   try {
-    return await prisma.teamMember.findMany({ orderBy: { order: "asc" } });
+    return await prisma.teamMember.findMany({
+      where: group ? { group } : undefined,
+      orderBy: { order: "asc" },
+    });
+  } catch {
+    return [];
+  }
+}
+
+// Landing "Learning Modes" section — the two session cards per mode are driven
+// by upcoming Batch rows (linked to a LearningMode via modeId), with the course
+// title. Returns one array per active learning mode, in the same order as
+// getLearningModes(), so the landing tabs line up by index.
+export type ModeSession = { title: string; loc: string; date: string; time: string; seats: string };
+
+export async function getModeSessions(): Promise<ModeSession[][]> {
+  try {
+    const modes = await prisma.learningMode.findMany({
+      where: { isActive: true },
+      orderBy: { order: "asc" },
+    });
+    const fmtDate = (d: Date) =>
+      d.toLocaleDateString("en-IN", { day: "2-digit", month: "short" });
+    // Pull "2:00 PM" out of "Weekends (2:00 PM)"; else fall back to the schedule.
+    const fmtTime = (schedule: string) => schedule.match(/\(([^)]+)\)/)?.[1] ?? schedule;
+
+    const out: ModeSession[][] = [];
+    for (const m of modes) {
+      const batches = await prisma.batch.findMany({
+        where: { isActive: true, modeId: m.id, course: { isPublished: true } },
+        orderBy: { startDate: "asc" },
+        take: 2,
+        include: { course: { select: { title: true } } },
+      });
+      out.push(
+        batches.map((b) => ({
+          title: b.course.title,
+          loc: b.location,
+          date: fmtDate(b.startDate),
+          time: fmtTime(b.schedule),
+          seats: `${String(b.seatsLeft).padStart(2, "0")} Seats`,
+        })),
+      );
+    }
+    return out;
   } catch {
     return [];
   }
@@ -209,17 +269,31 @@ export async function getPage(slug: string): Promise<Page | null> {
     // 'home' maps to the 'landing' slug in the CMS
     const dbSlug = slug === "home" ? "landing" : slug;
 
-    const [page, sections] = await Promise.all([
+    const [page, sections, ctaBannerBlock, callBackBlock] = await Promise.all([
       prisma.page.findUnique({ where: { slug: dbSlug } }),
       prisma.section.findMany({
         where: { pageSlug: dbSlug, isVisible: true },
         orderBy: { order: "asc" },
       }),
+      prisma.globalBlock.findUnique({ where: { key: "cta_banner" } }),
+      prisma.globalBlock.findUnique({ where: { key: "call_back" } }),
     ]);
 
     const mergedBlocks: Record<string, unknown> = {
       ...((page?.blocks as Record<string, unknown>) ?? {}),
     };
+
+    // Expose the global CTA-banner / call-back blocks to every page's components
+    // under namespaced keys (read via block(pb, "cta_banner.headline"), etc.),
+    // so the admin /global editors drive the on-page copy.
+    if (ctaBannerBlock?.data) mergedBlocks["cta_banner"] = ctaBannerBlock.data;
+    if (callBackBlock?.data) mergedBlocks["call_back"] = callBackBlock.data;
+
+    // PDP section titles live in one global block shared across all course pages.
+    if (dbSlug.startsWith("course/")) {
+      const pdpLabels = await prisma.globalBlock.findUnique({ where: { key: "pdp_labels" } });
+      if (pdpLabels?.data) mergedBlocks["pdp_labels"] = pdpLabels.data;
+    }
 
     sections.forEach((sec) => {
       if (!sec.contentPublished) return;
@@ -246,10 +320,24 @@ export async function getPage(slug: string): Promise<Page | null> {
         const ctas = content.ctas as unknown[] | undefined;
         if (ctas?.[0]) mergedBlocks["hero.cta1"] = ctas[0];
         if (ctas?.[1]) mergedBlocks["hero.cta2"] = ctas[1];
+      } else if (sec.type === "lead_cards") {
+        const c1 = content.card1 as Record<string, unknown> | undefined;
+        const c2 = content.card2 as Record<string, unknown> | undefined;
+        if (c1?.title) mergedBlocks["leadCard1.title"] = c1.title;
+        if (c1?.subtitle) mergedBlocks["leadCard1.subtitle"] = c1.subtitle;
+        if (c1?.bestForLabel) mergedBlocks["leadCard1.bestFor"] = c1.bestForLabel;
+        if (c2?.title) mergedBlocks["leadCard2.title"] = c2.title;
+        if (c2?.subtitle) mergedBlocks["leadCard2.subtitle"] = c2.subtitle;
+        if (c2?.bestForLabel) mergedBlocks["leadCard2.bestFor"] = c2.bestForLabel;
+        if (Array.isArray(content.trustBadges)) mergedBlocks["leadCards.trustBadges"] = content.trustBadges;
+        if (content.pathHeading) mergedBlocks["leadCards.pathHeading"] = content.pathHeading;
       } else if (sec.type === "institute_intro") {
         if (content.headline) mergedBlocks["about.heading"] = content.headline;
         if (content.body) mergedBlocks["about.body"] = content.body;
         if (content.cityIntro) mergedBlocks["about.cityIntro"] = content.cityIntro;
+        if (Array.isArray(content.cityChips) && content.cityChips.length > 0) {
+          mergedBlocks["about.cityChips"] = content.cityChips;
+        }
         if (content.bullets) {
           mergedBlocks["about.cityHighlights"] = (content.bullets as { text: string }[]).map((b) => b.text);
         }

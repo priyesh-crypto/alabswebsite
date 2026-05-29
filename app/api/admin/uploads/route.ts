@@ -1,10 +1,10 @@
 import { NextRequest } from "next/server";
-import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
 import { prisma } from "@/lib/prisma";
 import { badRequest, handleError, ok, unauthorized } from "@/lib/api";
 import { readSession } from "@/lib/auth";
+import { uploadFile } from "@/lib/storage";
 
 export const runtime = "nodejs";
 
@@ -24,22 +24,14 @@ export async function POST(req: NextRequest) {
       return badRequest(`Unsupported MIME type: ${file.type}`);
     }
 
-    const driver = process.env.UPLOAD_DRIVER ?? "local";
-    if (driver !== "local") {
-      return badRequest("Only local uploads are wired in Phase 2; S3 lands later.");
-    }
-
     const ext = path.extname(file.name) || guessExt(file.type);
     const id = crypto.randomBytes(12).toString("hex");
     const filename = `${id}${ext}`;
-    const targetDir = path.resolve(process.env.UPLOAD_DIR ?? "./public/uploads");
-    await mkdir(targetDir, { recursive: true });
-    const targetPath = path.join(targetDir, filename);
 
     const buf = Buffer.from(await file.arrayBuffer());
-    await writeFile(targetPath, buf);
+    // Routes to local disk or Supabase Storage based on UPLOAD_DRIVER.
+    const { url: publicUrl } = await uploadFile({ buffer: buf, filename, contentType: file.type });
 
-    const publicUrl = `/uploads/${filename}`;
     const asset = await prisma.uploadedAsset.create({
       data: {
         url: publicUrl,

@@ -210,7 +210,7 @@ function blockCta(pb: any, key: string): { label?: string; url?: string } {
 export function AlabsLandingPageDesktop({
   pageBlocks,
   activeCategory, setActiveCategory, handleCategoryClick,
-  carouselCourses, categories, stats, learningModes, testimonials, hiringPartners, pill, pillUrl, siteSettings,
+  carouselCourses, categories, stats, learningModes, modeSessions, testimonials, hiringPartners, pill, pillUrl, siteSettings,
   activeLearningMode, setActiveLearningMode,
   activeTestimonialIdx, handleTestimonialDot, testimonialPaused, testimonialCarouselRef, t0, testimonialKey,
   formData, handleFormChange, handleFormSubmit, isNotRobot, setIsNotRobot, formError, formSubmitted,
@@ -416,8 +416,8 @@ export function AlabsLandingPageDesktop({
             {block(pageBlocks, "testimonials_carousel.headline") ?? block(pageBlocks, "testimonials.headline") ?? "What Students Say About Us?"}
           </p>
           <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-43px)] not-italic text-alabs-navy text-[40px] top-[3013px] w-[711px]">{block(pageBlocks, "about.heading") ?? "AnalytixLabs is a top-ranked Data Science Institute"}</p>
-          <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-500px)] not-italic text-[36px] text-white top-[3968px] w-[535px]">{`"Unlock Insights. Enroll Now. Transform Tomorrow."`}</p>
-          <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[220px] not-italic text-[18px] text-white top-[4078px] whitespace-nowrap">Change the course of your career now</p>
+          <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-500px)] not-italic text-[36px] text-white top-[3968px] w-[535px]">{block(pageBlocks, "cta_banner.headline") ?? `"Unlock Insights. Enroll Now. Transform Tomorrow."`}</p>
+          <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[220px] not-italic text-[18px] text-white top-[4078px] whitespace-nowrap">{block(pageBlocks, "cta_banner.subhead") ?? "Change the course of your career now"}</p>
           <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-1/2 not-italic text-[18px] text-[rgba(9,38,63,0.5)] text-center top-[2255px] w-[988px]">
             {block(pageBlocks, "learning_modes.intro") ?? block(pageBlocks, "learningModes.subtitle") ?? "Explore Personalized learning modes to match your style! Whether you’re a working professional or student or want to upskill, we’ve got you covered. Our approach ensures effective learning, making it enjoyable and rewarding."}
           </p>
@@ -471,12 +471,12 @@ export function AlabsLandingPageDesktop({
               </p>
             ));
           })()}
-          <Link href="/contact" className="contents"><div className="absolute bg-alabs-yellow h-[49px] left-[220px] rounded-[1000px] top-[4135px] w-[182px] cursor-pointer hover:brightness-95 transition" /></Link>
+          <Link href={block(pageBlocks, "cta_banner.ctaHref") ?? "/contact"} className="contents"><div className="absolute bg-alabs-yellow h-[49px] left-[220px] rounded-[1000px] top-[4135px] w-[182px] cursor-pointer hover:brightness-95 transition" /></Link>
           <button type="button" onClick={handleFormSubmit} aria-label="Send form" className="absolute bg-alabs-yellow h-[49px] left-[786px] rounded-[1000px] top-[5114px] w-[182px] cursor-pointer hover:brightness-95 transition" />
           <a href={`tel:${siteSettings?.contactPhone ?? ""}`} className="contents"><div className="absolute bg-alabs-primary h-[49px] left-[66px] rounded-[1000px] top-[4663px] w-[182px] cursor-pointer hover:brightness-95 transition" /></a>
           <Link href="/about" className="contents"><div className="absolute bg-alabs-primary h-[49px] left-[685px] rounded-[1000px] top-[3620px] w-[223px] cursor-pointer hover:brightness-95 transition" /></Link>
-          <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[311px] not-italic text-alabs-navy text-[18px] text-center top-[4148px] whitespace-nowrap">Contact Us</p>
-          <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[875.5px] not-italic text-alabs-navy text-[18px] text-center top-[5127px] whitespace-nowrap">Send</p>
+          <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[311px] not-italic text-alabs-navy text-[18px] text-center top-[4148px] whitespace-nowrap">{block(pageBlocks, "cta_banner.ctaLabel") ?? "Contact Us"}</p>
+          <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[875.5px] not-italic text-alabs-navy text-[18px] text-center top-[5127px] whitespace-nowrap">{block(pageBlocks, "call_back.submitLabel") ?? "Send"}</p>
           <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[155.5px] not-italic text-white text-[18px] text-center top-[4676px] whitespace-nowrap">Call Us</p>
           <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[795.5px] not-italic text-white text-[18px] text-center top-[3633px] whitespace-nowrap">Value Proposition</p>
           <div className={`absolute h-[116px] left-[66px] rounded-[20px] top-[2378px] w-[562px] cursor-pointer ${activeLearningMode === 0 ? "bg-gradient-to-r from-alabs-darkblue from-[13.037%] to-alabs-lightblue" : "border border-alabs-darkblue border-solid shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)]"}`} onClick={() => setActiveLearningMode(0)} />
@@ -532,7 +532,7 @@ export function AlabsLandingPageDesktop({
           <div className="absolute h-[421px] left-[341px] rounded-[20px] shadow-[0px_20px_50px_rgba(0,0,0,0.2)] top-[3195px] w-[264px] overflow-hidden bg-white" data-name="img" style={{ animation: "alp-float 6s ease-in-out infinite 3s" }}>
             <img alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none z-10" src={imgImg1.src} />
           </div>
-          <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+37px)] not-italic text-alabs-navy text-[36px] top-[4482px] whitespace-nowrap">Request a Call back</p>
+          <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%+37px)] not-italic text-alabs-navy text-[36px] top-[4482px] whitespace-nowrap">{block(pageBlocks, "call_back.headline") ?? "Request a Call back"}</p>
           <div className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[0] left-[calc(50%-654px)] not-italic text-alabs-navy text-[36px] top-[4476px] whitespace-nowrap">
             <p className="leading-[128.33999633789062%] mb-0 whitespace-pre">{`Excited? `}</p>
             <p className="leading-[128.33999633789062%] whitespace-pre">Talk to Expert Counselor</p>
@@ -552,7 +552,7 @@ export function AlabsLandingPageDesktop({
           <input
             value={formData.name}
             onChange={handleFormChange("name")}
-            placeholder="Your Name"
+            placeholder={block(pageBlocks, "call_back.namePlaceholder") ?? "Your Name"}
             required
             className="absolute left-[816px] top-[4615px] w-[434px] h-[32px] bg-transparent outline-none font-['Inter:Light',sans-serif] font-light text-[16px] text-black placeholder:text-[rgba(0,0,0,0.5)]"
           />
@@ -568,7 +568,7 @@ export function AlabsLandingPageDesktop({
           <input
             value={formData.mobile}
             onChange={handleFormChange("mobile")}
-            placeholder="Mobile"
+            placeholder={block(pageBlocks, "call_back.phonePlaceholder") ?? "Mobile"}
             inputMode="tel"
             required
             className="absolute left-[1047px] top-[4728px] w-[206px] h-[32px] bg-transparent outline-none font-['Inter:Light',sans-serif] font-light text-[16px] text-black placeholder:text-[rgba(0,0,0,0.5)]"
@@ -576,7 +576,7 @@ export function AlabsLandingPageDesktop({
           <input
             value={formData.email}
             onChange={handleFormChange("email")}
-            placeholder="Your Email"
+            placeholder={block(pageBlocks, "call_back.emailPlaceholder") ?? "Your Email"}
             type="email"
             required
             className="absolute left-[816px] top-[4841px] w-[434px] h-[32px] bg-transparent outline-none font-['Inter:Light',sans-serif] font-light text-[16px] text-black placeholder:text-[rgba(0,0,0,0.5)]"
@@ -723,16 +723,14 @@ export function AlabsLandingPageDesktop({
           <div className="absolute h-[408px] left-[1048px] top-[83px] w-[272px]" data-name="MAN">
             <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgMan.src} />
           </div>
-          <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[818px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[772px] w-[194px]">{`Secure & Private`}</p>
-          <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1002.5px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] text-center top-[772px] w-[173px]">No Spam, ever</p>
-          <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1143.5px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] text-center top-[772px] w-[207px]">Takes only 2 mins</p>
+          <p className="absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[818px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] top-[772px] w-[194px]">{(blockList(pageBlocks, "leadCards.trustBadges") ?? [])[0] ?? `Secure & Private`}</p>
+          <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1002.5px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] text-center top-[772px] w-[173px]">{(blockList(pageBlocks, "leadCards.trustBadges") ?? [])[1] ?? "No Spam, ever"}</p>
+          <p className="-translate-x-1/2 absolute font-['Inter:Regular',sans-serif] font-normal leading-[normal] left-[1143.5px] not-italic text-[12px] text-[rgba(0,0,0,0.5)] text-center top-[772px] w-[207px]">{(blockList(pageBlocks, "leadCards.trustBadges") ?? [])[2] ?? "Takes only 2 mins"}</p>
           <MaterialSymbolsLightLockOutline />
           <HealthiconsNoOutline />
           <MdiLightClock />
           <p className="-translate-x-1/2 absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[0] left-[999px] not-italic text-[0px] text-black text-center top-[733px] whitespace-nowrap">
-            <span className="leading-[normal] text-[16px]">Find Your Perfect Learning</span>
-            <span className="leading-[normal] text-[#4c7fd2] text-[16px]">{` `}</span>
-            <span className="leading-[normal] text-[16px]">Path!</span>
+            <span className="leading-[normal] text-[16px]">{block(pageBlocks, "leadCards.pathHeading") ?? "Find Your Perfect Learning Path!"}</span>
           </p>
           <div className="absolute bg-[rgba(255,255,255,0.1)] h-[169px] left-[695px] rounded-[15px] top-[2596px] w-[299px]" />
           <div className="absolute bg-[rgba(255,255,255,0.1)] h-[169px] left-[1035px] rounded-[15px] top-[2596px] w-[299px]" />
@@ -751,7 +749,11 @@ export function AlabsLandingPageDesktop({
                 c2: { title: "Deep Learning", loc: "Online", date: "Self-Paced", time: "Anytime", seats: "20 Seats" }
               }
             ];
-            const cur = MODE_MOCKS[activeLearningMode] || MODE_MOCKS[0];
+            const mock = MODE_MOCKS[activeLearningMode] || MODE_MOCKS[0];
+            // Real upcoming batches for the active mode (from the Batch model),
+            // falling back to the mock cards when none are scheduled yet.
+            const live = (modeSessions?.[activeLearningMode] ?? []) as { title: string; loc: string; date: string; time: string; seats: string }[];
+            const cur = { c1: live[0] ?? mock.c1, c2: live[1] ?? mock.c2 };
             return (
               <>
                 <p className="absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[normal] left-[calc(50%-4px)] not-italic text-[24px] text-white top-[2531px] whitespace-nowrap">{cur.c1.title}</p>

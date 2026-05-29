@@ -12,42 +12,15 @@ const FIELDS: GlobalFieldDef[] = [
   { name: "signInHref", label: "Sign in CTA URL", type: "url" },
   { name: "createAccountLabel", label: "Create account CTA label", type: "text" },
   { name: "createAccountHref", label: "Create account CTA URL", type: "url" },
-  {
-    name: "navLinks",
-    label: "Top navigation links",
-    type: "array-objects",
-    itemFields: [
-      { key: "label", label: "Label" },
-      { key: "href", label: "URL", inputType: "url" },
-    ],
-  },
-  {
-    name: "megaMenuCategories",
-    label: "Mega menu categories",
-    type: "array-objects",
-    itemFields: [
-      { key: "label", label: "Category heading" },
-      { key: "href", label: "Category link", inputType: "url" },
-    ],
-  },
 ];
 
 const DEFAULT: Record<string, unknown> = {
   logoUrl: "",
   logoAlt: "AnalytixLabs",
-  signInLabel: "Sign In",
+  signInLabel: "Sign in",
   signInHref: "https://lms.analytixlabs.co.in",
   createAccountLabel: "Create Free Account",
   createAccountHref: "https://lms.analytixlabs.co.in/register",
-  navLinks: [
-    { label: "Upcoming Batches", href: "/batches" },
-    { label: "Explore Courses", href: "/courses" },
-    { label: "Why Us", href: "/why-us" },
-    { label: "For Corporates", href: "/for-corporates" },
-    { label: "Blog", href: "/blog" },
-    { label: "Contact Us", href: "/contact" },
-  ],
-  megaMenuCategories: [],
 };
 
 export default async function HeaderBlockPage() {
@@ -62,7 +35,7 @@ export default async function HeaderBlockPage() {
     <div className="max-w-3xl">
       <AdminPageHeader
         title="Header & Navigation"
-        description="Edit the site logo, top nav links, and sign-in CTAs. Changes go live immediately on save."
+        description="Edit the site logo and sign-in / create-account CTAs. Top nav links and the Explore Courses mega-menu are managed under Navigation. Changes go live immediately on save."
       />
       <div className="bg-white rounded-xl border border-gray-200 p-6">
         <GlobalBlockEditor

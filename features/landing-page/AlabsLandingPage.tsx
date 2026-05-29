@@ -191,6 +191,8 @@ export type LandingPageProps = {
   posts?: BlogPost[];
   // Learning modes (Phase A new model). Drives the Learning Modes tab labels and subtitles.
   learningModes?: LearningMode[];
+  // Per-mode session cards (upcoming batches), aligned to learningModes order.
+  modeSessions?: { title: string; loc: string; date: string; time: string; seats: string }[][];
 };
 
 // Helper to safely read a string out of the Page.blocks JSON without
@@ -246,6 +248,7 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
     footerCities = [],
     posts = [],
     learningModes = [],
+    modeSessions = [],
     pageBlocks = null,
   } = props;
 
@@ -445,7 +448,7 @@ export default function AlabsLandingPage(props: LandingPageProps = {}) {
   
   const viewState = {
     pageBlocks, activeCategory, setActiveCategory, handleCategoryClick,
-    carouselCourses, categories, stats, learningModes, testimonials, hiringPartners, pill, pillUrl, siteSettings,
+    carouselCourses, categories, stats, learningModes, modeSessions, testimonials, hiringPartners, pill, pillUrl, siteSettings,
     activeLearningMode, setActiveLearningMode,
     activeTestimonialIdx, handleTestimonialDot, testimonialPaused, testimonialCarouselRef, t0, testimonialKey,
     formData, handleFormChange, handleFormSubmit, isNotRobot, setIsNotRobot, formError, formSubmitted,

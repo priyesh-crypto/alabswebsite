@@ -13,7 +13,7 @@
  * Idempotent: re-runs cleanly. Models with a unique slug/email use
  * upsert; collections without a stable key are wiped + recreated.
  */
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Prisma } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
@@ -781,6 +781,7 @@ async function seedTeamMembers() {
   await prisma.teamMember.deleteMany();
   await prisma.teamMember.createMany({
     data: [
+      // ── Leadership (group TEAM) — shown on /about ──
       {
         name: "Sumeet Bansal",
         role: "Founder & Lead Faculty",
@@ -788,6 +789,7 @@ async function seedTeamMembers() {
         bio: "15+ years across analytics consulting and applied AI. Founded AnalytixLabs in 2011 to bridge the gap between academic ML and industry practice.",
         linkedinUrl: "https://www.linkedin.com/in/sumeetbansal",
         order: 0,
+        group: "TEAM",
       },
       {
         name: "Anuradha Mehta",
@@ -796,6 +798,7 @@ async function seedTeamMembers() {
         bio: "Designs program tracks, capstone briefs, and the placement-readiness program.",
         linkedinUrl: "https://www.linkedin.com/in/anuradha-mehta",
         order: 1,
+        group: "TEAM",
       },
       {
         name: "Vikram Joshi",
@@ -804,10 +807,26 @@ async function seedTeamMembers() {
         bio: "Spent a decade across BFSI data platforms. Leads the SQL, warehousing, and pipelines stream.",
         linkedinUrl: "https://www.linkedin.com/in/vikram-joshi-de",
         order: 2,
+        group: "TEAM",
       },
+      // ── Faculty (group FACULTY) — shown on /faculty ──
+      { name: "Sumeet Bansal", role: "Founder & Chief Mentor", experienceLabel: "20+ years", bio: "Ex-American Express, Bain Cap, Marketics. Led customer-analytics teams across BFSI and consumer-goods. Has personally taught 8,000+ practitioners.", expertise: ["Statistics", "Predictive Modeling", "Strategy"], order: 0, group: "FACULTY" },
+      { name: "Dr. Nidhi Gupta", role: "Head of Data Science", experienceLabel: "15+ years", bio: "PhD in Statistics. Former Principal Data Scientist at ZS Associates. Specializes in pharmaceutical analytics and causal inference.", expertise: ["Causal Inference", "ML at scale", "Healthcare"], order: 1, group: "FACULTY" },
+      { name: "Karan Malhotra", role: "Lead — Generative AI", experienceLabel: "12+ years", bio: "Former Senior ML Engineer at Microsoft. Built RAG systems and fine-tuning pipelines used by Fortune 500 customers.", expertise: ["LLMs", "RAG", "MLOps"], order: 2, group: "FACULTY" },
+      { name: "Priya Krishnan", role: "Head — Business Analytics", experienceLabel: "14+ years", bio: "Former AVP, Genpact. Specializes in supply-chain optimization and the link between BI dashboards and operating decisions.", expertise: ["BI", "SQL", "Decision Science"], order: 3, group: "FACULTY" },
+      { name: "Arjun Saxena", role: "Senior Faculty — Python", experienceLabel: "10+ years", bio: "Ex-Flipkart. Maintains an internal teaching framework that has trained 4,000+ Python learners across our cohorts.", expertise: ["Python", "Pandas", "Backend"], order: 4, group: "FACULTY" },
+      { name: "Meera Iyer", role: "Senior Faculty — Visualization", experienceLabel: "11+ years", bio: "Tableau Zen Master. Former lead BI analyst at Wipro. Mentors learners on stakeholder-grade dashboard storytelling.", expertise: ["Tableau", "Power BI", "Storytelling"], order: 5, group: "FACULTY" },
+      { name: "Rahul Deshmukh", role: "Faculty — Deep Learning", experienceLabel: "9+ years", bio: "Computer Vision lead at a healthcare AI startup. Has shipped 30+ models to production in radiology and ophthalmology.", expertise: ["CNNs", "PyTorch", "Computer Vision"], order: 6, group: "FACULTY" },
+      { name: "Anita Banerjee", role: "Faculty — Statistics", experienceLabel: "16+ years", bio: "Former Senior Statistician at Mu Sigma. Specializes in experimental design and explaining the math behind every model we teach.", expertise: ["Statistics", "A/B Testing", "Experimentation"], order: 7, group: "FACULTY" },
     ],
   });
-  console.log("✓ team members (3)");
+  // Faculty page copy lives in Page("faculty").blocks (editable under /admin/pages/faculty).
+  await prisma.page.upsert({
+    where: { slug: "faculty" },
+    create: { slug: "faculty", title: "Our Faculty", blocks: {} },
+    update: {},
+  });
+  console.log("✓ team members (3 leadership + 8 faculty)");
 }
 
 async function seedGlobalFaqs() {
@@ -1346,6 +1365,26 @@ async function seedGlobalBlocks() {
         cityOptions: ["Gurgaon", "Noida", "Bangalore", "Online"],
       },
     },
+    {
+      key: "pdp_labels",
+      label: "PDP section labels",
+      data: {
+        projectsTitle: "Data Science Capstone Projects & Assignments",
+        toolsTitle: "Data Science Tools & Technologies",
+        whoShouldJoinTitle: "Who Should Join",
+        jobRolesTitle: "Job Roles You Can Pursue",
+        keySkillsTitle: "Key Skills You'll Gain",
+        learningModesTitle: "Learning Modes",
+        courseFeesTitle: "Course Fees",
+        careerSupportTitle: "Career Support",
+        howToApplyTitle: "How to Apply",
+        learnersTitle: "What Our Learners Say",
+        studentStoriesTitle: "Student Success Stories",
+        relatedArticlesTitle: "Related Articles",
+        faqTitle: "Frequently Asked Questions",
+        batchesTitle: "Upcoming Batches",
+      },
+    },
   ] as const;
 
   for (const block of blocks) {
@@ -1357,6 +1396,100 @@ async function seedGlobalBlocks() {
   }
 
   console.log(`✓ global blocks (${blocks.length})`);
+}
+
+// Editable page sections (CMS) for the landing + Explore Courses pages, with
+// their real on-page copy so the admin section forms are populated out of the
+// box. Model-driven lists (testimonials, FAQs, hiring partners, courses,
+// categories) stay empty here — they're edited in their own CRUD pages.
+// The cta_banner section is left as a draft so the global CTA-banner block wins
+// the merge in getPage(); publishing it would clobber that.
+async function seedSections() {
+  type SecDef = { type: string; label: string; content: Record<string, unknown>; published?: boolean };
+
+  const LANDING: SecDef[] = [
+    {
+      type: "hero_landing", label: "Hero banner", published: true,
+      content: {
+        eyebrow: "Since 2011",
+        headline: "Become a **Data Scientist** with Real Industry Projects & Placement Support",
+        subtitle: "Learn Data Science, AI and Data Analytics with 600+ learning hours and industry projects.",
+        socialProofText: "5000+",
+        ctas: [
+          { label: "Explore Courses", href: "/courses", variant: "primary" },
+          { label: "Book Free Career Consultation", href: "/contact", variant: "secondary" },
+        ],
+        learnerPathCards: [],
+      },
+    },
+    {
+      type: "lead_cards", label: "Hero lead-capture cards", published: true,
+      content: {
+        card1: { title: "Fresher / Student", subtitle: "Starting or preparing to start your carrer", bestForLabel: "Best for" },
+        card2: { title: "Experienced Professional", subtitle: "Working, switching roles, or restarting your career", bestForLabel: "Best for" },
+        trustBadges: ["Secure & Private", "No Spam, ever", "Takes only 2 mins"],
+        pathHeading: "Find Your Perfect Learning Path!",
+      },
+    },
+    { type: "hiring_partners", label: "Hiring partners strip", published: true, content: { metricLabel: "15,000+", metricSuffix: "Candidates", partnerIds: [] } },
+    { type: "category_pills", label: "Category pills", published: true, content: { pills: [] } },
+    { type: "courses_challenge", label: "Courses — 6 Month Job Challenge", published: true, content: { headline: "Our Courses - 6 Months Job Challenge", sidebarCategories: [], featuredCourseIds: [] } },
+    {
+      type: "learning_modes", label: "Learning modes", published: true,
+      content: {
+        headline: "Learning Modes",
+        intro: "Explore Personalized learning modes to match your style! Whether you're a working professional or student or want to upskill, we've got you covered. Our approach ensures effective learning, making it enjoyable and rewarding.",
+        modes: [],
+      },
+    },
+    {
+      type: "institute_intro", label: "Institute intro", published: true,
+      content: {
+        headline: "AnalytixLabs is a top-ranked Data Science Institute",
+        body: "When it comes to industry-relevant data analytics courses and certifications. Offering a wide array of meticulously curated curriculums for students from various backgrounds, AnalytixLabs has led thousands of aspirants to desired job roles in data engineering, data science, artificial intelligence, and business analytics since 2011.",
+        cityIntro: "You can pick a data science course in :",
+        cityChips: ["Online", "Bangalore", "Gurgaon", "Noida"],
+        bullets: [
+          { text: "One to one mentorship" },
+          { text: "Industry driven curriculum curated" },
+          { text: "Experiential learning" },
+          { text: "Extensive post-class sessions" },
+        ],
+        images: [],
+      },
+    },
+    { type: "cta_banner", label: "CTA banner (Global)", published: false, content: { useGlobal: true } },
+    { type: "testimonials_carousel", label: "Testimonials carousel", published: true, content: { headline: "What Students Say About Us?", subhead: "True Stories, Transformative Career Experience", testimonialIds: [] } },
+    { type: "faqs", label: "FAQs", published: true, content: { headline: "Frequently Asked Questions", subhead: "", faqIds: [] } },
+  ];
+
+  const COURSES: SecDef[] = [
+    { type: "hero_simple", label: "Hero (simple)", published: true, content: { headline: "Explore **AI & Data Science** Courses That Get You Job Ready", subtitle: "Find the Course That Moves Your Career Forward" } },
+    { type: "courses_grid", label: "Courses grid", published: true, content: { headline: "All Courses", searchPlaceholder: "Search courses…", categories: [] } },
+    { type: "related_articles", label: "Related articles", published: true, content: { headline: "Related Articles", viewAllHref: "/blog", limit: 3, sourceTags: [] } },
+    { type: "testimonials_carousel", label: "Testimonials carousel", published: true, content: { headline: "What Students Say About Us?", subhead: "", testimonialIds: [] } },
+    { type: "cta_banner", label: "CTA banner (Global)", published: false, content: { useGlobal: true } },
+    { type: "faqs", label: "FAQs", published: true, content: { headline: "Frequently Asked Questions", subhead: "", faqIds: [] } },
+  ];
+
+  const seedFor = async (pageSlug: string, defs: SecDef[]) => {
+    await prisma.section.deleteMany({ where: { pageSlug } });
+    await prisma.section.createMany({
+      data: defs.map((d, i) => ({
+        pageSlug,
+        type: d.type,
+        label: d.label,
+        order: i,
+        isVisible: true,
+        contentDraft: d.content as Prisma.InputJsonValue,
+        contentPublished: d.published ? (d.content as Prisma.InputJsonValue) : Prisma.JsonNull,
+      })),
+    });
+  };
+
+  await seedFor("landing", LANDING);
+  await seedFor("courses", COURSES);
+  console.log(`✓ page sections (landing: ${LANDING.length}, courses: ${COURSES.length})`);
 }
 
 async function seedPdpReferenceCourse() {
@@ -1554,6 +1687,7 @@ async function main() {
   await seedGlobalFaqs();
   await seedBlogPosts();
   await seedPages();
+  await seedSections();
   await seedNavItems();
   await seedMasterclass();
   await seedGlobalBlocks();

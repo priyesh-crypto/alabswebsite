@@ -9,32 +9,38 @@ export const dynamic = "force-dynamic";
 
 const PAGE_SLUG = "courses";
 
+// Additive: create any missing course section type so newly-added types
+// (e.g. related_articles) appear on existing installs without a reseed.
 async function ensureCourseSections() {
   const existing = await prisma.section.findMany({
     where: { pageSlug: PAGE_SLUG },
     orderBy: { order: "asc" },
   });
-  if (existing.length > 0) return existing;
 
-  const types = ["hero_simple", "courses_grid", "testimonials_carousel", "cta_banner", "faqs"];
-  const defs = getSectionsForPage(PAGE_SLUG).filter(d => types.includes(d.type));
+  const types = ["hero_simple", "courses_grid", "related_articles", "testimonials_carousel", "cta_banner", "faqs"];
+  const presentTypes = new Set(existing.map(s => s.type));
+  const missing = getSectionsForPage(PAGE_SLUG).filter(d => types.includes(d.type) && !presentTypes.has(d.type));
 
-  await prisma.section.createMany({
-    data: defs.map((def, i) => ({
-      pageSlug: PAGE_SLUG,
-      type: def.type,
-      label: def.label,
-      order: i,
-      isVisible: true,
-      contentDraft: def.defaultContent as Prisma.InputJsonValue,
-      contentPublished: Prisma.JsonNull,
-    })),
-  });
+  if (missing.length > 0) {
+    const baseOrder = existing.length;
+    await prisma.section.createMany({
+      data: missing.map((def, i) => ({
+        pageSlug: PAGE_SLUG,
+        type: def.type,
+        label: def.label,
+        order: baseOrder + i,
+        isVisible: true,
+        contentDraft: def.defaultContent as Prisma.InputJsonValue,
+        contentPublished: Prisma.JsonNull,
+      })),
+    });
+    return prisma.section.findMany({
+      where: { pageSlug: PAGE_SLUG },
+      orderBy: { order: "asc" },
+    });
+  }
 
-  return prisma.section.findMany({
-    where: { pageSlug: PAGE_SLUG },
-    orderBy: { order: "asc" },
-  });
+  return existing;
 }
 
 export default async function CoursesPageEditor() {

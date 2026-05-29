@@ -266,12 +266,12 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
 
         {/* Search + category pills */}
         <section className="bg-white px-5 py-5">
-          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-xl mb-4">All Courses</h2>
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-xl mb-4">{block(props, "courses_grid.headline") || "All Courses"}</h2>
           {/* Search */}
           <div className="relative mb-4">
             <input
               type="search"
-              placeholder="Search courses..."
+              placeholder={block(props, "courses_grid.searchPlaceholder") || "Search courses..."}
               className="w-full border border-[#09263f]/30 rounded-xl h-12 pl-10 pr-4 text-sm outline-none focus:border-[#1de5b5]"
             />
             <svg className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-[#09263f]/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -358,9 +358,9 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
 
         {/* CTA Banner */}
         <section className="bg-gradient-to-r from-[#094c80] from-[13%] to-[#2096cb] py-10 px-6">
-          <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-white text-xl leading-snug mb-2">{`"Unlock Insights. Enroll Now. Transform Tomorrow."`}</p>
-          <p className="text-white/70 text-sm mb-6">Change the course of your career now</p>
-          <Link href="/contact" className="inline-flex items-center justify-center bg-[#ffd700] h-12 px-6 rounded-full font-semibold text-[#09263f] text-sm">Contact Us</Link>
+          <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-white text-xl leading-snug mb-2">{block(props, "cta_banner.headline") || `"Unlock Insights. Enroll Now. Transform Tomorrow."`}</p>
+          <p className="text-white/70 text-sm mb-6">{block(props, "cta_banner.subhead") || "Change the course of your career now"}</p>
+          <Link href={block(props, "cta_banner.ctaHref") || "/contact"} className="inline-flex items-center justify-center bg-[#ffd700] h-12 px-6 rounded-full font-semibold text-[#09263f] text-sm">{block(props, "cta_banner.ctaLabel") || "Contact Us"}</Link>
         </section>
 
       </div>{/* /mobile layout */}
@@ -401,11 +401,11 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
         {/* 2. Course Selection & Category Bar */}
         <section className="w-full max-w-[1440px] px-[66px] pt-4 pb-12 flex flex-col gap-10">
           <div className="flex justify-between items-center">
-            <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[36px]">All Courses</h2>
+            <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[36px]">{block(props, "courses_grid.headline") || "All Courses"}</h2>
             <div className="relative flex items-center">
               <input
                 type="text"
-                placeholder="Search"
+                placeholder={block(props, "courses_grid.searchPlaceholder") || "Search"}
                 className="bg-white border-[0.5px] border-[rgba(9,38,63,0.3)] border-solid h-[54px] w-[565px] rounded-[15px] pl-6 pr-16 text-[16px] outline-none focus:border-[#1de5b5] transition-all"
               />
               <div className="absolute right-1.5 bg-[#ffd700] size-[46px] rounded-[10px] flex items-center justify-center hover:brightness-95 cursor-pointer transition-all">
@@ -525,7 +525,7 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
         {/* 3. Related Articles Section */}
         <section className="w-full bg-[#f4fafa] flex justify-center py-12">
           <div className="w-[1440px] px-[66px] flex flex-col items-center">
-            <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[40px] mb-16">Related Articles</h2>
+            <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[40px] mb-16">{block(props, "related_articles.headline") || "Related Articles"}</h2>
 
             <div className="w-full grid grid-cols-3 gap-10">
               {(posts ?? [undefined, undefined, undefined]).slice(0, 3).map((post, i) => {
@@ -599,13 +599,13 @@ export default function ExploreCourses(props: ExploreCoursesProps) {
 
             <div className="max-w-[600px] flex flex-col gap-8 z-10">
               <h2 className="font-bold text-white text-[42px] leading-tight">
-                "Unlock Insights. Enroll Now. Transform Tomorrow."
+                {block(props, "cta_banner.headline") || `"Unlock Insights. Enroll Now. Transform Tomorrow."`}
               </h2>
               <p className="text-white/80 text-[20px]">
-                Change the course of your career now
+                {block(props, "cta_banner.subhead") || "Change the course of your career now"}
               </p>
-              <Link href="/contact" className="bg-[#ffd700] h-[60px] w-[220px] rounded-full flex items-center justify-center font-bold text-[#09263f] text-[20px] shadow-xl hover:scale-[1.05] transition-all">
-                Contact Us
+              <Link href={block(props, "cta_banner.ctaHref") || "/contact"} className="bg-[#ffd700] h-[60px] w-[220px] rounded-full flex items-center justify-center font-bold text-[#09263f] text-[20px] shadow-xl hover:scale-[1.05] transition-all">
+                {block(props, "cta_banner.ctaLabel") || "Contact Us"}
               </Link>
             </div>
           </div>

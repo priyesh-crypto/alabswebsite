@@ -6,7 +6,7 @@ import { withAdmin, parseBody, revalidatePublic } from "@/lib/admin-api";
 
 export const runtime = "nodejs";
 
-const ALLOWED_KEYS = new Set(["header", "footer", "cta_banner", "call_back"]);
+const ALLOWED_KEYS = new Set(["header", "footer", "cta_banner", "call_back", "pdp_labels"]);
 
 const patchSchema = z.object({
   data: z.record(z.string(), z.unknown()),

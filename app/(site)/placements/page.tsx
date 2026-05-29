@@ -2,6 +2,16 @@ import type { Metadata } from "next";
 import PageHero from "@/components/shared/PageHero";
 import StatsStrip from "@/components/shared/StatsStrip";
 import CTABanner from "@/components/shared/CTABanner";
+import { getHiringPartners, getPage } from "@/lib/api-client";
+
+function blockVal<T>(
+  blocks: Record<string, unknown> | undefined,
+  key: string,
+  fallback: T
+): T {
+  const v = blocks?.[key];
+  return v === undefined || v === null || v === "" ? fallback : (v as T);
+}
 
 export const metadata: Metadata = {
   title: "Placements | AnalytixLabs",
@@ -51,31 +61,53 @@ function SectionHeader({ title, sub }: { title: string; sub?: string }) {
   );
 }
 
-export default function PlacementsPage() {
+export default async function PlacementsPage() {
+  const [page, partners] = await Promise.all([
+    getPage("placements"),
+    getHiringPartners(),
+  ]);
+  const blocks = page?.blocks as Record<string, unknown> | undefined;
+
+  const placementStats = blockVal(blocks, "stats", PLACEMENT_STATS);
+  const recentPlacements = blockVal(blocks, "recentPlacements", RECENT_PLACEMENTS);
+  const placementProcess = blockVal(blocks, "process", PLACEMENT_PROCESS);
+  const hiringPartners =
+    partners.length > 0
+      ? partners.map((p) => p.name)
+      : blockVal(blocks, "hiringPartners", HIRING_PARTNERS);
+
   return (
     <>
       <PageHero
-        title="Placements aren't a feature. They're the point."
-        lede="We measure success by where you land — not how many people enrolled. Here's the unvarnished record from the last two years, plus how the placement engine actually works."
+        title={blockVal(
+          blocks,
+          "hero.title",
+          "Placements aren't a feature. They're the point."
+        )}
+        lede={blockVal(
+          blocks,
+          "hero.lede",
+          "We measure success by where you land — not how many people enrolled. Here's the unvarnished record from the last two years, plus how the placement engine actually works."
+        )}
       >
         <div className="flex flex-wrap gap-4 mt-7">
-          <a href="/contact" className="bg-[#09263f] text-white font-semibold px-6 py-3 rounded-full border border-white/30 hover:bg-[#07294a] transition">
-            Talk to placements
+          <a href={blockVal(blocks, "hero.cta1.href", "/contact")} className="bg-[#09263f] text-white font-semibold px-6 py-3 rounded-full border border-white/30 hover:bg-[#07294a] transition">
+            {blockVal(blocks, "hero.cta1.label", "Talk to placements")}
           </a>
-          <a href="/reviews" className="border border-white/40 text-white font-semibold px-6 py-3 rounded-full hover:bg-white/10 transition">
-            Read student reviews
+          <a href={blockVal(blocks, "hero.cta2.href", "/reviews")} className="border border-white/40 text-white font-semibold px-6 py-3 rounded-full hover:bg-white/10 transition">
+            {blockVal(blocks, "hero.cta2.label", "Read student reviews")}
           </a>
         </div>
       </PageHero>
 
-      <StatsStrip stats={PLACEMENT_STATS} />
+      <StatsStrip stats={placementStats} />
 
       {/* Recent placements table */}
       <section className="py-16 px-4">
         <div className="max-w-[1300px] mx-auto">
           <SectionHeader
-            title="A snapshot of recent placements."
-            sub="Eight from the last 12 months. We can share the full ledger on request."
+            title={blockVal(blocks, "recent.heading", "A snapshot of recent placements.")}
+            sub={blockVal(blocks, "recent.sub", "Eight from the last 12 months. We can share the full ledger on request.")}
           />
           <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-[#09263f]/6">
             {/* Header row */}
@@ -88,10 +120,10 @@ export default function PlacementsPage() {
               <div>Program</div>
               <div className="text-right">CTC</div>
             </div>
-            {RECENT_PLACEMENTS.map((p, i) => (
+            {recentPlacements.map((p, i) => (
               <div
                 key={i}
-                className={`grid md:grid-cols-[1.4fr_1.2fr_1.2fr_1.2fr_1.2fr_0.8fr] grid-cols-1 px-7 py-4 items-center gap-4 text-sm ${i < RECENT_PLACEMENTS.length - 1 ? "border-b border-[#09263f]/8" : ""}`}
+                className={`grid md:grid-cols-[1.4fr_1.2fr_1.2fr_1.2fr_1.2fr_0.8fr] grid-cols-1 px-7 py-4 items-center gap-4 text-sm ${i < recentPlacements.length - 1 ? "border-b border-[#09263f]/8" : ""}`}
               >
                 <div className="flex gap-2.5 items-center">
                   <span
@@ -119,11 +151,11 @@ export default function PlacementsPage() {
       <section className="py-16 px-4 bg-[#f5f7fa]">
         <div className="max-w-[1300px] mx-auto">
           <SectionHeader
-            title="How the placement engine runs."
-            sub="Four phases. None of them are optional."
+            title={blockVal(blocks, "process.heading", "How the placement engine runs.")}
+            sub={blockVal(blocks, "process.sub", "Four phases. None of them are optional.")}
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {PLACEMENT_PROCESS.map((h, i) => (
+            {placementProcess.map((h, i) => (
               <div key={i} className="bg-white rounded-2xl border border-[#e8ecf0] shadow-sm p-6">
                 <div className="text-5xl font-bold text-[#1de5b5] leading-none mb-2">{h.num}</div>
                 <h3 className="text-[17px] font-bold text-[#09263f] mb-2">{h.title}</h3>
@@ -137,9 +169,9 @@ export default function PlacementsPage() {
       {/* Hiring partners */}
       <section className="py-16 px-4">
         <div className="max-w-[1300px] mx-auto">
-          <SectionHeader title="Where our graduates land." />
+          <SectionHeader title={blockVal(blocks, "partners.heading", "Where our graduates land.")} />
           <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-3">
-            {HIRING_PARTNERS.map((p, i) => (
+            {hiringPartners.map((p, i) => (
               <div
                 key={i}
                 className="h-[70px] bg-white rounded-xl flex items-center justify-center text-xs font-bold text-[#09263f] shadow-sm text-center px-1.5"

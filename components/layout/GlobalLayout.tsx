@@ -3,10 +3,22 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import type { NavItem, Office, SiteSettings, BlogPost } from "@/lib/api-client";
+import type { NavItem, Office, SiteSettings, BlogPost, GlobalBlockData } from "@/lib/api-client";
 
 import svgPaths from "@/features/landing-page/svg-5my3vzmwxc";
 
+// Small helpers for reading loosely-typed GlobalBlock JSON without `any`.
+function str(block: GlobalBlockData | null | undefined, key: string): string | undefined {
+  const v = block?.[key];
+  return typeof v === "string" && v.trim() ? v : undefined;
+}
+function strPath(obj: unknown, key: string): string | undefined {
+  if (obj && typeof obj === "object") {
+    const v = (obj as Record<string, unknown>)[key];
+    if (typeof v === "string" && v.trim()) return v;
+  }
+  return undefined;
+}
 
 export type GlobalLayoutProps = {
   topNav?: NavItem[];
@@ -15,6 +27,7 @@ export type GlobalLayoutProps = {
   offices?: Office[];
   siteSettings?: SiteSettings | null;
   posts?: BlogPost[];
+  footerBlock?: GlobalBlockData | null;
 };
 
 // ─── Navbar ──────────────────────────────────────────────────────────────────
@@ -59,8 +72,55 @@ const MEGA_MENU_CATEGORIES = [
   },
 ];
 
-export function GlobalNavbar({ topNav, siteSettings }: { topNav?: NavItem[]; siteSettings?: SiteSettings | null }) {
+// Border colors cycle through the design palette when the mega-menu is
+// admin-managed (NavItem MEGA_MENU) rather than the hardcoded default.
+const MEGA_PALETTE = ["#07b3e7", "#1de5b5", "#ffd700", "#09263f"];
+
+type MegaCategory = {
+  title: string;
+  borderColor: string;
+  courses: { label: string; url: string; isNew?: boolean; badgeColor?: string }[];
+};
+
+// Convert the NavItem MEGA_MENU tree (parent categories → children courses)
+// into the shape the mega-menu renderer expects.
+function megaFromNav(items: NavItem[]): MegaCategory[] {
+  return items.map((cat, idx) => ({
+    title: cat.label,
+    borderColor: MEGA_PALETTE[idx % MEGA_PALETTE.length],
+    courses: (cat.children ?? []).map(c => ({ label: c.label, url: c.url, isNew: false })),
+  }));
+}
+
+export function GlobalNavbar({
+  topNav,
+  megaMenu,
+  siteSettings,
+  headerBlock,
+}: {
+  topNav?: NavItem[];
+  megaMenu?: NavItem[];
+  siteSettings?: SiteSettings | null;
+  headerBlock?: GlobalBlockData | null;
+}) {
   const pathname = usePathname();
+
+  // Logo + CTAs: admin-editable via the Header block / Site settings, with the
+  // original design values as fallbacks so nothing breaks when unset.
+  const logoUrl = str(headerBlock, "logoUrl") ?? siteSettings?.logoUrl ?? "/Asset_logo.png";
+  const logoAlt = str(headerBlock, "logoAlt") ?? "AnalytixLabs";
+  const signIn = {
+    label: str(headerBlock, "signInLabel") ?? "Sign in",
+    href: str(headerBlock, "signInHref") ?? "/signin",
+  };
+  const createAccount = {
+    label: str(headerBlock, "createAccountLabel") ?? "Create Free Account",
+    href: str(headerBlock, "createAccountHref") ?? "/signup",
+  };
+
+  // Mega-menu: prefer the admin-managed NavItem tree; else the design default.
+  const megaCategories: MegaCategory[] =
+    megaMenu && megaMenu.length > 0 ? megaFromNav(megaMenu) : MEGA_MENU_CATEGORIES;
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const [drawerCoursesOpen, setDrawerCoursesOpen] = useState(false);
@@ -105,7 +165,7 @@ export function GlobalNavbar({ topNav, siteSettings }: { topNav?: NavItem[]; sit
         {/* ── Desktop layout (≥ 1024px) ── */}
         <div className="hidden lg:flex w-full max-w-[1440px] mx-auto px-[33px] h-full items-center">
           <Link href="/" className="relative h-[57px] w-[191px] shrink-0">
-            <img alt="AnalytixLabs" className="absolute inset-0 max-w-none object-cover size-full pointer-events-none" src="/Asset_logo.png" />
+            <img alt={logoAlt} className="absolute inset-0 max-w-none object-cover size-full pointer-events-none" src={logoUrl} />
           </Link>
 
           <nav className="flex items-center ml-[60px] xl:ml-[120px] gap-[25px] xl:gap-[35px] overflow-x-auto scrollbar-none">
@@ -153,14 +213,14 @@ export function GlobalNavbar({ topNav, siteSettings }: { topNav?: NavItem[]; sit
           </nav>
 
           <div className="flex items-center ml-auto gap-[15px] shrink-0">
-            <Link href="/signin" className="font-semibold text-[#09263f] text-[14px] hover:text-[#19cf9e] transition-colors">
-              Sign in
+            <Link href={signIn.href} className="font-semibold text-[#09263f] text-[14px] hover:text-[#19cf9e] transition-colors">
+              {signIn.label}
             </Link>
             <Link
-              href="/signup"
+              href={createAccount.href}
               className="flex items-center justify-center bg-[#1de5b5] h-[40px] px-6 rounded-full font-semibold text-white text-[13px] hover:brightness-95 transition-all shadow-[0px_4px_15px_0px_rgba(29,229,181,0.2)]"
             >
-              Create Free Account
+              {createAccount.label}
             </Link>
           </div>
         </div>
@@ -168,7 +228,7 @@ export function GlobalNavbar({ topNav, siteSettings }: { topNav?: NavItem[]; sit
         {/* ── Mobile layout (< 1024px) ── */}
         <div className="flex lg:hidden w-full items-center justify-between px-4 h-full">
           <Link href="/" className="relative h-10 w-32 shrink-0">
-            <img alt="AnalytixLabs" className="h-full w-auto object-contain" src="/Asset_logo.png" />
+            <img alt={logoAlt} className="h-full w-auto object-contain" src={logoUrl} />
           </Link>
 
           <button
@@ -192,7 +252,7 @@ export function GlobalNavbar({ topNav, siteSettings }: { topNav?: NavItem[]; sit
           >
             <div className="max-w-[1440px] mx-auto px-[33px] py-8">
               <div className="grid grid-cols-2 gap-x-16 gap-y-8">
-                {MEGA_MENU_CATEGORIES.map((cat, ci) => (
+                {megaCategories.map((cat, ci) => (
                   <div key={ci}>
                     <h3 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[15px] mb-3">
                       {cat.title}
@@ -250,7 +310,7 @@ export function GlobalNavbar({ topNav, siteSettings }: { topNav?: NavItem[]; sit
             {/* Drawer header */}
             <div className="flex items-center justify-between px-4 py-4 border-b border-gray-100">
               <Link href="/" className="h-9 w-28">
-                <img alt="AnalytixLabs" className="h-full w-auto object-contain" src="/Asset_logo.png" />
+                <img alt={logoAlt} className="h-full w-auto object-contain" src={logoUrl} />
               </Link>
               <button
                 type="button"
@@ -284,7 +344,7 @@ export function GlobalNavbar({ topNav, siteSettings }: { topNav?: NavItem[]; sit
                       </button>
                       {drawerCoursesOpen && (
                         <div className="mt-1 mb-2 ml-3 flex flex-col gap-4">
-                          {MEGA_MENU_CATEGORIES.map((cat, ci) => (
+                          {megaCategories.map((cat, ci) => (
                             <div key={ci}>
                               <p className="text-[11px] font-semibold uppercase tracking-wide text-[#09263f]/40 px-3 mb-1">
                                 {cat.title}
@@ -345,16 +405,16 @@ export function GlobalNavbar({ topNav, siteSettings }: { topNav?: NavItem[]; sit
             {/* Auth buttons */}
             <div className="px-4 py-5 border-t border-gray-100 flex flex-col gap-3">
               <Link
-                href="/signin"
+                href={signIn.href}
                 className="block text-center py-2.5 rounded-full border border-[#09263f] text-[#09263f] font-semibold text-[14px] hover:bg-gray-50 transition"
               >
-                Sign in
+                {signIn.label}
               </Link>
               <Link
-                href="/signup"
+                href={createAccount.href}
                 className="block text-center py-2.5 rounded-full bg-[#1de5b5] text-white font-semibold text-[14px] hover:brightness-95 transition shadow-[0px_4px_15px_0px_rgba(29,229,181,0.2)]"
               >
-                Create Free Account
+                {createAccount.label}
               </Link>
             </div>
           </div>
@@ -366,10 +426,29 @@ export function GlobalNavbar({ topNav, siteSettings }: { topNav?: NavItem[]; sit
 
 // ─── Footer ──────────────────────────────────────────────────────────────────
 
-export function GlobalFooter({ offices, footerLinks, footerCities, posts, siteSettings }: GlobalLayoutProps) {
+export function GlobalFooter({ offices, footerLinks, footerCities, posts, siteSettings, footerBlock }: GlobalLayoutProps) {
   const [mounted, setMounted] = useState(false);
   const [openSection, setOpenSection] = useState<string | null>(null);
   useEffect(() => { setMounted(true); }, []);
+
+  // Logo, social links, copyright, column headings & legal links are all
+  // admin-editable (Footer block / Site settings) with design-default fallbacks.
+  const footerLogo = siteSettings?.logoUrl ?? "/Asset_logo.png";
+  const blockSocial = footerBlock?.["social"];
+  const settingsSocial = siteSettings?.socialLinks;
+  const socialHref = (key: string): string | undefined =>
+    strPath(blockSocial, key) ?? strPath(settingsSocial, key);
+  const colAboutHeading = str(footerBlock, "col1Heading") ?? "About Us";
+  const colEtcHeading = str(footerBlock, "col2Heading") ?? "Etcetera";
+  const colPopularHeading = str(footerBlock, "col3Heading") ?? "Popular Searches";
+  const DEFAULT_LEGAL = [
+    { label: "Privacy Policy", url: "/privacy-policy" },
+    { label: "Terms and Conditions", url: "/terms-and-conditions" },
+    { label: "Sitemap", url: "/sitemap" },
+  ];
+  const legalLinks: { label: string; url: string }[] = Array.isArray(footerBlock?.["legalLinks"]) && (footerBlock!["legalLinks"] as unknown[]).length > 0
+    ? (footerBlock!["legalLinks"] as { label: string; url: string }[]).filter(l => l && l.label)
+    : DEFAULT_LEGAL;
 
   const o0 = offices?.[0];
   const o1 = offices?.[1];
@@ -384,6 +463,7 @@ export function GlobalFooter({ offices, footerLinks, footerCities, posts, siteSe
     : fl.slice(5, 10);
   const popularSearches = footerCities ?? [];
   const copyYear = new Date().getFullYear();
+  const copyrightText = str(footerBlock, "copyrightText");
 
   const DEFAULT_ABOUT = [
     { label: "Why Us", url: "/why-us" },
@@ -457,7 +537,7 @@ export function GlobalFooter({ offices, footerLinks, footerCities, posts, siteSe
             <div className="flex justify-between items-start">
               <div className="flex flex-col gap-10 w-[426px]">
                 <Link href="/" className="block w-[233px] h-[69px]">
-                  <img alt="AnalytixLabs" className="w-full h-full object-contain" src="/Asset_logo.png" />
+                  <img alt="AnalytixLabs" className="w-full h-full object-contain" src={footerLogo} />
                 </Link>
 
                 <div className="bg-white/10 border border-white/20 rounded-[15px] p-8 backdrop-blur-sm">
@@ -479,21 +559,21 @@ export function GlobalFooter({ offices, footerLinks, footerCities, posts, siteSe
 
               <div className="grid grid-cols-3 gap-[40px] flex-1 justify-items-end">
                 <div className="flex flex-col gap-8 w-[180px]">
-                  <p className="font-semibold text-[16px]">About Us</p>
+                  <p className="font-semibold text-[16px]">{colAboutHeading}</p>
                   <div className="flex flex-col gap-5 text-[14px] font-light leading-relaxed">
                     {aboutLinks.map((l, i) => <Link key={i} href={l.url ?? "#"} className="hover:underline">{l.label}</Link>)}
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-8 w-[180px]">
-                  <p className="font-semibold text-[16px]">Etcetera</p>
+                  <p className="font-semibold text-[16px]">{colEtcHeading}</p>
                   <div className="flex flex-col gap-5 text-[14px] font-light leading-relaxed">
                     {etLinks.map((l, i) => <Link key={i} href={l.url ?? "#"} className="hover:underline">{l.label}</Link>)}
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-8 w-[280px]">
-                  <p className="font-semibold text-[16px]">Popular Searches</p>
+                  <p className="font-semibold text-[16px]">{colPopularHeading}</p>
                   <div className="flex flex-col gap-[18px] text-[14px] font-light leading-tight">
                     {searchLinks.map((l, i) => <Link key={i} href={l.url ?? "#"} className="hover:underline whitespace-normal block">{l.label}</Link>)}
                   </div>
@@ -522,19 +602,17 @@ export function GlobalFooter({ offices, footerLinks, footerCities, posts, siteSe
             {/* Bottom bar */}
             <div className="flex flex-col gap-8 pt-10 border-t border-white/20">
               <div className="flex justify-between items-center">
-                <p className="text-[14px] font-light">© {mounted ? copyYear : "2024"} AnalytixLabs. All Rights Reserved.</p>
+                <p className="text-[14px] font-light">{copyrightText ?? `© ${mounted ? copyYear : "2024"} AnalytixLabs. All Rights Reserved.`}</p>
                 <div className="flex items-center gap-6">
-                  <RiInstagramFill className="size-[24px]" />
-                  <IcRoundFacebook className="size-[28px]" />
-                  <MdiYoutube className="size-[32px]" />
-                  <MdiLinkedin className="size-[26px]" />
-                  <PrimeTwitter className="size-[22px]" />
-                  <AkarIconsMediumFill className="size-[24px]" />
+                  <SocialLink href={socialHref("instagram")}><RiInstagramFill className="size-[24px]" /></SocialLink>
+                  <SocialLink href={socialHref("facebook")}><IcRoundFacebook className="size-[28px]" /></SocialLink>
+                  <SocialLink href={socialHref("youtube")}><MdiYoutube className="size-[32px]" /></SocialLink>
+                  <SocialLink href={socialHref("linkedin")}><MdiLinkedin className="size-[26px]" /></SocialLink>
+                  <SocialLink href={socialHref("twitter")}><PrimeTwitter className="size-[22px]" /></SocialLink>
+                  <SocialLink href={socialHref("medium")}><AkarIconsMediumFill className="size-[24px]" /></SocialLink>
                 </div>
                 <div className="flex gap-8 text-[14px] font-light">
-                  <Link href="/privacy-policy" className="hover:underline">Privacy Policy</Link>
-                  <Link href="/terms-and-conditions" className="hover:underline">Terms and Conditions</Link>
-                  <Link href="/sitemap" className="hover:underline">Sitemap</Link>
+                  {legalLinks.map((l, i) => <Link key={i} href={l.url ?? "#"} className="hover:underline">{l.label}</Link>)}
                 </div>
               </div>
             </div>
@@ -546,7 +624,7 @@ export function GlobalFooter({ offices, footerLinks, footerCities, posts, siteSe
       <div className="lg:hidden px-5 py-10 flex flex-col gap-8">
         {/* Logo */}
         <Link href="/" className="block w-40 h-12">
-          <img alt="AnalytixLabs" className="w-full h-full object-contain" src="/Asset_logo.png" />
+          <img alt="AnalytixLabs" className="w-full h-full object-contain" src={footerLogo} />
         </Link>
 
         {/* Blog box */}
@@ -568,17 +646,17 @@ export function GlobalFooter({ offices, footerLinks, footerCities, posts, siteSe
 
         {/* Accordion link sections */}
         <div>
-          <AccordionSection id="about" title="About Us">
+          <AccordionSection id="about" title={colAboutHeading}>
             <div className="flex flex-col gap-3 text-[14px] font-light">
               {aboutLinks.map((l, i) => <Link key={i} href={l.url ?? "#"} className="hover:underline">{l.label}</Link>)}
             </div>
           </AccordionSection>
-          <AccordionSection id="etc" title="Etcetera">
+          <AccordionSection id="etc" title={colEtcHeading}>
             <div className="flex flex-col gap-3 text-[14px] font-light">
               {etLinks.map((l, i) => <Link key={i} href={l.url ?? "#"} className="hover:underline">{l.label}</Link>)}
             </div>
           </AccordionSection>
-          <AccordionSection id="searches" title="Popular Searches">
+          <AccordionSection id="searches" title={colPopularHeading}>
             <div className="flex flex-col gap-3 text-[14px] font-light">
               {searchLinks.map((l, i) => <Link key={i} href={l.url ?? "#"} className="hover:underline">{l.label}</Link>)}
             </div>
@@ -605,25 +683,34 @@ export function GlobalFooter({ offices, footerLinks, footerCities, posts, siteSe
 
         {/* Social icons */}
         <div className="flex items-center gap-5 flex-wrap">
-          <RiInstagramFill className="size-[22px]" />
-          <IcRoundFacebook className="size-[26px]" />
-          <MdiYoutube className="size-[30px]" />
-          <MdiLinkedin className="size-[24px]" />
-          <PrimeTwitter className="size-[20px]" />
-          <AkarIconsMediumFill className="size-[22px]" />
+          <SocialLink href={socialHref("instagram")}><RiInstagramFill className="size-[22px]" /></SocialLink>
+          <SocialLink href={socialHref("facebook")}><IcRoundFacebook className="size-[26px]" /></SocialLink>
+          <SocialLink href={socialHref("youtube")}><MdiYoutube className="size-[30px]" /></SocialLink>
+          <SocialLink href={socialHref("linkedin")}><MdiLinkedin className="size-[24px]" /></SocialLink>
+          <SocialLink href={socialHref("twitter")}><PrimeTwitter className="size-[20px]" /></SocialLink>
+          <SocialLink href={socialHref("medium")}><AkarIconsMediumFill className="size-[22px]" /></SocialLink>
         </div>
 
         {/* Bottom links + copyright */}
         <div className="border-t border-white/20 pt-6 flex flex-col gap-3 text-[13px] font-light">
           <div className="flex flex-wrap gap-4">
-            <Link href="/privacy-policy" className="hover:underline">Privacy Policy</Link>
-            <Link href="/terms-and-conditions" className="hover:underline">Terms &amp; Conditions</Link>
-            <Link href="/sitemap" className="hover:underline">Sitemap</Link>
+            {legalLinks.map((l, i) => <Link key={i} href={l.url ?? "#"} className="hover:underline">{l.label}</Link>)}
           </div>
-          <p className="text-white/70">© {mounted ? copyYear : "2024"} AnalytixLabs. All Rights Reserved.</p>
+          <p className="text-white/70">{copyrightText ?? `© ${mounted ? copyYear : "2024"} AnalytixLabs. All Rights Reserved.`}</p>
         </div>
       </div>
     </footer>
+  );
+}
+
+// Wraps a social icon in a link when an admin-configured URL exists; otherwise
+// renders the icon as-is (preserving the original non-linked design).
+function SocialLink({ href, children }: { href?: string; children: React.ReactNode }) {
+  if (!href) return <>{children}</>;
+  return (
+    <a href={href} target="_blank" rel="noreferrer" className="hover:opacity-80 transition-opacity">
+      {children}
+    </a>
   );
 }
 

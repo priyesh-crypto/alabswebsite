@@ -2,12 +2,22 @@ import type { Metadata } from "next";
 import PageHero from "@/components/shared/PageHero";
 import StatsStrip from "@/components/shared/StatsStrip";
 import CTABanner from "@/components/shared/CTABanner";
+import { getPage, getHiringPartners, getTestimonials } from "@/lib/api-client";
 
 export const metadata: Metadata = {
   title: "Why Us | AnalytixLabs",
   description:
     "15,000+ learners chose AnalytixLabs. Industry-aligned curriculum, practitioner-led faculty, and placement-first design that actually gets you hired.",
 };
+
+function blockVal<T>(
+  blocks: Record<string, unknown> | undefined,
+  key: string,
+  fallback: T
+): T {
+  const v = blocks?.[key];
+  return v === undefined || v === null || v === "" ? fallback : (v as T);
+}
 
 const WHY_PILLARS = [
   {
@@ -102,34 +112,90 @@ function Tick() {
   );
 }
 
-export default function WhyUsPage() {
+export default async function WhyUsPage() {
+  const [page, dbPartners, dbTestimonials] = await Promise.all([
+    getPage("why-us"),
+    getHiringPartners(),
+    getTestimonials(),
+  ]);
+  const blocks = (page?.blocks as Record<string, unknown> | undefined) ?? undefined;
+
+  // Hero
+  const heroTitle = blockVal(
+    blocks,
+    "hero.title",
+    "Why 15,000+ learners chose AnalytixLabs to build their analytics career."
+  );
+  const heroLede = blockVal(
+    blocks,
+    "hero.lede",
+    "We're not the cheapest. We're not the loudest. We are the only program built end-to-end around one question: will you get the role you came here for?"
+  );
+  const heroCta1Label = blockVal(blocks, "hero.cta1.label", "Talk to a Counselor");
+  const heroCta1Href = blockVal(blocks, "hero.cta1.href", "/contact");
+  const heroCta2Label = blockVal(blocks, "hero.cta2.label", "Browse Courses");
+  const heroCta2Href = blockVal(blocks, "hero.cta2.href", "/courses");
+
+  // Structured arrays
+  const outcomes = blockVal(blocks, "outcomes", WHY_OUTCOMES);
+  const pillars = blockVal(blocks, "pillars", WHY_PILLARS);
+  const compare = blockVal(blocks, "compare", WHY_COMPARE);
+  const how = blockVal(blocks, "how", WHY_HOW);
+
+  // Section headings
+  const pillarsHeading = blockVal(blocks, "pillars.heading", "Six things we won't compromise on.");
+  const pillarsSub = blockVal(blocks, "pillars.sub", "Everything else is negotiable. These six are the program.");
+  const compareHeading = blockVal(blocks, "compare.heading", "The honest comparison.");
+  const compareSub = blockVal(blocks, "compare.sub", "What you get with us vs. typical analytics programs.");
+  const compareUsLabel = blockVal(blocks, "compare.usLabel", "AnalytixLabs");
+  const compareOthersLabel = blockVal(blocks, "compare.othersLabel", "Typical institute");
+  const howHeading = blockVal(blocks, "how.heading", "How a learner moves through the program.");
+  const howSub = blockVal(blocks, "how.sub", "Four stages. Each one designed to remove a specific failure mode.");
+  const partnersHeading = blockVal(blocks, "partners.heading", "Where our graduates work.");
+  const partnersSub = blockVal(blocks, "partners.sub", "50+ hiring partners, from product unicorns to global consulting.");
+  const partnersCtaLabel = blockVal(blocks, "partners.ctaLabel", "See full placement record");
+  const partnersCtaHref = blockVal(blocks, "partners.ctaHref", "/placements");
+  const testimonialsHeading = blockVal(blocks, "testimonials.heading", "In their words.");
+  const testimonialsSub = blockVal(blocks, "testimonials.sub", "No edits. No marketing polish.");
+
+  // Hiring partners: wired to HiringPartner model, fall back to WHY_PARTNERS names.
+  const partners: string[] =
+    dbPartners.length > 0 ? dbPartners.map((p) => p.name) : WHY_PARTNERS;
+
+  // Testimonials: wired to Testimonial model, fall back to WHY_TESTIMONIALS.
+  const testimonials: { name: string; role: string; body: string }[] =
+    dbTestimonials.length > 0
+      ? dbTestimonials.map((t) => ({
+          name: t.name,
+          role: [t.role, t.company].filter(Boolean).join(", "),
+          body: t.quote,
+        }))
+      : WHY_TESTIMONIALS;
+
   return (
     <>
-      <PageHero
-        title="Why 15,000+ learners chose AnalytixLabs to build their analytics career."
-        lede="We're not the cheapest. We're not the loudest. We are the only program built end-to-end around one question: will you get the role you came here for?"
-      >
+      <PageHero title={heroTitle} lede={heroLede}>
         <div className="flex flex-wrap gap-4 mt-7">
-          <a href="/contact" className="bg-[#09263f] text-white font-semibold px-6 py-3 rounded-full border border-white/30 hover:bg-[#07294a] transition">
-            Talk to a Counselor
+          <a href={heroCta1Href} className="bg-[#09263f] text-white font-semibold px-6 py-3 rounded-full border border-white/30 hover:bg-[#07294a] transition">
+            {heroCta1Label}
           </a>
-          <a href="/courses" className="border border-white/40 text-white font-semibold px-6 py-3 rounded-full hover:bg-white/10 transition">
-            Browse Courses
+          <a href={heroCta2Href} className="border border-white/40 text-white font-semibold px-6 py-3 rounded-full hover:bg-white/10 transition">
+            {heroCta2Label}
           </a>
         </div>
       </PageHero>
 
-      <StatsStrip stats={WHY_OUTCOMES} />
+      <StatsStrip stats={outcomes} />
 
       {/* Pillars */}
       <section className="py-16 px-4">
         <div className="max-w-[1300px] mx-auto">
           <SectionHeader
-            title="Six things we won't compromise on."
-            sub="Everything else is negotiable. These six are the program."
+            title={pillarsHeading}
+            sub={pillarsSub}
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {WHY_PILLARS.map((p, i) => (
+            {pillars.map((p, i) => (
               <div
                 key={i}
                 className={`${p.tint} bg-white rounded-2xl shadow-sm p-6 border border-[#e8ecf0]`}
@@ -150,22 +216,22 @@ export default function WhyUsPage() {
       <section className="py-16 px-4 bg-[#f5f7fa]">
         <div className="max-w-[1300px] mx-auto">
           <SectionHeader
-            title="The honest comparison."
-            sub="What you get with us vs. typical analytics programs."
+            title={compareHeading}
+            sub={compareSub}
           />
           <div className="max-w-[1100px] mx-auto bg-white rounded-2xl overflow-hidden shadow-sm">
             <div className="grid bg-[#09263f] text-white px-7 py-4 font-bold text-sm gap-4" style={{ gridTemplateColumns: "1.2fr 1.5fr 1.2fr" }}>
               <div></div>
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#1de5b5] inline-block" />
-                AnalytixLabs
+                {compareUsLabel}
               </div>
-              <div className="opacity-70">Typical institute</div>
+              <div className="opacity-70">{compareOthersLabel}</div>
             </div>
-            {WHY_COMPARE.map((row, i) => (
+            {compare.map((row, i) => (
               <div
                 key={i}
-                className={`grid px-7 py-4 items-center gap-4 text-sm ${i < WHY_COMPARE.length - 1 ? "border-b border-[#09263f]/8" : ""}`}
+                className={`grid px-7 py-4 items-center gap-4 text-sm ${i < compare.length - 1 ? "border-b border-[#09263f]/8" : ""}`}
                 style={{ gridTemplateColumns: "1.2fr 1.5fr 1.2fr" }}
               >
                 <div className="font-semibold text-[#09263f]">{row.feature}</div>
@@ -183,16 +249,16 @@ export default function WhyUsPage() {
       <section className="py-16 px-4">
         <div className="max-w-[1300px] mx-auto">
           <SectionHeader
-            title="How a learner moves through the program."
-            sub="Four stages. Each one designed to remove a specific failure mode."
+            title={howHeading}
+            sub={howSub}
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {WHY_HOW.map((h, i) => (
+            {how.map((h, i) => (
               <div key={i} className="relative">
                 <div className="text-6xl font-bold text-[#1de5b5] leading-none opacity-40 mb-2">{h.num}</div>
                 <h3 className="text-lg font-bold text-[#09263f] mb-2">{h.title}</h3>
                 <p className="text-sm leading-snug text-[#09263f]/80">{h.body}</p>
-                {i < WHY_HOW.length - 1 && (
+                {i < how.length - 1 && (
                   <div className="hidden lg:block absolute right-[-1.75rem] top-7 text-2xl font-light text-[#09263f]/30">
                     →
                   </div>
@@ -207,11 +273,11 @@ export default function WhyUsPage() {
       <section className="py-16 px-4 bg-[#f5f7fa]">
         <div className="max-w-[1300px] mx-auto">
           <SectionHeader
-            title="Where our graduates work."
-            sub="50+ hiring partners, from product unicorns to global consulting."
+            title={partnersHeading}
+            sub={partnersSub}
           />
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 max-w-[1100px] mx-auto">
-            {WHY_PARTNERS.map((p, i) => (
+            {partners.map((p, i) => (
               <div
                 key={i}
                 className="h-20 bg-white rounded-xl flex items-center justify-center text-sm font-bold text-[#09263f] shadow-sm"
@@ -222,10 +288,10 @@ export default function WhyUsPage() {
           </div>
           <div className="text-center mt-7">
             <a
-              href="/placements"
+              href={partnersCtaHref}
               className="bg-[#1de5b5] text-[#09263f] font-semibold px-6 py-3 rounded-full hover:brightness-95 transition"
             >
-              See full placement record
+              {partnersCtaLabel}
             </a>
           </div>
         </div>
@@ -234,15 +300,15 @@ export default function WhyUsPage() {
       {/* Testimonials */}
       <section className="py-16 px-4">
         <div className="max-w-[1300px] mx-auto">
-          <SectionHeader title="In their words." sub="No edits. No marketing polish." />
+          <SectionHeader title={testimonialsHeading} sub={testimonialsSub} />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {WHY_TESTIMONIALS.map((t, i) => (
+            {testimonials.map((t, i) => (
               <div key={i} className="bg-white rounded-2xl shadow-sm p-6 border border-[#e8ecf0]">
                 <div className="mb-4 text-[#1de5b5] text-4xl font-bold leading-none">&ldquo;</div>
                 <p className="text-sm leading-relaxed text-[#09263f] mb-6 min-h-[130px]">{t.body}</p>
                 <div className="flex items-center gap-3">
                   <div
-                    className={`w-11 h-11 rounded-full ${AVATAR_COLORS[i]} flex items-center justify-center font-bold text-[#09263f] text-base`}
+                    className={`w-11 h-11 rounded-full ${AVATAR_COLORS[i % AVATAR_COLORS.length]} flex items-center justify-center font-bold text-[#09263f] text-base`}
                   >
                     {t.name.split(" ").map((s) => s[0]).slice(0, 2).join("")}
                   </div>

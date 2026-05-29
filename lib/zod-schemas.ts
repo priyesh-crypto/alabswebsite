@@ -111,6 +111,13 @@ export const teamMemberUpsertSchema = z.object({
   bio: optionalString(2000),
   linkedinUrl: optionalString(500),
   order: z.coerce.number().int().min(0).max(9999).default(0),
+  group: z.enum(["TEAM", "FACULTY"]).default("TEAM"),
+  experienceLabel: optionalString(60),
+  // Accept a real string[] or a comma-separated string from a plain text input.
+  expertise: z.preprocess(v => {
+    if (typeof v === "string") return v.split(",").map(s => s.trim()).filter(Boolean);
+    return v;
+  }, z.array(z.string().trim().min(1).max(60)).default([])),
 });
 export type TeamMemberUpsertInput = z.infer<typeof teamMemberUpsertSchema>;
 
@@ -171,6 +178,41 @@ export const pageUpdateSchema = z.object({
   metaDesc: optionalString(300),
 });
 export type PageUpdateInput = z.infer<typeof pageUpdateSchema>;
+
+// Empty string clears the relation (-> null); undefined would leave it unchanged.
+const nullableId = (max = 40) =>
+  z.string().trim().max(max).optional().or(z.literal("")).transform(v => (v ? v : null));
+
+export const navItemUpsertSchema = z.object({
+  label: requiredString(1, 160),
+  url: requiredString(1, 500),
+  group: z.enum([
+    "TOP_NAV",
+    "MEGA_MENU",
+    "FOOTER_LINKS",
+    "FOOTER_CITIES",
+    "FOOTER_COL_ABOUT",
+    "FOOTER_COL_ETC",
+    "FOOTER_COL_POPULAR",
+  ]),
+  order: z.coerce.number().int().min(0).max(9999).default(0),
+  parentId: nullableId(40),
+  isActive: z.coerce.boolean().default(true),
+});
+export type NavItemUpsertInput = z.infer<typeof navItemUpsertSchema>;
+
+export const batchUpsertSchema = z.object({
+  courseId: requiredString(1, 40),
+  location: requiredString(1, 80),
+  // Accepts "YYYY-MM-DD" (from a date input) or a full ISO string.
+  startDate: z.string().trim().min(1, "Start date is required").transform(v => new Date(v))
+    .refine(d => !Number.isNaN(d.getTime()), "Invalid date"),
+  schedule: requiredString(1, 200),
+  seatsLeft: z.coerce.number().int().min(0).max(99999).default(0),
+  modeId: nullableId(40),
+  isActive: z.coerce.boolean().default(true),
+});
+export type BatchUpsertInput = z.infer<typeof batchUpsertSchema>;
 
 export const learningModeUpsertSchema = z.object({
   slug: z.string().trim().min(1).max(80).regex(/^[a-z0-9-]+$/, "lowercase letters, numbers, hyphens only"),

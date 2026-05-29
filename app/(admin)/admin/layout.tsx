@@ -25,6 +25,7 @@ const NAV_GROUPS = [
       { label: "Categories", href: "/admin/categories" },
       { label: "Batches", href: "/admin/batches" },
       { label: "Learning modes", href: "/admin/learning-modes" },
+      { label: "Course-page labels", href: "/admin/global/pdp-labels" },
     ],
   },
   {

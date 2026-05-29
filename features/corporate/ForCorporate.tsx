@@ -24,7 +24,17 @@ type ForCorporateProps = {
   footerCities?: NavItem[];
   offices?: Office[];
   siteSettings?: SiteSettings | null;
+  blocks?: Record<string, unknown>;
 };
+
+function blockVal<T>(
+  blocks: Record<string, unknown> | undefined,
+  key: string,
+  fallback: T
+): T {
+  const v = blocks?.[key];
+  return v === undefined || v === null || v === "" ? fallback : (v as T);
+}
 
 function Group4() {
   return (
@@ -136,7 +146,13 @@ function MaterialSymbolsManageAccountsRounded() {
 }
 
 
-export default function ForCorporate({ topNav, footerLinks, footerCities, offices, siteSettings }: ForCorporateProps) {
+export default function ForCorporate({ topNav, footerLinks, footerCities, offices, siteSettings, blocks }: ForCorporateProps) {
+  type SolutionCard = { title: string; desc: string };
+  type CourseTrack = { title: string; items: string[] };
+  type ReportItem = { title: string };
+  type ReportItemDesktop = { title: string; tag?: string };
+  type ArticleItem = { title: string; category: string; read: string };
+
   return (
     <div className="bg-white relative w-full overflow-x-hidden flex flex-col items-center" data-name="For Corporate">
 
@@ -146,13 +162,13 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
         {/* Hero */}
         <section className="bg-[#f4fafa] px-5 pt-8 pb-10 overflow-hidden relative">
           <h1 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[28px] sm:text-[34px] text-[#09263f] leading-[1.2] mb-3">
-            For{" "}
+            {blockVal(blocks, "hero.titlePrefix", "For")}{" "}
             <span className="bg-clip-text bg-gradient-to-r from-[#1de5b5] from-[34%] to-[#07b3e7] to-[79%] text-transparent">
-              Corporates &amp; Enterprises
+              {blockVal(blocks, "hero.titleBrand", "Corporates & Enterprises")}
             </span>
           </h1>
           <p className="text-sm text-[#09263f]/50 mb-6 leading-relaxed">
-            Build data-driven managers or upskill teams — AnalytixLabs trains in Data Science, AI, and ML.
+            {blockVal(blocks, "hero.subcopyMobile", "Build data-driven managers or upskill teams — AnalytixLabs trains in Data Science, AI, and ML.")}
           </p>
           <div className="relative max-w-[280px] mx-auto -mb-8">
             {/* X Backdrop (Logo Themed Gradient) - Repositioned and lower opacity */}
@@ -173,20 +189,20 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
             <img src={imgChatGptImageApr142026034518Pm3.src} alt="" className="relative z-10 w-full h-auto object-contain" />
           </div>
           <Link href="/contact" className="relative z-20 flex items-center justify-center bg-[#ffd700] h-12 rounded-full font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-base shadow-lg transition-transform active:scale-[0.98]">
-            Get a Free Consultation
+            {blockVal(blocks, "hero.ctaLabel", "Get a Free Consultation")}
           </Link>
         </section>
 
         {/* End-to-End Analytics Solutions */}
         <section className="bg-white px-5 py-8">
-          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl mb-1">End-to-End Analytics Solutions</h2>
-          <p className="text-sm text-[#09263f]/50 mb-6">Consulting, training, and staffing for data-driven growth.</p>
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl mb-1">{blockVal(blocks, "solutions.heading", "End-to-End Analytics Solutions")}</h2>
+          <p className="text-sm text-[#09263f]/50 mb-6">{blockVal(blocks, "solutions.subcopy", "Consulting, training, and staffing for data-driven growth.")}</p>
           <div className="flex flex-col gap-5">
-            {[
-              { title: "Analytics Consulting & Solutions", desc: "A trusted provider since 2017, offering data analytics services including tool development, maintenance, and advanced statistical analysis.", bg: "#d2faf0", img: imgImg.src },
-              { title: "Analytics Capability Building", desc: "Expert-led, customized programs designed to help organizations fully leverage data through practical training and tailored case studies.", bg: "#fffad2", img: imgImg1.src },
-              { title: "Staffing & Recruitment", desc: "Supplying skilled, pre-screened analytics professionals for project-based roles, internships, and full-time positions.", bg: "#fff2fa", img: imgImg2.src },
-            ].map((card, i) => (
+            {blockVal<SolutionCard[]>(blocks, "solutions.cards", [
+              { title: "Analytics Consulting & Solutions", desc: "A trusted provider since 2017, offering data analytics services including tool development, maintenance, and advanced statistical analysis." },
+              { title: "Analytics Capability Building", desc: "Expert-led, customized programs designed to help organizations fully leverage data through practical training and tailored case studies." },
+              { title: "Staffing & Recruitment", desc: "Supplying skilled, pre-screened analytics professionals for project-based roles, internships, and full-time positions." },
+            ]).map((c, i) => ({ ...c, bg: ["#d2faf0", "#fffad2", "#fff2fa"][i], img: [imgImg.src, imgImg1.src, imgImg2.src][i] })).map((card, i) => (
               <div key={i} className="rounded-2xl overflow-hidden shadow-sm border border-black/10">
                 <img src={card.img} alt={card.title} className="w-full h-44 object-cover" />
                 <div className="p-4" style={{ background: card.bg }}>
@@ -200,26 +216,26 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
 
         {/* Wide Array of Courses */}
         <section className="bg-[#f4fafa] px-5 py-8">
-          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl mb-2">Wide Array of Courses</h2>
-          <p className="text-sm text-[#09263f]/50 mb-5">Industry-relevant programs across technical, domain, and leadership tracks.</p>
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl mb-2">{blockVal(blocks, "courses.heading", "Wide Array of Courses")}</h2>
+          <p className="text-sm text-[#09263f]/50 mb-5">{blockVal(blocks, "courses.subcopyMobile", "Industry-relevant programs across technical, domain, and leadership tracks.")}</p>
           <Link href="/courses" className="inline-flex items-center justify-center bg-[#ffd700] h-11 px-6 rounded-full font-semibold text-[#09263f] text-sm mb-6">
-            Explore Courses →
+            {blockVal(blocks, "courses.ctaLabel", "Explore Courses →")}
           </Link>
           <div className="flex flex-col gap-4">
-            {[
+            {blockVal<CourseTrack[]>(blocks, "courses.tracks", [
               {
-                track: "Technical",
+                title: "Technical",
                 items: ["Analytics Reporting & Visualization", "Machine Learning Predictive Modeling", "Applied AI & Deep Learning", "Big Data & Cloud Computing"],
               },
               {
-                track: "Function / Domain",
+                title: "Function / Domain",
                 items: ["Banking & Finance", "Marketing & Sales", "Retail Analytics", "Digital Analytics"],
               },
               {
-                track: "Management",
+                title: "Management",
                 items: ["Analytics 101", "Analytics for Leaders", "Analytics Consulting", "Digital Transformation"],
               },
-            ].map((col, i) => (
+            ]).map((c) => ({ track: c.title, items: c.items })).map((col, i) => (
               <div key={i} className="bg-white rounded-xl p-4 shadow-sm">
                 <h3 className="font-semibold text-[#09263f] text-base mb-3 pb-2 border-b border-[#09263f]/10">{col.track}</h3>
                 <ul className="flex flex-col gap-2">
@@ -239,20 +255,20 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
 
         {/* Free Industry Reports */}
         <section className="bg-white px-5 py-8">
-          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl text-center mb-2">Free Industry Reports</h2>
-          <p className="text-sm text-[#09263f]/50 text-center mb-6">Access valuable insights and trends. Stay informed and make smarter career decisions.</p>
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl text-center mb-2">{blockVal(blocks, "reports.heading", "Free Industry Reports")}</h2>
+          <p className="text-sm text-[#09263f]/50 text-center mb-6">{blockVal(blocks, "reports.subcopyMobile", "Access valuable insights and trends. Stay informed and make smarter career decisions.")}</p>
           <div className="flex flex-col gap-4">
-            {[
-              { title: "Skill Gap 2025-26: Mapping India's AI Talent", img: imgRectangle52.src },
-              { title: "AI Skills in Demand – A Complete Playbook For 2026", img: imgRectangle54.src },
-              { title: "Data Science and AI Job Outlook", img: imgRectangle55.src },
-            ].map((report, i) => (
+            {blockVal<ReportItem[]>(blocks, "reports.itemsMobile", [
+              { title: "Skill Gap 2025-26: Mapping India's AI Talent" },
+              { title: "AI Skills in Demand – A Complete Playbook For 2026" },
+              { title: "Data Science and AI Job Outlook" },
+            ]).map((r, i) => ({ ...r, img: [imgRectangle52.src, imgRectangle54.src, imgRectangle55.src][i] })).map((report, i) => (
               <div key={i} className="border border-[#09263f]/15 rounded-2xl overflow-hidden shadow-sm">
                 <img src={report.img} alt={report.title} className="w-full h-44 object-cover" />
                 <div className="p-4">
                   <h3 className="font-semibold text-black text-base mb-3 leading-snug">{report.title}</h3>
                   <button className="flex items-center justify-center w-full bg-[#1de5b5] h-11 rounded-full font-semibold text-white text-sm">
-                    Download
+                    {blockVal(blocks, "reports.downloadLabel", "Download")}
                   </button>
                 </div>
               </div>
@@ -262,27 +278,27 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
 
         {/* Related Articles */}
         <section className="bg-[#f4fafa] px-5 py-8">
-          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl text-center mb-6">Related Articles</h2>
+          <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-2xl text-center mb-6">{blockVal(blocks, "articles.heading", "Related Articles")}</h2>
           <div className="flex flex-col gap-4 mb-5">
             {[imgRectangle51, imgRectangle53, imgRectangle107].map((img, i) => (
               <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-sm">
                 <img src={img.src} alt="" className="w-full h-40 object-cover" />
                 <div className="p-4">
-                  <p className="text-[#4c7fd2] text-xs font-semibold mb-1">Data Science</p>
+                  <p className="text-[#4c7fd2] text-xs font-semibold mb-1">{blockVal(blocks, "articles.category", "Data Science")}</p>
                   <h3 className="text-sm font-medium text-black mb-2 leading-snug">
-                    Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?
+                    {blockVal(blocks, "articles.sampleTitle", "Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?")}
                   </h3>
                   <p className="text-xs text-black/50 line-clamp-2 mb-2">
-                    Statistical tests form the backbone of data-driven decision-making.
+                    {blockVal(blocks, "articles.sampleExcerpt", "Statistical tests form the backbone of data-driven decision-making.")}
                   </p>
-                  <span className="text-xs text-black/70">S. Dutta</span>
+                  <span className="text-xs text-black/70">{blockVal(blocks, "articles.author", "S. Dutta")}</span>
                 </div>
               </div>
             ))}
           </div>
           <div className="text-center">
             <Link href="/blog" className="inline-flex items-center gap-1 bg-[#ffd700] h-11 px-6 rounded-full font-semibold text-[#09263f] text-sm">
-              Explore Blogs →
+              {blockVal(blocks, "articles.ctaLabel", "Explore Blogs →")}
             </Link>
           </div>
         </section>
@@ -290,11 +306,11 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
         {/* CTA Banner */}
         <section className="bg-[#07b3e7] py-10 px-6">
           <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-white text-xl leading-snug mb-2">
-            {`"Unlock Insights. Enroll Now. Transform Tomorrow."`}
+            {blockVal(blocks, "ctaBanner.heading", `"Unlock Insights. Enroll Now. Transform Tomorrow."`)}
           </p>
-          <p className="text-white/70 text-sm mb-6">Change the course of your career now</p>
+          <p className="text-white/70 text-sm mb-6">{blockVal(blocks, "ctaBanner.subcopyMobile", "Change the course of your career now")}</p>
           <Link href="/contact" className="inline-flex items-center justify-center bg-[#ffd700] h-12 px-6 rounded-full font-semibold text-[#09263f] text-sm">
-            Contact Us
+            {blockVal(blocks, "ctaBanner.ctaLabel", "Contact Us")}
           </Link>
         </section>
       </div>{/* /mobile layout */}
@@ -307,11 +323,11 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
           <div className="max-w-[1280px] mx-auto px-10 relative flex items-center justify-between min-h-[400px]">
             <div className="z-10 flex flex-col gap-6 max-w-[600px]">
               <h1 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[48px] text-[#09263f] leading-[1.1] tracking-tight">
-                <span>{`For `}</span>
-                <span className="bg-clip-text bg-gradient-to-r from-[#1de5b5] to-[#07b3e7] text-transparent">{`Corporates & Enterprises`}</span>
+                <span>{blockVal(blocks, "hero.titlePrefix", "For")}{` `}</span>
+                <span className="bg-clip-text bg-gradient-to-r from-[#1de5b5] to-[#07b3e7] text-transparent">{blockVal(blocks, "hero.titleBrand", "Corporates & Enterprises")}</span>
               </h1>
               <p className="font-['Inter:Regular',sans-serif] font-normal text-[15px] text-[#09263f]/60 leading-relaxed max-w-[440px]">
-                Build data-driven managers or upskill teams—AnalytixLabs trains in Data Science, AI, and ML through customized enterprise solutions.
+                {blockVal(blocks, "hero.subcopy", "Build data-driven managers or upskill teams—AnalytixLabs trains in Data Science, AI, and ML through customized enterprise solutions.")}
               </p>
             </div>
             
@@ -341,16 +357,16 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
         <section className="w-full py-24 bg-white">
           <div className="max-w-[1280px] mx-auto px-10">
             <div className="mb-16">
-              <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[36px] tracking-tight mb-4">End-to-End Analytics Solutions</h2>
-              <p className="font-['Inter:Regular',sans-serif] font-normal text-[16px] text-[#09263f]/50">Consulting, training, and staffing for data-driven growth.</p>
+              <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[36px] tracking-tight mb-4">{blockVal(blocks, "solutions.heading", "End-to-End Analytics Solutions")}</h2>
+              <p className="font-['Inter:Regular',sans-serif] font-normal text-[16px] text-[#09263f]/50">{blockVal(blocks, "solutions.subcopy", "Consulting, training, and staffing for data-driven growth.")}</p>
             </div>
-            
+
             <div className="grid grid-cols-3 gap-8">
-              {[
-                { title: "Analytics Consulting & Solutions", bg: "#d2faf0", img: imgImg.src, desc: "A trusted provider since 2017, offering data analytics services including tool development, maintenance, and advanced statistical analysis." },
-                { title: "Analytics Capability Building", bg: "#fffad2", img: imgImg1.src, desc: "Expert-led, customized programs designed to help organizations fully leverage data through practical training and tailored case studies." },
-                { title: "Staffing & Recruitment", bg: "#fff2fa", img: imgImg2.src, desc: "Supplying skilled, pre-screened analytics professionals for project-based roles, internships, and full-time positions." }
-              ].map((item, i) => (
+              {blockVal<SolutionCard[]>(blocks, "solutions.cards", [
+                { title: "Analytics Consulting & Solutions", desc: "A trusted provider since 2017, offering data analytics services including tool development, maintenance, and advanced statistical analysis." },
+                { title: "Analytics Capability Building", desc: "Expert-led, customized programs designed to help organizations fully leverage data through practical training and tailored case studies." },
+                { title: "Staffing & Recruitment", desc: "Supplying skilled, pre-screened analytics professionals for project-based roles, internships, and full-time positions." }
+              ]).map((c, i) => ({ ...c, bg: ["#d2faf0", "#fffad2", "#fff2fa"][i], img: [imgImg.src, imgImg1.src, imgImg2.src][i] })).map((item, i) => (
                 <div key={i} className="flex flex-col rounded-[24px] overflow-hidden shadow-[0px_10px_30px_rgba(0,0,0,0.05)] border border-black/5 hover:shadow-[0px_20px_50px_rgba(0,0,0,0.1)] transition-all duration-300">
                   <div className="p-8 flex-1" style={{ backgroundColor: item.bg }}>
                     <div className="flex justify-between items-start mb-6">
@@ -375,11 +391,11 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
           <div className="max-w-[1280px] mx-auto px-10">
             <div className="flex items-end justify-between mb-16">
               <div className="max-w-[600px]">
-                <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[32px] tracking-tight mb-4">Wide Array of Courses</h2>
-                <p className="font-['Inter:Regular',sans-serif] font-normal text-[15px] text-[#09263f]/60 leading-relaxed">Industry-relevant programs across technical, domain, and leadership tracks designed to build practical analytics expertise at every level.</p>
+                <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[32px] tracking-tight mb-4">{blockVal(blocks, "courses.heading", "Wide Array of Courses")}</h2>
+                <p className="font-['Inter:Regular',sans-serif] font-normal text-[15px] text-[#09263f]/60 leading-relaxed">{blockVal(blocks, "courses.subcopy", "Industry-relevant programs across technical, domain, and leadership tracks designed to build practical analytics expertise at every level.")}</p>
               </div>
               <Link href="/courses" className="bg-[#ffd700] px-8 py-3.5 rounded-full font-semibold text-[#09263f] text-[15px] hover:brightness-105 transition-all shadow-sm">
-                Explore Courses →
+                {blockVal(blocks, "courses.ctaLabel", "Explore Courses →")}
               </Link>
             </div>
 
@@ -389,32 +405,26 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
                 <img src={imgImg3.src} alt="" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#09263f]/80 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-xl font-bold mb-2">Build Your Path</h3>
-                  <p className="text-sm opacity-80">Customized learning journeys for teams.</p>
+                  <h3 className="text-xl font-bold mb-2">{blockVal(blocks, "courses.featuredTitle", "Build Your Path")}</h3>
+                  <p className="text-sm opacity-80">{blockVal(blocks, "courses.featuredSubcopy", "Customized learning journeys for teams.")}</p>
                 </div>
               </div>
 
               {/* Tracks */}
-              {[
-                { 
-                  title: "Technical", 
-                  bg: "#f0fbff", 
-                  icon: <LetsIconsSettingFill />, 
-                  items: ["Analytics Reporting & Visualization", "Machine Learning Predictive Modeling", "Applied AI & Deep Learning", "Big Data & Cloud Computing"] 
+              {blockVal<CourseTrack[]>(blocks, "courses.tracks", [
+                {
+                  title: "Technical",
+                  items: ["Analytics Reporting & Visualization", "Machine Learning Predictive Modeling", "Applied AI & Deep Learning", "Big Data & Cloud Computing"]
                 },
-                { 
-                  title: "Function / Domain", 
-                  bg: "#fff2fa", 
-                  icon: <IconParkOutlineSettingComputer />, 
-                  items: ["Banking & Finance", "Marketing & Sales", "Retail Analytics", "Digital Analytics"] 
+                {
+                  title: "Function / Domain",
+                  items: ["Banking & Finance", "Marketing & Sales", "Retail Analytics", "Digital Analytics"]
                 },
-                { 
-                  title: "Management", 
-                  bg: "#d2faf0", 
-                  icon: <MaterialSymbolsManageAccountsRounded />, 
-                  items: ["Analytics 101", "Analytics for Leaders", "Analytics Consulting", "Digital Transformation"] 
+                {
+                  title: "Management",
+                  items: ["Analytics 101", "Analytics for Leaders", "Analytics Consulting", "Digital Transformation"]
                 }
-              ].map((track, i) => (
+              ]).map((t, i) => ({ ...t, bg: ["#f0fbff", "#fff2fa", "#d2faf0"][i] })).map((track, i) => (
                 <div key={i} className="flex flex-col rounded-[20px] overflow-hidden h-[400px] shadow-sm border border-black/5" style={{ backgroundColor: track.bg }}>
                   <div className="p-8 flex flex-col items-center text-center">
                     <div className="size-16 bg-white rounded-full shadow-md flex items-center justify-center mb-6 relative overflow-visible">
@@ -447,18 +457,18 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
         <section className="w-full py-24 bg-white">
           <div className="max-w-[1280px] mx-auto px-10">
             <div className="text-center mb-16">
-              <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[36px] tracking-tight mb-4">Free Industry Reports</h2>
+              <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[36px] tracking-tight mb-4">{blockVal(blocks, "reports.heading", "Free Industry Reports")}</h2>
               <p className="font-['Inter:Regular',sans-serif] font-normal text-[16px] text-[#09263f]/50 max-w-[700px] mx-auto">
-                Access valuable insights and trends with our free industry reports. Stay informed and make smarter career decisions.
+                {blockVal(blocks, "reports.subcopy", "Access valuable insights and trends with our free industry reports. Stay informed and make smarter career decisions.")}
               </p>
             </div>
-            
+
             <div className="grid grid-cols-3 gap-8">
-              {[
-                { title: "Skill Gap 2025-26: Mapping India’s AI Talent", img: imgRectangle52.src, tag: "Latest" },
-                { title: "AI Skills in Demand - A Complete Playbook For 2026", img: imgRectangle54.src },
-                { title: "Data Science and AI Job Outlook", img: imgRectangle55.src }
-              ].map((report, i) => (
+              {blockVal<ReportItemDesktop[]>(blocks, "reports.items", [
+                { title: "Skill Gap 2025-26: Mapping India’s AI Talent", tag: "Latest" },
+                { title: "AI Skills in Demand - A Complete Playbook For 2026" },
+                { title: "Data Science and AI Job Outlook" }
+              ]).map((r, i) => ({ ...r, img: [imgRectangle52.src, imgRectangle54.src, imgRectangle55.src][i] })).map((report, i) => (
                 <div key={i} className="group flex flex-col bg-white border border-black/10 rounded-[20px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
                   <div className="relative h-[280px] overflow-hidden">
                     {report.tag && (
@@ -471,7 +481,7 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
                   <div className="p-8 flex flex-col flex-1">
                     <h3 className="font-semibold text-[18px] text-black text-center mb-8 leading-tight flex-1">{report.title}</h3>
                     <button className="w-full bg-[#1de5b5] h-[48px] rounded-full flex items-center justify-center font-bold text-white text-[14px] uppercase tracking-widest hover:brightness-105 active:scale-[0.98] transition-all">
-                      Download
+                      {blockVal(blocks, "reports.downloadLabel", "Download")}
                     </button>
                   </div>
                 </div>
@@ -484,15 +494,15 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
         <section className="w-full py-24 bg-[#f4fafa]">
           <div className="max-w-[1280px] mx-auto px-10">
             <div className="text-center mb-16">
-              <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[36px] tracking-tight mb-4">Related Articles</h2>
+              <h2 className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#09263f] text-[36px] tracking-tight mb-4">{blockVal(blocks, "articles.heading", "Related Articles")}</h2>
             </div>
-            
+
             <div className="grid grid-cols-3 gap-8 mb-16">
-              {[
-                { img: imgRectangle51.src, title: "Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?", category: "Data Science", read: "9 min read" },
-                { img: imgRectangle53.src, title: "Statistical tests form the backbone of data-driven decision-making.", category: "Data Science", read: "9 min read" },
-                { img: imgRectangle107.src, title: "Exploring the Generative AI Revolution in India's Job Market 2025", category: "Data Science", read: "9 min read" }
-              ].map((post, i) => (
+              {blockVal<ArticleItem[]>(blocks, "articles.items", [
+                { title: "Parametric vs. Non-Parametric Test: Which One to Use for Hypothesis Testing?", category: "Data Science", read: "9 min read" },
+                { title: "Statistical tests form the backbone of data-driven decision-making.", category: "Data Science", read: "9 min read" },
+                { title: "Exploring the Generative AI Revolution in India's Job Market 2025", category: "Data Science", read: "9 min read" }
+              ]).map((a, i) => ({ ...a, img: [imgRectangle51.src, imgRectangle53.src, imgRectangle107.src][i] })).map((post, i) => (
                 <div key={i} className="bg-white rounded-[20px] overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all duration-300 flex flex-col h-full">
                   <div className="h-[240px] overflow-hidden relative">
                     <img src={post.img} alt="" className="w-full h-full object-cover" />
@@ -504,7 +514,7 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
                     <div className="flex items-center justify-between pt-6 border-t border-black/5">
                       <div className="flex items-center gap-3">
                         <div className="size-8 rounded-full bg-[#082962]" />
-                        <span className="text-[13px] font-medium text-black/80">S. Dutta</span>
+                        <span className="text-[13px] font-medium text-black/80">{blockVal(blocks, "articles.author", "S. Dutta")}</span>
                       </div>
                       <div className="flex gap-2">
                          <div className="size-8 rounded-full border border-black/10 flex items-center justify-center text-black/40 hover:text-[#09263f] hover:border-[#09263f] cursor-pointer transition-colors">
@@ -522,7 +532,7 @@ export default function ForCorporate({ topNav, footerLinks, footerCities, office
             
             <div className="text-center">
               <Link href="/blog" className="inline-flex items-center justify-center bg-[#ffd700] px-10 h-[52px] rounded-full font-bold text-[#09263f] text-[16px] shadow-md hover:brightness-105 active:scale-[0.98] transition-all">
-                Explore Blogs →
+                {blockVal(blocks, "articles.ctaLabel", "Explore Blogs →")}
               </Link>
             </div>
           </div>

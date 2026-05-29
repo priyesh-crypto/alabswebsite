@@ -84,10 +84,26 @@ export const learningModesSchema = z.object({
 export const instituteIntroSchema = z.object({
   headline: z.string().default(""),
   body: z.string().default(""),
+  cityIntro: z.string().default(""),
   cityChips: z.array(z.string()).default([]),
   bullets: z.array(z.object({ icon: z.string().optional(), text: z.string() })).default([]),
   cta: cta.optional(),
   images: z.array(mediaRef).max(2).default([]),
+});
+
+export const leadCardsSchema = z.object({
+  card1: z.object({
+    title: z.string().default("Fresher / Student"),
+    subtitle: z.string().default("Starting or preparing to start your carrer"),
+    bestForLabel: z.string().default("Best for"),
+  }).default({ title: "Fresher / Student", subtitle: "Starting or preparing to start your carrer", bestForLabel: "Best for" }),
+  card2: z.object({
+    title: z.string().default("Experienced Professional"),
+    subtitle: z.string().default("Working, switching roles, or restarting your career"),
+    bestForLabel: z.string().default("Best for"),
+  }).default({ title: "Experienced Professional", subtitle: "Working, switching roles, or restarting your career", bestForLabel: "Best for" }),
+  trustBadges: z.array(z.string()).default(["Secure & Private", "No Spam, ever", "Takes only 2 mins"]),
+  pathHeading: z.string().default("Find Your Perfect Learning Path!"),
 });
 
 // ---- Shared section schemas (appear on multiple pages) ----------------------
@@ -121,7 +137,7 @@ export const heroSimpleSchema = z.object({
 });
 
 export const coursesGridSchema = z.object({
-  headline: z.string().default(""),
+  headline: z.string().default("All Courses"),
   searchPlaceholder: z.string().default("Search courses…"),
   categories: z.array(z.object({ label: z.string(), key: z.string() })).default([]),
   courseIds: z.array(z.string()).default([]),
@@ -185,6 +201,7 @@ export const pdpHowToApplySchema = z.object({
 export type SectionTypeId =
   // Landing
   | "hero_landing"
+  | "lead_cards"
   | "hiring_partners"
   | "category_pills"
   | "courses_challenge"
@@ -233,6 +250,13 @@ export const SECTION_REGISTRY: SectionDef[] = [
     label: "Hero banner",
     schema: heroLandingSchema,
     defaultContent: heroLandingSchema.parse({}),
+    pageScope: ["landing"],
+  },
+  {
+    type: "lead_cards",
+    label: "Hero lead-capture cards",
+    schema: leadCardsSchema,
+    defaultContent: leadCardsSchema.parse({}),
     pageScope: ["landing"],
   },
   {

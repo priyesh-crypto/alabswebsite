@@ -12,7 +12,7 @@ type Media = { url: string; alt: string };
 
 export default function InstituteIntroForm({ draft, onChange }: FormProps) {
   const d = draft as {
-    headline: string; body: string; cityChips: string[];
+    headline: string; body: string; cityIntro: string; cityChips: string[];
     bullets: Bullet[]; cta?: Cta; images: Media[];
   };
   function set(key: string, val: unknown) { onChange({ ...d, [key]: val }); }
@@ -21,6 +21,7 @@ export default function InstituteIntroForm({ draft, onChange }: FormProps) {
     <div className="flex flex-col gap-4">
       <TextField label="Headline" value={d.headline ?? ""} onChange={v => set("headline", v)} />
       <TextareaField label="Body text" value={d.body ?? ""} onChange={v => set("body", v)} rows={4} />
+      <TextField label="City intro line" value={d.cityIntro ?? ""} onChange={v => set("cityIntro", v)} placeholder="You can pick a data science course in :" />
 
       <ArrayField<string>
         label="City chips"

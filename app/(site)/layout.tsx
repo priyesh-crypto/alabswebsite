@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { GlobalNavbar, GlobalFooter } from "@/components/layout/GlobalLayout";
-import { getNav, getOffices, getSiteSettings, getPosts } from "@/lib/api-client";
+import { getNav, getOffices, getSiteSettings, getPosts, getGlobalBlock } from "@/lib/api-client";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
@@ -27,18 +27,21 @@ export async function generateMetadata(): Promise<Metadata> {
  * pages (new PDP, ported static pages) are not zoom-scaled.
  */
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
-  const [siteSettings, topNav, footerLinks, footerCities, offices, posts] = await Promise.all([
+  const [siteSettings, topNav, megaMenu, footerLinks, footerCities, offices, posts, headerBlock, footerBlock] = await Promise.all([
     getSiteSettings(),
     getNav("TOP_NAV"),
+    getNav("MEGA_MENU"),
     getNav("FOOTER_LINKS"),
     getNav("FOOTER_CITIES"),
     getOffices(),
     getPosts({ limit: 3 }),
+    getGlobalBlock("header"),
+    getGlobalBlock("footer"),
   ]);
 
   return (
     <div className="w-full bg-white flex flex-col">
-      <GlobalNavbar topNav={topNav} siteSettings={siteSettings} />
+      <GlobalNavbar topNav={topNav} megaMenu={megaMenu} siteSettings={siteSettings} headerBlock={headerBlock} />
       <main className="w-full flex-grow overflow-x-hidden">
         {children}
       </main>
@@ -48,6 +51,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         footerCities={footerCities}
         siteSettings={siteSettings}
         posts={posts}
+        footerBlock={footerBlock}
       />
     </div>
   );

@@ -16,7 +16,7 @@ import { useRouter } from "next/navigation";
 import { useState, useRef, type FormEvent } from "react";
 
 export type FieldDef =
-  | { name: string; label: string; type: "text" | "url" | "email"; placeholder?: string; required?: boolean }
+  | { name: string; label: string; type: "text" | "url" | "email" | "date"; placeholder?: string; required?: boolean }
   | { name: string; label: string; type: "textarea"; rows?: number; required?: boolean }
   | { name: string; label: string; type: "number"; min?: number; max?: number; required?: boolean }
   | { name: string; label: string; type: "boolean" }

@@ -7,18 +7,20 @@ import type { SectionRow } from "@/components/admin/SectionEditor";
 
 export const dynamic = "force-dynamic";
 
-// Ensure default sections exist for the landing page
+// Ensure default sections exist for the landing page. Runs additively: creates
+// any landing section type that isn't already present, so newly-added types
+// (e.g. lead_cards) appear on existing installs without a reseed.
 async function ensureLandingSections() {
   const existing = await prisma.section.findMany({
     where: { pageSlug: "landing" },
     orderBy: { order: "asc" },
   });
-  if (existing.length > 0) return existing;
 
   const defs = getSectionsForPage("landing");
   // Only seed the sections that belong exclusively to landing (not shared)
   const landingOnlyTypes = [
     "hero_landing",
+    "lead_cards",
     "hiring_partners",
     "category_pills",
     "courses_challenge",
@@ -29,23 +31,29 @@ async function ensureLandingSections() {
     "faqs",
   ];
 
-  const toCreate = defs
-    .filter(d => landingOnlyTypes.includes(d.type))
-    .map((def, i) => ({
-      pageSlug: "landing",
-      type: def.type,
-      label: def.label,
-      order: i,
-      isVisible: true,
-      contentDraft: def.defaultContent as Prisma.InputJsonValue,
-      contentPublished: Prisma.JsonNull,
-    }));
+  const presentTypes = new Set(existing.map(s => s.type));
+  const missing = defs.filter(d => landingOnlyTypes.includes(d.type) && !presentTypes.has(d.type));
 
-  await prisma.section.createMany({ data: toCreate });
-  return prisma.section.findMany({
-    where: { pageSlug: "landing" },
-    orderBy: { order: "asc" },
-  });
+  if (missing.length > 0) {
+    const baseOrder = existing.length;
+    await prisma.section.createMany({
+      data: missing.map((def, i) => ({
+        pageSlug: "landing",
+        type: def.type,
+        label: def.label,
+        order: baseOrder + i,
+        isVisible: true,
+        contentDraft: def.defaultContent as Prisma.InputJsonValue,
+        contentPublished: Prisma.JsonNull,
+      })),
+    });
+    return prisma.section.findMany({
+      where: { pageSlug: "landing" },
+      orderBy: { order: "asc" },
+    });
+  }
+
+  return existing;
 }
 
 export default async function LandingPageEditor() {

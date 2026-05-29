@@ -14,6 +14,7 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import { getSectionDef } from "@/lib/sections/index";
 import HeroLandingForm from "./sections/HeroLandingForm";
+import LeadCardsForm from "./sections/LeadCardsForm";
 import TestimonialsCarouselForm from "./sections/TestimonialsCarouselForm";
 import FaqsSectionForm from "./sections/FaqsSectionForm";
 import HiringPartnersSectionForm from "./sections/HiringPartnersSectionForm";
@@ -23,6 +24,7 @@ import InstituteIntroForm from "./sections/InstituteIntroForm";
 import CoursesChallengeForm from "./sections/CoursesChallengeForm";
 import HeroSimpleForm from "./sections/HeroSimpleForm";
 import CoursesGridForm from "./sections/CoursesGridForm";
+import RelatedArticlesForm from "./sections/RelatedArticlesForm";
 import PdpOverviewForm from "./sections/PdpOverviewForm";
 import PdpCurriculumForm from "./sections/PdpCurriculumForm";
 import PdpCertificationForm from "./sections/PdpCertificationForm";
@@ -43,6 +45,7 @@ export type SectionRow = {
 // Map section type → form component
 const FORM_REGISTRY: Record<string, React.ComponentType<FormProps>> = {
   hero_landing: HeroLandingForm,
+  lead_cards: LeadCardsForm,
   testimonials_carousel: TestimonialsCarouselForm,
   faqs: FaqsSectionForm,
   hiring_partners: HiringPartnersSectionForm,
@@ -52,6 +55,7 @@ const FORM_REGISTRY: Record<string, React.ComponentType<FormProps>> = {
   courses_challenge: CoursesChallengeForm,
   hero_simple: HeroSimpleForm,
   courses_grid: CoursesGridForm,
+  related_articles: RelatedArticlesForm,
   pdp_overview: PdpOverviewForm,
   pdp_curriculum: PdpCurriculumForm,
   pdp_certification: PdpCertificationForm,

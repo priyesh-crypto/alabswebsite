@@ -19,6 +19,7 @@ import {
   getPosts,
   getSiteSettings,
   getTestimonials,
+  getModeSessions,
 } from "@/lib/api-client";
 
 export const dynamic = "force-dynamic";
@@ -49,6 +50,7 @@ export default async function HomePage() {
     pageBlocks,
     posts,
     learningModes,
+    modeSessions,
   ] = await Promise.all([
     getSiteSettings(),
     getNav("TOP_NAV"),
@@ -65,6 +67,7 @@ export default async function HomePage() {
     getPage("home"),
     getPosts({ limit: 3 }),
     getLearningModes(),
+    getModeSessions(),
   ]);
 
   const sharedProps = {
@@ -83,6 +86,7 @@ export default async function HomePage() {
     pageBlocks,
     posts,
     learningModes,
+    modeSessions,
   };
 
   return (

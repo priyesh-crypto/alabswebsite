@@ -8,8 +8,13 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  // Runtime connection. On Supabase use the POOLED string (port 6543) with
+  // ?pgbouncer=true&connection_limit=1. Locally this is just the local Postgres URL.
+  url       = env("DATABASE_URL")
+  // Used by `prisma migrate` / `prisma db push`. On Supabase use the DIRECT
+  // string (port 5432). Locally, set it to the same value as DATABASE_URL.
+  directUrl = env("DIRECT_URL")
 }
 
 // ============================================================
@@ -265,13 +270,19 @@ model HiringPartner {
 }
 
 model TeamMember {
-  id          String  @id @default(cuid())
-  name        String
-  role        String
-  photoUrl    String?
-  bio         String?
-  linkedinUrl String?
-  order       Int     @default(0)
+  id              String   @id @default(cuid())
+  name            String
+  role            String
+  photoUrl        String?
+  bio             String?
+  linkedinUrl     String?
+  order           Int      @default(0)
+  // "TEAM" (leadership on /about) or "FACULTY" (/faculty page). Lets the two
+  // pages each render their own roster from one model.
+  group           String   @default("TEAM")
+  // Faculty-specific fields (null/empty for leadership rows).
+  experienceLabel String?
+  expertise       String[] @default([])
 }
 
 model Faq {

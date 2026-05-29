@@ -247,6 +247,11 @@ export default function CourseDetailPage({ course, pageBlocks }: { course: PdpCo
   const rating = course.rating ? Number(course.rating) : 9.6;
   const alumniText = course.pdpAlumniText ?? (course.alumniCount ? `${course.alumniCount.toLocaleString()}+` : "20,000+");
 
+  // Section titles — editable via the global "PDP section labels" block
+  // (/admin/global/pdp-labels), merged into pageBlocks for course/* pages.
+  // Each is optional; the section components fall back to the original literal.
+  const L = (block("pdp_labels") ?? {}) as Record<string, string | undefined>;
+
   return (
     <div className="bg-white text-[#09263f] font-sans pb-24 lg:pb-0">
       {/* 2-col area — wraps just the top of the page (Hero + StickyAnchorNav +
@@ -296,23 +301,23 @@ export default function CourseDetailPage({ course, pageBlocks }: { course: PdpCo
       </div>
 
       {/* Full-width sections — Capstone onwards extend across the whole page */}
-      <CapstoneProjects items={projectDomains} fallback={projects} />
-      <ToolsGrid tools={tools} />
-      <WhoShouldJoinSection items={whoShouldJoin} />
-      <JobRolesSection roles={jobRoles} />
-      <KeySkillsSection skills={keySkills} />
-      <LearningModesSection modes={learningModes} />
-      <CourseFeesSection pricing={pricing} />
+      <CapstoneProjects items={projectDomains} fallback={projects} title={L.projectsTitle} />
+      <ToolsGrid tools={tools} title={L.toolsTitle} />
+      <WhoShouldJoinSection items={whoShouldJoin} title={L.whoShouldJoinTitle} />
+      <JobRolesSection roles={jobRoles} title={L.jobRolesTitle} />
+      <KeySkillsSection skills={keySkills} title={L.keySkillsTitle} />
+      <LearningModesSection modes={learningModes} title={L.learningModesTitle} />
+      <CourseFeesSection pricing={pricing} title={L.courseFeesTitle} />
       <CertificationSection data={certData} certifications={certifications} />
-      <CareerSupportSection data={careerSupport} />
-      <HowToApplySection steps={howToApply} />
-      <TestimonialStrip items={testimonialStrip} />
-      <StudentStoriesSection stories={studentStories} />
-      <RelatedArticlesSection articles={relatedArticles} />
+      <CareerSupportSection data={careerSupport} title={L.careerSupportTitle} />
+      <HowToApplySection steps={howToApply} title={L.howToApplyTitle} />
+      <TestimonialStrip items={testimonialStrip} title={L.learnersTitle} />
+      <StudentStoriesSection stories={studentStories} title={L.studentStoriesTitle} />
+      <RelatedArticlesSection articles={relatedArticles} title={L.relatedArticlesTitle} />
       <CtaBannerSection data={ctaBanner} />
       <ContactSection data={contactBlock} courseId={course.id} />
-      <FaqSection items={faqsData} />
-      <BatchesTable batches={batches} />
+      <FaqSection items={faqsData} title={L.faqTitle} />
+      <BatchesTable batches={batches} title={L.batchesTitle} />
 
       <MobileStickyCta />
     </div>
@@ -875,13 +880,13 @@ function CurriculumSection({
 // Section 4 — Testimonial strip
 // ============================================================
 
-function TestimonialStrip({ items }: { items: TestimonialStripItem[] }) {
+function TestimonialStrip({ items, title = "What Our Learners Say" }: { items: TestimonialStripItem[]; title?: string }) {
   if (!items.length) return null;
   return (
     <section className={`bg-[#09263f] text-white ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8 text-center">
-          What Our Learners Say
+          {title}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {items.map((t, i) => (
@@ -923,9 +928,11 @@ function TestimonialStrip({ items }: { items: TestimonialStripItem[] }) {
 function CapstoneProjects({
   items,
   fallback,
+  title = "Data Science Capstone Projects & Assignments",
 }: {
   items: ProjectDomain[];
   fallback: Project[];
+  title?: string;
 }) {
   const list: ProjectDomain[] =
     items.length > 0
@@ -947,7 +954,7 @@ function CapstoneProjects({
     <section id="projects" className="bg-[#F7F8FA] py-10 lg:py-16">
       <div className={SECTION_CONTAINER}>
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 text-[#09263f] text-center">
-          Data Science Capstone Projects &amp; Assignments
+          {title}
         </h2>
         <p className="text-sm sm:text-base text-[#475569] mb-6 max-w-2xl mx-auto text-center">
           Build a portfolio of real-world projects across banking, retail, telecom, healthcare and more.
@@ -994,13 +1001,13 @@ function CapstoneProjects({
 // Section 6 — Tools grid
 // ============================================================
 
-function ToolsGrid({ tools }: { tools: ToolLite[] }) {
+function ToolsGrid({ tools, title = "Data Science Tools & Technologies" }: { tools: ToolLite[]; title?: string }) {
   if (!tools.length) return null;
   return (
     <section id="tools" className="bg-white py-10 lg:py-16">
       <div className={SECTION_CONTAINER}>
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 text-[#09263f] text-center">
-          Data Science Tools &amp; Technologies
+          {title}
         </h2>
         <p className="text-sm sm:text-base text-[#475569] mb-6 max-w-2xl mx-auto text-center">
           Hands-on with the most in-demand tools used by working data professionals.
@@ -1037,12 +1044,12 @@ function ToolsGrid({ tools }: { tools: ToolLite[] }) {
 // Section 7 — Who Should Join
 // ============================================================
 
-function WhoShouldJoinSection({ items }: { items: WhoShouldJoinItem[] }) {
+function WhoShouldJoinSection({ items, title = "Who Should Join" }: { items: WhoShouldJoinItem[]; title?: string }) {
   if (!items.length) return null;
   return (
     <section id="audience" className={`bg-white ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8 text-center">Who Should Join</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8 text-center">{title}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {items.map((w, i) => (
             <div
@@ -1064,12 +1071,12 @@ function WhoShouldJoinSection({ items }: { items: WhoShouldJoinItem[] }) {
 // Section 8 — Job Roles
 // ============================================================
 
-function JobRolesSection({ roles }: { roles: string[] }) {
+function JobRolesSection({ roles, title = "Job Roles You Can Pursue" }: { roles: string[]; title?: string }) {
   if (!roles.length) return null;
   return (
     <section className={`bg-[#F7F8FA] ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 text-center">Job Roles You Can Pursue</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 text-center">{title}</h2>
         <p className="text-[#475569] mb-6 max-w-2xl mx-auto text-center">
           Career paths our alumni have built across leading companies.
         </p>
@@ -1092,12 +1099,12 @@ function JobRolesSection({ roles }: { roles: string[] }) {
 // Section 9 — Key Skills
 // ============================================================
 
-function KeySkillsSection({ skills }: { skills: string[] }) {
+function KeySkillsSection({ skills, title = "Key Skills You'll Gain" }: { skills: string[]; title?: string }) {
   if (!skills.length) return null;
   return (
     <section className={`bg-white ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8 text-center">Key Skills You&apos;ll Gain</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8 text-center">{title}</h2>
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 max-w-3xl mx-auto">
           {skills.map((s, i) => (
             <li key={i} className="flex items-center gap-3 text-[#09263f]">
@@ -1115,12 +1122,12 @@ function KeySkillsSection({ skills }: { skills: string[] }) {
 // Section 10 — Learning Modes
 // ============================================================
 
-function LearningModesSection({ modes }: { modes: LearningModeItem[] }) {
+function LearningModesSection({ modes, title = "Learning Modes" }: { modes: LearningModeItem[]; title?: string }) {
   if (!modes.length) return null;
   return (
     <section id="modes" className={`bg-[#F7F8FA] ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8 text-center">Learning Modes</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8 text-center">{title}</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {modes.map((m, i) => (
             <div
@@ -1146,12 +1153,12 @@ function LearningModesSection({ modes }: { modes: LearningModeItem[] }) {
 // Section 11 — Course Fees
 // ============================================================
 
-function CourseFeesSection({ pricing }: { pricing: CoursePricing[] }) {
+function CourseFeesSection({ pricing, title = "Course Fees" }: { pricing: CoursePricing[]; title?: string }) {
   if (!pricing.length) return null;
   return (
     <section className={`bg-white ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 text-center">Course Fees</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 text-center">{title}</h2>
         <p className="text-[#475569] mb-8 max-w-2xl mx-auto text-center">
           Choose a learning mode that fits your schedule and budget.
         </p>
@@ -1252,12 +1259,12 @@ function CertificationSection({
 // Section 13 — Career support
 // ============================================================
 
-function CareerSupportSection({ data }: { data: CareerSupport }) {
+function CareerSupportSection({ data, title = "Career Support" }: { data: CareerSupport; title?: string }) {
   if (!data.intro && !data.features?.length && !data.partnerLogos?.length) return null;
   return (
     <section className={`bg-white ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 text-center">Career Support</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 text-center">{title}</h2>
         {data.intro && <p className="text-[#475569] mb-8 max-w-2xl mx-auto text-center">{data.intro}</p>}
 
         {data.features && data.features.length > 0 && (
@@ -1312,12 +1319,12 @@ function CareerSupportSection({ data }: { data: CareerSupport }) {
 // Section 14 — How to apply
 // ============================================================
 
-function HowToApplySection({ steps }: { steps: HowToApplyStep[] }) {
+function HowToApplySection({ steps, title = "How to Apply" }: { steps: HowToApplyStep[]; title?: string }) {
   if (!steps.length) return null;
   return (
     <section className={`bg-[#09263f] text-white ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8 text-center">How to Apply</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8 text-center">{title}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {steps.map((s, i) => (
             <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-5">
@@ -1338,12 +1345,12 @@ function HowToApplySection({ steps }: { steps: HowToApplyStep[] }) {
 // Section 15 — Student stories
 // ============================================================
 
-function StudentStoriesSection({ stories }: { stories: StudentStory[] }) {
+function StudentStoriesSection({ stories, title = "Student Success Stories" }: { stories: StudentStory[]; title?: string }) {
   if (!stories.length) return null;
   return (
     <section className={`bg-white ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8">Student Success Stories</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8">{title}</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {stories.map((s, i) => (
             <div
@@ -1384,12 +1391,12 @@ function StudentStoriesSection({ stories }: { stories: StudentStory[] }) {
 // Section 16 — Related articles
 // ============================================================
 
-function RelatedArticlesSection({ articles }: { articles: RelatedArticle[] }) {
+function RelatedArticlesSection({ articles, title = "Related Articles" }: { articles: RelatedArticle[]; title?: string }) {
   if (!articles.length) return null;
   return (
     <section className={`bg-[#F7F8FA] ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8">Related Articles</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8">{title}</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {articles.map((a, i) => (
             <a
@@ -1576,13 +1583,13 @@ function ContactSection({
 // Section 19 — FAQ
 // ============================================================
 
-function FaqSection({ items }: { items: FaqItem[] }) {
+function FaqSection({ items, title = "Frequently Asked Questions" }: { items: FaqItem[]; title?: string }) {
   const [open, setOpen] = useState<number | null>(0);
   if (!items.length) return null;
   return (
     <section className={`bg-[#F7F8FA] ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-base sm:text-xl lg:text-3xl font-bold mb-5 sm:mb-8">Frequently Asked Questions</h2>
+        <h2 className="text-base sm:text-xl lg:text-3xl font-bold mb-5 sm:mb-8">{title}</h2>
         <div className="max-w-3xl flex flex-col gap-3">
           {items.map((f, i) => (
             <div
@@ -1618,12 +1625,12 @@ function FaqSection({ items }: { items: FaqItem[] }) {
 // Section 20 — Batches table
 // ============================================================
 
-function BatchesTable({ batches }: { batches: Batch[] }) {
+function BatchesTable({ batches, title = "Upcoming Batches" }: { batches: Batch[]; title?: string }) {
   if (!batches.length) return null;
   return (
     <section id="batches" className={`bg-white ${SECTION_PAD}`}>
       <div className={SECTION_CONTAINER}>
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8">Upcoming Batches</h2>
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8">{title}</h2>
         <div className="overflow-x-auto border border-[#E5E7EB] rounded-2xl">
           <table className="w-full text-sm">
             <thead className="bg-[#F7F8FA] text-[#09263f]">
